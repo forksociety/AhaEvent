@@ -1,0 +1,7 @@
+{
+  "name": "AhaEvent",
+  "description": "Event discovery platform",
+  "repository": "https://github.com/Bytewalkers/AhaEvent",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "express", "ahaevent"]
+}
