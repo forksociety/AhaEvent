@@ -1,0 +1,22 @@
+@mixin element-min-height($val) {
+    min-height: $val;
+}
+
+@mixin element-height($val) {
+    height: $val;
+}
+
+body {
+    @include element-min-height(100%);
+}
+.App {
+    @include element-height(100%);
+    .ant-layout {
+        background: #fff;
+        color: #eee;
+    }
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
