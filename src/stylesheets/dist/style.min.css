@@ -1,1 +1,1 @@
-body{min-height:100%}.App{height:100%}.App .ant-layout{background:#fff}@-webkit-keyframes App-logo-spin{from{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes App-logo-spin{from{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}
+.App .logo,.App .text-center{text-align:center}body{min-height:100%;font-family:'Josefin Slab',serif}.App{height:100%}.App .logo{font-family:'Nova Mono',monospace}.App .ant-layout{background:#fff}

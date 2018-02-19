@@ -1,3 +1,11 @@
+@mixin default-font() {
+    font-family: 'Josefin Slab', serif;
+}
+
+@mixin logo-font() {
+    font-family: 'Nova Mono', monospace;
+}
+
 @mixin element-min-height($val) {
     min-height: $val;
 }
@@ -8,14 +16,23 @@
 
 body {
     @include element-min-height(100%);
+    @include default-font();
 }
+
 .App {
     @include element-height(100%);
+
+    .logo {
+        @include logo-font();
+        text-align: center;
+    }
+
     .ant-layout {
         background: #fff;
     }
+
+    .text-center {
+        text-align: center;
+    }
 }
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
