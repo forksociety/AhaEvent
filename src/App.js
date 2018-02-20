@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './stylesheets/dist/style.min.css';
 
 import { Layout } from 'antd';
-const { Content } = Layout;
 
 class App extends Component {
     render() {
