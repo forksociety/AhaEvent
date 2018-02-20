@@ -8,7 +8,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1",
-    "react-app-rewired": "^1.5.0"
+    "react-app-rewired": "^1.5.0",
+    "babel-plugin-import": "^1.6.6"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -27,7 +28,6 @@
   ],
   "license": "AGPL-3.0",
   "devDependencies": {
-    "babel-plugin-import": "^1.6.6",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
