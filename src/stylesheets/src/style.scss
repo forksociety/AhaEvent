@@ -1,38 +1,78 @@
-@mixin default-font() {
+$fontSizeBase: 14px;
+@mixin fontDefault() {
     font-family: 'Josefin Slab', serif;
 }
 
-@mixin logo-font() {
+@mixin fontLogo() {
     font-family: 'Nova Mono', monospace;
 }
 
-@mixin element-min-height($val) {
+@mixin fontSize($val) {
+    font-size: $val;
+}
+
+@mixin fontColor($val) {
+    color: $val;
+}
+
+@mixin textAlign($val) {
+    text-align: $val;
+}
+
+@mixin elementMinHeight($val) {
     min-height: $val;
 }
 
-@mixin element-height($val) {
+@mixin elementHeight($val) {
     height: $val;
 }
 
-body {
-    @include element-min-height(100%);
-    @include default-font();
+body > * {
+    @include elementHeight(inherit);
 }
 
-.App {
-    @include element-height(100%);
+body {
+    @include elementMinHeight(100%);
+    @include fontDefault();
+    @include fontSize($fontSizeBase);
+    width: 100wh;
+    color: #fff;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+.ant-layout {
+    @include elementHeight(100%);
+    @include fontColor(#fff);
+    background: rgba(0, 0, 0, 0);
+    justify-content: center;
 
     .logo {
-        @include logo-font();
+        @include fontLogo();
+        @include fontSize(600%);
         text-align: center;
+    }
+
+    .tagline {
+        @include fontSize(230%);
+        @include textAlign(center);
     }
 
     .ant-layout {
-        background: #fff;
-    }
-
-    .text-center {
-        text-align: center;
+        background: rgba(0, 0, 0, 0);
     }
 }
 
