@@ -27,8 +27,8 @@ $fontSizeBase: 14px;
     height: $val;
 }
 
-body > * {
-    @include elementHeight(inherit);
+html {
+    @include elementHeight(100%);
 }
 
 body {
@@ -40,6 +40,10 @@ body {
     background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
     background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
+}
+
+body > * {
+    @include elementHeight(inherit);
 }
 
 @keyframes Gradient {
