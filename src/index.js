@@ -10,3 +10,4 @@ import { unregister } from './registerServiceWorker';
 config.set(configuration);
 
 ReactDOM.render(<App />, document.getElementById('root'));
+unregister();
