@@ -1,4 +1,10 @@
 $fontSizeBase: 14px;
+
+$smallestDevice: 320px;
+$smallDevice: 492px;
+$tabletDevice: 900px;
+
+
 @mixin fontDefault() {
     font-family: 'Josefin Slab', serif;
 }
@@ -27,6 +33,11 @@ $fontSizeBase: 14px;
     height: $val;
 }
 
+@mixin addPadding($val) {
+    padding: $val;
+}
+
+
 html {
     @include elementHeight(100%);
 }
@@ -35,6 +46,7 @@ body {
     @include elementMinHeight(100%);
     @include fontDefault();
     @include fontSize($fontSizeBase);
+    @include addPadding(10px);
     width: 100wh;
     color: #fff;
     background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
@@ -80,3 +92,13 @@ body > * {
     }
 }
 
+@media only screen and (max-width: $smallDevice) {
+    .ant-layout {
+        .logo {
+            @include fontSize(450%);
+        }
+        .tagline {
+            @include fontSize(180%);
+        }
+    }
+} 
