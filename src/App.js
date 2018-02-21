@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import './stylesheets/dist/style.min.css';
+import config from 'react-global-configuration';
 
+import DocumentMeta from './components/document-meta';
+
+import './stylesheets/dist/style.min.css';
 import { Layout } from 'antd';
 
 class App extends Component {
     render() {
+        let metaData = {}
         return (
                 <Layout>
-                    <span className="logo">Aha! Event</span>
-                    <p className="tagline">Showcasing events, one at a time</p>
+                    <DocumentMeta {...metaData} />
+                    <span className="logo">{config.get('siteName')}</span>
+                    <p className="tagline">{config.get('siteTagline')}</p>
                 </Layout>
                );
     }
