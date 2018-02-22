@@ -33,6 +33,14 @@ $tabletDevice: 900px;
     height: $val;
 }
 
+@mixin elementMaxWidth($val) {
+    max-width: $val;
+}
+
+@mixin elementWidth($val) {
+    width: $val;
+}
+
 @mixin addPadding($val) {
     padding: $val;
 }
@@ -76,6 +84,10 @@ body > * {
     background: rgba(0, 0, 0, 0);
     justify-content: center;
 
+    .logo-img {
+        @include elementWidth(15%);
+        @include elementMaxWidth(250px);
+    }
     .logo {
         @include fontLogo();
         @include fontSize(600%);
@@ -90,15 +102,19 @@ body > * {
     .ant-layout {
         background: rgba(0, 0, 0, 0);
     }
+
+    .text-center {
+        text-align: center;
+    }
 }
 
 @media only screen and (max-width: $smallDevice) {
     .ant-layout {
         .logo {
-            @include fontSize(450%);
+            @include fontSize(380%);
         }
         .tagline {
-            @include fontSize(180%);
+            @include fontSize(150%);
         }
     }
 } 
