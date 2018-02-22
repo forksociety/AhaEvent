@@ -18,7 +18,7 @@ const paths = {
     },
     favicon: {
         src: './src/img/favicon.png',
-        dest: './public/'
+        dest: './public/favicons/'
     }
 };
 
@@ -45,7 +45,7 @@ gulp.task('generate-favicon', function(done) {
   realFavicon.generateFavicon({
     masterPicture: paths.favicon.src,
     dest: paths.favicon.dest,
-    iconsPath: '%PUBLIC_URL%',
+    iconsPath: '%PUBLIC_URL%/favicons',
     design: {
       ios: {
         pictureAspect: 'backgroundAndMargin',

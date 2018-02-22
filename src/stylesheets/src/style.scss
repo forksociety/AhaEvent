@@ -37,6 +37,10 @@ $tabletDevice: 900px;
     max-width: $val;
 }
 
+@mixin elementMinWidth($val) {
+    min-width: $val;
+}
+
 @mixin elementWidth($val) {
     width: $val;
 }
@@ -87,6 +91,7 @@ body > * {
     .logo-img {
         @include elementWidth(15%);
         @include elementMaxWidth(250px);
+        @include elementMinWidth(130px);
     }
     .logo {
         @include fontLogo();
