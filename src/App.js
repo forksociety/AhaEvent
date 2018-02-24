@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import config from 'react-global-configuration';
-import ReactGA from 'react-ga';
+//import ReactGA from 'react-ga';
 
 import DocumentMeta from './components/document-meta';
 
@@ -9,10 +9,12 @@ import { Layout } from 'antd';
 
 class App extends Component {
     render() {
-        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'dev') {
-            console.log('dev environment');
+        console.log('environment', process.env);
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
+            console.log('prod environment', process.env);
         } else {
-            ReactGA.initialize(config.get('gaTrackingId'), {"debug":true,"gaOptions":{"cookieDomain":"none"}});
+            console.log('dev environment', process.env);
+            //ReactGA.initialize(config.get('gaTrackingId'), {"debug":true,"gaOptions":{"cookieDomain":"none"}});
         }
         let metaData = {}
         return (
