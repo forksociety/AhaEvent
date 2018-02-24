@@ -1,1 +1,1 @@
-web: npm start
+web: $SERVER_START_COMMAND
