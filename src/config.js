@@ -5,7 +5,9 @@ const config = {
     siteTagline: 'Showcasing events, one at a time',
     siteKeywords: 'AhaEvents, Technology, Tech events, open source',
     siteDescription: 'Showcasing events, one at a time',
-    defaultOgImage: 'img/defaultOgImage.png'
+    defaultOgImage: 'img/defaultOgImage.png',
+
+    gaTrackingId: 'UA-67526856-8'
 };
  
 export default config;
