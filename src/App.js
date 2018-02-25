@@ -8,7 +8,7 @@ import CustomGrid from './components/custom-grid';
 import './stylesheets/dist/style.min.css';
 import { Layout, Menu, Icon } from 'antd';
 
-import eventsData from './dummy-event.json';
+import eventsData from './dummy-events.json';
 
 class App extends Component {
     render() {

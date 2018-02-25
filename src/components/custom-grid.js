@@ -17,7 +17,11 @@ class CustomGrid extends Component {
             let locationLink = 'https://www.google.com/maps/search/?api=1&query=' + e.location;
 
             intents.push(
-                    <Col span={8} key={ e.eventId }>
+                    <Col
+                        span={8} xs={24} sm={24} md={8} lg={8} xl={6}
+                        key={ e.eventId }
+                        style={{ marginBottom: "15px"}}
+                    >
                             <span className="custom-badges">
                                     <Badge count={0}>
                                         <a href={ e.links.website } target="_blank"><Icon type="link" /></a>
@@ -47,7 +51,7 @@ class CustomGrid extends Component {
                 );
         })
         return (
-             <Content style={{ padding: '0 50px' }}>
+             <Content style={{ padding: '0 50px'}}>
                 <Row gutter={16} justify="center">
                     { intents }
                 </Row>
