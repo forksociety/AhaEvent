@@ -18,7 +18,7 @@ const paths = {
     },
     favicon: {
         src: './src/img/favicon.png',
-        dest: './public/favicons/'
+        dest: './public/'
     }
 };
 
@@ -27,6 +27,7 @@ var FAVICON_DATA_FILE = './src/faviconData.json';
 gulp.task('style', function(cb) {
     let scssStream = gulp.src([paths.styles.src_scss])
         .pipe(sass())
+        .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false}))
         .pipe(concat('scss-files.scss'));
 
     let cssStream = gulp.src([paths.styles.src_css])
@@ -45,7 +46,7 @@ gulp.task('generate-favicon', function(done) {
   realFavicon.generateFavicon({
     masterPicture: paths.favicon.src,
     dest: paths.favicon.dest,
-    iconsPath: '%PUBLIC_URL%/favicons',
+    iconsPath: '%PUBLIC_URL%',
     design: {
       ios: {
         pictureAspect: 'backgroundAndMargin',

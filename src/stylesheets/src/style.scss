@@ -49,7 +49,6 @@ $tabletDevice: 900px;
     padding: $val;
 }
 
-
 html {
     @include elementHeight(100%);
 }
@@ -58,15 +57,9 @@ body {
     @include elementMinHeight(100%);
     @include fontDefault();
     @include fontSize($fontSizeBase);
-    @include addPadding(10px);
     width: 100wh;
-    color: #fff;
-}
-
-.awesome-bg {
-    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-    background-size: 400% 400%;
-    animation: Gradient 15s ease infinite;
+    background: #f7f7f7;
+    padding-bottom: 20px;
 }
 
 body > * {
@@ -85,44 +78,95 @@ body > * {
     }
 }
 
-.ant-layout {
-    @include elementHeight(100%);
-    @include fontColor(#fff);
-    background: rgba(0, 0, 0, 0);
-    justify-content: center;
-
-    .logo-img {
-        @include elementWidth(15%);
-        @include elementMaxWidth(250px);
-        @include elementMinWidth(130px);
-    }
-    .logo {
-        @include fontLogo();
-        @include fontSize(600%);
-        text-align: center;
-    }
-
-    .tagline {
-        @include fontSize(230%);
-        @include textAlign(center);
+#root {
+    .awesome-bg {
+        background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+        background-size: 400% 400%;
+        animation: Gradient 15s ease infinite;
+        color: #fff;
+        margin-bottom: 30px;
+        @include elementHeight(216px);
     }
 
     .ant-layout {
-        background: rgba(0, 0, 0, 0);
+        @include fontColor(#fff);
+
+        .logo-img {
+            @include elementWidth(15%);
+            @include elementMaxWidth(250px);
+            @include elementMinWidth(130px);
+        }
+        .logo {
+            @include fontLogo();
+            @include fontSize(600%);
+            text-align: center;
+        }
+
+        .tagline {
+            @include fontSize(230%);
+            @include textAlign(center);
+        }
+
+        .text-center {
+            text-align: center;
+        }
     }
 
-    .text-center {
-        text-align: center;
+    .ant-menu {
+        a:link, a:active, a:visited, a:hover {
+            color: #fff;
+        }
+        a:hover {
+            font-size: 105%;
+        }
+    }
+
+    .custom-badges {
+        position: absolute;
+        top: 6px;
+        right: 20px;
+        z-index: 999;
+        font-size: 150%;
+
+        .ant-badge + .ant-badge {
+            margin-left: 5px;
+        }
+
+        a:link, a:active, a:visited, a:hover {
+            color: #fff;
+        }
+        a:hover {
+            font-size: 105%;
+        }
+    }
+
+    .ant-card-hoverable {
+        cursor: default;
+    }
+
+    .ant-card {
+        .custom-meta {
+            .ant-card-meta-description {
+                font-size: 90%;
+            }
+        }
+    }
+
+    .flex-center {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: $smallDevice) {
+        .ant-layout {
+            .logo {
+                @include fontSize(380%);
+            }
+            .tagline {
+                @include fontSize(150%);
+            }
+        }
     }
 }
-
-@media only screen and (max-width: $smallDevice) {
-    .ant-layout {
-        .logo {
-            @include fontSize(380%);
-        }
-        .tagline {
-            @include fontSize(150%);
-        }
-    }
-} 
