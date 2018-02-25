@@ -7,6 +7,25 @@ const config = {
     siteDescription: 'Showcasing events, one at a time',
     defaultOgImage: 'img/defaultOgImage.png',
 
+    menu: [
+        {
+            key: "info",
+            icon: "info-circle-o",
+            link: "/"
+        },
+        {
+            key: "github",
+            icon: "github",
+            link: "https://github.com/nirmankarta/ahaevent",
+            newTab: true
+        },
+        {
+            key: "home",
+            icon: "home",
+            link: "/"
+        }
+    ],
+
     gaTrackingId: 'UA-67526856-8'
 };
  
