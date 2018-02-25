@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Card, Icon, Tooltip, Badge } from 'antd';
+import { Layout, Row, Col, Card, Icon, Badge } from 'antd';
 import moment from 'moment';
 
 const { Meta } = Card;

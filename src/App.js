@@ -12,7 +12,6 @@ import eventsData from './dummy-event.json';
 
 class App extends Component {
     render() {
-        console.log('environment', process.env);
         if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
             console.log('prod environment', process.env);
             ReactGA.initialize(config.get('gaTrackingId'), {"debug":true,"gaOptions":{"cookieDomain":"none"}});
@@ -37,7 +36,6 @@ class App extends Component {
                     </Menu.Item>
                     );
         });
-        console.log(menuData);
 
         return (
                 <Layout>
