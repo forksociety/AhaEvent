@@ -55,15 +55,17 @@ html {
 
 body {
     @include elementMinHeight(100%);
+    @include elementHeight(auto);
     @include fontDefault();
     @include fontSize($fontSizeBase);
     width: 100wh;
-    background: #f7f7f7;
+    background: #f0f2f5;
     padding-bottom: 20px;
 }
 
 body > * {
-    @include elementHeight(inherit);
+    @include elementHeight(auto);
+    @include elementMinHeight(inherit);
 }
 
 @keyframes Gradient {
