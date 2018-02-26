@@ -160,6 +160,9 @@ body > * {
     }
 
     @media only screen and (max-width: $smallDevice) {
+        .awesome-bg {
+            @include elementHeight(169px);
+        }
         .ant-layout {
             .logo {
                 @include fontSize(380%);
