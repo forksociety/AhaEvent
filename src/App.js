@@ -38,7 +38,7 @@ class App extends Component {
         });
 
         return (
-                <Layout>
+                <Layout style={{ background: "#f0f2f5" }}>
                     <Layout className="awesome-bg">
                         <DocumentMeta {...metaData} />
                         <Menu
