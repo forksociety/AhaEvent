@@ -7,6 +7,7 @@ const gulp = require('gulp'),
       autoprefixer = require('gulp-autoprefixer'),
       merge = require('merge-stream'),
       realFavicon = require ('gulp-real-favicon'),
+      mergeJson = require('gulp-merge-json'),
       fs = require('fs');
 
 
@@ -19,6 +20,10 @@ const paths = {
     favicon: {
         src: './src/img/favicon.png',
         dest: './public/'
+    },
+    jsonFiles: {
+        src: './src/events/*.json',
+        dist: './src/'
     }
 };
 
@@ -129,6 +134,12 @@ gulp.task('check-for-favicon-update', function(done) {
   });
 });
 
+gulp.task('merge-json', function() {
+    gulp.src(paths.jsonFiles.src)
+        .pipe(mergeJson({ fileName: 'events.json'}))
+        .pipe(gulp.dest(paths.jsonFiles.dist));
+});
+
 gulp.task('clean', function() {
     del([ paths.styles ]);
 });
@@ -137,7 +148,7 @@ gulp.task('watch', function() {
     gulp.watch(paths.styles.src_scss, gulp.start('style'));
 });
 
-gulp.task('build', ['clean', 'style', 'generate-favicon', 'inject-favicon-markups']);
+gulp.task('build', ['clean', 'merge-json', 'style', 'generate-favicon', 'inject-favicon-markups']);
 
-gulp.task('default', ['style', 'generate-favicon', 'inject-favicon-markups']);
+gulp.task('default', ['merge-json', 'style', 'generate-favicon', 'inject-favicon-markups']);
 

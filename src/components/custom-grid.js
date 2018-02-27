@@ -8,7 +8,8 @@ const { Content } = Layout;
 class CustomGrid extends Component {
     render() {
         let intents = [];
-        this.props.items.forEach(function(e) {
+        for (var key in this.props.items) {
+            let e =this.props.items[key];
             let startDate = moment(e.timestamp.start);
             let endDate = moment(e.timestamp.end);
             let dateString = startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY');
@@ -49,7 +50,7 @@ class CustomGrid extends Component {
                             </Card>
                     </Col>
                 );
-        })
+        }
         return (
              <Content style={{ padding: '0 50px'}}>
                 <Row gutter={16} justify="center">
