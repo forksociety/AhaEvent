@@ -1,7 +1,7 @@
 {
   "name": "AhaEvent",
   "version": "0.1.0",
-  "description": "Platform for event discovery",
+  "description": "Showcasing FLOSS events, one at a time",
   "private": true,
   "scripts": {
     "start": "react-app-rewired start",
