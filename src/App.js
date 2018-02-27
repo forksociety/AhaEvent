@@ -8,7 +8,7 @@ import CustomGrid from './components/custom-grid';
 import './stylesheets/dist/style.min.css';
 import { Layout, Menu, Icon } from 'antd';
 
-import eventsData from './dummy-events.json';
+import eventsData from './events.json';
 
 class App extends Component {
     render() {
@@ -49,9 +49,10 @@ class App extends Component {
                             { menuItems }
                         </Menu>
                         <span className="logo">{ config.get('siteName') }</span>
+                        <p className="tagline">{ config.get('siteTagline') }</p>
                     </Layout>
 
-                    <CustomGrid {...eventsData } />
+                    <CustomGrid {...{"items": eventsData } } />
                 </Layout>
                );
     }

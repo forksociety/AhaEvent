@@ -87,7 +87,6 @@ body > * {
         animation: Gradient 15s ease infinite;
         color: #fff;
         margin-bottom: 30px;
-        @include elementHeight(216px);
     }
 
     .ant-layout {
@@ -119,7 +118,7 @@ body > * {
             color: #fff;
         }
         a:hover {
-            font-size: 105%;
+            font-size: 110%;
         }
     }
 
@@ -138,7 +137,7 @@ body > * {
             color: #fff;
         }
         a:hover {
-            font-size: 105%;
+            font-size: 110%;
         }
     }
 
@@ -162,9 +161,6 @@ body > * {
     }
 
     @media only screen and (max-width: $smallDevice) {
-        .awesome-bg {
-            @include elementHeight(169px);
-        }
         .ant-layout {
             .logo {
                 @include fontSize(380%);

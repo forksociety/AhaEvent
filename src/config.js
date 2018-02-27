@@ -2,7 +2,7 @@ const config = {
     siteName: 'Aha! Event',
     siteUrl: 'https://ahaevent.org',
     siteAuthor: 'Nirmankarta',
-    siteTagline: 'Showcasing events, one at a time',
+    siteTagline: 'Showcasing FLOSS events, one at a time',
     siteKeywords: 'AhaEvents, Technology, Tech events, open source',
     siteDescription: 'Showcasing events, one at a time',
     defaultOgImage: 'img/defaultOgImage.png',
@@ -12,6 +12,12 @@ const config = {
             key: "info",
             icon: "info-circle-o",
             link: "/"
+        },
+        {
+            key: "slack",
+            icon: "slack",
+            link: "https://slack.nirmankarta.com",
+            newTab: true
         },
         {
             key: "github",
