@@ -13,10 +13,10 @@ import eventsData from './events.json';
 class App extends Component {
     render() {
         if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-            console.log('prod environment', process.env);
+            console.log('prod environment');
             ReactGA.initialize(config.get('gaTrackingId'), {"debug":true,"gaOptions":{"cookieDomain":"none"}});
         } else {
-            console.log('dev environment', process.env);
+            console.log('dev environment');
         }
         let metaData = {}
 
