@@ -1,7 +1,7 @@
 {
     "43525": {
         "eventId": 43525,
-        "name": "Hyperledger Hackfests Amsterdam 2018",
+        "name": "Hyperledger Hackfests 2018",
         "url": "hyperledger-hackfests-amsterdam-2018",
         "timestamp": {
             "start": 1530037800000,
@@ -15,6 +15,7 @@
         "links": {
             "website": "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/",
             "register": "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/register/",
+            "logo": "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.png",
             "coverImg": "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.jpg"
         },
         "cfp": {

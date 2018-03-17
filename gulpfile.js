@@ -8,6 +8,7 @@ const gulp = require('gulp'),
       merge = require('merge-stream'),
       realFavicon = require ('gulp-real-favicon'),
       mergeJson = require('gulp-merge-json'),
+      jsonminify = require('gulp-jsonminify'),
       fs = require('fs');
 
 
@@ -137,6 +138,7 @@ gulp.task('check-for-favicon-update', function(done) {
 gulp.task('merge-json', function() {
     gulp.src(paths.jsonFiles.src)
         .pipe(mergeJson({ fileName: 'events.json'}))
+        .pipe(jsonminify())
         .pipe(gulp.dest(paths.jsonFiles.dist));
 });
 
