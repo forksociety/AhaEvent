@@ -14,7 +14,8 @@ class CustomGrid extends Component {
             let endDate = moment(e.timestamp.end);
             let dateString = startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY');
             let url = '/' + e.url;
-            let altText = e.name + ' Cover Image';
+            let coverImgAltText = e.name + ' Cover Image';
+            let logoAltText = e.name + ' Logo';
             let locationLink = 'https://www.google.com/maps/search/?api=1&query=' + e.location;
 
             intents.push(
@@ -28,9 +29,14 @@ class CustomGrid extends Component {
                                         <a href={ e.links.website } target="_blank"><Icon type="link" /></a>
                                     </Badge>
                             </span>
+                            <span className="event-logo">
+                                <span>
+                                    <img src={ e.links.logo } alt={ logoAltText }/>
+                                </span>
+                            </span>
                             <Card
                                 hoverable
-                                cover={ <img alt={ altText } src={ e.links.coverImg } /> }
+                                cover={ <img alt={ coverImgAltText } src={ e.links.coverImg } /> }
                             >
                                 <Meta
                                     className="custom-meta"

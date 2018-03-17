@@ -2,7 +2,7 @@
     "43523": {
         "eventId": 43523,
         "name": "Open Source Summit Japan 2018",
-        "url": "open-source-summit-japan-2018",
+        "url": "open-source-summit-japan-tokyo-2018",
         "timestamp": {
             "start": 1529433000000,
             "end": 1529605800000
@@ -15,6 +15,7 @@
         "links": {
             "website": "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/",
             "register": "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/attend/register/",
+            "logo": "https://events.linuxfoundation.org/wp-content/uploads/2017/11/logo_ossummit_jp.png",
             "coverImg": "https://events.linuxfoundation.org/wp-content/uploads/2017/11/tokyo-2.jpg"
         },
         "cfp": {

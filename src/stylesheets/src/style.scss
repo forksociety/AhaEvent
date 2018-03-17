@@ -80,7 +80,7 @@ body > * {
     }
 }
 
-#root {
+#root { 
     .awesome-bg {
         background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
         background-size: 400% 400%;
@@ -141,6 +141,24 @@ body > * {
         }
     }
 
+    .event-logo {
+        @include elementWidth(97%);
+        position: absolute;
+        top: 0;
+        z-index: 998;
+        display: flex;
+        justify-content: center;
+        padding-top: 7%;
+
+        span {
+            @include elementWidth(65%);
+
+            img {
+                @include elementWidth(100%);
+            }
+        }
+    }
+
     .ant-card-hoverable {
         cursor: default;
     }
@@ -150,6 +168,10 @@ body > * {
             .ant-card-meta-description {
                 font-size: 90%;
             }
+        }
+
+        .ant-card-cover {
+            @include elementMinHeight(122px);
         }
     }
 
