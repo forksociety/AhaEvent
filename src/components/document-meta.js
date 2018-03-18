@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MetaTags from 'react-meta-tags';
+import { Helmet } from "react-helmet";
 import config from 'react-global-configuration';
 
 // TODO: move this to a separate module
@@ -22,7 +22,7 @@ class DocumentMeta extends Component {
         //let ogImage = (validProp(this.props.ogImage) ? this.props.ogImage : config.get("defaultOgImage"));
 
         return (
-                <MetaTags>
+                <Helmet>
                     <title>{title}</title>
                     <meta name="description" content={ description } />
                     <meta name="keywords" content={ keywords } />
@@ -31,7 +31,7 @@ class DocumentMeta extends Component {
                     <meta property="og:description" content={ ogDescription } />
                     <meta property="og:url" content={ ogUrl } />
                     <meta property="og:image" content={require('./../img/defaultOgImage.png') } />
-                </MetaTags>
+                </Helmet>
                )
     }
 }
