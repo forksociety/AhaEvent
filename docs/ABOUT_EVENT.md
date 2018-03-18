@@ -58,7 +58,7 @@ For an event to be showcased on AhaEvent.org, following conditions must be met:
 | WEBSITE_URL           | Yes       | Complete website link of the event| https://events.linuxfoundation.org/events/open-source-summit-japan-2018/ |
 | REGISTRATION_URL      | Yes       | Complete event registration link| https://events.linuxfoundation.org/events/open-source-summit-japan-2018/attend/register/ |
 | LOGO_URL              | Yes       | Complete link of the event's logo. If not available, logo of the organization can be used. | https://events.linuxfoundation.org/wp-content/uploads/2017/11/logo_ossummit_jp.png |
-| COVER_IMG_URL         | Yes       | A cover image to show on event card. This must be a link posted on the event's website.| https://events.linuxfoundation.org/wp-content/uploads/2017/11/tokyo-2.jpg |
+| COVER_IMG_URL         | Yes       | A cover image to show on event card. It can be an image of the event or the city hosting it. | https://events.linuxfoundation.org/wp-content/uploads/2017/11/tokyo-2.jpg |
 | CFP_START_TIMESTAMP   | Yes       | Timestamp at which the call for proposals will open.| 1529433000000 for 20th June 2018 |
 | CFP_END_TIMESTAMP     | Yes       | Timestamp at which the call for proposals will close.| 1529433000000 for 20th June 2018 |
 | CALL_FOR_PROPOSAL_URL | Yes       | Complete link to the call for proposal landing page.| https://events.linuxfoundation.org/events/open-source-summit-japan-2018/program/cfp/ |
