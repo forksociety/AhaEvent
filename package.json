@@ -32,7 +32,7 @@
     "react-dom": "^16.2.0",
     "react-ga": "^2.4.1",
     "react-global-configuration": "^1.2.1",
-    "react-meta-tags": "^0.3.0",
+    "react-helmet": "^5.2.0",
     "react-scripts": "1.1.1",
     "serve": "^6.5.3"
   },
