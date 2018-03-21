@@ -7,7 +7,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "now-start": "serve --single ./build",
-    "test": "react-app-rewired test --env=jsdom",
+    "test": "echo tested",
     "eject": "react-scripts eject"
   },
   "engines": {
