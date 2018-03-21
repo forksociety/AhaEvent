@@ -4,7 +4,7 @@ node_js:
 env:
     - secure: OqotgFgG4HaT1PiOqBunKdJvekFjsTgYfJIdtCd5pVbLUxYR4SRCyRO8sDf86YrRpjo8fob0u+xfo6NQyZ7AzVDjfDDAkZmFexMuN327LGO3+5VJu9W0DOers4AoesQ2BNKeALiI2oj6aFytbpB0DnBYlcUzddENuBeADb6Vk2irCvJgqZb6NwWDSEOQjGPlHeDKnTp1UJFCZ8lAKv55Vh8hRln8FErBgKp71mvTieksR/e8eYUdZvDxxUihChNJzlWyqBMTX1PqJUHBfAeabKwFxWMhwTN50Zsni1zN5UZQYMHvAvMWPQmtVVdN6p1TJLocAcjP925SlKzQXYvqWA==
 build:
-    pre-ci:
+    pre_ci:
         - npm install
         - npm install -g firebase-tools
         - npm run-script build
