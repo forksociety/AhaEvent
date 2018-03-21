@@ -2,7 +2,7 @@ language: node_js
 node_js:
     - 8.10.0 
 env:
-    - secure: OqotgFgG4HaT1PiOqBunKdJvekFjsTgYfJIdtCd5pVbLUxYR4SRCyRO8sDf86YrRpjo8fob0u+xfo6NQyZ7AzVDjfDDAkZmFexMuN327LGO3+5VJu9W0DOers4AoesQ2BNKeALiI2oj6aFytbpB0DnBYlcUzddENuBeADb6Vk2irCvJgqZb6NwWDSEOQjGPlHeDKnTp1UJFCZ8lAKv55Vh8hRln8FErBgKp71mvTieksR/e8eYUdZvDxxUihChNJzlWyqBMTX1PqJUHBfAeabKwFxWMhwTN50Zsni1zN5UZQYMHvAvMWPQmtVVdN6p1TJLocAcjP925SlKzQXYvqWA==
+    - secure: FLXa4ThzuRVO5zZ5wLMuzR7+VkJVhWJBM/uwCNpu9BJdMN50WICV+Pg7t9ByqJAfwh0BCaErvhqO1J5LjGLNGJalDHrqeCMeRDiP1rCD8gDG2B0zIQf9ps+TbayMe0UHckvXcV/91sJsu5qTv7r/d/LomfrutuurXtYALBM2E9weT9wxlnZ1xbp3p+jmvw3L8cLbzJH4tW/VZ4Xa8KcFYMNF8z6fED5lw68M8zOxgcNKqEP5UBvCUvSF51eOfkUB6dLbkrwImmMLlQm6ENgoiw184MAfuptPbqMVX/txUdZzcOpUpdJSTCJAQHmotAC/jvRcX1flEXpukxWoLoZvew==
 build:
     pre_ci:
         - node --version
