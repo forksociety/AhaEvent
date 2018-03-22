@@ -7,6 +7,11 @@ const config = {
   siteDescription: 'Showcasing events, one at a time',
   defaultOgImage: 'img/defaultOgImage.png',
 
+  api: {
+    // eventsUrl: 'http://localhost:5001/ahaeventorg/us-central1/api/events'
+    eventsUrl: 'https://us-central1-ahaeventorg.cloudfunctions.net/api/events'
+  },
+
   menu: [
     {
       key: 'info',
@@ -16,13 +21,13 @@ const config = {
     {
       key: 'slack',
       icon: 'slack',
-      link: 'https://slack.nirmankarta.com',
+      link: 'http://slack.forksociety.com',
       newTab: true
     },
     {
       key: 'github',
       icon: 'github',
-      link: 'https://github.com/nirmankarta/ahaevent',
+      link: 'https://github.com/forksociety/ahaevent',
       newTab: true
     },
     {
@@ -33,6 +38,6 @@ const config = {
   ],
 
   gaTrackingId: 'UA-67526856-8'
-};
+}
 
-export default config;
+export default config

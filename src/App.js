@@ -1,42 +1,46 @@
-import React, { Component } from 'react';
-import config from 'react-global-configuration';
-import ReactGA from 'react-ga';
+import React, { Component } from 'react'
+import config from 'react-global-configuration'
+import ReactGA from 'react-ga'
 
-import DocumentMeta from './components/document-meta';
-import CustomGrid from './components/custom-grid';
+import DocumentMeta from './components/DocumentMeta/document-meta'
+import OSEvents from './components/OSEvents/os-events'
 
-import './stylesheets/dist/style.min.css';
-import { Layout, Menu, Icon } from 'antd';
-
-import eventsData from './events.json';
+import './stylesheets/dist/style.min.css'
+import { Layout, Menu, Icon } from 'antd'
 
 class App extends Component {
-  render() {
+  render () {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-      console.log('prod environment');
+      console.log = (...para) => { }
+      console.warn = (...para) => { }
+      console.error = (...para) => { }
+      console.log('prod environment')
+
       ReactGA.initialize(config.get('gaTrackingId'), {
         debug: true,
         gaOptions: { cookieDomain: 'none' }
-      });
+      })
     } else {
-      console.log('dev environment');
+      console.log('dev environment')
     }
-    let metaData = {};
+    console.log(process.env)
 
-    let menuItems = [];
-    let menuData = config.get('menu');
-    menuData.forEach(function(e) {
+    let metaData = {}
+
+    let menuItems = []
+    let menuData = config.get('menu')
+    menuData.forEach((e) => {
       let menuItemLink = (
         <a href={e.link}>
           <Icon type={e.icon} />
         </a>
-      );
+      )
       if (typeof e.newTab !== 'undefined' && e.newTab) {
         menuItemLink = (
-          <a href={e.link} target="_blank">
+          <a href={e.link} target='_blank'>
             <Icon type={e.icon} />
           </a>
-        );
+        )
       }
       menuItems.push(
         <Menu.Item
@@ -51,16 +55,16 @@ class App extends Component {
         >
           {menuItemLink}
         </Menu.Item>
-      );
-    });
+      )
+    })
 
     return (
       <Layout style={{ background: '#f0f2f5' }}>
-        <Layout className="awesome-bg">
+        <Layout className='awesome-bg'>
           <DocumentMeta {...metaData} />
           <Menu
             selectedKeys={['home']}
-            mode="horizontal"
+            mode='horizontal'
             style={{
               borderBottom: '0px',
               background: 'rgba(255, 255, 255, 0)'
@@ -68,14 +72,14 @@ class App extends Component {
           >
             {menuItems}
           </Menu>
-          <span className="logo">{config.get('siteName')}</span>
-          <p className="tagline">{config.get('siteTagline')}</p>
+          <span className='logo'>{config.get('siteName')}</span>
+          <p className='tagline'>{config.get('siteTagline')}</p>
         </Layout>
+        <OSEvents />
 
-        <CustomGrid {...{ items: eventsData }} />
       </Layout>
-    );
+    )
   }
 }
 
-export default App;
+export default App
