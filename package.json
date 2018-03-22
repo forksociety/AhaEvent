@@ -6,6 +6,7 @@
     "scripts": {
         "start": "react-app-rewired start",
         "build": "gulp && react-app-rewired build",
+        "build-react": "react-app-rewired build",
         "now-start": "serve --single ./build",
         "test": "echo tested",
         "eject": "react-scripts eject"
