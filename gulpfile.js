@@ -23,8 +23,9 @@ const paths = {
         dest: './public/'
     },
     jsonFiles: {
-        src: './src/events/*.json',
-        dist: './src/'
+        src: './functions/events/*.json',
+        dist: './functions/',
+        reactDist: './src/'
     }
 };
 
@@ -139,7 +140,8 @@ gulp.task('merge-json', function() {
     gulp.src(paths.jsonFiles.src)
         .pipe(mergeJson({ fileName: 'events.json'}))
         .pipe(jsonminify())
-        .pipe(gulp.dest(paths.jsonFiles.dist));
+        .pipe(gulp.dest(paths.jsonFiles.dist))
+        .pipe(gulp.dest(paths.jsonFiles.reactDist));
 });
 
 gulp.task('clean', function() {
@@ -153,4 +155,3 @@ gulp.task('watch', function() {
 gulp.task('build', ['clean', 'merge-json', 'style', 'generate-favicon', 'inject-favicon-markups']);
 
 gulp.task('default', ['merge-json', 'style', 'generate-favicon', 'inject-favicon-markups']);
-
