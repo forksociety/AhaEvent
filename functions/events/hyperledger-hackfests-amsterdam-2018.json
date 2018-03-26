@@ -1,7 +1,7 @@
 {
   "hyperledger-hackfests-amsterdam-2018": {
-    "name": "Hyperledger Hackfests 2018",
     "eId": "hyperledger-hackfests-amsterdam-2018",
+    "name": "Hyperledger Hackfests 2018",
     "timestamp": {
       "start": 1530037800000,
       "end": 1530210600000
