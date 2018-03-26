@@ -1,8 +1,7 @@
 {
-  "43526": {
-    "eventId": 43526,
+  "linux-security-summit-vancouver-2018": {
     "name": "Linux Security Summit 2018",
-    "url": "linux-security-summit-vancouver-2018",
+    "eId": "linux-security-summit-vancouver-2018",
     "timestamp": {
       "start": 1535308200000,
       "end": 1535394600000
