@@ -1,8 +1,7 @@
 {
-  "43523": {
-    "eventId": 43523,
+  "open-source-summit-japan-tokyo-2018": {
     "name": "Open Source Summit Japan 2018",
-    "url": "open-source-summit-japan-tokyo-2018",
+    "eId": "open-source-summit-japan-tokyo-2018",
     "timestamp": {
       "start": 1529433000000,
       "end": 1529605800000
