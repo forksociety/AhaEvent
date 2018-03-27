@@ -15,9 +15,8 @@ For an event to be showcased on AhaEvent.org, following conditions must be met:
 ```
 {
     "EVENT_ID": {
-        "eventId": EVENT_ID,
+        "eId": EVENT_ID,
         "name": EVENT_NAME,
-        "url": URL_SLUG,
         "timestamp": {
             "start": START_DATE_TIMESTAMP,
             "end": END_DATE_TIMESTAMP
@@ -50,7 +49,6 @@ For an event to be showcased on AhaEvent.org, following conditions must be met:
 |-----------------------|-----------|-------------|---------|
 | EVENT_ID              | Yes       | Unique event ID | See Below |
 | EVENT_NAME            | Yes       | Name of the event in English | Open Source Summit 2018                                                                  |
-| URL_SLUG              | Yes       | URL slug for the event. It should meet the following conditions: i) All characters must be small ii) It should include event name, city and year only. iii) Space can be replaced by a dash ( '-' ) only. | open-source-summit-tokyo-2018 |
 | START_DATE_TIMESTAMP  | Yes       | Timestamp of the day and time at which the event starts.| 1529433000000 for 20th June 2018 |
 | END_DATE_TIMESTAMP    | Yes       | Timestamp of the day and time at which the event ends.| 1529433000000 for 20th June 2018 |
 | LOCATION_NAME         | Yes       | Location where the event is going to take place.| Tokyo Conference Center Ariake, Tokyo, Japan |
@@ -66,4 +64,7 @@ For an event to be showcased on AhaEvent.org, following conditions must be met:
 
 ### Event ID
 
-Currently EVENT_ID is random combination of 5 digits (0-9). The planned schema for EVENT_ID would include information on city, country and countinent of the location of event.
+Currently EVENT_ID is just URL_SLUG.
+| Key                   | Mandatory | Description | Example |
+|-----------------------|-----------|-------------|---------|
+| URL_SLUG              | Yes       | URL slug for the event. It should meet the following conditions: i) All characters must be small ii) It should include event name, city and year only. iii) Space can be replaced by a dash ( '-' ) only. | open-source-summit-tokyo-2018 |
