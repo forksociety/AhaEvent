@@ -24,8 +24,7 @@ const paths = {
     },
     jsonFiles: {
         src: './functions/events/*.json',
-        dist: './functions/',
-        reactDist: './src/'
+        dist: './functions/'
     }
 };
 
@@ -141,7 +140,6 @@ gulp.task('merge-json', function() {
         .pipe(mergeJson({ fileName: 'events.json'}))
         .pipe(jsonminify())
         .pipe(gulp.dest(paths.jsonFiles.dist))
-        .pipe(gulp.dest(paths.jsonFiles.reactDist));
 });
 
 gulp.task('clean', function() {
