@@ -28,7 +28,7 @@ const paths = {
     }
 };
 
-var FAVICON_DATA_FILE = './src/faviconData.json';
+var FAVICON_DATA_FILE = 'faviconData.json';
 
 gulp.task('style', function(cb) {
     let scssStream = gulp.src([paths.styles.src_scss])
