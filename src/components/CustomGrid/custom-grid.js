@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Layout, Row, Col, Card, Icon, Badge } from 'antd'
 import moment from 'moment'
+import config from 'react-global-configuration'
 
 const { Meta } = Card
 const { Content } = Layout
@@ -8,13 +9,15 @@ const { Content } = Layout
 class CustomGrid extends Component {
   render () {
     let intents = []
+    let slugs = config.get('slugs')
+
     for (var key in this.props.items) {
       let e = this.props.items[key]
       let startDate = moment(e.timestamp.start)
       let endDate = moment(e.timestamp.end)
       let dateString =
         startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY')
-      let url = '/' + e.url
+      let url = slugs.event + e.eId
       let coverImgAltText = e.name + ' Cover Image'
       let logoAltText = e.name + ' Logo'
       let locationLink =
@@ -28,7 +31,7 @@ class CustomGrid extends Component {
           md={8}
           lg={8}
           xl={6}
-          key={e.eventId}
+          key={e.eId}
           style={{ marginBottom: '15px' }}
         >
           <span className='custom-badges'>
