@@ -1,6 +1,6 @@
-const apiBaseUrl = 'http://localhost:5001/ahaeventorg/us-central1/api'
+//const apiBaseUrl = 'http://localhost:5001/ahaeventorg/us-central1/api'
 // const apiBaseUrl = 'https://us-central1-ahaeventorg.cloudfunctions.net/api'
-// const apiBaseUrl = 'https://us-central1-dev-ahaeventorg.cloudfunctions.net/api'
+const apiBaseUrl = 'https://us-central1-dev-ahaeventorg.cloudfunctions.net/api'
 
 const config = {
   siteName: 'Aha! Event',
