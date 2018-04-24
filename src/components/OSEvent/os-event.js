@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 
 import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
 
-const { Content } = Layout;
+const { Content } = Layout
 
 class OSEvent extends Component {
   constructor (prop) {
@@ -16,13 +16,15 @@ class OSEvent extends Component {
     }
   }
 
-  generateApiUrl = () => this.state.api.eventUrl + this.state.eId
+  generateApiUrl () {
+    return this.state.api.eventUrl + this.state.eId
+  }
 
-  componentWillMount() {
+  componentWillMount () {
     this._loadContent()
   }
 
-  _loadContent() {
+  _loadContent () {
     fetch(this.generateApiUrl())
       .then(results => {
         if (results.status === 200) return results.json()
@@ -41,12 +43,12 @@ class OSEvent extends Component {
 
   render () {
     return (
-      <Layout className="layout" style={{ background: '#ffffff', margin: '20px 20px' }}>
-      <Content style={{ padding: '0 50px', color: '#000' }}>
-        <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-          {this.state.event.name}
-        </div>
-      </Content>
+      <Layout className='layout' style={{ background: '#ffffff', margin: '20px 20px' }}>
+        <Content style={{ padding: '0 50px', color: '#000' }}>
+          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+            {this.state.event.name}
+          </div>
+        </Content>
       </Layout>
     )
   }

@@ -8,23 +8,23 @@ class CustomMenu extends Component {
     this.state = {
       modalVisibility: false
     }
-    this.showModal = this.showModal.bind(this);
+    this.showModal = this.showModal.bind(this)
   }
 
-  showModal() {
+  showModal () {
     this.setState({
-      modalVisibility: true,
-    });
+      modalVisibility: true
+    })
   }
 
-  handleCancel = (e) => {
-    console.log(e);
+  handleCancel (e) {
+    console.log(e)
     this.setState({
-      modalVisibility: false,
-    });
+      modalVisibility: false
+    })
   }
 
-  render() {
+  render () {
     let menuItems = []
     let menuData = config.get('menu')
     menuData.forEach((e) => {
@@ -40,7 +40,7 @@ class CustomMenu extends Component {
           </a>
         )
       }
-      if(typeof e.onClick !== 'undefined' && e.onClick) {
+      if (typeof e.onClick !== 'undefined' && e.onClick) {
         menuItemLink = (
           <a onClick={this.showModal}>
             <Icon type={e.icon} />
@@ -68,7 +68,7 @@ class CustomMenu extends Component {
         <Menu
           selectedKeys={['home']}
           mode='horizontal'
-          //onClick={this.handleClick}
+          // onClick={this.handleClick}
           style={{
             borderBottom: '0px',
             background: 'rgba(255, 255, 255, 0)'
@@ -78,8 +78,8 @@ class CustomMenu extends Component {
         </Menu>
 
         <Modal
-          title={"About " + config.get('siteName')}
-          wrapClassName="vertical-center-modal"
+          title={'About ' + config.get('siteName')}
+          wrapClassName='vertical-center-modal'
           visible={this.state.modalVisibility}
           onCancel={this.handleCancel}
           onOk={this.handleCancel}
