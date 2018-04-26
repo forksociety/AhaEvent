@@ -1,0 +1,33 @@
+{
+  "linux-security-summit-vancouver-2018": {
+    "eId": "linux-security-summit-vancouver-2018",
+    "name": "Linux Security Summit 2018",
+    "timestamp": {
+      "start": 1535308200000,
+      "end": 1535394600000
+    },
+    "location": "Vancouver Convention Centre, Vancouver, Canada",
+    "geolocation": {
+      "longitude": 123.1207,
+      "latitude": 49.2827
+    },
+    "links": {
+      "website":
+        "https://events.linuxfoundation.org/events/linux-security-summit-north-america-2018/",
+      "register":
+        "https://events.linuxfoundation.org/events/linux-security-summit-north-america-2018/attend/register/",
+      "logo":
+        "https://events.linuxfoundation.org/wp-content/uploads/2017/11/logo_lss.png",
+      "coverImg":
+        "https://events.linuxfoundation.org/wp-content/uploads/2017/11/vancouver.jpg"
+    },
+    "cfp": {
+      "timestamp": {
+        "start": 1523212200000,
+        "end": 1527964200000
+      },
+      "link":
+        "https://events.linuxfoundation.org/events/linux-security-summit-north-america-2018/program/cfp/"
+    }
+  }
+}

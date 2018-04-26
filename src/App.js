@@ -1,33 +1,46 @@
-import React, { Component } from 'react';
-import config from 'react-global-configuration';
-import ReactGA from 'react-ga';
+import React, { Component } from 'react'
+import ReactGA from 'react-ga'
+import config from 'react-global-configuration'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import DocumentMeta from './components/document-meta';
+import HomePage from './pages/Home/home'
+import EventPage from './pages/Event/event'
 
-import './stylesheets/dist/style.min.css';
-import { Layout } from 'antd';
+import './stylesheets/dist/style.min.css'
 
 class App extends Component {
-    render() {
-        console.log('environment', process.env);
-        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-            console.log('prod environment', process.env);
-            ReactGA.initialize(config.get('gaTrackingId'), {"debug":true,"gaOptions":{"cookieDomain":"none"}});
-        } else {
-            console.log('dev environment', process.env);
-        }
-        let metaData = {}
-        return (
-                <Layout>
-                    <DocumentMeta {...metaData} />
-                    <p className="text-center">
-                        <img className="logo-img" src={ require('./img/logo.png') } alt="Aha! Event Logo" />
-                    </p>
-                    <span className="logo">{config.get('siteName')}</span>
-                    <p className="tagline">{config.get('siteTagline')}</p>
-                </Layout>
-               );
+  render () {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
+      console.log = (...para) => { }
+      console.warn = (...para) => { }
+      console.error = (...para) => { }
+      console.log('prod environment')
+
+      ReactGA.initialize(config.get('gaTrackingId'), {
+        debug: true,
+        gaOptions: { cookieDomain: 'none' }
+      })
+    } else {
+      console.log('dev environment')
     }
+
+    return (<Router>
+      <div>
+        <Route
+          exact path='/'
+          render={(props) => <HomePage {...props} />}
+        />
+        <Route
+          exact path='/events'
+          render={(props) => <HomePage {...props} />}
+        />
+        <Route
+          exact path='/event/:eUrl'
+          render={(props) => <EventPage {...props} />}
+        />
+      </div>
+    </Router>)
+  }
 }
 
-export default App;
+export default App

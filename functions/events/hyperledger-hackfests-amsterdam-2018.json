@@ -1,0 +1,32 @@
+{
+  "hyperledger-hackfests-amsterdam-2018": {
+    "eId": "hyperledger-hackfests-amsterdam-2018",
+    "name": "Hyperledger Hackfests 2018",
+    "timestamp": {
+      "start": 1530037800000,
+      "end": 1530210600000
+    },
+    "location": "ABN AMRO Head Office, Amsterdam, Netherlands",
+    "geolocation": {
+      "longitude": 4.8952,
+      "latitude": 52.3702
+    },
+    "links": {
+      "website":
+        "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/",
+      "register":
+        "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/register/",
+      "logo":
+        "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.png",
+      "coverImg":
+        "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.jpg"
+    },
+    "cfp": {
+      "timestamp": {
+        "start": 0,
+        "end": 0
+      },
+      "link": ""
+    }
+  }
+}

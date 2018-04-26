@@ -1,0 +1,33 @@
+{
+  "js-interactive-vancouver-2018": {
+    "eId": "js-interactive-vancouver-2018",
+    "name": "JS Interactive 2018",
+    "timestamp": {
+      "start": 1539109800000,
+      "end": 1539282600000
+    },
+    "location": "Vancouver Convention Centre, West Building, Vancouver, Canada",
+    "geolocation": {
+      "longitude": -123.11689089,
+      "latitude": 49.2891158
+    },
+    "links": {
+      "website":
+        "https://events.linuxfoundation.org/events/js-interactive-2018/",
+      "register":
+        "https://www.regonline.com/registration/Checkin.aspx?EventID=2152653",
+      "logo":
+        "https://events.linuxfoundation.org/wp-content/uploads/2017/12/logo_js_int18.png",
+      "coverImg":
+        "https://events.linuxfoundation.org/wp-content/uploads/2018/03/js-interactive.jpg"
+    },
+    "cfp": {
+      "timestamp": {
+        "start": 1517423400000,
+        "end": 1524162600000
+      },
+      "link":
+        "https://events.linuxfoundation.org/events/js-interactive-2018/program/cfp/"
+    }
+  }
+}
