@@ -1,5 +1,5 @@
 # AhaEvent
-FLOSS Conference Discovery app
+A FLOSS conference discovery platform
 
 - [EVENT_JSON_SCHEMA](docs/EVENT_JSON_SCHEMA.md)
 - [TODO](docs/TODO.md)
