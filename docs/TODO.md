@@ -2,23 +2,33 @@
 
 Note: This list is not in priority order.
 
-- Spell check
-- Routing
-- About modal rendered from docs/ABOUT_AHA_EVENT.md
-- Backend API using graphQL and APOLLO and load more button
-- segregate CSS for each component
-- Discuss and implement modularity
-- worker to update database
-- sorting by cfp deadline, date, organisation
-- offline app
-- Add Code of condut and Contibution guidelines
-- generate CREDITS.md for all npm modules and other sources
-- Add footer with credits
-- implement proper [Code Splitting](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)
-- form to generate event's json file
-- Add more FLOSS Events
-- Remove autoprefixer as autoprefixer is already [included in create-react-app](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)
+### Minor Tasks
+- [x] Add credits to menu ~~footer~~
+- [] Spell check
+- [] Add Code of conduct and contribution guidelines
+- [] Add credits for all npm modules and other sources
+- [] Add more FLOSS Events
+- [] form to generate event's json file- Remove autoprefixer as autoprefixer is already [included in create-react-app](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)
+
+### Major Tasks
+- [x] Routing
+- [x] Firebase Backend ~~Backend API using graphQL and APOLLO and load more button~~
+  - [x] Implement API calls with sorting
+    - [x] sort by date
+    - [x] sort by cfp date
+  - [x] Implement API calls with filters
+- [] Implement UI
+  - [x] Filter Bar
+  - [x] Menu Icons
+  - [x] About modal
+  - [] Implement Custome Cards
+- [] Database
+  - [] Explore and implement Database
+  - [] Implement workers to update database on PR merge
+- [] segregate CSS for each component
+- [] offline app
+- [] Implement proper [Code Splitting](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)
 
 ## Future
 
-- implement DoNotTrackMe
+- [] implement DoNotTrackMe
