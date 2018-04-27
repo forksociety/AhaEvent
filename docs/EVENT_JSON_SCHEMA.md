@@ -1,17 +1,5 @@
 # Event JSON Schema
 
-### What type of events can be showcased on AhaEvent.org?
-
-For an event to be showcased on AhaEvent.org, following conditions must be met:
-- It should be an open source related event.
-- It should include talks on Free/Libre/Open Source Software (FLOSSS) projects.
-- It should have definite start and end date for call for proposals OR it should be organised by the following organisations:
-    - Linux Foundation
-- Duration of the event must be 2 days or more.
-
-
-### Basic JSON structure as follows:
-
 ```
 {
     "EVENT_ID": {
@@ -65,6 +53,7 @@ For an event to be showcased on AhaEvent.org, following conditions must be met:
 ### Event ID
 
 Currently EVENT_ID is just URL_SLUG.
+
 | Key                   | Mandatory | Description | Example |
 |-----------------------|-----------|-------------|---------|
 | URL_SLUG              | Yes       | URL slug for the event. It should meet the following conditions: i) All characters must be small ii) It should include event name, city and year only. iii) Space can be replaced by a dash ( '-' ) only. | open-source-summit-tokyo-2018 |
