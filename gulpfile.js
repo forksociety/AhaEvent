@@ -1,54 +1,53 @@
-const gulp = require('gulp'),
-      concat = require('gulp-concat'),
-      pump = require('pump'),
-      minify = require('gulp-minify-css'),
-      sass = require('gulp-sass'),
-      del = require('del'),
-      autoprefixer = require('gulp-autoprefixer'),
-      merge = require('merge-stream'),
-      realFavicon = require ('gulp-real-favicon'),
-      mergeJson = require('gulp-merge-json'),
-      jsonminify = require('gulp-jsonminify'),
-      fs = require('fs');
-
+const gulp = require('gulp')
+const concat = require('gulp-concat')
+const pump = require('pump')
+const minify = require('gulp-minify-css')
+const sass = require('gulp-sass')
+const del = require('del')
+const autoprefixer = require('gulp-autoprefixer')
+const merge = require('merge-stream')
+const realFavicon = require('gulp-real-favicon')
+const mergeJson = require('gulp-merge-json')
+const jsonminify = require('gulp-jsonminify')
+const fs = require('fs')
 
 const paths = {
-    styles: {
-        src_css: './src/stylesheets/src/*.css',
-        src_scss: './src/stylesheets/src/*.scss',
-        dest: './src/stylesheets/dist/'
-    },
-    favicon: {
-        src: './src/img/favicon.png',
-        dest: './public/'
-    },
-    jsonFiles: {
-        src: './functions/events/*.json',
-        dist: './functions/'
-    }
-};
+  styles: {
+    src_css: './src/stylesheets/src/*.css',
+    src_scss: './src/stylesheets/src/*.scss',
+    dest: './src/stylesheets/dist/'
+  },
+  favicon: {
+    src: './src/img/favicon.png',
+    dest: './public/'
+  },
+  jsonFiles: {
+    src: './functions/events/*.json',
+    dist: './functions/'
+  }
+}
 
-var FAVICON_DATA_FILE = 'faviconData.json';
+var FAVICON_DATA_FILE = 'faviconData.json'
 
-gulp.task('style', function(cb) {
-    let scssStream = gulp.src([paths.styles.src_scss])
-        .pipe(sass())
-        .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false}))
-        .pipe(concat('scss-files.scss'));
+gulp.task('style', function (cb) {
+  let scssStream = gulp.src([paths.styles.src_scss])
+    .pipe(sass())
+    .pipe(autoprefixer({browsers: ['last 2 versions'], cascade: false}))
+    .pipe(concat('scss-files.scss'))
 
-    let cssStream = gulp.src([paths.styles.src_css])
-        .pipe(concat('css-files.css'));
+  let cssStream = gulp.src([paths.styles.src_css])
+    .pipe(concat('css-files.css'))
 
-    pump([
-        merge(scssStream, cssStream),
-        concat('style.min.css'),
-        minify(),
-        autoprefixer({ browsers: ['last 2 versions'], cascade: false}),
-        gulp.dest(paths.styles.dest)
-    ], cb);
-});
+  pump([
+    merge(scssStream, cssStream),
+    concat('style.min.css'),
+    minify(),
+    autoprefixer({browsers: ['last 2 versions'], cascade: false}),
+    gulp.dest(paths.styles.dest)
+  ], cb)
+})
 
-gulp.task('generate-favicon', function(done) {
+gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
     masterPicture: paths.favicon.src,
     dest: paths.favicon.dest,
@@ -108,48 +107,76 @@ gulp.task('generate-favicon', function(done) {
       usePathAsIs: false
     },
     markupFile: FAVICON_DATA_FILE
-  }, function() {
-    done();
-  });
-});
+  }, function () {
+    done()
+  })
+})
 
 // Inject the favicon markups in your HTML pages. You should run
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
-gulp.task('inject-favicon-markups', function() {
+gulp.task('inject-favicon-markups', function () {
   return gulp.src([ './src/index.html' ])
     .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-    .pipe(gulp.dest('./public/'));
-});
+    .pipe(gulp.dest('./public/'))
+})
 
 // Check for updates on RealFaviconGenerator (think: Apple has just
 // released a new Touch icon along with the latest version of iOS).
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
-gulp.task('check-for-favicon-update', function(done) {
-  var currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
-  realFavicon.checkForUpdates(currentVersion, function(err) {
+gulp.task('check-for-favicon-update', function (done) {
+  var currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version
+  realFavicon.checkForUpdates(currentVersion, function (err) {
     if (err) {
-      throw err;
+      throw err
     }
-  });
-});
+  })
+})
 
-gulp.task('merge-json', function() {
-    gulp.src(paths.jsonFiles.src)
-        .pipe(mergeJson({ fileName: 'events.json'}))
-        .pipe(jsonminify())
-        .pipe(gulp.dest(paths.jsonFiles.dist))
-});
+gulp.task('merge-json', function () {
+  gulp.src(paths.jsonFiles.src)
+    .pipe(mergeJson({fileName: 'events.json'}))
+    .pipe(jsonminify())
+    .pipe(gulp.dest(paths.jsonFiles.dist))
+})
 
-gulp.task('clean', function() {
-    del([ paths.styles ]);
-});
+gulp.task('copy-configs', function () {
+  gulp.src('./base-config.js')
+    .pipe(gulp.dest('./src/config/'))
+    .pipe(gulp.dest('./functions/config/'))
+})
 
-gulp.task('watch', function() {
-    gulp.watch(paths.styles.src_scss, gulp.start('style'));
-});
+gulp.task('copy-public', function () {
+  gulp.src('./src/img/')
+    .pipe(gulp.dest('./public/'))
+  gulp.src('./src/img/*')
+    .pipe(gulp.dest('./public/img'))
+})
 
-gulp.task('build', ['clean', 'merge-json', 'style', 'generate-favicon', 'inject-favicon-markups']);
+gulp.task('clean', function () {
+  del([ paths.styles ])
+})
 
-gulp.task('default', ['merge-json', 'style', 'generate-favicon', 'inject-favicon-markups']);
+gulp.task('watch', function () {
+  gulp.watch(paths.styles.src_scss, gulp.start('style'))
+})
+
+gulp.task('build', [
+  'clean',
+  'merge-json',
+  'copy-configs',
+  'copy-public',
+  'style',
+  'generate-favicon',
+  'inject-favicon-markups'
+])
+
+gulp.task('default', [
+  'merge-json',
+  'copy-configs',
+  'copy-public',
+  'style',
+  'generate-favicon',
+  'inject-favicon-markups'
+])
