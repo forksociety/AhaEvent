@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const config = require('./config')
+const config = require('./config/config')
+const AppStrings = require('./config/app-strings')
 const app = express()
 
 const eventsData = require('./events.json')
@@ -31,9 +32,7 @@ app.use((req, res, next) => {
   next()
 })
 
-// app.get('/events', events.router);
-
-app.get('/event/:eId', (req, res) => {
+app.get(config.slugs.event + ':eId', (req, res) => {
   const eId = req.params.eId
   let responseData = {
     success: true,
@@ -48,15 +47,20 @@ app.get('/event/:eId', (req, res) => {
   res.json(responseData)
 })
 
-app.get('/events', (req, res) => {
+app.get(config.slugs.events, (req, res) => {
   let filters = new Set()
-  if('filters' in req.requestQuery.merged)
+  if(AppStrings.queryParameters.filters in req.requestQuery.merged) {
     filters = new Set(req.requestQuery.merged.filters.split(','))
-  console.log(filters)
+  }
+
   let result = Object.keys(eventsData).filter((key) => {
-    if (
-      new Date().getTime() > eventsData[key]['timestamp']['start'] &&
-      !filters.has('all')
+    if (!filters.has(config.appStrings.filters.ALL_EVENTS)
+      && new Date().getTime() > eventsData[key]['timestamp']['start']
+    ) {
+      return false
+    }
+    if (filters.has(config.appStrings.filters.CFP_OPEN)
+      && new Date().getTime() > eventsData[key]['cfp']['timestamp']['end']
     ) {
       return false
     }
@@ -64,11 +68,36 @@ app.get('/events', (req, res) => {
   }).map((key) => eventsData[key])
 
   result.sort((a, b) => {
-    var keyA = new Date(a.timestamp.start),
-      keyB = new Date(b.timestamp.start);
+    var timestampA = a.timestamp.start,
+      timestampB = b.timestamp.start,
+      sortByValue = req.requestQuery.merged[AppStrings.queryParameters.sortBy],
+      sortByAsc = true;
+
+    if(AppStrings.queryParameters.sortBy in req.requestQuery.merged) {
+      if(sortByValue === AppStrings.sortBy.CFP_ASC
+        || sortByValue === AppStrings.sortBy.CFP_DES
+      ) {
+        timestampA = a.cfp.timestamp.start
+        timestampB = b.cfp.timestamp.start
+
+        if(sortByValue === AppStrings.sortBy.CFP_DES) {
+          sortByAsc = false;
+        }
+      } else if (sortByValue === AppStrings.sortBy.DATE_DES) {
+        sortByAsc = false;
+      }
+    }
+    var keyA = new Date(timestampA),
+      keyB = new Date(timestampB);
+
     // Compare the 2 dates
-    if(keyA < keyB) return -1;
-    if(keyA > keyB) return 1;
+    if(sortByAsc) {
+      if(keyA < keyB) return -1;
+      if(keyA > keyB) return 1;
+    } else {
+      if(keyA > keyB) return -1;
+      if(keyA < keyB) return 1;
+    }
     return 0;
   });
   res.json({
