@@ -13,15 +13,30 @@ class App extends Component {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
       console.log = (...para) => { }
       console.warn = (...para) => { }
-      console.error = (...para) => { }
-      console.log('prod environment')
+      // console.error = (...para) => { }
+      console.log('Environment', process.env.NODE_ENV)
 
       ReactGA.initialize(config.get('gaTrackingId'), {
         debug: true,
         gaOptions: { cookieDomain: 'none' }
       })
     } else {
-      console.log('dev environment')
+      console.log('Environment', process.env.NODE_ENV)
+    }
+
+    let redirectUrlsArray = []
+    let redirectUrls = config.get('redirectUrls')
+    for (let k in redirectUrls) {
+      redirectUrlsArray.push(
+        <Route
+          key={k}
+          exact path={'/' + k}
+          render={() => {
+            window.location.assign(redirectUrls[k])
+            return ''
+          }}
+        />
+      )
     }
 
     return (<Router>
@@ -38,6 +53,7 @@ class App extends Component {
           exact path='/event/:eUrl'
           render={(props) => <EventPage {...props} />}
         />
+        {redirectUrlsArray}
       </div>
     </Router>)
   }
