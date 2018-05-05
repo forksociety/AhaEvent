@@ -20,8 +20,8 @@ class EventPage extends Component {
         <Layout className='awesome-bg'>
           <DocumentMeta {...this.state.metaData} />
           <CustomMenu />
-          <span className='logo'>{config.get('siteName')}</span>
-          <p className='tagline'>{config.get('siteTagline')}</p>
+          <span className='logo'>{config.get('appName')}</span>
+          <p className='tagline'>{config.get('appTagline')}</p>
         </Layout>
         <OSEvent {...this.props.match.params} />
       </Layout>
