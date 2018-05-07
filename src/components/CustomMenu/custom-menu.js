@@ -9,16 +9,16 @@ class CustomMenu extends Component {
       modalVisibility: false
     }
     this.showModal = this.showModal.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
   }
 
-  showModal () {
+  showModal (e) {
     this.setState({
       modalVisibility: true
     })
   }
 
   handleCancel (e) {
-    console.log(e)
     this.setState({
       modalVisibility: false
     })
@@ -27,22 +27,31 @@ class CustomMenu extends Component {
   render () {
     let menuItems = []
     let menuData = config.get('menu')
+    let modalHeader = <h2>About {config.get('appName')}</h2>
     menuData.forEach((e) => {
       let menuItemLink = (
         <a href={e.link}>
           <Icon type={e.icon} />
         </a>
       )
-      if (typeof e.newTab !== 'undefined' && e.newTab) {
+
+      let redirectUrls = config.get('redirectUrls')
+      // if url refers to a different domain, open in a new tab
+      if (e.link.indexOf('http://') !== -1 ||
+        e.link.indexOf('https://') !== -1 ||
+        e.link.substring(1) in redirectUrls
+      ) {
         menuItemLink = (
           <a href={e.link} target='_blank'>
             <Icon type={e.icon} />
           </a>
         )
       }
-      if (typeof e.onClick !== 'undefined' && e.onClick) {
+
+      // open modal if link is '#'
+      if (e.link === '#') {
         menuItemLink = (
-          <a onClick={this.showModal}>
+          <a id={e.key} onClick={this.showModal.bind(this)}>
             <Icon type={e.icon} />
           </a>
         )
@@ -78,16 +87,14 @@ class CustomMenu extends Component {
         </Menu>
 
         <Modal
-          title={'About ' + config.get('siteName')}
+          title={modalHeader}
           wrapClassName='vertical-center-modal'
           visible={this.state.modalVisibility}
           onCancel={this.handleCancel}
           onOk={this.handleCancel}
           footer={null}
         >
-          <p>some contents...</p>
-          <p>some contents...</p>
-          <p>some contents...</p>
+          <p style={{ fontSize: '16px' }}>A FLOSS conference discovery platform</p>
         </Modal>
       </div>
     )
