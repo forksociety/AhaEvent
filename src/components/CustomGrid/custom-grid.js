@@ -10,19 +10,33 @@ class CustomGrid extends Component {
   render () {
     let intents = []
     let slugs = config.get('slugs')
+    let osEventDefaults = config.get('osEventDefaults')
 
     for (var key in this.props.items) {
       let e = this.props.items[key]
+
       let startDate = moment(e.timestamp.start)
       let endDate = moment(e.timestamp.end)
       let dateString =
         startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY')
+
+      let cfpStartDate = moment(e.cfp.timestamp.start)
+      let cfpEndDate = moment(e.cfp.timestamp.end)
+      let cfpDateString =
+        'CFP: ' + cfpStartDate.format('Do MMM') + ' - ' + cfpEndDate.format('Do MMM YYYY')
+
       let url = slugs.event + e.eId
       let coverImgAltText = e.name + ' Cover Image'
       let logoAltText = e.name + ' Logo'
-      let locationLink =
-        'https://www.google.com/maps/search/?api=1&query=' + e.location
+      let locationLink = osEventDefaults.googleMapsUrl + e.location
 
+      let coverComponent = <img alt={coverImgAltText} src={osEventDefaults.coverImage} />
+      if (e.links.coverImg.length > 0 &&
+        (e.links.coverImg.indexOf('http://') !== -1 ||
+          e.links.coverImg.indexOf('https://') !== -1)
+      ) {
+        coverComponent = <img alt={coverImgAltText} src={e.links.coverImg} />
+      }
       intents.push(
         <Col
           span={8}
@@ -48,7 +62,7 @@ class CustomGrid extends Component {
           </span>
           <Card
             hoverable
-            cover={<img alt={coverImgAltText} src={e.links.coverImg} />}
+            cover={coverComponent}
           >
             <Meta
               className='custom-meta'
@@ -62,6 +76,7 @@ class CustomGrid extends Component {
                     </a>
                   </div>
                   <div>{dateString}</div>
+                  <div>{cfpDateString}</div>
                 </span>
               }
             />
