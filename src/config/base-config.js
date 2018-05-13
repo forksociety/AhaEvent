@@ -1,7 +1,3 @@
-//const apiBaseUrl = 'http://localhost:5001/dev-ahaeventorg/us-central1/api'
-// const apiBaseUrl = 'https://us-central1-ahaeventorg.cloudfunctions.net/api'
-const apiBaseUrl = 'https://us-central1-dev-ahaeventorg.cloudfunctions.net/api'
-
 const commonStrings = {
   queryParameters: {
     sortBy: 'sort-by',
@@ -48,7 +44,6 @@ searchQueryItems.sortBy[commonStrings.sortBy.DATE_DES] =  {
 const Base = {
   commonStrings: commonStrings,
   config: {
-    apiBaseUrl: apiBaseUrl,
     slugs: {
       event: '/event/',
       events: '/events/'
