@@ -4,203 +4,47 @@ $smallestDevice: 320px;
 $smallDevice: 492px;
 $tabletDevice: 900px;
 
-
 @mixin fontDefault() {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 @mixin fontLogo() {
-  font-family: 'Nova Mono', monospace;
+  font-family: 'Nova Mono', sans-serif;
 }
 
-@mixin fontSize($val) {
-  font-size: $val;
-}
-
-@mixin fontColor($val) {
-  color: $val;
-}
-
-@mixin textAlign($val) {
-  text-align: $val;
-}
-
-@mixin elementMinHeight($val) {
-  min-height: $val;
-}
-
-@mixin elementHeight($val) {
-  height: $val;
-}
-
-@mixin elementMaxWidth($val) {
-  max-width: $val;
-}
-
-@mixin elementMinWidth($val) {
-  min-width: $val;
-}
-
-@mixin elementWidth($val) {
-  width: $val;
-}
-
-@mixin addPadding($val) {
-  padding: $val;
-}
+@import 'components/menu';
+@import 'components/awesome-header';
+@import 'components/custom-card';
 
 * {
   @include fontDefault();
-  font-weight: 600;
 }
 
 html {
-  @include elementHeight(100%);
+  height: 100%;
 }
 
 body {
-  @include elementMinHeight(100%);
-  @include elementHeight(auto);
-  @include fontDefault();
-  @include fontSize($fontSizeBase);
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: auto;
+  font-size: $fontSizeBase;
   width: 100wh;
   background: #f0f2f5;
   padding-bottom: 20px;
 }
 
 body > * {
-  @include elementHeight(auto);
-  @include elementMinHeight(inherit);
-}
-
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
+  height: auto;
+  min-height: inherit;
 }
 
 #root {
-  i.anticon {
-    font-weight: 400;
+  .logo {
+    @include fontLogo();
   }
-  .awesome-bg {
-    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-    background-size: 400% 400%;
-    animation: Gradient 15s ease infinite;
-    color: #fff;
-    margin-bottom: 30px;
-  }
-
-  .ant-layout {
-    @include fontColor(#fff);
-
-    .logo-img {
-      @include elementWidth(15%);
-      @include elementMaxWidth(250px);
-      @include elementMinWidth(130px);
-    }
-    .logo {
-      @include fontLogo();
-      @include fontSize(600%);
-      text-align: center;
-    }
-
-    .tagline {
-      @include fontSize(230%);
-      @include textAlign(center);
-    }
-
-    .text-center {
-      text-align: center;
-    }
-  }
-
-  .ant-menu {
-    a {
-    color: #fff;
-    }
-    a:link, a:active, a:visited, a:hover {
-      color: #fff;
-    }
-    a:hover {
-      font-size: 110%;
-    }
-  }
-
-  .custom-badges {
-    position: absolute;
-    top: 6px;
-    right: 20px;
-    z-index: 999;
-    font-size: 150%;
-
-    .ant-badge + .ant-badge {
-      margin-left: 5px;
-    }
-
-    a:link, a:active, a:visited, a:hover {
-      color: #fff;
-    }
-    a:hover {
-      font-size: 110%;
-    }
-  }
-
-  .event-logo {
-    @include elementWidth(97%);
-    position: absolute;
-    top: 0;
-    z-index: 998;
-    display: flex;
-    justify-content: center;
-    padding-top: 7%;
-
-    span {
-      @include elementWidth(65%);
-
-      img {
-        @include elementWidth(100%);
-      }
-    }
-  }
-
-  .ant-card-hoverable {
-    cursor: default;
-  }
-
-  .ant-card {
-    .custom-meta {
-      .ant-card-meta-description {
-        font-size: 90%;
-      }
-    }
-
-    .ant-card-cover {
-      @include elementMinHeight(122px);
-    }
-  }
-
-  .flex-center {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media only screen and (max-width: $smallDevice) {
-    .ant-layout {
-      .logo {
-        @include fontSize(380%);
-      }
-      .tagline {
-        @include fontSize(135%);
-      }
-    }
+  .tagline {
+    font-family: 'Josefin Slab', sans-serif;
   }
 }

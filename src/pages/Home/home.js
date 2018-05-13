@@ -17,7 +17,7 @@ class HomePage extends Component {
   render () {
     return (
       <Layout style={{ background: '#f0f2f5' }}>
-        <Layout className='awesome-bg'>
+        <Layout className='awesome-header'>
           <DocumentMeta {...this.state.metaData} />
           <CustomMenu />
           <span className='logo'>{config.get('appName')}</span>

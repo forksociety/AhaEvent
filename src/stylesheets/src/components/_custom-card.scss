@@ -1,0 +1,56 @@
+.custom-badges {
+  position: absolute;
+  top: 6px;
+  right: 20px;
+  z-index: 999;
+  font-size: 150%;
+
+  .ant-badge + .ant-badge {
+    margin-left: 5px;
+  }
+
+  a:link, a:active, a:visited, a:hover {
+    color: #fff;
+  }
+  a:hover {
+    font-size: 110%;
+  }
+}
+
+.event-logo {
+  width: 97%;
+  position: absolute;
+  top: 0;
+  z-index: 998;
+  display: flex;
+  justify-content: center;
+  padding-top: 7%;
+
+  span {
+    width: 65%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.ant-card-hoverable {
+  cursor: default;
+}
+
+.ant-card {
+  .custom-meta {
+    .ant-card-meta-description {
+      font-size: 90%;
+    }
+  }
+
+  .ant-card-cover {
+    min-height: 122px;
+  }
+
+  .ant-card-body {
+    padding: 18px;
+  }
+}
