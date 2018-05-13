@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const config = require('./config/config')
-const AppStrings = require('./config/app-strings')
 const app = express()
 
 const eventsData = require('./events.json')
@@ -49,9 +48,11 @@ app.get(config.slugs.event + ':eId', (req, res) => {
 
 app.get(config.slugs.events, (req, res) => {
   let filters = new Set()
-  if(AppStrings.queryParameters.filters in req.requestQuery.merged) {
+  if(config.appStrings.queryParameters.filters in req.requestQuery.merged) {
     filters = new Set(req.requestQuery.merged.filters.split(','))
   }
+
+  let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy];
 
   let result = Object.keys(eventsData).filter((key) => {
     if (!filters.has(config.appStrings.filters.ALL_EVENTS)
@@ -64,26 +65,33 @@ app.get(config.slugs.events, (req, res) => {
     ) {
       return false
     }
+    // remove events without CFP, if sort by CFP is applied
+    if(eventsData[key]['cfp']['timestamp']['start'] === 0
+      && (sortByValue === config.appStrings.sortBy.CFP_ASC
+      || sortByValue === config.appStrings.sortBy.CFP_DES)
+    ) {
+      return false
+    }
     return true
   }).map((key) => eventsData[key])
 
   result.sort((a, b) => {
+    // default Date Ascending
     var timestampA = a.timestamp.start,
       timestampB = b.timestamp.start,
-      sortByValue = req.requestQuery.merged[AppStrings.queryParameters.sortBy],
       sortByAsc = true;
 
-    if(AppStrings.queryParameters.sortBy in req.requestQuery.merged) {
-      if(sortByValue === AppStrings.sortBy.CFP_ASC
-        || sortByValue === AppStrings.sortBy.CFP_DES
+    if(config.appStrings.queryParameters.sortBy in req.requestQuery.merged) {
+      if(sortByValue === config.appStrings.sortBy.CFP_ASC
+        || sortByValue === config.appStrings.sortBy.CFP_DES
       ) {
         timestampA = a.cfp.timestamp.start
         timestampB = b.cfp.timestamp.start
 
-        if(sortByValue === AppStrings.sortBy.CFP_DES) {
+        if(sortByValue === config.appStrings.sortBy.CFP_DES) {
           sortByAsc = false;
         }
-      } else if (sortByValue === AppStrings.sortBy.DATE_DES) {
+      } else if (sortByValue === config.appStrings.sortBy.DATE_DES) {
         sortByAsc = false;
       }
     }
