@@ -54,6 +54,10 @@ You can contribute in many ways:
 
 You can contribute in many ways:
 
+### Submitting A FLOSS Event
+
+If you find any new FLOSS conference coming up which matches with [our criteria](FAQ.md#what-type-of-events-can-be-showcased-on-ahaeventorg), please create a JSON file in `functions/events/` and submit a PR. Please make sure that the JSON file follows the [JSON schema](EVENT_JSON_SCHEMA.md).
+
 ### Report Bugs
 
 Report bugs at https://github.com/forksociety/AhaEvent/issues.
