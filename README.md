@@ -1,6 +1,9 @@
 # AhaEvent
 A FLOSS conference discovery platform
 
+- [Website Link](https://ahaevent.org)
+- [Latest stable development build](https://dev.ahaevent.org)
+
 - [Event JSON Schema](docs/EVENT_JSON_SCHEMA.md)
 - [To Do List](docs/TODO.md)
 - [FAQ](docs/FAQ.md)
