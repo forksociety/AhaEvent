@@ -1,7 +1,9 @@
 # AhaEvent
 A FLOSS conference discovery platform
 
-- [EVENT_JSON_SCHEMA](docs/EVENT_JSON_SCHEMA.md)
-- [TODO](docs/TODO.md)
+- [Event JSON Schema](docs/EVENT_JSON_SCHEMA.md)
+- [To Do List](docs/TODO.md)
 - [FAQ](docs/FAQ.md)
-- [CREDITS](docs/CREDITS.md)
+- [Code Of Conduct](docs/CODE_OF_CONDUCT.md)
+- [Contributing](docs/CONTRIBUTING.md)
+- [Credits](docs/CREDITS.md)
