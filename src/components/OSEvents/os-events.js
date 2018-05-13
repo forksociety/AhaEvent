@@ -30,8 +30,10 @@ class OSEvents extends Component {
       filterState: filterInitialState,
       allFilters: allFilters,
       allSortBy: allSortBy,
-      updateDom: false
+      updateDom: false,
+      componentMinHeight: 500
     }
+    this.getMinHeight = this.getMinHeight.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleSortByChange = this.handleSortByChange.bind(this)
   }
@@ -58,6 +60,11 @@ class OSEvents extends Component {
     return url
   }
 
+  getMinHeight () {
+    let n = Math.ceil(this.state.events.length / 4)
+    n = (n === 0) ? 1 : n
+    return (138 + 360 * n)
+  }
   componentWillMount () {
     let filters = []
     for (let k in this.state.allFilters) {
@@ -102,6 +109,7 @@ class OSEvents extends Component {
         if (data.success) {
           let e = data.extras.events.map((i) => i)
           this.setState({events: e})
+          this.setState({componentMinHeight: this.getMinHeight()})
         } else {
           console.log(data)
         }
@@ -125,7 +133,7 @@ class OSEvents extends Component {
 
   render () {
     return (
-      <div>
+      <div style={{ minHeight: this.state.componentMinHeight }}>
         <div className='filters' style={{ margin: '20px 50px' }}>
           <Collapse bordered={false}>
             <Panel header='Filters' key='1'>

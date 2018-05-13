@@ -75,6 +75,7 @@ class CustomMenu extends Component {
     return (
       <div>
         <Menu
+          id='aha-menu'
           selectedKeys={['home']}
           mode='horizontal'
           // onClick={this.handleClick}
