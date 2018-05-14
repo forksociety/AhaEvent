@@ -1,0 +1,12 @@
+.os-event-cover {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+
+  .event-logo-container {
+    height: 160px;
+    img {
+      height: inherit;
+    }
+  }
+}

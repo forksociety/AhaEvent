@@ -15,6 +15,7 @@ $tabletDevice: 900px;
 @import 'components/menu';
 @import 'components/awesome-header';
 @import 'components/custom-card';
+@import 'components/os-event';
 
 * {
   @include fontDefault();
@@ -41,9 +42,18 @@ body > * {
 }
 
 #root {
+  h1 {
+    font-size: 300%;
+  }
+
+  h3 {
+    font-size: 180%;
+  }
+
   .logo {
     @include fontLogo();
   }
+
   .tagline {
     font-family: 'Josefin Slab', sans-serif;
   }
