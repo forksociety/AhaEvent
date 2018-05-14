@@ -1,9 +1,9 @@
 # AhaEvent
-A FLOSS conference discovery platform
+A FLOSS conference discovery platform.
 
 - [Website Link](https://ahaevent.org)
 - [Latest stable development build](https://dev.ahaevent.org)
-
+- [Current Status/ Kanban](https://github.com/forksociety/AhaEvent/projects/1)
 
 ### Documentation
 

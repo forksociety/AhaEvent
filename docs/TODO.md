@@ -5,10 +5,11 @@ Note: This list is not in priority order.
 ### Minor Tasks
 - [x] Add credits to menu ~~footer~~
 - [ ] Spell check
-- [ ] Add Code of conduct and contribution guidelines
+- [x] Add Code of conduct and contribution guidelines
 - [ ] Add credits for all npm modules and other sources
 - [ ] Add more FLOSS Events
-- [ ] form to generate event's json file- Remove autoprefixer as autoprefixer is already [included in create-react-app](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)
+- [ ] form to generate event's JSON file
+- [ ] Remove autoprefixer as autoprefixer is already [included in create-react-app](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet)
 
 ### Major Tasks
 - [x] Routing
@@ -21,13 +22,13 @@ Note: This list is not in priority order.
   - [x] Filter Bar
   - [x] Menu Icons
   - [x] About modal
-  - [ ] Implement Custome Cards
+  - [ ] Implement Custom Cards
 - [ ] Database
   - [ ] Explore and implement Database
   - [ ] Implement workers to update database on PR merge
-- [ ] segregate CSS for each component
+- [x] segregate CSS for each component
 - [ ] offline app
-- [ ] Implement proper [Code Splitting](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)
+- [x] Implement proper [Code Splitting](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting)
 
 ## Future
 
