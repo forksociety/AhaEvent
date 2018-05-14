@@ -2,27 +2,32 @@
   "pycon-cleveland-2018": {
     "eId": "pycon-cleveland-2018",
     "name": "PyCon 2018",
-    "timestamp": {
-      "start": 1525804200000,
-      "end": 1526495400000
-    },
+    "organization": "Python Software Foundation",
+    "keywords": "pycon, python, cleveland, python conference, conference 2018",
     "location": "Huntington Convention Center, 300 Lakeside Ave E, Cleveland, OH, USA",
     "geolocation": {
       "longitude": 41.503031,
       "latitude": -81.694147
     },
+    "timestamp": {
+      "eventDate": {
+        "start": 1525804200000,
+        "end": 1526495400000
+      },
+      "cfp": {
+        "start": 1506277800000,
+        "end": 1514917800000
+      }
+    },
+    "resources": {
+      "logo": "https://us.pycon.org/2018/site_media/static/img/pycon2018.f76001445fbb.png",
+      "coverImage": "",
+      "coverBackgroundColor": "#ffffff"
+    },
     "links": {
       "website": "https://us.pycon.org/2018/",
       "register": "https://us.pycon.org/2018/registration/register/",
-      "logo": "https://us.pycon.org/2018/site_media/static/img/pycon2018.f76001445fbb.png",
-      "coverImg": ""
-    },
-    "cfp": {
-      "timestamp": {
-        "start": 0,
-        "end": 0
-      },
-      "link": ""
+      "cfp": "https://us.pycon.org/2018/speaking/talks/"
     }
   }
 }

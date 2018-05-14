@@ -2,27 +2,32 @@
   "europython-edinburgh-2018": {
     "eId": "europython-edinburgh-2018",
     "name": "europython 2018",
-    "timestamp": {
-      "start": 1532284200000,
-      "end": 1532802600000
-    },
+    "organization": "europython",
+    "keywords": "europython, python, python conference, edinburgh, conference 2018",
     "location": "Edinburgh International Conference Centre, 150 Morrison Street, Edinburgh Scotland",
     "geolocation": {
       "longitude": 55.946053,
       "latitude": -3.209927
     },
+    "timestamp": {
+      "eventDate": {
+        "start": 1532284200000,
+        "end": 1532802600000
+      },
+      "cfp": {
+        "start": 1525631400000,
+        "end": 1526754600000
+      }
+    },
+    "resources": {
+      "logo": "https://ep2018.europython.eu/static/p6/images/europython-2018-logo-white-bg.png",
+      "coverImage": "",
+      "coverBackgroundColor": "#cccccc"
+    },
     "links": {
       "website": "https://ep2018.europython.eu/en/",
       "register": "https://ep2018.europython.eu/en/registration/buy-tickets/",
-      "logo": "https://ep2018.europython.eu/static/p6/images/europython-2018-logo-white-bg.png",
-      "coverImg": ""
-    },
-    "cfp": {
-      "timestamp": {
-        "start": 1525631400000,
-        "end": 1526754600000
-      },
-      "link": "https://ep2018.europython.eu/conference/paper-submission/"
+      "cfp": "https://ep2018.europython.eu/conference/paper-submission/"
     }
   }
 }

@@ -47,26 +47,39 @@ app.get(config.slugs.event + ':eId', (req, res) => {
 })
 
 app.get(config.slugs.events, (req, res) => {
+  // extract filters and sort-by
+  // create a set of filters
   let filters = new Set()
   if(config.appStrings.queryParameters.filters in req.requestQuery.merged) {
     filters = new Set(req.requestQuery.merged.filters.split(','))
   }
-
   let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy];
 
   let result = Object.keys(eventsData).filter((key) => {
+    // remove past events
     if (!filters.has(config.appStrings.filters.ALL_EVENTS)
-      && new Date().getTime() > eventsData[key]['timestamp']['start']
+      && !filters.has(config.appStrings.filters.ENDED_EVENTS)
+      && new Date().getTime() > eventsData[key]['timestamp']['eventDate']['start']
     ) {
       return false
     }
+
+    // only ended events
+    if (filters.has(config.appStrings.filters.ENDED_EVENTS)
+      && new Date().getTime() < eventsData[key]['timestamp']['eventDate']['start']
+    ) {
+      return false
+    }
+
+    // remove if CFP ended
     if (filters.has(config.appStrings.filters.CFP_OPEN)
-      && new Date().getTime() > eventsData[key]['cfp']['timestamp']['end']
+      && new Date().getTime() > eventsData[key]['timestamp']['cfp']['end']
     ) {
       return false
     }
+
     // remove events without CFP, if sort by CFP is applied
-    if(eventsData[key]['cfp']['timestamp']['start'] === 0
+    if(eventsData[key]['timestamp']['cfp']['start'] === 0
       && (sortByValue === config.appStrings.sortBy.CFP_ASC
       || sortByValue === config.appStrings.sortBy.CFP_DES)
     ) {
@@ -77,16 +90,16 @@ app.get(config.slugs.events, (req, res) => {
 
   result.sort((a, b) => {
     // default Date Ascending
-    var timestampA = a.timestamp.start,
-      timestampB = b.timestamp.start,
+    var timestampA = a.timestamp.eventDate.start,
+      timestampB = b.timestamp.eventDate.start,
       sortByAsc = true;
 
     if(config.appStrings.queryParameters.sortBy in req.requestQuery.merged) {
       if(sortByValue === config.appStrings.sortBy.CFP_ASC
         || sortByValue === config.appStrings.sortBy.CFP_DES
       ) {
-        timestampA = a.cfp.timestamp.start
-        timestampB = b.cfp.timestamp.start
+        timestampA = a.timestamp.cfp.start
+        timestampB = b.timestamp.cfp.start
 
         if(sortByValue === config.appStrings.sortBy.CFP_DES) {
           sortByAsc = false;

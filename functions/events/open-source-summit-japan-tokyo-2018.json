@@ -2,32 +2,32 @@
   "open-source-summit-japan-tokyo-2018": {
     "eId": "open-source-summit-japan-tokyo-2018",
     "name": "Open Source Summit Japan 2018",
-    "timestamp": {
-      "start": 1529433000000,
-      "end": 1529605800000
-    },
+    "organization": "The Linux Foundation",
+    "keywords": "open source summit, open source, japan, os summit, summit 2018",
     "location": "Tokyo Conference Center Ariake, Tokyo, Japan",
     "geolocation": {
       "longitude": 139.6917,
       "latitude": 35.6895
     },
-    "links": {
-      "website":
-        "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/",
-      "register":
-        "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/attend/register/",
-      "logo":
-        "https://events.linuxfoundation.org/wp-content/uploads/2017/11/logo_ossummit_jp.png",
-      "coverImg":
-        "https://events.linuxfoundation.org/wp-content/uploads/2017/11/tokyo-2.jpg"
-    },
-    "cfp": {
-      "timestamp": {
+    "timestamp": {
+      "eventDate": {
+        "start": 1529433000000,
+        "end": 1529605800000
+      },
+      "cfp": {
         "start": 1511116200000,
         "end": 1521311400000
-      },
-      "link":
-        "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/program/cfp/"
+      }
+    },
+    "resources": {
+      "logo": "https://events.linuxfoundation.org/wp-content/uploads/2017/11/logo_ossummit_jp.png",
+      "coverImage": "https://events.linuxfoundation.org/wp-content/uploads/2017/11/tokyo-2.jpg",
+      "coverBackgroundColor": ""
+    },
+    "links": {
+      "website": "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/",
+      "register": "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/attend/register/",
+      "cfp": "https://events.linuxfoundation.org/events/open-source-summit-japan-2018/program/cfp/"
     }
   }
 }
