@@ -1,20 +1,24 @@
 import Base from './base-config'
 import AppStrings from './app-strings'
 
+let domain = Base.config.domain
 let apiBaseUrl = 'http://localhost:5001/dev-ahaeventorg/us-central1/api'
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production'
-  && window.location.host === 'ahaevent.org'
+if ((!process.env.NODE_ENV || process.env.NODE_ENV === 'production') &&
+  window.location.host === 'ahaevent.org'
 ) {
+  domain = 'https://www.ahaevent.org'
   apiBaseUrl = 'https://us-central1-ahaeventorg.cloudfunctions.net/api'
 }
 
 if (window.location.host === 'dev.ahaevent.org') {
+  domain = 'https://dev.ahaevent.org'
   apiBaseUrl = 'https://us-central1-dev-ahaeventorg.cloudfunctions.net/api'
 }
 
 const config = {
   ...Base.config,
+  domain: domain,
   appName: 'Aha! Event',
   appUrl: 'https://ahaevent.org',
   appAuthor: 'forksociety',
