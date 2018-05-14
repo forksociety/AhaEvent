@@ -3,8 +3,8 @@ import { Menu, Modal, Icon } from 'antd'
 import config from 'react-global-configuration'
 
 class CustomMenu extends Component {
-  constructor (prop) {
-    super(prop)
+  constructor (props) {
+    super(props)
     this.state = {
       modalVisibility: false
     }
@@ -25,7 +25,10 @@ class CustomMenu extends Component {
   }
 
   render () {
-    let menuItems = []
+    let menuBarItems = {
+      left: [],
+      right: []
+    }
     let menuData = config.get('menu')
     let modalHeader = <h2>About {config.get('appName')}</h2>
     menuData.forEach((e) => {
@@ -56,7 +59,7 @@ class CustomMenu extends Component {
           </a>
         )
       }
-      menuItems.push(
+      menuBarItems.left.push(
         <Menu.Item
           key={e.key}
           style={{
@@ -72,6 +75,24 @@ class CustomMenu extends Component {
       )
     })
 
+    if (this.props.showLogo) {
+      menuBarItems.right.push(
+        <Menu.Item
+          key='logo'
+          className='logo'
+          style={{
+            float: 'left',
+            color: '#fff',
+            fontSize: '150%',
+            borderBottom: '0px',
+            padding: '0 0px 0px 10px'
+          }}
+        >
+          <a href='/'>{config.get('appName')}</a>
+        </Menu.Item>
+      )
+    }
+
     return (
       <div>
         <Menu
@@ -84,7 +105,8 @@ class CustomMenu extends Component {
             background: 'rgba(255, 255, 255, 0)'
           }}
         >
-          {menuItems}
+          {menuBarItems.left}
+          {menuBarItems.right}
         </Menu>
 
         <Modal

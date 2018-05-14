@@ -108,6 +108,9 @@ class OSEvents extends Component {
       }).then(data => {
         if (data.success) {
           let e = data.extras.events.map((i) => i)
+          if (data.extras.numberOfEvents === 0) {
+            e = [{success: false}]
+          }
           this.setState({events: e})
           this.setState({componentMinHeight: this.getMinHeight()})
         } else {

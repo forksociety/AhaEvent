@@ -16,7 +16,7 @@ class DocumentMeta extends Component {
       ? this.props.description.trim()
       : config.get('appDescription')
     let keywords = validProp(this.props.keywords)
-      ? this.props.keywords.trim()
+      ? this.props.keywords.trim() + ', aha event, FLOSS conference'
       : config.get('appKeywords')
 
     let ogTitle = title
