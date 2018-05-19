@@ -65,10 +65,15 @@ searchQueryItems.sortBy[commonStrings.sortBy.DATE_DES] =  {
   text: 'Date'
 }
 
+const secretKeys = {
+  googleMapsKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
+}
+
 const Base = {
   commonStrings: commonStrings,
   config: {
     domain: '',
+    secretKeys: secretKeys,
     slugs: {
       event: '/event/',
       events: '/events/'

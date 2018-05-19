@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import config from 'react-global-configuration'
 import { Layout } from 'antd'
 
+import GoogleMap from '../../components/GoogleMap/google-map'
 import DocumentMeta from '../../components/DocumentMeta/document-meta'
 import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
 
@@ -50,7 +51,7 @@ class OSEvent extends Component {
 
           this.setState({component: [
             <div key='os-event'>
-              <p
+              <span
                 className='os-event-cover'
                 style={{
                   display: 'flex',
@@ -65,21 +66,16 @@ class OSEvent extends Component {
                 <div className='event-logo-container'>
                   <img src={e.resources.logo} alt={`Logo ${e.name}`} />
                 </div>
-              </p>
-              <p style={{
+              </span>
+              <span style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
                 padding: '20px'
               }}>
-                <iframe
-                  title='Event Location'
-                  width='80%' height='200' frameborder='0' style={{ border: 0 }} allowfullscreen
-                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.1908612260695!2d-3.2093089999999993!3d55.94606379999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c7a3b32bf011%3A0xa023b5bcda49d536!2sEdinburgh+International+Conference+Centre%2C+150+Morrison+St%2C+Edinburgh+EH3+8EE%2C+UK!5e0!3m2!1sen!2sin!4v1526254117053'
-                />
-
-              </p>
+                <GoogleMap {...{ location: e.location }} />
+              </span>
             </div>
           ]})
         } else {

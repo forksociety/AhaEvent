@@ -56,6 +56,11 @@ app.get(config.slugs.events, (req, res) => {
   let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy];
 
   let result = Object.keys(eventsData).filter((key) => {
+    // remove sample events from the results
+    if(config.sampleEventKeys.includes(key)) {
+      return false
+    }
+
     // remove past events
     if (!filters.has(config.appStrings.filters.ALL_EVENTS)
       && !filters.has(config.appStrings.filters.ENDED_EVENTS)
@@ -72,8 +77,9 @@ app.get(config.slugs.events, (req, res) => {
     }
 
     // remove if CFP ended
+    let oneDay = 24 * 60 * 60 * 1000
     if (filters.has(config.appStrings.filters.CFP_OPEN)
-      && new Date().getTime() > eventsData[key]['timestamp']['cfp']['end']
+      && (new Date().getTime() - oneDay) > eventsData[key]['timestamp']['cfp']['end']
     ) {
       return false
     }

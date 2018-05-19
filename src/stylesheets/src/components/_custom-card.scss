@@ -4,6 +4,13 @@
   right: 20px;
   z-index: 999;
   font-size: 150%;
+  border-radius: 50%;
+  background: rgba(93, 93, 93, 1);
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .ant-badge + .ant-badge {
     margin-left: 5px;
@@ -31,6 +38,7 @@
 
     img {
       width: 100%;
+      max-height: 150px;
     }
   }
 }

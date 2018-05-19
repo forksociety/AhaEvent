@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Collapse, Form, Radio, Checkbox, Icon, Row, Col } from 'antd'
+import { Radio, Checkbox, Icon, Row } from 'antd'
 
 import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
 import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
-
-const Panel = Collapse.Panel
-const FormItem = Form.Item
 
 class OSEvents extends Component {
   constructor (prop) {
@@ -73,6 +70,9 @@ class OSEvents extends Component {
         <Checkbox
           id={id}
           key={id}
+          style={{
+            marginLeft: '10px'
+          }}
           value={this.state.filterState[id]}
           onChange={this.handleFilterChange}
         >
@@ -82,14 +82,20 @@ class OSEvents extends Component {
     }
     this.setState({filterComponents: filters})
 
-    let sortBy = []
+    let sortByArray = []
     for (let k in this.state.allSortBy) {
-      sortBy.push(
+      sortByArray.push(
         <Radio.Button key={k} value={k}>
           {this.state.allSortBy[k].text} <Icon type={this.state.allSortBy[k].icon} />
         </Radio.Button>
       )
     }
+    let sortBy = <Radio.Group
+        defaultValue={AppStrings.sortBy.DATE_ASC}
+        onChange={this.handleSortByChange}
+      >
+        {sortByArray}
+      </Radio.Group>
     this.setState({sortByComponents: sortBy})
     this._loadContent()
   }
@@ -141,19 +147,8 @@ class OSEvents extends Component {
           className='filters'
           style={{ background: '#fff', margin: '20px 50px', padding: '16px' }}
         >
-          <Col span={18}>
-            <FormItem style={{margin: '0px'}}>
-              <Radio.Group
-                defaultValue={AppStrings.sortBy.DATE_ASC}
-                onChange={this.handleSortByChange}
-              >
-                {this.state.sortByComponents}
-              </Radio.Group>
-            </FormItem>
-            <FormItem style={{margin: '0px'}}>
-              {this.state.filterComponents}
-            </FormItem>
-          </Col>
+          {this.state.sortByComponents}
+          {this.state.filterComponents}
         </Row>
         <CustomGrid {...{ items: this.state.events }} />
       </div>
