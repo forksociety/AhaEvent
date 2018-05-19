@@ -33,19 +33,20 @@ class CustomMenu extends Component {
     let modalHeader = <h2>About {config.get('appName')}</h2>
     menuData.forEach((e) => {
       let menuItemLink = (
-        <a href={e.link}>
+        <a href={e.link} title={e.text}>
           <Icon type={e.icon} />
         </a>
       )
 
       let redirectUrls = config.get('redirectUrls')
+
       // if url refers to a different domain, open in a new tab
       if (e.link.indexOf('http://') !== -1 ||
         e.link.indexOf('https://') !== -1 ||
         e.link.substring(1) in redirectUrls
       ) {
         menuItemLink = (
-          <a href={e.link} target='_blank'>
+          <a href={e.link} title={e.text} target='_blank'>
             <Icon type={e.icon} />
           </a>
         )
@@ -54,14 +55,14 @@ class CustomMenu extends Component {
       // open modal if link is '#'
       if (e.link === '#') {
         menuItemLink = (
-          <a id={e.key} onClick={this.showModal.bind(this)}>
+          <a title={e.text} onClick={this.showModal.bind(this)}>
             <Icon type={e.icon} />
           </a>
         )
       }
       menuBarItems.left.push(
         <Menu.Item
-          key={e.key}
+          key={e.icon}
           style={{
             float: 'right',
             color: '#fff',

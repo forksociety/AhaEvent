@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Collapse, Form, Radio, Checkbox, Icon } from 'antd'
+import { Collapse, Form, Radio, Checkbox, Icon, Row, Col } from 'antd'
 
 import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
@@ -137,18 +137,24 @@ class OSEvents extends Component {
   render () {
     return (
       <div style={{ minHeight: this.state.componentMinHeight }}>
-        <div className='filters' style={{ margin: '20px 50px' }}>
-          <Collapse bordered={false}>
-            <Panel header='Filters' key='1'>
-              <FormItem style={{margin: '0px'}}>
-                {this.state.filterComponents}
-              </FormItem>
-              <Radio.Group defaultValue={AppStrings.sortBy.DATE_ASC} onChange={this.handleSortByChange}>
+        <Row
+          className='filters'
+          style={{ background: '#fff', margin: '20px 50px', padding: '16px' }}
+        >
+          <Col span={18}>
+            <FormItem style={{margin: '0px'}}>
+              <Radio.Group
+                defaultValue={AppStrings.sortBy.DATE_ASC}
+                onChange={this.handleSortByChange}
+              >
                 {this.state.sortByComponents}
               </Radio.Group>
-            </Panel>
-          </Collapse>
-        </div>
+            </FormItem>
+            <FormItem style={{margin: '0px'}}>
+              {this.state.filterComponents}
+            </FormItem>
+          </Col>
+        </Row>
         <CustomGrid {...{ items: this.state.events }} />
       </div>
     )

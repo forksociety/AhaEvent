@@ -38,32 +38,32 @@ const config = {
 
   menu: [
     {
-      key: 'copyright',
+      text: 'License',
       icon: 'copyright',
       link: '/license'
     },
     {
-      key: 'info',
+      text: 'About AhaEvent',
       icon: 'info-circle-o',
       link: '#'
     },
     {
-      key: 'team',
+      text: 'Credits',
       icon: 'team',
       link: '/credits'
     },
     {
-      key: 'slack',
+      text: 'Slack',
       icon: 'slack',
       link: '/slackinvite'
     },
     {
-      key: 'github',
+      text: 'GitHub',
       icon: 'github',
       link: '/github'
     },
     {
-      key: 'home',
+      text: 'Home',
       icon: 'home',
       link: '/'
     }

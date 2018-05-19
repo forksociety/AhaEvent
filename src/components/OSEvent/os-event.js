@@ -44,8 +44,8 @@ class OSEvent extends Component {
 
           this.setState({event: e})
           let bgColor = (
-            typeof e.resources.coverBackgroundColor !== 'undefined'
-            && e.resources.coverBackgroundColor.length > 0
+            typeof e.resources.coverBackgroundColor !== 'undefined' &&
+            e.resources.coverBackgroundColor.length > 0
           ) ? e.resources.coverBackgroundColor : '#cccccc'
 
           this.setState({component: [

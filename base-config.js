@@ -45,16 +45,16 @@ const searchQueryItems = {}
 searchQueryItems.filters = {}
 searchQueryItems.filters[commonStrings.filters.ALL_EVENTS] = 'Show Past Events'
 searchQueryItems.filters[commonStrings.filters.ENDED_EVENTS] = 'Recently Ended Events'
-searchQueryItems.filters[commonStrings.filters.CFP_OPEN] = 'CFP Open'
+searchQueryItems.filters[commonStrings.filters.CFP_OPEN] = 'Call For Proposals Open'
 
 searchQueryItems.sortBy = {}
 searchQueryItems.sortBy[commonStrings.sortBy.CFP_ASC] =  {
   icon: 'arrow-up',
-  text: 'CFP Date'
+  text: 'Call For Proposals'
 }
 searchQueryItems.sortBy[commonStrings.sortBy.CFP_DES] =  {
   icon: 'arrow-down',
-  text: 'CFP Date'
+  text: 'Call For Proposals'
 }
 searchQueryItems.sortBy[commonStrings.sortBy.DATE_ASC] =  {
   icon: 'arrow-up',

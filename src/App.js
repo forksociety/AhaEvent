@@ -17,7 +17,7 @@ class App extends Component {
 
       ReactGA.initialize(config.get('gaTrackingId'), {
         debug: true,
-        gaOptions: { cookieDomain: 'none' }
+        gaOptions: { cookieDomain: 'auto' }
       })
     } else {
       console.log('Environment', process.env.NODE_ENV)
