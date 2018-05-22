@@ -3,12 +3,9 @@
     "eId": "sample-event-location-YYYY",
     "name": "Sample Event YYYY",
     "organization": "Sample Organization",
-    "keywords": "sample event, sample organization, conference 2018",
+    "keywords": "sample event YYYY, sample organization, conference 2018",
     "location": "Central Park, Rajeev Chowk, Connaught Place, Connaught Place, New Delhi, Delhi",
-    "geolocation": {
-      "longitude": 25.1282408,
-      "latitude": 85.4455249
-    },
+    "description": "Aliquam augue turpis, gravida vitae velit a, consequat laoreet purus. Morbi nec condimentum neque. Nunc non rutrum sapien. Aenean molestie odio et feugiat mollis. Donec porta at libero sit amet volutpat. Mauris egestas velit nec lacus blandit, in fermentum mauris faucibus. Nam ultricies, orci vitae feugiat varius, diam quam elementum nulla, non condimentum mauris felis vel dui. Donec gravida ante eget neque vestibulum finibus. Etiam massa dolor, pretium ac eros.",
     "timestamp": {
       "eventDate": {
         "start": 32506338600000,

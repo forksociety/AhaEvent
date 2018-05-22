@@ -60,3 +60,5 @@ typings/
 build/
 src/faviconData.json
 public/
+functions/config/base-config.js
+src/config/base-config.js

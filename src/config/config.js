@@ -33,7 +33,8 @@ const config = {
 
   api: {
     eventsUrl: apiBaseUrl + Base.config.slugs.events,
-    eventUrl: apiBaseUrl + Base.config.slugs.event
+    eventUrl: apiBaseUrl + Base.config.slugs.event,
+    googleMapsBaseUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
   },
 
   menu: [

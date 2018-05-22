@@ -3,12 +3,9 @@
     "eId": "linux-security-summit-vancouver-2018",
     "name": "Linux Security Summit 2018",
     "organization": "The Linux Foundation",
-    "keywords": "linux security summit, linux, vancouver, security summit, summit 2018",
+    "keywords": "linux security summit 2018, linux, vancouver, security summit, summit 2018",
     "location": "Vancouver Convention Centre, Vancouver, Canada",
-    "geolocation": {
-      "longitude": 123.1207,
-      "latitude": 49.2827
-    },
+    "description": "The Linux Security Summit (LSS) is a technical forum for collaboration between Linux developers, researchers, and end users with the primary aim of fostering community efforts in analyzing and solving Linux security challenges. LSS is where key Linux security community members and maintainers gather to present and discuss their work and research to peers, joined by those who wish to keep up with the latest in Linux security development and who would like to provide input to the development process.",
     "timestamp": {
       "eventDate": {
         "start": 1535308200000,

@@ -3,12 +3,9 @@
     "eId": "pycon-cleveland-2018",
     "name": "PyCon 2018",
     "organization": "Python Software Foundation",
-    "keywords": "pycon, python, cleveland, python conference, conference 2018",
+    "keywords": "pycon 2018, python, cleveland, python conference, conference 2018",
     "location": "Huntington Convention Center, 300 Lakeside Ave E, Cleveland, OH, USA",
-    "geolocation": {
-      "longitude": 41.503031,
-      "latitude": -81.694147
-    },
+    "description": "The PyCon 2018 conference, which will take place in Cleveland, is the largest annual gathering for the community using and developing the open-source Python programming language. It is produced and underwritten by the Python Software Foundation, the 501(c)(3) nonprofit organization dedicated to advancing and promoting Python. Through PyCon, the PSF advances its mission of growing the international community of Python programmers.",
     "timestamp": {
       "eventDate": {
         "start": 1525804200000,

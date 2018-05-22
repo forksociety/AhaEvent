@@ -3,12 +3,9 @@
     "eId": "open-source-summit-japan-tokyo-2018",
     "name": "Open Source Summit Japan 2018",
     "organization": "The Linux Foundation",
-    "keywords": "open source summit, open source, japan, os summit, summit 2018",
+    "keywords": "open source summit 2018, open source, japan, os summit, summit 2018",
     "location": "Tokyo Conference Center Ariake, Tokyo, Japan",
-    "geolocation": {
-      "longitude": 139.6917,
-      "latitude": 35.6895
-    },
+    "description": "Open Source Summit Japan is the leading conference in Japan connecting the open source ecosystem under one roof, providing a forum for technologists and open source industry leaders to collaborate and share information, learn about the latest in open source technologies and find out how to gain a competitive advantage by using innovative open solutions.",
     "timestamp": {
       "eventDate": {
         "start": 1529433000000,
