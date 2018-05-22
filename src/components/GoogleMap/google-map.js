@@ -9,9 +9,9 @@ class GoogleMap extends Component {
     this.state = {
       width: (this.props.width) ? this.props.width : '100%',
       height: (this.props.height) ? this.props.height : '150px',
-      googleMapsUrl: api.googleMapsBaseUrl
-        + '&key=' + secretKeys.googleMapsKey
-        + '&q=' + this.props.location.replace(' ', '+')
+      googleMapsUrl: api.googleMapsBaseUrl +
+        '&key=' + secretKeys.googleMapsKey +
+        '&q=' + this.props.location.replace(' ', '+')
     }
   }
   render () {
@@ -21,15 +21,14 @@ class GoogleMap extends Component {
         width: this.state.width,
         height: this.state.height
       }}>
-      <iframe
-        title="Location"
-        style={{
-          border:'0',
-          width: this.state.width,
-          height: this.state.height
-        }}
-        src={this.state.googleMapsUrl} allowFullScreen>
-      </iframe>
+        <iframe
+          title='Location'
+          style={{
+            border: '0',
+            width: this.state.width,
+            height: this.state.height
+          }}
+          src={this.state.googleMapsUrl} allowFullScreen />
       </div>
     )
   }

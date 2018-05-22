@@ -62,3 +62,4 @@ src/faviconData.json
 public/
 functions/config/base-config.js
 src/config/base-config.js
+functions/events.json 

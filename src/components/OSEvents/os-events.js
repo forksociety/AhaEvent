@@ -6,7 +6,6 @@ import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
 import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
 
-
 class OSEvents extends Component {
   constructor (prop) {
     super(prop)
@@ -65,8 +64,8 @@ class OSEvents extends Component {
     return (138 + 360 * n)
   }
   componentWillMount () {
-    const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0);
-    setTimeout(hide, 500);
+    const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0)
+    setTimeout(hide, 500)
     let filters = []
     for (let k in this.state.allFilters) {
       filters.push(
@@ -94,11 +93,11 @@ class OSEvents extends Component {
       )
     }
     let sortBy = <Radio.Group
-        defaultValue={AppStrings.sortBy.DATE_ASC}
-        onChange={this.handleSortByChange}
-      >
-        {sortByArray}
-      </Radio.Group>
+      defaultValue={AppStrings.sortBy.DATE_ASC}
+      onChange={this.handleSortByChange}
+    >
+      {sortByArray}
+    </Radio.Group>
     this.setState({sortByComponents: sortBy})
     this._loadContent()
   }

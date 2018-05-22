@@ -50,47 +50,47 @@ app.get(config.slugs.events, (req, res) => {
   // extract filters and sort-by
   // create a set of filters
   let filters = new Set()
-  if(config.appStrings.queryParameters.filters in req.requestQuery.merged) {
+  if (config.appStrings.queryParameters.filters in req.requestQuery.merged) {
     filters = new Set(req.requestQuery.merged.filters.split(','))
   }
-  let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy];
+  let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy]
 
   let result = Object.keys(eventsData).filter((key) => {
     // remove sample events from the results if not running in dev env
-    if(typeof process.env.NODE_ENV !== 'undefined'
-      && process.env.NODE_ENV !== 'development'
-      && config.sampleEventKeys.includes(key)
+    if (typeof process.env.NODE_ENV !== 'undefined' &&
+      process.env.NODE_ENV !== 'development' &&
+      config.sampleEventKeys.includes(key)
     ) {
       return false
     }
 
     // remove past events
-    if (!filters.has(config.appStrings.filters.ALL_EVENTS)
-      && !filters.has(config.appStrings.filters.ENDED_EVENTS)
-      && new Date().getTime() > eventsData[key]['timestamp']['eventDate']['start']
+    if (!filters.has(config.appStrings.filters.ALL_EVENTS) &&
+      !filters.has(config.appStrings.filters.ENDED_EVENTS) &&
+      new Date().getTime() > eventsData[key]['timestamp']['eventDate']['start']
     ) {
       return false
     }
 
     // only ended events
-    if (filters.has(config.appStrings.filters.ENDED_EVENTS)
-      && new Date().getTime() < eventsData[key]['timestamp']['eventDate']['start']
+    if (filters.has(config.appStrings.filters.ENDED_EVENTS) &&
+      new Date().getTime() < eventsData[key]['timestamp']['eventDate']['start']
     ) {
       return false
     }
 
     // remove if CFP ended
     let oneDay = 24 * 60 * 60 * 1000
-    if (filters.has(config.appStrings.filters.CFP_OPEN)
-      && (new Date().getTime() - oneDay) > eventsData[key]['timestamp']['cfp']['end']
+    if (filters.has(config.appStrings.filters.CFP_OPEN) &&
+      (new Date().getTime() - oneDay) > eventsData[key]['timestamp']['cfp']['end']
     ) {
       return false
     }
 
     // remove events without CFP, if sort by CFP is applied
-    if(eventsData[key]['timestamp']['cfp']['start'] === 0
-      && (sortByValue === config.appStrings.sortBy.CFP_ASC
-      || sortByValue === config.appStrings.sortBy.CFP_DES)
+    if (eventsData[key]['timestamp']['cfp']['start'] === 0 &&
+      (sortByValue === config.appStrings.sortBy.CFP_ASC ||
+      sortByValue === config.appStrings.sortBy.CFP_DES)
     ) {
       return false
     }
@@ -99,37 +99,41 @@ app.get(config.slugs.events, (req, res) => {
 
   result.sort((a, b) => {
     // default Date Ascending
-    var timestampA = a.timestamp.eventDate.start,
-      timestampB = b.timestamp.eventDate.start,
-      sortByAsc = true;
+    var timestampA = a.timestamp.eventDate.start
+    var timestampB = b.timestamp.eventDate.start
+    var sortByAsc = true
 
-    if(config.appStrings.queryParameters.sortBy in req.requestQuery.merged) {
-      if(sortByValue === config.appStrings.sortBy.CFP_ASC
-        || sortByValue === config.appStrings.sortBy.CFP_DES
+    if (config.appStrings.queryParameters.sortBy in req.requestQuery.merged) {
+      if (sortByValue === config.appStrings.sortBy.CFP_ASC ||
+        sortByValue === config.appStrings.sortBy.CFP_DES
       ) {
         timestampA = a.timestamp.cfp.start
         timestampB = b.timestamp.cfp.start
 
-        if(sortByValue === config.appStrings.sortBy.CFP_DES) {
-          sortByAsc = false;
+        if (sortByValue === config.appStrings.sortBy.CFP_DES) {
+          timestampA = a.timestamp.cfp.end
+          timestampB = b.timestamp.cfp.end
+          sortByAsc = false
         }
       } else if (sortByValue === config.appStrings.sortBy.DATE_DES) {
-        sortByAsc = false;
+        timestampA = a.timestamp.eventDate.end
+        timestampB = b.timestamp.eventDate.end
+        sortByAsc = false
       }
     }
-    var keyA = new Date(timestampA),
-      keyB = new Date(timestampB);
+    var keyA = new Date(timestampA)
+    var keyB = new Date(timestampB)
 
     // Compare the 2 dates
-    if(sortByAsc) {
-      if(keyA < keyB) return -1;
-      if(keyA > keyB) return 1;
+    if (sortByAsc) {
+      if (keyA < keyB) return -1
+      if (keyA > keyB) return 1
     } else {
-      if(keyA > keyB) return -1;
-      if(keyA < keyB) return 1;
+      if (keyA > keyB) return -1
+      if (keyA < keyB) return 1
     }
-    return 0;
-  });
+    return 0
+  })
   res.json({
     success: true,
     extras: {
