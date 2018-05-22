@@ -56,8 +56,11 @@ app.get(config.slugs.events, (req, res) => {
   let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy];
 
   let result = Object.keys(eventsData).filter((key) => {
-    // remove sample events from the results
-    if(config.sampleEventKeys.includes(key)) {
+    // remove sample events from the results if not running in dev env
+    if(typeof process.env.NODE_ENV !== 'undefined'
+      && process.env.NODE_ENV !== 'development'
+      && config.sampleEventKeys.includes(key)
+    ) {
       return false
     }
 
