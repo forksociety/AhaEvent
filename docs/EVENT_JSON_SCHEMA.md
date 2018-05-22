@@ -8,10 +8,7 @@
         "organization": ORG_NAME,
         "keywords": KEYWORDS,
         "location": LOCATION_NAME,
-        "geolocation": {
-            "longitude": LONGITUDE,
-            "latitude": LATITUDE
-        },
+        "description": DESCRIPTION,
         "timestamp": {
           "eventDate": {
             "start": START_DATE_TIMESTAMP,
@@ -45,8 +42,7 @@
 | ORG_NAME              | Yes       | Name of the organisation related to the event | The Linux Foundation                                                            |
 | KEYWORDS              | Yes       | Key words related to the event  | `open source summit, open source, japan, os summit, summit 2018` |
 | LOCATION_NAME         | Yes       | Location where the event is going to take place.| Tokyo Conference Center Ariake, Tokyo, Japan |
-| LONGITUDE/LATITUDE    | Yes       | Longitude/Latitude of the location. In case the coordinates are not available, city coordinates can be provided.| 139.6917 / 35.6895 |
-| START_DATE_TIMESTAMP  | Yes       | Timestamp of the day and time at which the event starts.| 1529433000000 for 20th June 2018 |
+| DESCRIPTION           | Yes       | The description of the event. | Open Source Summit Japan is the leading conference in Japan connecting the open source ecosystem under one roof, providing a forum for technologists and open source industry leaders to collaborate and share information, learn about the latest in open source technologies and find out how to gain a competitive advantage by using innovative open solutions. |
 | END_DATE_TIMESTAMP    | Yes       | Timestamp of the day and time at which the event ends.| 1529433000000 for 20th June 2018 |
 | CFP_START_TIMESTAMP   | Yes       | Timestamp at which the call for proposals will open.| 1529433000000 for 20th June 2018 |
 | CFP_END_TIMESTAMP     | Yes       | Timestamp at which the call for proposals will close.| 1529433000000 for 20th June 2018 |
