@@ -11,10 +11,10 @@ const commonStrings = {
   },
 
   sortBy: {
-    CFP_ASC: 'cfp-a',
-    CFP_DES: 'cfp-d',
     DATE_ASC: 'date-a',
-    DATE_DES: 'date-d'
+    DATE_DES: 'date-d',
+    CFP_ASC: 'cfp-a',
+    CFP_DES: 'cfp-d'
   },
 
   eventJsonKeys: {

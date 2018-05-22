@@ -74,7 +74,7 @@ class OSEvent extends Component {
                 flexDirection: 'column',
                 padding: '20px'
               }}>
-                <GoogleMap {...{ location: e.location }} />
+                <GoogleMap location={e.location} />
               </span>
             </div>
           ]})

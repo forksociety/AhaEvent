@@ -6,6 +6,7 @@ import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
 import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
 
+
 class OSEvents extends Component {
   constructor (prop) {
     super(prop)
@@ -65,15 +66,14 @@ class OSEvents extends Component {
   componentWillMount () {
     let filters = []
     for (let k in this.state.allFilters) {
-      let id = k
       filters.push(
         <Checkbox
-          id={id}
-          key={id}
+          id={k}
+          key={k}
           style={{
             marginLeft: '10px'
           }}
-          value={this.state.filterState[id]}
+          value={this.state.filterState[k]}
           onChange={this.handleFilterChange}
         >
           {this.state.allFilters[k]}
@@ -101,7 +101,8 @@ class OSEvents extends Component {
   }
 
   componentDidUpdate () {
-    if (this.state.events.length === 0) {
+    if (this.state.updateDom) {
+      this.setState({updateDom: false})
       this._loadContent()
     }
   }
@@ -132,12 +133,11 @@ class OSEvents extends Component {
     tmpFilter[e.target.id] = e.target.checked
     this.setState({filterState: tmpFilter})
     this.setState({updateDom: true})
-    this.setState({events: []})
   }
 
   handleSortByChange (e) {
     this.setState({sortBy: e.target.value})
-    this.setState({events: []})
+    this.setState({updateDom: true})
   }
 
   render () {
