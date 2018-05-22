@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Radio, Checkbox, Icon, Row } from 'antd'
+import { Radio, Checkbox, Icon, Row, message } from 'antd'
 
 import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
@@ -21,6 +21,7 @@ class OSEvents extends Component {
 
     this.state = {
       api: config.get('api'),
+      appStrings: config.get('appStrings'),
       events: [],
       sortBy: '',
       filterComponents: [],
@@ -64,6 +65,8 @@ class OSEvents extends Component {
     return (138 + 360 * n)
   }
   componentWillMount () {
+    const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0);
+    setTimeout(hide, 500);
     let filters = []
     for (let k in this.state.allFilters) {
       filters.push(

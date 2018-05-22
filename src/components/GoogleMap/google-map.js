@@ -5,20 +5,32 @@ class GoogleMap extends Component {
   constructor (props) {
     super(props)
     let secretKeys = config.get('secretKeys')
+    let api = config.get('api')
     this.state = {
-      googleMapsKey: secretKeys.googleMapsKey
+      width: (this.props.width) ? this.props.width : '100%',
+      height: (this.props.height) ? this.props.height : '150px',
+      googleMapsUrl: api.googleMapsBaseUrl
+        + '&key=' + secretKeys.googleMapsKey
+        + '&q=' + this.props.location.replace(' ', '+')
     }
   }
   render () {
-    let googleMapsUrl = 'https://www.google.com/maps/embed/v1/place?language=en&key='
-      + this.state.googleMapsKey + '&q=' + this.props.location.replace(' ', '+');
-
     return (
+      <div style={{
+        background: '#cccccc',
+        width: this.state.width,
+        height: this.state.height
+      }}>
       <iframe
         title="Location"
-        style={{ width: '100%', height: '300px', border:'0' }}
-        src={googleMapsUrl} allowFullScreen>
+        style={{
+          border:'0',
+          width: this.state.width,
+          height: this.state.height
+        }}
+        src={this.state.googleMapsUrl} allowFullScreen>
       </iframe>
+      </div>
     )
   }
 }

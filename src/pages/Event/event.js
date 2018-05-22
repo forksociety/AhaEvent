@@ -17,7 +17,7 @@ class EventPage extends Component {
     }
     return (
       <Layout style={{ background: '#f0f2f5' }}>
-        <Layout className='awesome-header'>
+        <Layout className='awesome-header box-shadow'>
           <CustomMenu {...menuProps} />
         </Layout>
         <OSEvent {...this.props.match.params} />

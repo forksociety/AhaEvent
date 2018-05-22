@@ -46,8 +46,16 @@ body > * {
     font-size: 300%;
   }
 
+  h2 {
+    font-size: 240%;
+  }
+
   h3 {
     font-size: 180%;
+  }
+
+  h4 {
+    font-size: 150%;
   }
 
   .logo {
@@ -56,5 +64,15 @@ body > * {
 
   .tagline {
     font-family: 'Josefin Slab', sans-serif;
+  }
+  .overlay {
+    z-index: 10;
+    position: absolute;
+    background: rgba(0,0,0,0.4);
+    left: 0; top: 0; right: 0; bottom: 0;
+  }
+
+  .box-shadow {
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   }
 }
