@@ -62,10 +62,11 @@ typings/
 
 # build files
 build/
-src/faviconData.json
 public/
-functions/config/base-config.js
-src/config/base-config.js
+src/faviconData.json
 functions/events.json
+src/stylesheets/dist/
+src/config/base-config.js
 src/models/OSEventModel.js
+functions/config/base-config.js
 functions/models/OSEventModel.js

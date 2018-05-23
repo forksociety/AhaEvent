@@ -141,17 +141,22 @@ gulp.task('merge-json', function () {
     .pipe(gulp.dest(paths.jsonFiles.dist))
 })
 
-gulp.task('copy-configs', function () {
+gulp.task('copy-commons', function () {
   gulp.src('./base-config.js')
     .pipe(gulp.dest('./src/config/'))
     .pipe(gulp.dest('./functions/config/'))
-})
 
-gulp.task('copy-public', function () {
   gulp.src('./src/img/')
     .pipe(gulp.dest('./public/'))
   gulp.src('./src/img/*')
     .pipe(gulp.dest('./public/img'))
+
+  gulp.src('./models/')
+    .pipe(gulp.dest('./src/'))
+    .pipe(gulp.dest('./functions/'))
+  gulp.src('./models/*')
+    .pipe(gulp.dest('./src/models'))
+    .pipe(gulp.dest('./functions/models'))
 })
 
 gulp.task('clean', function () {
@@ -165,8 +170,7 @@ gulp.task('watch', function () {
 gulp.task('build', [
   'clean',
   'merge-json',
-  'copy-configs',
-  'copy-public',
+  'copy-commons',
   'style',
   'generate-favicon',
   'inject-favicon-markups'
@@ -174,8 +178,7 @@ gulp.task('build', [
 
 gulp.task('default', [
   'merge-json',
-  'copy-configs',
-  'copy-public',
+  'copy-commons',
   'style',
   'generate-favicon',
   'inject-favicon-markups'

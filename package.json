@@ -21,9 +21,11 @@
         "url": "https://github.com/nirmankarta/AhaEvent"
     },
     "keywords": [
-        "node",
-        "heroku",
-        "express"
+        "ahaevent",
+        "reactjs",
+        "discovery-platform",
+        "firebase",
+        "opensource"
     ],
     "dependencies": {
         "antd": "^3.5.1",

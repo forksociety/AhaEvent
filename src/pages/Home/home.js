@@ -14,6 +14,7 @@ class HomePage extends Component {
       metaData: {}
     }
   }
+
   render () {
     return (
       <Layout style={{ background: '#f0f2f5' }}>

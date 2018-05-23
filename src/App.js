@@ -8,6 +8,11 @@ import EventPage from './pages/Event/event'
 import './stylesheets/dist/style.min.css'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
   render () {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
       console.log = (...p) => { }
