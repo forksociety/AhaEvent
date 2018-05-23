@@ -14,6 +14,7 @@ class GoogleMap extends Component {
         '&q=' + this.props.location.replace(' ', '+')
     }
   }
+
   render () {
     return (
       <div style={{

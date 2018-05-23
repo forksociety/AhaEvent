@@ -2,7 +2,7 @@ $fontSizeBase: 14px;
 
 $smallestDevice: 320px;
 $smallDevice: 492px;
-$tabletDevice: 900px;
+$tabletDevice: 990px;
 
 @mixin fontDefault() {
   font-family: 'Ubuntu', sans-serif;
@@ -65,6 +65,11 @@ body > * {
   .tagline {
     font-family: 'Josefin Slab', sans-serif;
   }
+
+  .tac {
+    text-align: center;
+  }
+
   .overlay {
     z-index: 10;
     position: absolute;

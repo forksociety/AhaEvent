@@ -37,6 +37,12 @@ const commonStrings = {
     LINK_WEBSITE: 'website',
     LINK_REGISTER: 'register',
     LINK_CFP: 'cfp'
+  },
+
+  error: {
+    SOMETHING_WRONG: 'Something went wrong.',
+    HTTP_ERROR: 'Something went wrong.',
+    NETWORK_ERROR: 'Network Error'
   }
 }
 

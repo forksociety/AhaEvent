@@ -86,7 +86,7 @@ class CustomMenu extends Component {
             color: '#fff',
             fontSize: '150%',
             borderBottom: '0px',
-            padding: '0 0px 0px 10px'
+            padding: '0 0px 0px 20px'
           }}
         >
           <a href='/'>{config.get('appName')}</a>

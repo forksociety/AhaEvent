@@ -4,11 +4,11 @@ import { Radio, Checkbox, Icon, Row, message } from 'antd'
 
 import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
-import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
+import { generateResponse, showNotification } from '../../models/Utils'
 
 class OSEvents extends Component {
-  constructor (prop) {
-    super(prop)
+  constructor (props) {
+    super(props)
     let searchQueryItems = config.get('searchQueryItems')
     let allFilters = searchQueryItems.filters
     let allSortBy = searchQueryItems.sortBy
@@ -61,7 +61,7 @@ class OSEvents extends Component {
   getMinHeight () {
     let n = Math.ceil(this.state.events.length / 4)
     n = (n === 0) ? 1 : n
-    return (138 + 360 * n)
+    return (64 + 316 * n)
   }
   componentWillMount () {
     const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0)
@@ -73,7 +73,7 @@ class OSEvents extends Component {
           id={k}
           key={k}
           style={{
-            marginLeft: '10px'
+            margin: '0px 10px 10px 0px'
           }}
           value={this.state.filterState[k]}
           onChange={this.handleFilterChange}
@@ -87,7 +87,7 @@ class OSEvents extends Component {
     let sortByArray = []
     for (let k in this.state.allSortBy) {
       sortByArray.push(
-        <Radio.Button key={k} value={k}>
+        <Radio.Button key={k} value={k} style={{ marginBottom: '10px' }}>
           {this.state.allSortBy[k].text} <Icon type={this.state.allSortBy[k].icon} />
         </Radio.Button>
       )
@@ -95,6 +95,9 @@ class OSEvents extends Component {
     let sortBy = <Radio.Group
       defaultValue={AppStrings.sortBy.DATE_ASC}
       onChange={this.handleSortByChange}
+      style={{
+        margin: "0px 10px 0px 0px"
+      }}
     >
       {sortByArray}
     </Radio.Group>
@@ -113,7 +116,13 @@ class OSEvents extends Component {
     fetch(this.generateApiUrlWithQuery())
       .then(results => {
         if (results.status === 200) return results.json()
-        else { return generateResponse(false, results.status, defaultResponse.httpError) }
+        else {
+          return generateResponse(
+            false,
+            results.status,
+            this.state.appStrings.error.HTTP_ERROR
+          )
+        }
       }).then(data => {
         if (data.success) {
           let e = data.extras.events.map((i) => i)
@@ -123,10 +132,16 @@ class OSEvents extends Component {
           this.setState({events: e})
           this.setState({componentMinHeight: this.getMinHeight()})
         } else {
-          console.log(data)
+          showNotification(
+            data.extras.message,
+            (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
+          )
         }
       }).catch((error) => {
-        console.log(error)
+        showNotification(
+          this.state.appStrings.error.NETWORK_ERROR,
+          error.toString()
+        )
       })
   }
 
@@ -147,7 +162,11 @@ class OSEvents extends Component {
       <div style={{ minHeight: this.state.componentMinHeight }}>
         <Row
           className='filters'
-          style={{ background: '#fff', margin: '20px 50px', padding: '16px' }}
+          style={{
+            background: '#fff',
+            margin: '20px 50px',
+            padding: '16px 16px 6px 16px'
+          }}
         >
           {this.state.sortByComponents}
           {this.state.filterComponents}
