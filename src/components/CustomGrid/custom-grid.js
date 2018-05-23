@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { Layout, Row, Col, Card, Icon, Badge } from 'antd'
-import moment from 'moment'
-import config from 'react-global-configuration'
+
+import OSEventModel from '../../models/OSEventModel'
 
 const { Meta } = Card
 const { Content } = Layout
 
+
 class CustomGrid extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
   render () {
     let intents = []
-    let slugs = config.get('slugs')
-    let osEventDefaults = config.get('osEventDefaults')
 
     if (this.props.items.length === 1 &&
       typeof this.props.items[0]['success'] !== 'undefined' &&
@@ -31,30 +35,17 @@ class CustomGrid extends Component {
       ]
     } else {
       for (var key in this.props.items) {
-        let e = this.props.items[key]
+        let osEvent = new OSEventModel(this.props.items[key])
 
-        let startDate = moment(e.timestamp.eventDate.start)
-        let endDate = moment(e.timestamp.eventDate.end)
-        let dateString =
-          startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY')
+        let name = osEvent.getName()
+        let dateString = osEvent.getDateString()
+        let cfpDateString = 'CFP: ' + osEvent.getCfpDateString()
+        let url = osEvent.getEventUrl()
+        let coverImgAltText = name + ' Cover Image'
+        let logoAltText = name + ' Logo'
+        let locationLink = osEvent.getGoogleMapUrl()
+        let coverComponent = <img alt={coverImgAltText} src={osEvent.getCoverImage()} />
 
-        let cfpStartDate = moment(e.timestamp.cfp.start)
-        let cfpEndDate = moment(e.timestamp.cfp.end)
-        let cfpDateString =
-          'CFP: ' + cfpStartDate.format('Do MMM') + ' - ' + cfpEndDate.format('Do MMM YYYY')
-
-        let url = slugs.event + e.eId
-        let coverImgAltText = e.name + ' Cover Image'
-        let logoAltText = e.name + ' Logo'
-        let locationLink = osEventDefaults.googleMapsUrl + e.location
-
-        let coverComponent = <img alt={coverImgAltText} src={osEventDefaults.coverImage} />
-        if (e.resources.coverImage.length > 0 &&
-          (e.resources.coverImage.indexOf('http://') !== -1 ||
-            e.resources.coverImage.indexOf('https://') !== -1)
-        ) {
-          coverComponent = <img alt={coverImgAltText} src={e.resources.coverImage} />
-        }
         intents.push(
           <Col
             span={8}
@@ -63,19 +54,19 @@ class CustomGrid extends Component {
             md={8}
             lg={8}
             xl={6}
-            key={e.eId}
+            key={osEvent.getEid()}
             style={{ marginBottom: '15px' }}
           >
             <span className='custom-badges'>
               <Badge count={0}>
-                <a href={e.links.website} target='_blank'>
+                <a href={osEvent.getWebsite()} target='_blank'>
                   <Icon type='link' />
                 </a>
               </Badge>
             </span>
             <span className='event-logo'>
               <span>
-                <img src={e.resources.logo} alt={logoAltText} />
+                <img src={osEvent.getLogo()} alt={logoAltText} />
               </span>
             </span>
             <Card
@@ -84,13 +75,13 @@ class CustomGrid extends Component {
             >
               <Meta
                 className='custom-meta'
-                title={<a href={url}>{e.name}</a>}
+                title={<a href={url}>{name}</a>}
                 description={
                   <span>
                     <div>
                       <a href={locationLink} target='_blank'>
                         <Icon type='environment-o' />
-                        {e.location}
+                        {osEvent.getLocation()}
                       </a>
                     </div>
                     <div>{dateString}</div>

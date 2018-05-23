@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Layout, Row, Col, Button, notification, message } from 'antd'
-import moment from 'moment'
+import { Layout, Row, Col, Button, message } from 'antd'
 
 import GoogleMap from '../../components/GoogleMap/google-map'
 import DocumentMeta from '../../components/DocumentMeta/document-meta'
-import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
+import { generateResponse, showNotification } from '../../models/Utils'
+
+import OSEventModel from '../../models/OSEventModel'
 
 class OSEvent extends Component {
-  constructor (prop) {
-    super(prop)
+  constructor (props) {
+    super(props)
     this.state = {
-      eventEnded: false,
-      cfpEnded: false,
       metaData: {},
       event: {},
       component: [],
@@ -20,9 +19,34 @@ class OSEvent extends Component {
       api: config.get('api'),
       appStrings: config.get('appStrings')
     }
-    notification.config({
-      placement: 'bottomLeft'
-    })
+    this.getButton = this.getButton.bind(this)
+    this.generateApiUrl = this.generateApiUrl.bind(this)
+  }
+
+  getButton(i) {
+    if (i.href) {
+      return (<Button
+          key={i.key}
+          type={i.type}
+          href={i.href}
+          target='_blank'
+          style={{ marginRight: '10px' }}
+          disabled={i.disabled}
+          ghost={i.ghost}
+        >
+          {i.text}
+        </Button>)
+    }
+    return (<Button
+        key={i.key}
+        type={i.type}
+        target='_blank'
+        style={{ marginRight: '10px' }}
+        disabled={i.disabled}
+        ghost={i.ghost}
+      >
+        {i.text}
+      </Button>)
   }
 
   generateApiUrl () {
@@ -39,112 +63,83 @@ class OSEvent extends Component {
     fetch(this.generateApiUrl())
       .then(results => {
         if (results.status === 200) return results.json()
-        else { return generateResponse(false, results.status, defaultResponse.httpError) }
+        else {
+          return generateResponse(
+            false,
+            results.status,
+            this.state.appStrings.error.HTTP_ERROR
+          )
+        }
       }).then(data => {
         if (data.success) {
-          let e = data.extras.event
-          let slugs = config.get('slugs')
+          let osEvent = new OSEventModel(data.extras.event)
+          let dateString = osEvent.getDateString()
+          let cfpDateString = osEvent.getCfpDateString()
+          let website = osEvent.getWebsite()
+          let registerLink = osEvent.getRegisterLink()
+          let cfpLink = osEvent.getCfpLink()
+          let overlay = (osEvent.hasCover()) ? <div className='overlay' /> : ''
+
+          this.setState({event: osEvent})
           this.setState({metaData: {
-            title: e.name,
-            ogUrl: config.get('domain') + slugs.event + e.eId,
-            keywords: e.keywords
+            title: osEvent.getName(),
+            ogUrl: osEvent.getCompleteUrl(),
+            keywords: osEvent.getKeywords()
           }})
 
-          this.setState({event: e})
-          let bgColor = (e.resources.coverBackgroundColor)
-            ? e.resources.coverBackgroundColor
-            : '#ffffff'
-
-          let startDate = moment(e.timestamp.eventDate.start)
-          let endDate = moment(e.timestamp.eventDate.end)
-          let dateString = startDate.format('Do MMM') + ' - ' +
-            endDate.format('Do MMM YYYY')
-
-          let cfpStartDate = moment(e.timestamp.cfp.start)
-          let cfpEndDate = moment(e.timestamp.cfp.end)
-          let cfpDateString = 'CFP: ' + cfpStartDate.format('Do MMM') +
-            ' - ' + cfpEndDate.format('Do MMM YYYY')
-
-          this.setState({eventEnded: endDate.diff(moment(new Date()), 'days') < 0})
-          this.setState({cfpEnded: cfpEndDate.diff(moment(new Date()), 'days') < 0})
-
-          let overlay = (e.resources.coverImage.length > 0)
-            ? <div className='overlay' /> : ''
-
-          let buttons = []
-          if (e.links.website) {
-            buttons.push(<Button
-              key='website'
-              type='primary'
-              href={e.links.website}
-              target='_blank'
-              style={{ marginRight: '10px' }}
-            >
-              Website
-            </Button>)
+          let buttonComponents = []
+          let defaultButton = {
+            key: '',
+            type: 'primary',
+            href: '',
+            text: 'button',
+            disabled: false,
+            ghost: false
           }
-          if (e.links.register) {
-            if (this.state.eventEnded) {
-              buttons.push(<Button
-                key='register'
-                type='dashed'
-                href={e.links.register}
-                target='_blank'
-                style={{ marginRight: '10px' }}
-                disabled
-              >
-                Register (Closed)
-              </Button>)
-            } else {
-              buttons.push(<Button
-                key='register'
-                type='primary'
-                href={e.links.register}
-                target='_blank'
-                style={{ marginRight: '10px' }}
-              >
-                Register
-              </Button>)
+
+          if (website) {
+            let websiteButton = {...defaultButton}
+            websiteButton.key = 'website'
+            websiteButton.href = website
+            websiteButton.text = 'Website'
+            buttonComponents.push(this.getButton(websiteButton))
+          }
+
+          let registerButton = {...defaultButton}
+          registerButton.key = 'register'
+          if (registerLink) {
+            registerButton.href = registerLink
+            registerButton.text = 'Register'
+            if (osEvent.hasEventEnded()) {
+              registerButton.type = 'dashed'
+              registerButton.disabled = true
+              registerButton.text = 'Register (Closed)'
             }
           } else {
-            buttons.push(<Button
-              key='register'
-              style={{ marginRight: '10px' }}
-              ghost
-              disabled
-            >
-              Register (Coming Soon)
-            </Button>)
+            registerButton.ghost = true
+            registerButton.disabled = true
+            registerButton.text = 'Register (Coming Soon)'
           }
-          if (e.links.cfp) {
-            if (this.state.cfpEnded) {
-              buttons.push(<Button
-                key='cfp'
-                type='dashed'
-                href={e.links.cfp}
-                target='_blank'
-                disabled
-              >
-                Call for Proposals (Closed)
-              </Button>)
-            } else {
-              buttons.push(<Button
-                key='cfp'
-                type='primary'
-                href={e.links.cfp}
-                target='_blank'
-              >
-                Call for Proposals
-              </Button>)
-            }
+          buttonComponents.push(this.getButton(registerButton))
+
+          if (cfpLink) {
+            let cfpButton = {...defaultButton}
+            cfpButton.key = 'cfp'
+              cfpButton.href = cfpLink
+              cfpButton.text = 'Call for Proposals'
+              if (osEvent.hasCfpEnded()) {
+                cfpButton.type = 'dashed'
+                cfpButton.disabled = true
+                cfpButton.text = 'Call for Proposals (Closed)'
+              }
+            buttonComponents.push(this.getButton(cfpButton))
           }
 
-          if (this.state.eventEnded) {
-            notification['warning']({
-              message: e.name + ' has ended',
-              description: 'Some links might not work.',
-              duration: 10
-            })
+          if (osEvent.hasEventEnded()) {
+            showNotification(
+              osEvent.getName() + ' has ended',
+              'Some links might not work.'
+            )
           }
           this.setState({component: [
             <Row key='os-event' className='os-event'>
@@ -156,44 +151,58 @@ class OSEvent extends Component {
                 lg={10}
                 xl={10}
                 className='os-event-cover'
-                style={e.resources.coverImage.length > 0 ? {
-                  background: `url(${e.resources.coverImage}) no-repeat center center fixed`,
+                style={osEvent.hasCover() ? {
+                  background: `url(${osEvent.getCoverImage()}) no-repeat center center fixed`,
                   backgroundSize: 'cover',
-                  backgroundColor: bgColor
+                  backgroundColor: osEvent.getCoverBackgroundColor()
                 } : {
-                  backgroundColor: bgColor
+                  backgroundColor: osEvent.getCoverBackgroundColor()
                 }}
               >
                 {overlay}
                 <div className='event-logo-container' style={{ zIndex: '999' }}>
-                  <img src={e.resources.logo} alt={`${e.name} Logo`} />
+                  <img src={osEvent.getLogo()} alt={`${osEvent.getName()} Logo`} />
                 </div>
               </Col>
               <Col
                 className='content'
               >
-                <h2 style={{ marginBottom: '0px' }}>{e.name}</h2>
-                <h4>{dateString}</h4>
-                <h4>{e.organization}</h4>
-                <div className='description'>{e.description}</div>
+                <h2 className="tac" style={{ marginBottom: '0px' }}>{osEvent.getName()}</h2>
+                <h4 className="tac">{dateString}</h4>
+                <h4 className="tac">{osEvent.getOrganisation()}</h4>
+                <div className='description'>{osEvent.getDescription()}</div>
                 <div><b>Call For Proposals: </b>{cfpDateString}</div>
                 <div style={{
                   paddingBottom: '20px'
-                }}><b>Location: </b>{e.location}</div>
+                }}><b>Location: </b>{osEvent.getLocation()}</div>
                 <div style={{
                   paddingBottom: '20px'
                 }}>
-                  {buttons}
+                  {buttonComponents}
                 </div>
-                <GoogleMap location={e.location} height='200px' />
+                <GoogleMap location={osEvent.getLocation()} height='200px' />
               </Col>
             </Row>
           ]})
         } else {
-          console.log(data)
+          this.setState({component: [
+            <Row key='os-event' className='os-event'></Row>
+          ]})
+
+          showNotification(
+            data.extras.message,
+            (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
+          )
         }
       }).catch((error) => {
-        console.log(error)
+        this.setState({component: [
+          <Row key='os-event' className='os-event'></Row>
+        ]})
+
+        showNotification(
+          this.state.appStrings.error.NETWORK_ERROR,
+          error.toString()
+        )
       })
   }
 

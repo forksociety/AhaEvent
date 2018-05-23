@@ -1,17 +1,26 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const config = require('./config/config')
-const app = express()
+const moment = require('moment')
 
+const app = express()
+const config = require('./config/config')
 const eventsData = require('./events.json')
+
+const OSEventModel = require('./models/OSEventModel');
 
 app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const eJsonKeys = config.appStrings.eventJsonKeys
+const filtersKey = config.appStrings.queryParameters.filters
+const sortByKey = config.appStrings.queryParameters.sortBy
+const filters = config.appStrings.filters
+const sortBy = config.appStrings.sortBy
+
 app.use((req, res, next) => {
-  var allowedOrigins = config.allowedOrigins
-  var origin = req.headers.origin
+  let allowedOrigins = config.allowedOrigins
+  let origin = req.headers.origin
 
   if (allowedOrigins.indexOf(origin) > -1) {
     res.setHeader('Access-Control-Allow-Origin', origin)
@@ -49,13 +58,17 @@ app.get(config.slugs.event + ':eId', (req, res) => {
 app.get(config.slugs.events, (req, res) => {
   // extract filters and sort-by
   // create a set of filters
-  let filters = new Set()
-  if (config.appStrings.queryParameters.filters in req.requestQuery.merged) {
-    filters = new Set(req.requestQuery.merged.filters.split(','))
+  let filtersSet = new Set()
+  if (filtersKey in req.requestQuery.merged) {
+    filtersSet = new Set(req.requestQuery.merged.filters.split(','))
   }
-  let sortByValue = req.requestQuery.merged[config.appStrings.queryParameters.sortBy]
+  let sortByValue = ''
+  if (sortByKey in req.requestQuery.merged) {
+    sortByValue = req.requestQuery.merged[sortByKey]
+  }
 
   let result = Object.keys(eventsData).filter((key) => {
+    let osEvent = new OSEventModel(eventsData[key])
     // remove sample events from the results if not running in dev env
     if (typeof process.env.NODE_ENV !== 'undefined' &&
       process.env.NODE_ENV !== 'development' &&
@@ -64,33 +77,37 @@ app.get(config.slugs.events, (req, res) => {
       return false
     }
 
+    let startDate = moment(osEvent.getStartDate())
+    let endDate = moment(osEvent.getEndDate())
+    let cfpStartDate = moment(osEvent.getCfpStartDate())
+    let cfpEndDate = moment(osEvent.getCfpEndDate())
+
     // remove past events
-    if (!filters.has(config.appStrings.filters.ALL_EVENTS) &&
-      !filters.has(config.appStrings.filters.ENDED_EVENTS) &&
-      new Date().getTime() > eventsData[key]['timestamp']['eventDate']['start']
+    if (!filtersSet.has(filters.ALL_EVENTS) &&
+      !filtersSet.has(filters.ENDED_EVENTS) &&
+      startDate.diff(moment(new Date()), 'days') < 0
     ) {
       return false
     }
 
     // only ended events
-    if (filters.has(config.appStrings.filters.ENDED_EVENTS) &&
-      new Date().getTime() < eventsData[key]['timestamp']['eventDate']['start']
+    if (filtersSet.has(filters.ENDED_EVENTS) &&
+    startDate.diff(moment(new Date()), 'days') > 0
     ) {
       return false
     }
 
     // remove if CFP ended
-    let oneDay = 24 * 60 * 60 * 1000
-    if (filters.has(config.appStrings.filters.CFP_OPEN) &&
-      (new Date().getTime() - oneDay) > eventsData[key]['timestamp']['cfp']['end']
+    if (filtersSet.has(filters.CFP_OPEN) &&
+      cfpEndDate.diff(moment(new Date()), 'days') < 0
     ) {
       return false
     }
 
     // remove events without CFP, if sort by CFP is applied
-    if (eventsData[key]['timestamp']['cfp']['start'] === 0 &&
-      (sortByValue === config.appStrings.sortBy.CFP_ASC ||
-      sortByValue === config.appStrings.sortBy.CFP_DES)
+    if (cfpStartDate.unix() === 0 &&
+      (sortByValue === sortBy.CFP_ASC ||
+      sortByValue === sortBy.CFP_DES)
     ) {
       return false
     }
@@ -98,31 +115,33 @@ app.get(config.slugs.events, (req, res) => {
   }).map((key) => eventsData[key])
 
   result.sort((a, b) => {
+    let osEventA = new OSEventModel(a)
+    let osEventB = new OSEventModel(b)
     // default Date Ascending
-    var timestampA = a.timestamp.eventDate.start
-    var timestampB = b.timestamp.eventDate.start
-    var sortByAsc = true
+    let timestampA = osEventA.getStartDate()
+    let timestampB = osEventB.getStartDate()
+    let sortByAsc = true
 
+    // sort by
     if (config.appStrings.queryParameters.sortBy in req.requestQuery.merged) {
+      // sorting by CFP end date
       if (sortByValue === config.appStrings.sortBy.CFP_ASC ||
         sortByValue === config.appStrings.sortBy.CFP_DES
       ) {
-        timestampA = a.timestamp.cfp.start
-        timestampB = b.timestamp.cfp.start
+        timestampA = osEventA.getCfpEndDate()
+        timestampB = osEventB.getCfpEndDate()
 
         if (sortByValue === config.appStrings.sortBy.CFP_DES) {
-          timestampA = a.timestamp.cfp.end
-          timestampB = b.timestamp.cfp.end
           sortByAsc = false
         }
       } else if (sortByValue === config.appStrings.sortBy.DATE_DES) {
-        timestampA = a.timestamp.eventDate.end
-        timestampB = b.timestamp.eventDate.end
+        timestampA = osEventA.getEndDate()
+        timestampB = osEventB.getEndDate()
         sortByAsc = false
       }
     }
-    var keyA = new Date(timestampA)
-    var keyB = new Date(timestampB)
+    let keyA = new Date(timestampA)
+    let keyB = new Date(timestampB)
 
     // Compare the 2 dates
     if (sortByAsc) {
@@ -147,7 +166,7 @@ app.get('/', (req, res) => {
   res.json({
     success: true,
     extras: {
-      message: 'You are home.'
+      message: "Thank you for supporting Michael Scott's Dunder Mifflin Scranton Meredith Palmer Memorial Celebrity Rabies Awareness Pro-Am Fun Run Race for the Cure"
     }
   })
 })

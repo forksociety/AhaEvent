@@ -56,10 +56,16 @@ typings/
 # dotenv environment variables file
 .env
 .env.local
+
+# vim temp files
 .swp
+
+# build files
 build/
 src/faviconData.json
 public/
 functions/config/base-config.js
 src/config/base-config.js
-functions/events.json 
+functions/events.json
+src/models/OSEventModel.js
+functions/models/OSEventModel.js
