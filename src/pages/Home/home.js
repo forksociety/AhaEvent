@@ -14,10 +14,11 @@ class HomePage extends Component {
       metaData: {}
     }
   }
+
   render () {
     return (
       <Layout style={{ background: '#f0f2f5' }}>
-        <Layout className='awesome-header'>
+        <Layout className='awesome-header box-shadow'>
           <DocumentMeta {...this.state.metaData} />
           <CustomMenu />
           <span className='logo'>{config.get('appName')}</span>

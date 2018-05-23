@@ -2,31 +2,29 @@
   "hyperledger-hackfests-amsterdam-2018": {
     "eId": "hyperledger-hackfests-amsterdam-2018",
     "name": "Hyperledger Hackfests 2018",
-    "timestamp": {
-      "start": 1530037800000,
-      "end": 1530210600000
-    },
+    "organization": "The Linux Foundation",
+    "keywords": "hyperledger hackfests 2018, hyperledger, hackfests, amsterdam, hyperledger conference, conference 2018",
     "location": "ABN AMRO Head Office, Amsterdam, Netherlands",
-    "geolocation": {
-      "longitude": 4.8952,
-      "latitude": 52.3702
-    },
-    "links": {
-      "website":
-        "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/",
-      "register":
-        "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/register/",
-      "logo":
-        "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.png",
-      "coverImg":
-        "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.jpg"
-    },
-    "cfp": {
-      "timestamp": {
+    "description": "Hyperledger Hackfests are regular gatherings for developers working on the different projects hosted at Hyperledger.  The primary goal for a Hackfest is to facilitate software development collaboration and knowledge sharing between participants, with an eye towards reflecting all ideas and conclusions back outward to the public open source community afterwards.",
+    "timestamp": {
+      "eventDate": {
+        "start": 1530037800000,
+        "end": 1530210600000
+      },
+      "cfp": {
         "start": 0,
         "end": 0
-      },
-      "link": ""
+      }
+    },
+    "resources": {
+      "logo": "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.png",
+      "coverImage": "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.jpg",
+      "coverBackgroundColor": ""
+    },
+    "links": {
+      "website": "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/",
+      "register": "https://events.linuxfoundation.org/events/hyperledger-hackfest-amsterdam-2018/register/",
+      "cfp": ""
     }
   }
 }

@@ -1,12 +1,13 @@
 {
     "name": "AhaEvent",
-    "version": "0.1.0",
+    "version": "0.1.5",
     "description": "Showcasing FLOSS events, one at a time",
     "private": true,
     "scripts": {
         "start": "react-app-rewired start",
-        "build": "gulp && react-app-rewired build",
-        "build-react": "react-app-rewired build",
+        "build": "react-app-rewired build",
+        "build-all": "gulp && npm run build",
+        "firebase-serve": "gulp && npm run build && firebase serve",
         "now-start": "serve --single ./build",
         "test": "echo tested",
         "eject": "react-scripts eject"
@@ -20,9 +21,11 @@
         "url": "https://github.com/nirmankarta/AhaEvent"
     },
     "keywords": [
-        "node",
-        "heroku",
-        "express"
+        "ahaevent",
+        "reactjs",
+        "discovery-platform",
+        "firebase",
+        "opensource"
     ],
     "dependencies": {
         "antd": "^3.5.1",
@@ -50,9 +53,9 @@
         "eslint-config-react-app": "^2.1.0",
         "eslint-loader": "2.0.0",
         "eslint-plugin-flowtype": "2.46.3",
-        "eslint-plugin-import": "2.11.0",
+        "eslint-plugin-import": "2.12.0",
         "eslint-plugin-jsx-a11y": "6.0.3",
-        "eslint-plugin-react": "7.8.0",
+        "eslint-plugin-react": "7.8.2",
         "gulp": "^3.9.1",
         "gulp-autoprefixer": "^5.0.0",
         "gulp-concat": "^2.6.1",

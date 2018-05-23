@@ -1,0 +1,33 @@
+{
+  "pycon-india-hyderabad-2018": {
+    "eId": "pycon-india-hyderabad-2018",
+    "name": "PyCon India 2018",
+    "organization": "PyCon",
+    "keywords": "pycon india, pycon, python, hyderabad, python conference, conference 2018",
+    "location": "Hyderabad International Convention Centre, Hyderabad, Telangana, India",
+    "geolocation": {
+      "longitude": 78.3733242,
+      "latitude": 17.4728898
+    },
+    "timestamp": {
+      "eventDate": {
+        "start": 1538677800000,
+        "end": 1539023400000
+      },
+      "cfp": {
+        "start": 1525545000000,
+        "end": 1530383400000
+      }
+    },
+    "resources": {
+      "logo": "https://in.pycon.org/2018/img/banner-logo.png",
+      "coverImage": "",
+      "coverBackgroundColor": "#ffffff"
+    },
+    "links": {
+      "website": "https://in.pycon.org/2018",
+      "register": "",
+      "cfp": "https://in.pycon.org/cfp/2018/proposals/"
+    }
+  }
+}

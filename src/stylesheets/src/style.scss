@@ -2,19 +2,20 @@ $fontSizeBase: 14px;
 
 $smallestDevice: 320px;
 $smallDevice: 492px;
-$tabletDevice: 900px;
+$tabletDevice: 990px;
 
 @mixin fontDefault() {
   font-family: 'Ubuntu', sans-serif;
 }
 
 @mixin fontLogo() {
-  font-family: 'Nova Mono', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
 }
 
 @import 'components/menu';
 @import 'components/awesome-header';
 @import 'components/custom-card';
+@import 'components/os-event';
 
 * {
   @include fontDefault();
@@ -41,10 +42,42 @@ body > * {
 }
 
 #root {
+  h1 {
+    font-size: 300%;
+  }
+
+  h2 {
+    font-size: 240%;
+  }
+
+  h3 {
+    font-size: 180%;
+  }
+
+  h4 {
+    font-size: 150%;
+  }
+
   .logo {
     @include fontLogo();
   }
+
   .tagline {
     font-family: 'Josefin Slab', sans-serif;
+  }
+
+  .tac {
+    text-align: center;
+  }
+
+  .overlay {
+    z-index: 10;
+    position: absolute;
+    background: rgba(0,0,0,0.4);
+    left: 0; top: 0; right: 0; bottom: 0;
+  }
+
+  .box-shadow {
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   }
 }

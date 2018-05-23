@@ -1,22 +1,26 @@
 import Base from './base-config'
 import AppStrings from './app-strings'
 
-let apiBaseUrl = 'http://localhost:5001/dev-ahaeventorg/us-central1/api'
+let domain = Base.config.domain
+let apiBaseUrl = process.env.REACT_APP_API_BASE_URL_LOCAL
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production'
-  && window.location.host === 'ahaevent.org'
+if ((!process.env.NODE_ENV || process.env.NODE_ENV === 'production') &&
+  window.location.host === 'ahaevent.org'
 ) {
-  apiBaseUrl = 'https://us-central1-ahaeventorg.cloudfunctions.net/api'
+  domain = process.env.REACT_APP_DOMAIN_PROD
+  apiBaseUrl = process.env.REACT_APP_API_BASE_URL_PROD
 }
 
 if (window.location.host === 'dev.ahaevent.org') {
-  apiBaseUrl = 'https://us-central1-dev-ahaeventorg.cloudfunctions.net/api'
+  domain = process.env.REACT_APP_DOMAIN_DEV
+  apiBaseUrl = process.env.REACT_APP_API_BASE_URL_DEV
 }
 
 const config = {
   ...Base.config,
+  domain: domain,
   appName: 'Aha! Event',
-  appUrl: 'https://ahaevent.org',
+  appUrl: process.env.REACT_APP_DOMAIN_PROD,
   appAuthor: 'forksociety',
   appAuthorSite: 'https://forksociety.com',
   appTagline: 'Showcasing FLOSS events, one at a time',
@@ -29,37 +33,38 @@ const config = {
 
   api: {
     eventsUrl: apiBaseUrl + Base.config.slugs.events,
-    eventUrl: apiBaseUrl + Base.config.slugs.event
+    eventUrl: apiBaseUrl + Base.config.slugs.event,
+    googleMapsBaseUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
   },
 
   menu: [
     {
-      key: 'copyright',
+      text: 'License',
       icon: 'copyright',
       link: '/license'
     },
     {
-      key: 'info',
+      text: 'About AhaEvent',
       icon: 'info-circle-o',
       link: '#'
     },
     {
-      key: 'team',
+      text: 'Credits',
       icon: 'team',
       link: '/credits'
     },
     {
-      key: 'slack',
+      text: 'Slack',
       icon: 'slack',
       link: '/slackinvite'
     },
     {
-      key: 'github',
+      text: 'GitHub',
       icon: 'github',
       link: '/github'
     },
     {
-      key: 'home',
+      text: 'Home',
       icon: 'home',
       link: '/'
     }

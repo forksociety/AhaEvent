@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Collapse, Form, Radio, Checkbox, Icon } from 'antd'
+import { Radio, Checkbox, Icon, Row, message } from 'antd'
 
 import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
-import { defaultResponse, generateResponse } from '../DefaultResponse/default-response'
-
-const Panel = Collapse.Panel
-const FormItem = Form.Item
+import { generateResponse, showNotification } from '../../models/Utils'
 
 class OSEvents extends Component {
-  constructor (prop) {
-    super(prop)
+  constructor (props) {
+    super(props)
     let searchQueryItems = config.get('searchQueryItems')
     let allFilters = searchQueryItems.filters
     let allSortBy = searchQueryItems.sortBy
@@ -23,6 +20,7 @@ class OSEvents extends Component {
 
     this.state = {
       api: config.get('api'),
+      appStrings: config.get('appStrings'),
       events: [],
       sortBy: '',
       filterComponents: [],
@@ -63,17 +61,21 @@ class OSEvents extends Component {
   getMinHeight () {
     let n = Math.ceil(this.state.events.length / 4)
     n = (n === 0) ? 1 : n
-    return (138 + 360 * n)
+    return (64 + 316 * n)
   }
   componentWillMount () {
+    const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0)
+    setTimeout(hide, 500)
     let filters = []
     for (let k in this.state.allFilters) {
-      let id = k
       filters.push(
         <Checkbox
-          id={id}
-          key={id}
-          value={this.state.filterState[id]}
+          id={k}
+          key={k}
+          style={{
+            margin: '0px 10px 10px 0px'
+          }}
+          value={this.state.filterState[k]}
           onChange={this.handleFilterChange}
         >
           {this.state.allFilters[k]}
@@ -82,20 +84,30 @@ class OSEvents extends Component {
     }
     this.setState({filterComponents: filters})
 
-    let sortBy = []
+    let sortByArray = []
     for (let k in this.state.allSortBy) {
-      sortBy.push(
-        <Radio.Button key={k} value={k}>
+      sortByArray.push(
+        <Radio.Button key={k} value={k} style={{ marginBottom: '10px' }}>
           {this.state.allSortBy[k].text} <Icon type={this.state.allSortBy[k].icon} />
         </Radio.Button>
       )
     }
+    let sortBy = <Radio.Group
+      defaultValue={AppStrings.sortBy.DATE_ASC}
+      onChange={this.handleSortByChange}
+      style={{
+        margin: "0px 10px 0px 0px"
+      }}
+    >
+      {sortByArray}
+    </Radio.Group>
     this.setState({sortByComponents: sortBy})
     this._loadContent()
   }
 
   componentDidUpdate () {
-    if (this.state.events.length === 0) {
+    if (this.state.updateDom) {
+      this.setState({updateDom: false})
       this._loadContent()
     }
   }
@@ -104,17 +116,32 @@ class OSEvents extends Component {
     fetch(this.generateApiUrlWithQuery())
       .then(results => {
         if (results.status === 200) return results.json()
-        else { return generateResponse(false, results.status, defaultResponse.httpError) }
+        else {
+          return generateResponse(
+            false,
+            results.status,
+            this.state.appStrings.error.HTTP_ERROR
+          )
+        }
       }).then(data => {
         if (data.success) {
           let e = data.extras.events.map((i) => i)
+          if (data.extras.numberOfEvents === 0) {
+            e = [{success: false}]
+          }
           this.setState({events: e})
           this.setState({componentMinHeight: this.getMinHeight()})
         } else {
-          console.log(data)
+          showNotification(
+            data.extras.message,
+            (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
+          )
         }
       }).catch((error) => {
-        console.log(error)
+        showNotification(
+          this.state.appStrings.error.NETWORK_ERROR,
+          error.toString()
+        )
       })
   }
 
@@ -123,29 +150,27 @@ class OSEvents extends Component {
     tmpFilter[e.target.id] = e.target.checked
     this.setState({filterState: tmpFilter})
     this.setState({updateDom: true})
-    this.setState({events: []})
   }
 
   handleSortByChange (e) {
     this.setState({sortBy: e.target.value})
-    this.setState({events: []})
+    this.setState({updateDom: true})
   }
 
   render () {
     return (
       <div style={{ minHeight: this.state.componentMinHeight }}>
-        <div className='filters' style={{ margin: '20px 50px' }}>
-          <Collapse bordered={false}>
-            <Panel header='Filters' key='1'>
-              <FormItem style={{margin: '0px'}}>
-                {this.state.filterComponents}
-              </FormItem>
-              <Radio.Group defaultValue={AppStrings.sortBy.DATE_ASC} onChange={this.handleSortByChange}>
-                {this.state.sortByComponents}
-              </Radio.Group>
-            </Panel>
-          </Collapse>
-        </div>
+        <Row
+          className='filters'
+          style={{
+            background: '#fff',
+            margin: '20px 50px',
+            padding: '16px 16px 6px 16px'
+          }}
+        >
+          {this.state.sortByComponents}
+          {this.state.filterComponents}
+        </Row>
         <CustomGrid {...{ items: this.state.events }} />
       </div>
     )

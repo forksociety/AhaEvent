@@ -1,0 +1,30 @@
+{
+  "gnome-asia-taipei-2018": {
+    "eId": "gnome-asia-taipei-2018",
+    "name": "GNOME Asia 2018",
+    "organization": "GNOME",
+    "keywords": "gnome asia taipei 2018, gnome asia, gnome, taipei, conference 2018",
+    "location": "National Taiwan University of Science and Technology, Taipei City, Taiwan",
+    "description": "GNOME.Asia Summit is the featured annual GNOME Conference in Asia. The event focuses primarily on the GNOME desktop, but also covers applications and the development platform tools. It brings together the GNOME community in Asia to provide a forum for users, developers, foundation leaders, governments and businesses to discuss the present technology and future developments.",
+    "timestamp": {
+      "eventDate": {
+        "start": 1533925800000,
+        "end": 1534012200000
+      },
+      "cfp": {
+        "start": 1524767400000,
+        "end": 1527186600000
+      }
+    },
+    "resources": {
+      "logo": "https://www.gnome.org/wp-content/themes/gnome-grass/images/gnome-logo.svg",
+      "coverImage": "",
+      "coverBackgroundColor": "#4a86cf"
+    },
+    "links": {
+      "website": "http://2018.gnome.asia",
+      "register": "",
+      "cfp": "https://www.gnome.org/news/2018/04/gnome-asia-summit-2018-call-for-papers-is-now-open/"
+    }
+  }
+}

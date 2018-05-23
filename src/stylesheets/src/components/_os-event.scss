@@ -1,0 +1,42 @@
+$osEventMinHeight: 600px;
+
+.os-event {
+  min-height: $osEventMinHeight;
+  .os-event-cover {
+    z-index: 0;
+    height: auto;
+    min-height: $osEventMinHeight;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .event-logo-container {
+      max-width: 80%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .content {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .description {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media(max-width: $tabletDevice) {
+  .os-event {
+    .os-event-cover {
+      min-height: 200px;
+    }
+  }
+}

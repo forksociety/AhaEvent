@@ -13,11 +13,12 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   allowedOrigins.push('http://localhost:5000')
 }
 
-const config = {
+const config = Object.assign({
   appStrings: AppStrings,
   allowedOrigins: allowedOrigins,
-  slugs: Base.config.slugs,
-  searchQueryItems: Base.config.searchQueryItems
-}
+  sampleEventKeys: [
+    'sample-event-location-YYYY'
+  ]
+}, Base.config)
 
 module.exports = config

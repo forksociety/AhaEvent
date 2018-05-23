@@ -3,8 +3,8 @@ import { Menu, Modal, Icon } from 'antd'
 import config from 'react-global-configuration'
 
 class CustomMenu extends Component {
-  constructor (prop) {
-    super(prop)
+  constructor (props) {
+    super(props)
     this.state = {
       modalVisibility: false
     }
@@ -25,24 +25,28 @@ class CustomMenu extends Component {
   }
 
   render () {
-    let menuItems = []
+    let menuBarItems = {
+      left: [],
+      right: []
+    }
     let menuData = config.get('menu')
     let modalHeader = <h2>About {config.get('appName')}</h2>
     menuData.forEach((e) => {
       let menuItemLink = (
-        <a href={e.link}>
+        <a href={e.link} title={e.text}>
           <Icon type={e.icon} />
         </a>
       )
 
       let redirectUrls = config.get('redirectUrls')
+
       // if url refers to a different domain, open in a new tab
       if (e.link.indexOf('http://') !== -1 ||
         e.link.indexOf('https://') !== -1 ||
         e.link.substring(1) in redirectUrls
       ) {
         menuItemLink = (
-          <a href={e.link} target='_blank'>
+          <a href={e.link} title={e.text} target='_blank'>
             <Icon type={e.icon} />
           </a>
         )
@@ -51,14 +55,14 @@ class CustomMenu extends Component {
       // open modal if link is '#'
       if (e.link === '#') {
         menuItemLink = (
-          <a id={e.key} onClick={this.showModal.bind(this)}>
+          <a title={e.text} onClick={this.showModal.bind(this)}>
             <Icon type={e.icon} />
           </a>
         )
       }
-      menuItems.push(
+      menuBarItems.left.push(
         <Menu.Item
-          key={e.key}
+          key={e.icon}
           style={{
             float: 'right',
             color: '#fff',
@@ -72,6 +76,24 @@ class CustomMenu extends Component {
       )
     })
 
+    if (this.props.showLogo) {
+      menuBarItems.right.push(
+        <Menu.Item
+          key='logo'
+          className='logo'
+          style={{
+            float: 'left',
+            color: '#fff',
+            fontSize: '150%',
+            borderBottom: '0px',
+            padding: '0 0px 0px 20px'
+          }}
+        >
+          <a href='/'>{config.get('appName')}</a>
+        </Menu.Item>
+      )
+    }
+
     return (
       <div>
         <Menu
@@ -84,7 +106,8 @@ class CustomMenu extends Component {
             background: 'rgba(255, 255, 255, 0)'
           }}
         >
-          {menuItems}
+          {menuBarItems.left}
+          {menuBarItems.right}
         </Menu>
 
         <Modal
