@@ -12,7 +12,6 @@ app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const eJsonKeys = config.appStrings.eventJsonKeys
 const filtersKey = config.appStrings.queryParameters.filters
 const sortByKey = config.appStrings.queryParameters.sortBy
 const filters = config.appStrings.filters
@@ -40,7 +39,30 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get(config.slugs.event + ':eId', (req, res) => {
+app.get(config.slugs.stats + config.slugs.incompleteEvents, (req, res) => {
+  let responseData = {
+    success: true,
+    extras: {
+      events: []
+    }
+  }
+  let incompleteEvents = {}
+  for(let e in eventsData) {
+    if(!config.sampleEventKeys.includes(e)) {
+      let osEvent = new OSEventModel(eventsData[e])
+      let events = osEvent.whatsMissing(eventsData[config.sampleEventKeys[0]])
+      incompleteEvents[e] = {
+        name: osEvent.getName(),
+        url: osEvent.getEventUrl(),
+        missingProperties: events
+      }
+    }
+  }
+  responseData.extras.events = incompleteEvents
+  res.json(responseData)
+})
+
+app.get(config.slugs.event + '/:eId', (req, res) => {
   const eId = req.params.eId
   let responseData = {
     success: true,
