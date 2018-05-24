@@ -4,7 +4,7 @@ const generateResponse = (status, statusCode, str) => {
   return {success: status, extras: {status: statusCode, message: str}}
 }
 
-const showNotification = (message='Notification', description='', duration=1000) => {
+const showNotification = (message='Notification', description='', duration=10) => {
   notification.config({
     placement: 'bottomRight'
   })

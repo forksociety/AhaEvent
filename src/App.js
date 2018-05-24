@@ -15,12 +15,14 @@ class App extends Component {
 
   render () {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
+      // disable console log
       console.log = (...p) => { }
-      console.warn = (...p) => { }
+      // console.warn = (...p) => { }
       // console.error = (...p) => { }
-      console.log('Environment', process.env.NODE_ENV)
+      let gaTrackingId = config.get('gaTrackingId')
 
-      ReactGA.initialize(config.get('gaTrackingId'), {
+      console.log('Environment', process.env.NODE_ENV)
+      ReactGA.initialize(gaTrackingId, {
         debug: true,
         gaOptions: { cookieDomain: 'auto' }
       })
@@ -28,6 +30,7 @@ class App extends Component {
       console.log('Environment', process.env.NODE_ENV)
     }
 
+    // generate routes for rediect urls from config
     let redirectUrlsArray = []
     let redirectUrls = config.get('redirectUrls')
     for (let k in redirectUrls) {

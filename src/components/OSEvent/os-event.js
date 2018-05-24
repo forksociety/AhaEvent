@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Layout, Row, Col, Button, message } from 'antd'
+import { Layout, Row, Col, Button, message, Icon } from 'antd'
 
 import GoogleMap from '../../components/GoogleMap/google-map'
 import DocumentMeta from '../../components/DocumentMeta/document-meta'
@@ -50,7 +50,7 @@ class OSEvent extends Component {
   }
 
   generateApiUrl () {
-    return this.state.api.eventUrl + this.state.eId
+    return this.state.api.eventUrl + '/' + this.state.eId
   }
 
   componentWillMount () {
@@ -78,6 +78,7 @@ class OSEvent extends Component {
           let website = osEvent.getWebsite()
           let registerLink = osEvent.getRegisterLink()
           let cfpLink = osEvent.getCfpLink()
+          let twitterLink = osEvent.getTwitterLink()
           let overlay = (osEvent.hasCover()) ? <div className='overlay' /> : ''
 
           this.setState({event: osEvent})
@@ -135,6 +136,13 @@ class OSEvent extends Component {
             buttonComponents.push(this.getButton(cfpButton))
           }
 
+          let socialIcons = []
+          if(twitterLink) {
+            socialIcons.push(<a key="twitter" href={twitterLink} target="_blank">
+              <Icon type="twitter" style={{ color: "#1da1f2" }}/>
+            </a>)
+          }
+
           if (osEvent.hasEventEnded()) {
             showNotification(
               osEvent.getName() + ' has ended',
@@ -144,12 +152,12 @@ class OSEvent extends Component {
           this.setState({component: [
             <Row key='os-event' className='os-event'>
               <Col
-                span={10}
+                span={8}
                 xs={24}
                 sm={24}
                 md={24}
-                lg={10}
-                xl={10}
+                lg={8}
+                xl={8}
                 className='os-event-cover'
                 style={osEvent.hasCover() ? {
                   background: `url(${osEvent.getCoverImage()}) no-repeat center center fixed`,
@@ -167,6 +175,12 @@ class OSEvent extends Component {
               <Col
                 className='content'
               >
+                <div style={{
+                  fontSize: '150%',
+                  alignSelf: 'flex-end'
+                }}>
+                  {socialIcons}
+                </div>
                 <h2 className="tac" style={{ marginBottom: '0px' }}>{osEvent.getName()}</h2>
                 <h4 className="tac">{dateString}</h4>
                 <h4 className="tac">{osEvent.getOrganisation()}</h4>
@@ -190,7 +204,7 @@ class OSEvent extends Component {
           ]})
 
           showNotification(
-            data.extras.message,
+            data.extras.status,
             (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
           )
         }
