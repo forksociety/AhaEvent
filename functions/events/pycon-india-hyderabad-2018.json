@@ -5,19 +5,12 @@
     "organization": "PyCon",
     "keywords": "pycon india, pycon, python, hyderabad, python conference, conference 2018",
     "location": "Hyderabad International Convention Centre, Hyderabad, Telangana, India",
-    "geolocation": {
-      "longitude": 78.3733242,
-      "latitude": 17.4728898
-    },
+    "description": "PyCon India, the premier conference in India on using and developing the Python programming language is conducted annually by the Python developer community. It attracts the best Python programmers from across the country and abroad.",
     "timestamp": {
-      "eventDate": {
-        "start": 1538677800000,
-        "end": 1539023400000
-      },
-      "cfp": {
-        "start": 1525545000000,
-        "end": 1530383400000
-      }
+      "eventStart": 1538677800000,
+      "eventEnd": 1539023400000,
+      "cfpStart": 1525545000000,
+      "cfpEnd": 1530383400000
     },
     "resources": {
       "logo": "https://in.pycon.org/2018/img/banner-logo.png",
@@ -28,6 +21,9 @@
       "website": "https://in.pycon.org/2018",
       "register": "",
       "cfp": "https://in.pycon.org/cfp/2018/proposals/"
+    },
+    "social": {
+      "twitter": "pyconindia"
     }
   }
 }
