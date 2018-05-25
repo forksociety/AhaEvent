@@ -12,6 +12,7 @@ app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const pageKey = config.appStrings.queryParameters.page
 const filtersKey = config.appStrings.queryParameters.filters
 const sortByKey = config.appStrings.queryParameters.sortBy
 const filters = config.appStrings.filters
@@ -39,7 +40,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get(config.slugs.stats + config.slugs.incompleteEvents, (req, res) => {
+app.get(config.slugs.api.stats + config.slugs.api.incompleteEvents, (req, res) => {
   let responseData = {
     success: true,
     extras: {
@@ -62,7 +63,7 @@ app.get(config.slugs.stats + config.slugs.incompleteEvents, (req, res) => {
   res.json(responseData)
 })
 
-app.get(config.slugs.event + '/:eId', (req, res) => {
+app.get(config.slugs.api.event + '/:eId', (req, res) => {
   const eId = req.params.eId
   let responseData = {
     success: true,
@@ -77,7 +78,11 @@ app.get(config.slugs.event + '/:eId', (req, res) => {
   res.json(responseData)
 })
 
-app.get(config.slugs.events, (req, res) => {
+app.get(config.slugs.api.events, (req, res) => {
+  let page = 0
+  if (pageKey in req.requestQuery.merged) {
+    page = req.requestQuery.merged.page
+  }
   // extract filters and sort-by
   // create a set of filters
   let filtersSet = new Set()
@@ -88,6 +93,11 @@ app.get(config.slugs.events, (req, res) => {
   if (sortByKey in req.requestQuery.merged) {
     sortByValue = req.requestQuery.merged[sortByKey]
   }
+
+  let startIndex = config.numberOfEvents * page
+  let endIndex = startIndex + (config.numberOfEvents - 1)
+  let counter = -1
+  let hasMore = (eventsData.length - 1 > endIndex)
 
   let result = Object.keys(eventsData).filter((key) => {
     let osEvent = new OSEventModel(eventsData[key])
@@ -133,6 +143,11 @@ app.get(config.slugs.events, (req, res) => {
     ) {
       return false
     }
+
+    counter += 1
+    if(counter < startIndex || counter > endIndex) {
+      return false
+    }
     return true
   }).map((key) => eventsData[key])
 
@@ -175,10 +190,12 @@ app.get(config.slugs.events, (req, res) => {
     }
     return 0
   })
+
   res.json({
     success: true,
     extras: {
       numberOfEvents: result.length,
+      hasMore: hasMore,
       events: result
     }
   })
