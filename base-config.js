@@ -1,5 +1,6 @@
 const commonStrings = {
   queryParameters: {
+    page: 'page',
     sortBy: 'sort-by',
     filters: 'filters'
   },
@@ -167,10 +168,18 @@ const Base = {
     domain: '',
     secretKeys: secretKeys,
     slugs: {
-      event: '/event',
-      events: '/events',
-      stats: '/stats',
-      incompleteEvents: '/events-with-incomplete-data'
+      api: {
+        event: '/event',
+        events: '/events',
+        stats: '/stats',
+        incompleteEvents: '/events-with-incomplete-data'
+      },
+      frontend: {
+        home: '/',
+        event: '/event',
+        events: '/events',
+        notFound: '/404'
+      }
     },
     osEventDefaults: {
       coverImage: '/img/white.png',

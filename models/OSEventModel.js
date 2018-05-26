@@ -17,8 +17,8 @@ class OSEventModel {
     this.eJsonKeys = config.appStrings.eventJsonKeys
     this.eventData = e
     this.eventeMetaData = {
-      eventUrl: config.slugs.event + '/' + this.eventData[this.eJsonKeys.EID.k],
-      completeUrl: config.appUrl + config.slugs.event + this.eventData[this.eJsonKeys.EID.k],
+      eventUrl: config.slugs.frontend.event + '/' + this.eventData[this.eJsonKeys.EID.k],
+      completeUrl: config.appUrl + config.slugs.frontend.event + this.eventData[this.eJsonKeys.EID.k],
       googleMapsUrl: config.osEventDefaults.googleMapsUrl + this.eventData[this.eJsonKeys.LOCATION.k]
     }
   }
@@ -153,9 +153,12 @@ class OSEventModel {
   }
 
   getCfpDateString() {
-    let startDate = moment(this.getCfpStartDate())
-    let endDate = moment(this.getCfpEndDate())
-    return (startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY'))
+    if (this.getCfpStartDate() !== 0) {
+      let startDate = moment(this.getCfpStartDate())
+      let endDate = moment(this.getCfpEndDate())
+      return (startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY'))
+    }
+    return 'Not Available'
   }
 
   getCompleteUrl() {
