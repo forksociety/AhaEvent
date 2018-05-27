@@ -32,8 +32,8 @@ const config = {
   appStrings: AppStrings,
 
   api: {
-    eventsUrl: apiBaseUrl + Base.config.slugs.events,
-    eventUrl: apiBaseUrl + Base.config.slugs.event,
+    eventsUrl: apiBaseUrl + Base.config.slugs.api.events,
+    eventUrl: apiBaseUrl + Base.config.slugs.api.event,
     googleMapsBaseUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
   },
 

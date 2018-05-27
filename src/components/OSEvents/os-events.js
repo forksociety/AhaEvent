@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
+import  InfiniteScroll  from 'react-infinite-scroller';
 import { Radio, Checkbox, Icon, Row, message } from 'antd'
 
 import AppStrings from '../../config/app-strings'
@@ -22,16 +23,21 @@ class OSEvents extends Component {
       api: config.get('api'),
       appStrings: config.get('appStrings'),
       events: [],
+      page: 0,
       sortBy: '',
       filterComponents: [],
       sortByComponents: [],
-      filterState: filterInitialState,
-      allFilters: allFilters,
       allSortBy: allSortBy,
-      updateDom: false,
+      allFilters: allFilters,
+      filterState: filterInitialState,
+      hasMore: true,
+      emptySearchComponent: <span></span>,
       componentMinHeight: 500
     }
+
+    this.resetState = this.resetState.bind(this)
     this.getMinHeight = this.getMinHeight.bind(this)
+    this.handleScroll = this.handleScroll.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleSortByChange = this.handleSortByChange.bind(this)
   }
@@ -41,20 +47,22 @@ class OSEvents extends Component {
       .filter((key) => this.state.filterState[key])
       .map((key) => { return key })
 
-    let query = ''
-    if (this.state.sortBy.length > 0 || filterStr.length > 0) {
-      query = '?'
-    }
-    if (this.state.sortBy.length > 0) {
-      query += AppStrings.queryParameters.sortBy + '=' +
-        this.state.sortBy +
-        (filterStr.length > 0 ? '&' : '')
-    }
-    if (filterStr.length > 0) {
-      query += AppStrings.queryParameters.filters + '=' + filterStr
+    let queries = []
+    if (this.state.page > 0) {
+      queries.push(AppStrings.queryParameters.page + '=' + this.state.page)
     }
 
-    let url = this.state.api.eventsUrl + query
+    if (this.state.sortBy.length > 0) {
+      queries.push(AppStrings.queryParameters.sortBy + '=' + this.state.sortBy)
+    }
+    if (filterStr.length > 0) {
+      queries.push(AppStrings.queryParameters.filters + '=' + filterStr)
+    }
+
+    let url = this.state.api.eventsUrl
+    if (queries.length) {
+      url += '?' + queries.join('&')
+    }
     return url
   }
 
@@ -103,14 +111,6 @@ class OSEvents extends Component {
       {sortByArray}
     </Radio.Group>
     this.setState({sortByComponents: sortBy})
-    this._loadContent()
-  }
-
-  componentDidUpdate () {
-    if (this.state.updateDom) {
-      this.setState({updateDom: false})
-      this._loadContent()
-    }
   }
 
   _loadContent () {
@@ -126,19 +126,36 @@ class OSEvents extends Component {
         }
       }).then(data => {
         if (data.success) {
-          let e = data.extras.events.map((i) => i)
-          if (data.extras.numberOfEvents === 0) {
-            e = [{success: false}]
+          if(data.extras.numberOfEvents > 0) {
+            let e = data.extras.events.map((i) => i)
+            if (data.extras.numberOfEvents === 0) {
+              e = [{success: false}]
+            }
+            this.setState({page: this.state.page + 1})
+            this.setState({events: [...this.state.events, ...e]})
+            this.setState({componentMinHeight: this.getMinHeight()})
+            this.setState({emptySearchComponent: <span></span>})
+          } else if(this.state.events.length === 0 && !data.extras.hasMore) {
+            let emptySearchComponent = <span style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+              No event found. Try another combination of filters.
+            </span>
+            this.setState({emptySearchComponent: emptySearchComponent})
           }
-          this.setState({events: e})
-          this.setState({componentMinHeight: this.getMinHeight()})
+          this.setState({hasMore: data.extras.hasMore})
         } else {
+          console.log('something')
           showNotification(
             data.extras.message,
             (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
           )
         }
       }).catch((error) => {
+        let emptySearchComponent = <span style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          {this.state.appStrings.error.NETWORK_ERROR}
+        </span>
+        this.setState({emptySearchComponent: emptySearchComponent})
+        this.setState({hasMore: false})
+
         showNotification(
           this.state.appStrings.error.NETWORK_ERROR,
           error.toString()
@@ -146,19 +163,32 @@ class OSEvents extends Component {
       })
   }
 
+  resetState() {
+    this.setState({page: 0})
+    this.setState({events: []})
+    this.setState({hasMore: true})
+  }
+
   handleFilterChange (e) {
     let tmpFilter = this.state.filterState
     tmpFilter[e.target.id] = e.target.checked
     this.setState({filterState: tmpFilter})
-    this.setState({updateDom: true})
+    this.resetState()
   }
 
   handleSortByChange (e) {
     this.setState({sortBy: e.target.value})
-    this.setState({updateDom: true})
+    this.resetState()
+  }
+
+  handleScroll (e) {
+    this._loadContent()
   }
 
   render () {
+    let loadingComponent = <div style={{ display: 'flex', justifyContent: 'center' }} key={0}>
+      <Icon type="loading" style={{ paddingRight: '10px' }}/> Loading...
+    </div>
     return (
       <div style={{ minHeight: this.state.componentMinHeight }}>
         <Row
@@ -172,7 +202,15 @@ class OSEvents extends Component {
           {this.state.sortByComponents}
           {this.state.filterComponents}
         </Row>
-        <CustomGrid {...{ items: this.state.events }} />
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.handleScroll}
+          hasMore={this.state.hasMore}
+          loader={loadingComponent}
+        >
+          {this.state.emptySearchComponent}
+          <CustomGrid {...{ items: this.state.events }} />
+        </InfiniteScroll>
       </div>
     )
   }

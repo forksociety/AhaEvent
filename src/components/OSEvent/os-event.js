@@ -30,7 +30,7 @@ class OSEvent extends Component {
         type={i.type}
         href={i.href}
         target='_blank'
-        style={{ marginRight: '10px' }}
+        style={{ marginRight: '10px', marginBottom: '20px' }}
         disabled={i.disabled}
         ghost={i.ghost}
       >
@@ -41,7 +41,7 @@ class OSEvent extends Component {
       key={i.key}
       type={i.type}
       target='_blank'
-      style={{ marginRight: '10px' }}
+      style={{ marginRight: '10px', marginBottom: '20px' }}
       disabled={i.disabled}
       ghost={i.ghost}
     >
@@ -190,7 +190,9 @@ class OSEvent extends Component {
                   paddingBottom: '20px'
                 }}><b>Location: </b>{osEvent.getLocation()}</div>
                 <div style={{
-                  paddingBottom: '20px'
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center'
                 }}>
                   {buttonComponents}
                 </div>

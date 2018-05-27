@@ -6,12 +6,14 @@ class GoogleMap extends Component {
     super(props)
     let secretKeys = config.get('secretKeys')
     let api = config.get('api')
+    let query = this.props.location.split(' ').join('+')
+
     this.state = {
       width: (this.props.width) ? this.props.width : '100%',
       height: (this.props.height) ? this.props.height : '150px',
       googleMapsUrl: api.googleMapsBaseUrl +
         '&key=' + secretKeys.googleMapsKey +
-        '&q=' + this.props.location.replace(' ', '+')
+        '&q=' + query
     }
   }
 
