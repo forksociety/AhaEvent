@@ -15,7 +15,7 @@
     "resources": {
       "logo": "https://us.pycon.org/2018/site_media/static/img/pycon2018.f76001445fbb.png",
       "coverImage": "",
-      "coverBackgroundColor": "#ffffff"
+      "coverBackgroundColor": ""
     },
     "links": {
       "website": "https://us.pycon.org/2018/",

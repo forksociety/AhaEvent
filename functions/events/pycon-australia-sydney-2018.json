@@ -1,0 +1,29 @@
+{
+  "pycon-australia-sydney-2018": {
+    "eId": "pycon-australia-sydney-2018",
+    "name": "PyCon AU 2018",
+    "organization": "Linux Australia",
+    "keywords": "pycon au 2018, python, sydney, python conference, linux australia, conference 2018",
+    "location": "International Convention Center, Sydney NSW 2000, Australia",
+    "description": "PyCon Australia (“PyCon AU”) is the national conference for the Python Programming Community, bringing together professional, student and enthusiast developers with a love for developing with Python.",
+    "timestamp": {
+      "eventStart": 1535049000000,
+      "eventEnd": 1535221800000,
+      "cfpStart": 1524421800000,
+      "cfpEnd": 1527445800000
+    },
+    "resources": {
+      "logo": "https://2018.pycon-au.org/img/pyconau-sydney.png",
+      "coverImage": "https://2018.pycon-au.org/img/headers/DarlingHarbour.jpg",
+      "coverBackgroundColor": ""
+    },
+    "links": {
+      "website": "https://2018.pycon-au.org",
+      "register": "https://2018.pycon-au.org/attend/",
+      "cfp": "https://2018.pycon-au.org/speak/"
+    },
+    "social": {
+      "twitter": "pyconau"
+    }
+  }
+}
