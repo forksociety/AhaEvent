@@ -14,7 +14,7 @@ class CustomGrid extends Component {
 
   render () {
     let intents = []
-    
+
     for (var key in this.props.items) {
       let osEvent = new OSEventModel(this.props.items[key])
 

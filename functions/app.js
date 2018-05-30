@@ -6,7 +6,7 @@ const app = express()
 const config = require('./config/config')
 const eventsData = require('./events.json')
 
-const OSEventModel = require('./models/OSEventModel');
+const OSEventModel = require('./models/OSEventModel')
 
 app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -48,8 +48,8 @@ app.get(config.slugs.api.stats + config.slugs.api.incompleteEvents, (req, res) =
     }
   }
   let incompleteEvents = {}
-  for(let e in eventsData) {
-    if(!config.sampleEventKeys.includes(e)) {
+  for (let e in eventsData) {
+    if (!config.sampleEventKeys.includes(e)) {
       let osEvent = new OSEventModel(eventsData[e])
       let events = osEvent.whatsMissing(eventsData[config.sampleEventKeys[0]])
       incompleteEvents[e] = {
@@ -145,7 +145,7 @@ app.get(config.slugs.api.events, (req, res) => {
     }
 
     counter += 1
-    if(counter < startIndex || counter > endIndex) {
+    if (counter < startIndex || counter > endIndex) {
       return false
     }
     return true

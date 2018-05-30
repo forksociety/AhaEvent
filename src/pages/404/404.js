@@ -15,7 +15,7 @@ class Page404 extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0)
     setTimeout(hide, 500)
   }
@@ -41,7 +41,7 @@ class Page404 extends Component {
           justifyContent: 'center'
         }}>
           <h1>404</h1>
-          <h3>Oops! not found. Let's go <a href="/">home</a></h3>
+          <h3>Oops! not found. Let's go <a href='/'>home</a></h3>
         </Layout>
         <CustomFooter />
       </Layout>

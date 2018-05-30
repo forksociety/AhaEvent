@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import  InfiniteScroll  from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller'
 import { Radio, Checkbox, Icon, Row, message } from 'antd'
 
 import AppStrings from '../../config/app-strings'
@@ -31,7 +31,7 @@ class OSEvents extends Component {
       allFilters: allFilters,
       filterState: filterInitialState,
       hasMore: true,
-      emptySearchComponent: <span></span>,
+      emptySearchComponent: <span />,
       componentMinHeight: 500
     }
 
@@ -126,7 +126,7 @@ class OSEvents extends Component {
         }
       }).then(data => {
         if (data.success) {
-          if(data.extras.numberOfEvents > 0) {
+          if (data.extras.numberOfEvents > 0) {
             let e = data.extras.events.map((i) => i)
             if (data.extras.numberOfEvents === 0) {
               e = [{success: false}]
@@ -134,8 +134,8 @@ class OSEvents extends Component {
             this.setState({page: this.state.page + 1})
             this.setState({events: [...this.state.events, ...e]})
             this.setState({componentMinHeight: this.getMinHeight()})
-            this.setState({emptySearchComponent: <span></span>})
-          } else if(this.state.events.length === 0 && !data.extras.hasMore) {
+            this.setState({emptySearchComponent: <span />})
+          } else if (this.state.events.length === 0 && !data.extras.hasMore) {
             let emptySearchComponent = <span style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
               No event found. Try another combination of filters.
             </span>
@@ -163,7 +163,7 @@ class OSEvents extends Component {
       })
   }
 
-  resetState() {
+  resetState () {
     this.setState({page: 0})
     this.setState({events: []})
     this.setState({hasMore: true})
@@ -187,7 +187,7 @@ class OSEvents extends Component {
 
   render () {
     let loadingComponent = <div style={{ display: 'flex', justifyContent: 'center' }} key={0}>
-      <Icon type="loading" style={{ paddingRight: '10px' }}/> Loading...
+      <Icon type='loading' style={{ paddingRight: '10px' }} /> Loading...
     </div>
     return (
       <div style={{ minHeight: this.state.componentMinHeight }}>
