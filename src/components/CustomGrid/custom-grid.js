@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, Icon} from 'antd'
+import { Layout, Row, Col, Icon } from 'antd'
 
 import CustomCard from '../CustomCard/custom-card'
 import OSEventModel from '../../models/OSEventModel'
@@ -42,20 +42,20 @@ class CustomGrid extends Component {
           {osEvent.getLocation()}
         </a>
         let description = <div>
-            {osEvent.getDateString()} <br/>
+          {osEvent.getDateString()} <br />
             CFP: {osEvent.getCfpDateString()}
-            </div>
+        </div>
         let cardLink = osEvent.getEventUrl()
         let cover = {
           image: osEvent.getCoverImage(),
           bgColor: osEvent.getCoverBackgroundColor()
         }
         let logo = <img alt={`${osEvent.getName()} logo`} src={osEvent.getLogo()} />
-        let websiteLink = osEvent.getWebsite();
+        let websiteLink = osEvent.getWebsite()
 
         let cardDetails = {
           title, subTitle, description, cardLink, cover, logo, websiteLink
-        } 
+        }
 
         intents.push(
           <Col
@@ -68,7 +68,7 @@ class CustomGrid extends Component {
             key={osEvent.getEid()}
             style={{ marginBottom: '15px' }}
           >
-            <CustomCard {...cardDetails}/>
+            <CustomCard {...cardDetails} />
           </Col>
         )
       }
