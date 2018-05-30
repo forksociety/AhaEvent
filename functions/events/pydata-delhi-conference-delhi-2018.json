@@ -15,7 +15,7 @@
     "resources": {
       "logo": "https://pydata.org/delhi2018/static/images/logo.288981a8dfa8.png",
       "coverImage": "",
-      "coverBackgroundColor": "#ffffff"
+      "coverBackgroundColor": ""
     },
     "links": {
       "website": "https://pydata.org/delhi2018/",

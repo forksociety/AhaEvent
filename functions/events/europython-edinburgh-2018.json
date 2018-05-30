@@ -15,7 +15,7 @@
     "resources": {
       "logo": "https://ep2018.europython.eu/static/p6/images/europython-2018-logo-white-bg.png",
       "coverImage": "",
-      "coverBackgroundColor": "#ffffff"
+      "coverBackgroundColor": ""
     },
     "links": {
       "website": "https://ep2018.europython.eu/en/",

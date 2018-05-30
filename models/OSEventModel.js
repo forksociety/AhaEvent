@@ -11,13 +11,12 @@ const config = (typeof configFile.default !== 'undefined')
 class OSEventModel {
   constructor(e) {
     this.defaultVal = {
-      coverBackgroundColor: '#ffffff'
+      coverBackgroundColor: '#EEEEEE'
     }
 
     this.eJsonKeys = config.appStrings.eventJsonKeys
     this.eventData = e
     this.eventeMetaData = {
-      defaultCoverImage: config.osEventDefaults.coverImage,
       eventUrl: config.slugs.event + '/' + this.eventData[this.eJsonKeys.EID.k],
       completeUrl: config.appUrl + config.slugs.event + this.eventData[this.eJsonKeys.EID.k],
       googleMapsUrl: config.osEventDefaults.googleMapsUrl + this.eventData[this.eJsonKeys.LOCATION.k]
@@ -119,7 +118,7 @@ class OSEventModel {
   getCoverImage() {
     return (this.hasCover())
       ? this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.COVER_IMAGE.k]
-      : this.eventeMetaData.defaultCoverImage
+      : ''
   }
 
   getCoverBackgroundColor() {

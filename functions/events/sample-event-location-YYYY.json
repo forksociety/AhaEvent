@@ -15,7 +15,7 @@
     "resources": {
       "logo": "/img/logo.png",
       "coverImage": "",
-      "coverBackgroundColor": "#ffffff"
+      "coverBackgroundColor": ""
     },
     "links": {
       "website": "http://example.com",
