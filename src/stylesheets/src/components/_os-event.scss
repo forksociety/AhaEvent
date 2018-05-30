@@ -1,7 +1,11 @@
-$osEventMinHeight: 600px;
+$osEventMinHeight: 400px;
 
 .os-event {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #e6e6e6;
   min-height: $osEventMinHeight;
+
   .os-event-cover {
     z-index: 0;
     height: auto;
@@ -23,8 +27,8 @@ $osEventMinHeight: 600px;
   .content {
     padding: 25px;
     display: flex;
+    flex: 1;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 
     .description {
@@ -35,6 +39,8 @@ $osEventMinHeight: 600px;
 
 @media(max-width: $tabletDevice) {
   .os-event {
+    flex-direction: column;
+
     .os-event-cover {
       min-height: 200px;
     }

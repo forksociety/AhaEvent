@@ -7,24 +7,23 @@
     "location": "Central Park, Rajeev Chowk, Connaught Place, New Delhi, Delhi",
     "description": "Aliquam augue turpis, gravida vitae velit a, consequat laoreet purus. Morbi nec condimentum neque. Nunc non rutrum sapien. Aenean molestie odio et feugiat mollis. Donec porta at libero sit amet volutpat. Mauris egestas velit nec lacus blandit, in fermentum mauris faucibus. Nam ultricies, orci vitae feugiat varius, diam quam elementum nulla, non condimentum mauris felis vel dui. Donec gravida ante eget neque vestibulum finibus. Etiam massa dolor, pretium ac eros.",
     "timestamp": {
-      "eventDate": {
-        "start": 32506338600000,
-        "end": 32506425000000
-      },
-      "cfp": {
-        "start": 32503660200000,
-        "end": 32503746600000
-      }
+      "eventStart": 32506338600000,
+      "eventEnd": 32506425000000,
+      "cfpStart": 32503660200000,
+      "cfpEnd": 32503746600000
     },
     "resources": {
       "logo": "/img/logo.png",
       "coverImage": "",
-      "coverBackgroundColor": "#ffffff"
+      "coverBackgroundColor": ""
     },
     "links": {
       "website": "http://example.com",
       "register": "http://example.com/register",
       "cfp": "http://example.com/cfp"
+    },
+    "social": {
+      "twitter": "ahaevent"
     }
   }
 }

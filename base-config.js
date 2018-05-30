@@ -1,5 +1,6 @@
 const commonStrings = {
   queryParameters: {
+    page: 'page',
     sortBy: 'sort-by',
     filters: 'filters'
   },
@@ -18,25 +19,111 @@ const commonStrings = {
   },
 
   eventJsonKeys: {
-    EID: 'eId',
-    NAME: 'name',
-    ORGANIZATION: 'organization',
-    KEYWORDS: 'keywords',
-    LOCATION: 'location',
-    DESCRIPTION: 'description',
-    TIMESTAMP: 'timestamp',
-    TIMESTAMP_EVENT_DATE: 'eventDate',
-    TIMESTAMP_CFP: 'cfp',
-    TIMESTAMP_START: 'start',
-    TIMESTAMP_END: 'end',
-    RESOURCES: 'resources',
-    LOGO: 'logo',
-    COVER_IMAGE: 'coverImage',
-    COVER_COLOR: 'coverBackgroundColor',
-    LINKS: 'links',
-    LINK_WEBSITE: 'website',
-    LINK_REGISTER: 'register',
-    LINK_CFP: 'cfp'
+    EID: {
+      k: 'eId',
+      text: 'Event ID',
+      mandatory: true
+    },
+    NAME: {
+      k: 'name',
+      text: 'Event Name',
+      mandatory: true
+    },
+    ORGANIZATION: {
+      k: 'organization',
+      text: 'Organization Name',
+      mandatory: true
+    },
+    KEYWORDS: {
+      k: 'keywords',
+      text: 'Keywords',
+      mandatory: true
+    },
+    LOCATION: {
+      k: 'location',
+      text: 'Location',
+      mandatory: true
+    },
+    DESCRIPTION: {
+      k: 'description',
+      text: 'Description',
+      mandatory: true
+    },
+    TIMESTAMP: {
+      k: 'timestamp',
+      text: 'Timestamp',
+      mandatory: true
+    },
+    TIMESTAMP_EVENT_START: {
+      k: 'eventStart',
+      text: 'Event start date',
+      mandatory: true
+    },
+    TIMESTAMP_EVENT_END: {
+      k: 'eventEnd',
+      text: 'Event end date',
+      mandatory: true
+    },
+    TIMESTAMP_CFP_START: {
+      k: 'cfpStart',
+      text: 'Call for Proposals start date',
+      mandatory: true
+    },
+    TIMESTAMP_CFP_END: {
+      k: 'cfpEnd',
+      text: 'Call for Proposals end date',
+      mandatory: true
+    },
+    RESOURCES: {
+      k: 'resources',
+      text: 'Resources',
+      mandatory: true
+    },
+    LOGO: {
+      k: 'logo',
+      text: 'Event Logo',
+      mandatory: true
+    },
+    COVER_IMAGE: {
+      k: 'coverImage',
+      text: 'Event Cover Image',
+      mandatory: false
+    },
+    COVER_COLOR: {
+      k: 'coverBackgroundColor',
+      text: 'Event Cover Background Color',
+      mandatory: false
+    },
+    LINKS: {
+      k: 'links',
+      text: 'Event Links',
+      mandatory: true
+    },
+    LINK_WEBSITE: {
+      k: 'website',
+      text: 'Website',
+      mandatory: true
+    },
+    LINK_REGISTER: {
+      k: 'register',
+      text: 'Registration Link',
+      mandatory: false
+    },
+    LINK_CFP: {
+      k: 'cfp',
+      text: 'Call for Proposals Link',
+      mandatory: true
+    },
+    SOCIAL: {
+      k: 'social',
+      text: 'Social account usernames of the event',
+      mandatory: false
+    },
+    SOCIAL_TWITTER: {
+      k: 'twitter',
+      text: 'Twitter username of the event',
+      mandatory: false
+    }
   },
 
   error: {
@@ -81,8 +168,18 @@ const Base = {
     domain: '',
     secretKeys: secretKeys,
     slugs: {
-      event: '/event/',
-      events: '/events/'
+      api: {
+        event: '/event',
+        events: '/events',
+        stats: '/stats',
+        incompleteEvents: '/events-with-incomplete-data'
+      },
+      frontend: {
+        home: '/',
+        event: '/event',
+        events: '/events',
+        notFound: '/404'
+      }
     },
     osEventDefaults: {
       coverImage: '/img/white.png',
@@ -91,6 +188,8 @@ const Base = {
     searchQueryItems: searchQueryItems,
     redirectUrls: {
       event: '/',
+      twitter: 'https://twitter.com/ahaevent',
+      facebook: 'https://www.facebook.com/ahaevent',
       github: 'https://github.com/forksociety/ahaevent',
       license: 'https://github.com/forksociety/AhaEvent/blob/master/LICENSE',
       credits: 'https://github.com/forksociety/AhaEvent/blob/master/docs/CREDITS.md',

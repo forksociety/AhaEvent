@@ -18,7 +18,8 @@ const config = Object.assign({
   allowedOrigins: allowedOrigins,
   sampleEventKeys: [
     'sample-event-location-YYYY'
-  ]
+  ],
+  numberOfEvents: 15
 }, Base.config)
 
 module.exports = config

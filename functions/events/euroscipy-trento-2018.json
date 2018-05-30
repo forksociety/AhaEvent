@@ -1,0 +1,29 @@
+{
+  "euroscipy-trento-2018": {
+    "eId": "euroscipy-trento-2018",
+    "name": "EuroSciPy 2018",
+    "organization": "Python Software Foundation",
+    "keywords": "euroscipy trento 2018, euroscipy, python, trento, conference 2018",
+    "location": "Trento, Italy",
+    "description": "The EuroSciPy meeting is a cross-disciplinary gathering focused on the use and development of the Python language in scientific research. This event strives to bring together both users and developers of scientific tools, as well as academic research and state of the art industry.",
+    "timestamp": {
+      "eventStart": 1535394600000,
+      "eventEnd": 1535740200000,
+      "cfpStart": 1524681000000,
+      "cfpEnd": 1527705000000
+    },
+    "resources": {
+      "logo": "https://www.euroscipy.org/theme/images/euroscipy_logo.png",
+      "coverImage": "",
+      "coverBackgroundColor": ""
+    },
+    "links": {
+      "website": "https://www.euroscipy.org/2018/",
+      "register": "https://www.euroscipy.org/2018/#registration",
+      "cfp": "https://pretalx.com/euroscipy18/"
+    },
+    "social": {
+      "twitter": "EuroSciPy"
+    }
+  }
+}

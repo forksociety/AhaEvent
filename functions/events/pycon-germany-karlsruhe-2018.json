@@ -1,0 +1,29 @@
+{
+  "pycon-germany-karlsruhe-2018": {
+    "eId": "pycon-germany-karlsruhe-2018",
+    "name": "PyCon Germany 2018",
+    "organization": "Python Software Foundation",
+    "keywords": "pycon de 2018, python, karlsruhe, python conference, conference 2018",
+    "location": "ZKM - Center for Art and Media, Lorenzstraße 19, 76135 Karlsruhe, Germany",
+    "description": "PyCon.DE is where Pythonistas in Germany can meet to learn about new and upcoming Python libraries, tools, software and data science.",
+    "timestamp": {
+      "eventStart": 1540319400000,
+      "eventEnd": 1540665000000,
+      "cfpStart": 1525285800000,
+      "cfpEnd": 1527964200000
+    },
+    "resources": {
+      "logo": "https://de.pycon.org/files/logo.png",
+      "coverImage": "",
+      "coverBackgroundColor": ""
+    },
+    "links": {
+      "website": "https://de.pycon.org",
+      "register": "https://de.pycon.org/tickets/",
+      "cfp": "https://pretalx.com/pyconde18-pydata-ka/cfp"
+    },
+    "social": {
+      "twitter": "PyConDE"
+    }
+  }
+}

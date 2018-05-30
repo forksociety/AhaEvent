@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import config from 'react-global-configuration'
-import { Layout, Row, Col, Button, message } from 'antd'
+import { Layout, Row, Col, Button, message, Icon } from 'antd'
 
 import GoogleMap from '../../components/GoogleMap/google-map'
 import DocumentMeta from '../../components/DocumentMeta/document-meta'
@@ -23,34 +23,34 @@ class OSEvent extends Component {
     this.generateApiUrl = this.generateApiUrl.bind(this)
   }
 
-  getButton(i) {
+  getButton (i) {
     if (i.href) {
       return (<Button
-          key={i.key}
-          type={i.type}
-          href={i.href}
-          target='_blank'
-          style={{ marginRight: '10px' }}
-          disabled={i.disabled}
-          ghost={i.ghost}
-        >
-          {i.text}
-        </Button>)
-    }
-    return (<Button
         key={i.key}
         type={i.type}
+        href={i.href}
         target='_blank'
-        style={{ marginRight: '10px' }}
+        style={{ marginRight: '10px', marginBottom: '20px' }}
         disabled={i.disabled}
         ghost={i.ghost}
       >
         {i.text}
       </Button>)
+    }
+    return (<Button
+      key={i.key}
+      type={i.type}
+      target='_blank'
+      style={{ marginRight: '10px', marginBottom: '20px' }}
+      disabled={i.disabled}
+      ghost={i.ghost}
+    >
+      {i.text}
+    </Button>)
   }
 
   generateApiUrl () {
-    return this.state.api.eventUrl + this.state.eId
+    return this.state.api.eventUrl + '/' + this.state.eId
   }
 
   componentWillMount () {
@@ -78,6 +78,7 @@ class OSEvent extends Component {
           let website = osEvent.getWebsite()
           let registerLink = osEvent.getRegisterLink()
           let cfpLink = osEvent.getCfpLink()
+          let twitterLink = osEvent.getTwitterLink()
           let overlay = (osEvent.hasCover()) ? <div className='overlay' /> : ''
 
           this.setState({event: osEvent})
@@ -125,14 +126,21 @@ class OSEvent extends Component {
           if (cfpLink) {
             let cfpButton = {...defaultButton}
             cfpButton.key = 'cfp'
-              cfpButton.href = cfpLink
-              cfpButton.text = 'Call for Proposals'
-              if (osEvent.hasCfpEnded()) {
-                cfpButton.type = 'dashed'
-                cfpButton.disabled = true
-                cfpButton.text = 'Call for Proposals (Closed)'
-              }
+            cfpButton.href = cfpLink
+            cfpButton.text = 'Call for Proposals'
+            if (osEvent.hasCfpEnded()) {
+              cfpButton.type = 'dashed'
+              cfpButton.disabled = true
+              cfpButton.text = 'Call for Proposals (Closed)'
+            }
             buttonComponents.push(this.getButton(cfpButton))
+          }
+
+          let socialIcons = []
+          if (twitterLink) {
+            socialIcons.push(<a key='twitter' href={twitterLink} target='_blank'>
+              <Icon type='twitter' style={{ color: '#1da1f2' }} />
+            </a>)
           }
 
           if (osEvent.hasEventEnded()) {
@@ -144,12 +152,12 @@ class OSEvent extends Component {
           this.setState({component: [
             <Row key='os-event' className='os-event'>
               <Col
-                span={10}
+                span={8}
                 xs={24}
                 sm={24}
                 md={24}
-                lg={10}
-                xl={10}
+                lg={8}
+                xl={8}
                 className='os-event-cover'
                 style={osEvent.hasCover() ? {
                   background: `url(${osEvent.getCoverImage()}) no-repeat center center fixed`,
@@ -167,16 +175,24 @@ class OSEvent extends Component {
               <Col
                 className='content'
               >
-                <h2 className="tac" style={{ marginBottom: '0px' }}>{osEvent.getName()}</h2>
-                <h4 className="tac">{dateString}</h4>
-                <h4 className="tac">{osEvent.getOrganisation()}</h4>
+                <div style={{
+                  fontSize: '150%',
+                  alignSelf: 'flex-end'
+                }}>
+                  {socialIcons}
+                </div>
+                <h2 className='tac' style={{ marginBottom: '0px' }}>{osEvent.getName()}</h2>
+                <h4 className='tac'>{dateString}</h4>
+                <h4 className='tac'>{osEvent.getOrganisation()}</h4>
                 <div className='description'>{osEvent.getDescription()}</div>
                 <div><b>Call For Proposals: </b>{cfpDateString}</div>
                 <div style={{
                   paddingBottom: '20px'
                 }}><b>Location: </b>{osEvent.getLocation()}</div>
                 <div style={{
-                  paddingBottom: '20px'
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center'
                 }}>
                   {buttonComponents}
                 </div>
@@ -186,17 +202,17 @@ class OSEvent extends Component {
           ]})
         } else {
           this.setState({component: [
-            <Row key='os-event' className='os-event'></Row>
+            <Row key='os-event' className='os-event' />
           ]})
 
           showNotification(
-            data.extras.message,
+            data.extras.status,
             (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
           )
         }
       }).catch((error) => {
         this.setState({component: [
-          <Row key='os-event' className='os-event'></Row>
+          <Row key='os-event' className='os-event' />
         ]})
 
         showNotification(

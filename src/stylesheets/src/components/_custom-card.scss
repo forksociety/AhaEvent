@@ -1,64 +1,53 @@
-.custom-badges {
-  position: absolute;
-  top: 6px;
-  right: 20px;
-  z-index: 999;
-  font-size: 150%;
-  border-radius: 50%;
-  background: rgba(93, 93, 93, 1);
-  height: 25px;
-  width: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.custom-card {
+  background: #ffffff;
+  width: 100%;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
 
-  .ant-badge + .ant-badge {
-    margin-left: 5px;
+  &:hover {
+    box-shadow: 0 6px 20px 0 rgba(0,0,0,.35);
   }
 
-  a:link, a:active, a:visited, a:hover {
-    color: #fff;
-  }
-  a:hover {
-    font-size: 110%;
-  }
-}
+  .cover {
+    height: 160px;
+    min-height: 122px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
 
-.event-logo {
-  width: 97%;
-  position: absolute;
-  top: 0;
-  z-index: 998;
-  display: flex;
-  justify-content: center;
-  padding-top: 7%;
+    .icons {
+      z-index: 999;
+      position: absolute;
+      top: 10px;
+      right: 10px;
 
-  span {
-    width: 65%;
+      i {
+        color: #ffffff;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.50);
+      }
+    }
 
     img {
-      width: 100%;
-      max-height: 150px;
-    }
-  }
-}
-
-.ant-card-hoverable {
-  cursor: default;
-}
-
-.ant-card {
-  .custom-meta {
-    .ant-card-meta-description {
-      font-size: 90%;
+      z-index: 999;
+      max-width: 80%;
+      max-height: 100px;
     }
   }
 
-  .ant-card-cover {
-    min-height: 122px;
-  }
+  .card-content {
+    .title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
 
-  .ant-card-body {
-    padding: 18px;
+    .sub-title {
+      font-size: 13px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }

@@ -72,8 +72,10 @@ body > * {
 
   .overlay {
     z-index: 10;
+    width: 100%;
+    height: inherit;
     position: absolute;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.3);
     left: 0; top: 0; right: 0; bottom: 0;
   }
 

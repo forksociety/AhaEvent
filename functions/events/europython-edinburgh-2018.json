@@ -7,24 +7,23 @@
     "location": "Edinburgh International Conference Centre, Edinburgh, Scotland",
     "description": "EuroPython was the first major Python programming language community conference ever organized by volunteers. It started 2002 in Charleroi, Belgium, which attracted over 200 attendees. It now is the largest European Python conference with around 1200+ participants every year, the second largest Python conference world-wide and a meeting reference for all European programmers, students and companies interested in the Python programming language.",
     "timestamp": {
-      "eventDate": {
-        "start": 1532284200000,
-        "end": 1532802600000
-      },
-      "cfp": {
-        "start": 1525631400000,
-        "end": 1526754600000
-      }
+      "eventStart": 1532284200000,
+      "eventEnd": 1532802600000,
+      "cfpStart": 1525631400000,
+      "cfpEnd": 1526754600000
     },
     "resources": {
       "logo": "https://ep2018.europython.eu/static/p6/images/europython-2018-logo-white-bg.png",
       "coverImage": "",
-      "coverBackgroundColor": "#ffffff"
+      "coverBackgroundColor": ""
     },
     "links": {
       "website": "https://ep2018.europython.eu/en/",
       "register": "https://ep2018.europython.eu/en/registration/buy-tickets/",
       "cfp": "https://ep2018.europython.eu/conference/paper-submission/"
+    },
+    "social": {
+      "twitter": "europython"
     }
   }
 }
