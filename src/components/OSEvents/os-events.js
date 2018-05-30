@@ -74,7 +74,7 @@ class OSEvents extends Component {
           id={k}
           key={k}
           style={{
-            margin: "0px 10px 10px 0px"
+            margin: '0px 10px 10px 0px'
           }}
           value={this.state.filterState[k]}
           onChange={this.handleFilterChange}
