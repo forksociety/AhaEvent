@@ -23,23 +23,12 @@ class OSEvent extends Component {
     this.generateApiUrl = this.generateApiUrl.bind(this)
   }
 
-  getButton(i) {
+  getButton (i) {
     if (i.href) {
       return (<Button
-          key={i.key}
-          type={i.type}
-          href={i.href}
-          target='_blank'
-          style={{ marginRight: '10px' }}
-          disabled={i.disabled}
-          ghost={i.ghost}
-        >
-          {i.text}
-        </Button>)
-    }
-    return (<Button
         key={i.key}
         type={i.type}
+        href={i.href}
         target='_blank'
         style={{ marginRight: '10px' }}
         disabled={i.disabled}
@@ -47,6 +36,17 @@ class OSEvent extends Component {
       >
         {i.text}
       </Button>)
+    }
+    return (<Button
+      key={i.key}
+      type={i.type}
+      target='_blank'
+      style={{ marginRight: '10px' }}
+      disabled={i.disabled}
+      ghost={i.ghost}
+    >
+      {i.text}
+    </Button>)
   }
 
   generateApiUrl () {
@@ -126,20 +126,20 @@ class OSEvent extends Component {
           if (cfpLink) {
             let cfpButton = {...defaultButton}
             cfpButton.key = 'cfp'
-              cfpButton.href = cfpLink
-              cfpButton.text = 'Call for Proposals'
-              if (osEvent.hasCfpEnded()) {
-                cfpButton.type = 'dashed'
-                cfpButton.disabled = true
-                cfpButton.text = 'Call for Proposals (Closed)'
-              }
+            cfpButton.href = cfpLink
+            cfpButton.text = 'Call for Proposals'
+            if (osEvent.hasCfpEnded()) {
+              cfpButton.type = 'dashed'
+              cfpButton.disabled = true
+              cfpButton.text = 'Call for Proposals (Closed)'
+            }
             buttonComponents.push(this.getButton(cfpButton))
           }
 
           let socialIcons = []
-          if(twitterLink) {
-            socialIcons.push(<a key="twitter" href={twitterLink} target="_blank">
-              <Icon type="twitter" style={{ color: "#1da1f2" }}/>
+          if (twitterLink) {
+            socialIcons.push(<a key='twitter' href={twitterLink} target='_blank'>
+              <Icon type='twitter' style={{ color: '#1da1f2' }} />
             </a>)
           }
 
@@ -181,9 +181,9 @@ class OSEvent extends Component {
                 }}>
                   {socialIcons}
                 </div>
-                <h2 className="tac" style={{ marginBottom: '0px' }}>{osEvent.getName()}</h2>
-                <h4 className="tac">{dateString}</h4>
-                <h4 className="tac">{osEvent.getOrganisation()}</h4>
+                <h2 className='tac' style={{ marginBottom: '0px' }}>{osEvent.getName()}</h2>
+                <h4 className='tac'>{dateString}</h4>
+                <h4 className='tac'>{osEvent.getOrganisation()}</h4>
                 <div className='description'>{osEvent.getDescription()}</div>
                 <div><b>Call For Proposals: </b>{cfpDateString}</div>
                 <div style={{
@@ -200,7 +200,7 @@ class OSEvent extends Component {
           ]})
         } else {
           this.setState({component: [
-            <Row key='os-event' className='os-event'></Row>
+            <Row key='os-event' className='os-event' />
           ]})
 
           showNotification(
@@ -210,7 +210,7 @@ class OSEvent extends Component {
         }
       }).catch((error) => {
         this.setState({component: [
-          <Row key='os-event' className='os-event'></Row>
+          <Row key='os-event' className='os-event' />
         ]})
 
         showNotification(

@@ -63,6 +63,7 @@ class OSEvents extends Component {
     n = (n === 0) ? 1 : n
     return (64 + 316 * n)
   }
+
   componentWillMount () {
     const hide = message.loading(this.state.appStrings.LOADING_TEXT, 0)
     setTimeout(hide, 500)
@@ -96,7 +97,7 @@ class OSEvents extends Component {
       defaultValue={AppStrings.sortBy.DATE_ASC}
       onChange={this.handleSortByChange}
       style={{
-        margin: "0px 10px 0px 0px"
+        margin: '0px 10px 0px 0px'
       }}
     >
       {sortByArray}

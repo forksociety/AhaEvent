@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Layout, Row, Col, Card, Icon, Badge } from 'antd'
+import { Layout, Row, Col, Icon } from 'antd'
 
+import CustomCard from '../CustomCard/custom-card'
 import OSEventModel from '../../models/OSEventModel'
 
-const { Meta } = Card
 const { Content } = Layout
-
 
 class CustomGrid extends Component {
   constructor (props) {
@@ -37,14 +36,26 @@ class CustomGrid extends Component {
       for (var key in this.props.items) {
         let osEvent = new OSEventModel(this.props.items[key])
 
-        let name = osEvent.getName()
-        let dateString = osEvent.getDateString()
-        let cfpDateString = 'CFP: ' + osEvent.getCfpDateString()
-        let url = osEvent.getEventUrl()
-        let coverImgAltText = name + ' Cover Image'
-        let logoAltText = name + ' Logo'
-        let locationLink = osEvent.getGoogleMapUrl()
-        let coverComponent = <img alt={coverImgAltText} src={osEvent.getCoverImage()} />
+        let title = osEvent.getName()
+        let subTitle = <a href={osEvent.getGoogleMapUrl()} target='_blank'>
+          <Icon type='environment-o' />
+          {osEvent.getLocation()}
+        </a>
+        let description = <div>
+          {osEvent.getDateString()} <br />
+            CFP: {osEvent.getCfpDateString()}
+        </div>
+        let cardLink = osEvent.getEventUrl()
+        let cover = {
+          image: osEvent.getCoverImage(),
+          bgColor: osEvent.getCoverBackgroundColor()
+        }
+        let logo = <img alt={`${osEvent.getName()} logo`} src={osEvent.getLogo()} />
+        let websiteLink = osEvent.getWebsite()
+
+        let cardDetails = {
+          title, subTitle, description, cardLink, cover, logo, websiteLink
+        }
 
         intents.push(
           <Col
@@ -57,39 +68,7 @@ class CustomGrid extends Component {
             key={osEvent.getEid()}
             style={{ marginBottom: '15px' }}
           >
-            <span className='custom-badges'>
-              <Badge count={0}>
-                <a href={osEvent.getWebsite()} target='_blank'>
-                  <Icon type='link' />
-                </a>
-              </Badge>
-            </span>
-            <span className='event-logo'>
-              <span>
-                <img src={osEvent.getLogo()} alt={logoAltText} />
-              </span>
-            </span>
-            <Card
-              hoverable
-              cover={coverComponent}
-            >
-              <Meta
-                className='custom-meta'
-                title={<a href={url}>{name}</a>}
-                description={
-                  <span>
-                    <div>
-                      <a href={locationLink} target='_blank'>
-                        <Icon type='environment-o' />
-                        {osEvent.getLocation()}
-                      </a>
-                    </div>
-                    <div>{dateString}</div>
-                    <div>{cfpDateString}</div>
-                  </span>
-                }
-              />
-            </Card>
+            <CustomCard {...cardDetails} />
           </Col>
         )
       }
