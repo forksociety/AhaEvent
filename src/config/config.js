@@ -4,11 +4,16 @@ import AppStrings from './app-strings'
 let domain = Base.config.domain
 let apiBaseUrl = process.env.REACT_APP_API_BASE_URL_LOCAL
 
+const secretKeys = {
+  googleMapsKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY_DEV
+}
+
 if ((!process.env.NODE_ENV || process.env.NODE_ENV === 'production') &&
-  window.location.host === 'ahaevent.org'
+  window.location.host === 'www.ahaevent.org'
 ) {
   domain = process.env.REACT_APP_DOMAIN_PROD
   apiBaseUrl = process.env.REACT_APP_API_BASE_URL_PROD
+  secretKeys.googleMapsKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY_PROD
 }
 
 if (window.location.host === 'dev.ahaevent.org') {
@@ -29,6 +34,7 @@ const config = {
   defaultOgImage: 'img/defaultOgImage.png',
   license: 'AGPL-3.0',
 
+  secretKeys: secretKeys,
   appStrings: AppStrings,
 
   api: {

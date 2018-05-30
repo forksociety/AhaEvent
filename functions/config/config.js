@@ -2,8 +2,9 @@ const Base = require('./base-config')
 const AppStrings = require('./app-strings')
 
 const allowedOrigins = [
-  'https://ahaevent.org',
+  'https://www.ahaevent.org',
   'https://dev.ahaevent.org',
+  'https://staging.ahaevent.org',
   'https://ahaeventorg.firebaseapp.com',
   'https://dev-ahaeventorg.firebaseapp.com'
 ]
