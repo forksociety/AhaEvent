@@ -55,7 +55,7 @@ class CustomGrid extends Component {
       )
     }
     return (
-      <Content style={{ padding: '0 50px' }}>
+      <Content style={{ padding: '0 50px', marginBottom: '20px' }}>
         <Row gutter={16} justify='center'>
           {intents}
         </Row>

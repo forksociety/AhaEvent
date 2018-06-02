@@ -117,14 +117,14 @@ app.get(config.slugs.api.events, (req, res) => {
     // remove past events
     if (!filtersSet.has(filters.ALL_EVENTS) &&
       !filtersSet.has(filters.ENDED_EVENTS) &&
-      startDate.diff(moment(new Date()), 'days') < 0
+      endDate.diff(moment(new Date()), 'days') < 0
     ) {
       return false
     }
 
     // only ended events
     if (filtersSet.has(filters.ENDED_EVENTS) &&
-    startDate.diff(moment(new Date()), 'days') > 0
+      endDate.diff(moment(new Date()), 'days') >= 0
     ) {
       return false
     }

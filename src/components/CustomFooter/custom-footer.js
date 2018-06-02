@@ -14,9 +14,12 @@ class CustomFooter extends Component {
     return (
       <Footer style={{ background: '#e0e0e0' }}>
         <div className='footer-left'>
-          <a href='/submitevent' target='_blank'>
-            Submit a FLOSS Event
+          <a href='/#about'>
+            About
           </a>|
+            <a href='/submitevent' target='_blank'>
+              Submit a FLOSS Event
+            </a>|
           <a href='/report' target='_blank'>
             Report an Issue
           </a>|
