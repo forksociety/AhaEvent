@@ -158,15 +158,10 @@ searchQueryItems.sortBy[commonStrings.sortBy.DATE_DES] = {
   text: 'Date'
 }
 
-const secretKeys = {
-  googleMapsKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
-}
-
 const Base = {
   commonStrings: commonStrings,
   config: {
     domain: '',
-    secretKeys: secretKeys,
     slugs: {
       api: {
         event: '/event',
@@ -182,7 +177,6 @@ const Base = {
       }
     },
     osEventDefaults: {
-      coverImage: '/img/white.png',
       googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query='
     },
     searchQueryItems: searchQueryItems,
@@ -194,7 +188,9 @@ const Base = {
       license: 'https://github.com/forksociety/AhaEvent/blob/master/LICENSE',
       credits: 'https://github.com/forksociety/AhaEvent/blob/master/docs/CREDITS.md',
       slack: 'https://slack.forksociety.com',
-      slackinvite: 'https://slack-invite.forksociety.com'
+      slackinvite: 'https://slack-invite.forksociety.com',
+      submitevent: 'https://github.com/forksociety/AhaEvent/issues/6',
+      report: 'https://github.com/forksociety/AhaEvent/issues'
     }
   }
 }
