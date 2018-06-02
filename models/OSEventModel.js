@@ -149,6 +149,9 @@ class OSEventModel {
   getDateString() {
     let startDate = moment(this.getStartDate())
     let endDate = moment(this.getEndDate())
+    if(startDate.year() !== endDate.year()) {
+        return (startDate.format('Do MMM YYYY') + ' - ' + endDate.format('Do MMM YYYY'))
+    }
     return (startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY'))
   }
 
@@ -156,6 +159,9 @@ class OSEventModel {
     if (this.getCfpStartDate() !== 0) {
       let startDate = moment(this.getCfpStartDate())
       let endDate = moment(this.getCfpEndDate())
+      if(startDate.year() !== endDate.year()) {
+          return (startDate.format('Do MMM YYYY') + ' - ' + endDate.format('Do MMM YYYY'))
+      }
       return (startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY'))
     }
     return 'Not Available'

@@ -77,7 +77,7 @@ const config = {
     }
   ],
 
-  gaTrackingId: 'UA-67526856-8'
+  gaTrackingId: 'UA-84775604-4'
 }
 
 export default config

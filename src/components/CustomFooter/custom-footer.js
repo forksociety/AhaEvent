@@ -30,7 +30,10 @@ class CustomFooter extends Component {
         <div className='footer-right'>
           <a href={config.get('appAuthorSite')} target='_blank'>
             { config.get('appAuthor') }
-          </a> | {config.get('license')}
+          </a> |
+          <a href='/license' target='_blank'>
+            {config.get('license')}
+          </a>
         </div>
       </Footer>
     )
