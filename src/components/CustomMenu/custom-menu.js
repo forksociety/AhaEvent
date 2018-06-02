@@ -10,11 +10,9 @@ class CustomMenu extends Component {
       aboutHash: '#about'
     }
 
-    console.log(window.location)
     if(window.location.hash === this.state.aboutHash) {
       this.state.modalVisibility = true
     }
-    console.log(this.state.modalVisibility)
     this.showModal = this.showModal.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
   }

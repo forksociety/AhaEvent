@@ -13,8 +13,8 @@
       "cfpEnd": 0
     },
     "resources": {
-      "logo": "https://events.linuxfoundation.org/wp-content/uploads/2017/11/logo_agl.png",
-      "coverImage": "https://events.linuxfoundation.org/wp-content/uploads/2017/11/ALS_WebBanner_ALS.png",
+      "logo": "automotive-linux-summit-tokyo-2018-logo.png",
+      "coverImage": "automotive-linux-summit-tokyo-2018-cover.png",
       "coverBackgroundColor": ""
     },
     "links": {

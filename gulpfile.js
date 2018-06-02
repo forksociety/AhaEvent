@@ -150,6 +150,8 @@ gulp.task('copy-commons', function () {
     .pipe(gulp.dest('./public/'))
   gulp.src('./src/img/*')
     .pipe(gulp.dest('./public/img'))
+  gulp.src('./src/img/events/*')
+    .pipe(gulp.dest('./public/img/events'))
 
   gulp.src('./models/')
     .pipe(gulp.dest('./src/'))
@@ -180,6 +182,5 @@ gulp.task('default', [
   'merge-json',
   'copy-commons',
   'style',
-  'generate-favicon',
   'inject-favicon-markups'
 ])

@@ -6,8 +6,8 @@
     "scripts": {
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
-        "build-all": "gulp && npm run build",
-        "firebase-serve": "gulp && npm run build && firebase serve",
+        "build-all": "gulp build && npm run build",
+        "firebase-serve": "gulp build && npm run build && firebase serve",
         "now-start": "serve --single ./build",
         "test": "echo tested",
         "eject": "react-scripts eject"

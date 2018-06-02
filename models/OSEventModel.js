@@ -17,6 +17,7 @@ class OSEventModel {
     this.eJsonKeys = config.appStrings.eventJsonKeys
     this.eventData = e
     this.eventeMetaData = {
+      imageDirectoryPath: '/img/events/',
       eventUrl: config.slugs.frontend.event + '/' + this.eventData[this.eJsonKeys.EID.k],
       completeUrl: config.appUrl + config.slugs.frontend.event + this.eventData[this.eJsonKeys.EID.k],
       googleMapsUrl: config.osEventDefaults.googleMapsUrl + this.eventData[this.eJsonKeys.LOCATION.k]
@@ -112,12 +113,14 @@ class OSEventModel {
   }
 
   getLogo() {
-    return this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.LOGO.k]
+    return this.eventeMetaData.imageDirectoryPath
+      + this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.LOGO.k]
   }
 
   getCoverImage() {
     return (this.hasCover())
-      ? this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.COVER_IMAGE.k]
+      ? this.eventeMetaData.imageDirectoryPath
+        + this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.COVER_IMAGE.k]
       : ''
   }
 

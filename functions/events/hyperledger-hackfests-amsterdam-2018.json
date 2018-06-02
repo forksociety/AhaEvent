@@ -13,8 +13,8 @@
       "cfpEnd": 0
     },
     "resources": {
-      "logo": "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.png",
-      "coverImage": "https://events.linuxfoundation.org/wp-content/uploads/2018/02/Hyperledger_RegOnline_HackfestAM_V1.jpg",
+      "logo": "hyperledger-hackfests-amsterdam-2018-logo.png",
+      "coverImage": "hyperledger-hackfests-amsterdam-2018-cover.jpg",
       "coverBackgroundColor": ""
     },
     "links": {

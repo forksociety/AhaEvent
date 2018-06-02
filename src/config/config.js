@@ -14,9 +14,7 @@ if ((!process.env.NODE_ENV || process.env.NODE_ENV === 'production') &&
   domain = process.env.REACT_APP_DOMAIN_PROD
   apiBaseUrl = process.env.REACT_APP_API_BASE_URL_PROD
   secretKeys.googleMapsKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY_PROD
-}
-
-if (window.location.host === 'dev.ahaevent.org') {
+} else if (window.location.host.includes('ahaevent.org')) {
   domain = process.env.REACT_APP_DOMAIN_DEV
   apiBaseUrl = process.env.REACT_APP_API_BASE_URL_DEV
 }

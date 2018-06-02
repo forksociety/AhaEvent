@@ -13,8 +13,8 @@
       "cfpEnd": 1527445800000
     },
     "resources": {
-      "logo": "https://2018.pycon-au.org/img/pyconau-sydney.png",
-      "coverImage": "https://2018.pycon-au.org/img/headers/DarlingHarbour.jpg",
+      "logo": "pycon-australia-sydney-2018-logo.png",
+      "coverImage": "pycon-australia-sydney-2018-cover.jpg",
       "coverBackgroundColor": ""
     },
     "links": {

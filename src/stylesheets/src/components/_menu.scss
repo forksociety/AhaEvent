@@ -2,12 +2,15 @@
   a {
     color: #fff;
   }
+
   a:link, a:active, a:visited, a:hover {
     color: #fff;
   }
+
   a:hover {
     font-size: 110%;
   }
+
   .logo > a:hover {
     font-size: 100%;
   }
