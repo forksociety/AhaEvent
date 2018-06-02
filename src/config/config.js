@@ -28,6 +28,7 @@ const config = {
   appUrl: process.env.REACT_APP_DOMAIN_PROD,
   appAuthor: 'forksociety',
   appAuthorSite: 'https://forksociety.com',
+  appAuthorEmail: 'os@forksociety.com',
   appTagline: 'Showcasing FLOSS events, one at a time',
   appKeywords: 'AhaEvents, Technology, Tech events, open source',
   appDescription: 'A FLOSS conference discovery platform',

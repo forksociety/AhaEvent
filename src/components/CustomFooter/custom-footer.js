@@ -12,10 +12,26 @@ class CustomFooter extends Component {
 
   render () {
     return (
-      <Footer style={{ textAlign: 'center' }}>
-        <a href={config.get('appAuthorSite')} target='_blank'>
-          { config.get('appAuthor') }
-        </a> | {config.get('license')}
+      <Footer style={{ background: '#e0e0e0' }}>
+        <div className='footer-left'>
+          <a href='/submitevent' target='_blank'>
+            Submit a FLOSS Event
+          </a>|
+          <a href='/report' target='_blank'>
+            Report an Issue
+          </a>|
+          <a href={`mailto:${ config.get('appAuthorEmail') }`} target='_blank'>
+            Contact Us
+          </a>|
+          <a href='/credits' target='_blank'>
+            Credits
+          </a>
+        </div>
+        <div className='footer-right'>
+          <a href={config.get('appAuthorSite')} target='_blank'>
+            { config.get('appAuthor') }
+          </a> | {config.get('license')}
+        </div>
       </Footer>
     )
   }
