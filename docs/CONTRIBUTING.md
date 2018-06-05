@@ -8,11 +8,11 @@ little bit helps, and credit will always be given.
 Ready to contribute? Here's how to set up `AhaEvent` for local development.
 You can contribute in many ways:
 
-1. Fork the `AhaEvent` repo on GitHub.
+1. Fork the `AhaEvent` repo on Gitlab.
 2. Clone your fork locally:
 
   ```shell
-  $ git clone git@github.com:your_username_here/AhaEvent.git
+  $ git clone git@gitlab.com:your_username_here/AhaEvent.git
   ```
 
 3. Install packages
@@ -34,7 +34,7 @@ You can contribute in many ways:
 
 5. When you're done making changes, check that your changes pass the test.
 
-6. Commit your changes and push your branch to GitHub::
+6. Commit your changes and push your branch to Gitlab::
 
   ```shell
   $ git add .
@@ -42,7 +42,7 @@ You can contribute in many ways:
   $ git push origin name-of-your-bugfix-or-feature
   ```
 
-7. Submit a pull request through the [GitHub website](https://github.com/forksociety/AhaEvent).
+7. Submit a pull request through the [Gitlab website](https://gitlab.com/forksociety/AhaEvent).
 
 ## How to contribute?
 * Follow the Getting Started guidelines to get a headstart.
@@ -60,7 +60,7 @@ If you find any new FLOSS conference coming up which matches with [our criteria]
 
 ### Report Bugs
 
-Report bugs at https://github.com/forksociety/AhaEvent/issues.
+Report bugs at https://gitlab.com/forksociety/AhaEvent/issues.
 
 If you are reporting a bug, please include:
 
@@ -70,12 +70,12 @@ If you are reporting a bug, please include:
 
 ### Fix Bugs
 
-Look through the [GitHub issues](https://github.com/forksociety/AhaEvent/issues) for bugs. Anything tagged with "bug"
+Look through the [Gitlab issues](https://gitlab.com/forksociety/AhaEvent/issues) for bugs. Anything tagged with "bug"
 and "help wanted" is open to whoever wants to implement it.
 
 ### Implement Features
 
-Look through the GitHub issues for features. Anything tagged with "enhancement"
+Look through the Gitlab issues for features. Anything tagged with "enhancement"
 and "help wanted" is open to whoever wants to implement it.
 
 ### Write Documentation
@@ -86,7 +86,7 @@ articles, and such.
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/forksociety/AhaEvent/issues.
+The best way to send feedback is to file an issue at https://gitlab.com/forksociety/AhaEvent/issues.
 
 If you are proposing a feature:
 

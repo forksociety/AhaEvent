@@ -185,12 +185,13 @@ const Base = {
       twitter: 'https://twitter.com/ahaevent',
       facebook: 'https://www.facebook.com/ahaevent',
       github: 'https://github.com/forksociety/ahaevent',
-      license: 'https://github.com/forksociety/AhaEvent/blob/master/LICENSE',
-      credits: 'https://github.com/forksociety/AhaEvent/blob/master/docs/CREDITS.md',
+      gitlab: 'https://gitlab.com/forksociety/ahaevent',
+      license: 'https://gitlab.com/forksociety/AhaEvent/blob/master/LICENSE',
+      credits: 'https://gitlab.com/forksociety/AhaEvent/blob/master/docs/CREDITS.md',
       slack: 'https://slack.forksociety.com',
       slackinvite: 'https://slack-invite.forksociety.com',
-      submitevent: 'https://github.com/forksociety/AhaEvent/issues/6',
-      report: 'https://github.com/forksociety/AhaEvent/issues'
+      submitevent: 'https://gitlab.com/forksociety/AhaEvent/issues/6',
+      report: 'https://gitlab.com/forksociety/AhaEvent/issues'
     }
   }
 }

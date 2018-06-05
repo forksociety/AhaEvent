@@ -65,9 +65,9 @@ const config = {
       link: '/slackinvite'
     },
     {
-      text: 'GitHub',
-      icon: 'github',
-      link: '/github'
+      text: 'Gitlab',
+      icon: 'gitlab',
+      link: '/gitlab'
     },
     {
       text: 'Home',

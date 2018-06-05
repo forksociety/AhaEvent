@@ -2,7 +2,7 @@
 
 ### Maintainers
 
-- [Prabhanshu Attri](https://prabhanshu.com/github)
+- [Prabhanshu Attri](https://prabhanshu.com/gitlab)
 
 ### Resources
 - [Ant Design](https://ant.design)
