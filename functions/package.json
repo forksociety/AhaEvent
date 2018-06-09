@@ -10,6 +10,7 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "airtable": "^0.5.6",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "firebase-admin": "~5.12.0",

@@ -1,29 +1,37 @@
 import Base from './base-config'
 import AppStrings from './app-strings'
 
-let domain = Base.config.domain
-let apiBaseUrl = process.env.REACT_APP_API_BASE_URL_LOCAL
+let env = Base.config.env
+let apiRequest = Base.config.apiRequest
 
-const secretKeys = {
-  googleMapsKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY_DEV
+const searchQueryItems = {}
+searchQueryItems.filters = {}
+searchQueryItems.filters[apiRequest.filters.ALL_EVENTS] = 'Show Past Events'
+searchQueryItems.filters[apiRequest.filters.ENDED_EVENTS] = 'Recently Ended Events'
+searchQueryItems.filters[apiRequest.filters.CFP_OPEN] = 'Call For Proposals Open'
+
+searchQueryItems.sortBy = {}
+searchQueryItems.sortBy[apiRequest.sortBy.CFP_ASC] = {
+  icon: 'arrow-up',
+  text: 'Call For Proposals'
 }
-
-if ((!process.env.NODE_ENV || process.env.NODE_ENV === 'production') &&
-  window.location.host === 'www.ahaevent.org'
-) {
-  domain = process.env.REACT_APP_DOMAIN_PROD
-  apiBaseUrl = process.env.REACT_APP_API_BASE_URL_PROD
-  secretKeys.googleMapsKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY_PROD
-} else if (window.location.host.includes('ahaevent.org')) {
-  domain = process.env.REACT_APP_DOMAIN_DEV
-  apiBaseUrl = process.env.REACT_APP_API_BASE_URL_DEV
+searchQueryItems.sortBy[apiRequest.sortBy.CFP_DES] = {
+  icon: 'arrow-down',
+  text: 'Call For Proposals'
+}
+searchQueryItems.sortBy[apiRequest.sortBy.DATE_ASC] = {
+  icon: 'arrow-up',
+  text: 'Date'
+}
+searchQueryItems.sortBy[apiRequest.sortBy.DATE_DES] = {
+  icon: 'arrow-down',
+  text: 'Date'
 }
 
 const config = {
   ...Base.config,
-  domain: domain,
+  ...env,
   appName: 'Aha! Event',
-  appUrl: process.env.REACT_APP_DOMAIN_PROD,
   appAuthor: 'forksociety',
   appAuthorSite: 'https://forksociety.com',
   appAuthorEmail: 'os@forksociety.com',
@@ -34,15 +42,14 @@ const config = {
   defaultOgImage: 'img/defaultOgImage.png',
   license: 'AGPL-3.0',
 
-  secretKeys: secretKeys,
   appStrings: AppStrings,
-
   api: {
-    eventsUrl: apiBaseUrl + Base.config.slugs.api.events,
-    eventUrl: apiBaseUrl + Base.config.slugs.api.event,
-    googleMapsBaseUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
+    eventsUrl: env.API_BASE + Base.config.slugs.api.events,
+    eventUrl: env.API_BASE + Base.config.slugs.api.event,
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=',
+    googleMapsEmbedUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
   },
-
+  searchQueryItems: searchQueryItems,
   menu: [
     {
       text: 'License',
@@ -75,7 +82,19 @@ const config = {
       link: '/'
     }
   ],
-
+  redirectUrls: {
+    event: '/',
+    twitter: 'https://twitter.com/ahaevent',
+    facebook: 'https://www.facebook.com/ahaevent',
+    github: 'https://github.com/forksociety/ahaevent',
+    gitlab: 'https://gitlab.com/forksociety/ahaevent',
+    license: 'https://gitlab.com/forksociety/AhaEvent/blob/master/LICENSE',
+    credits: 'https://gitlab.com/forksociety/AhaEvent/blob/master/docs/CREDITS.md',
+    slack: 'https://slack.forksociety.com',
+    slackinvite: 'https://slack-invite.forksociety.com',
+    submitevent: 'https://airtable.com/shrNqsWADOUnnO7Yz',
+    report: 'https://gitlab.com/forksociety/AhaEvent/issues'
+  },
   gaTrackingId: 'UA-84775604-4'
 }
 

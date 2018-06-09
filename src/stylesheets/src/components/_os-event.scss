@@ -1,10 +1,7 @@
-$osEventMinHeight: 400px;
-
 .os-event {
   display: flex;
   flex-direction: row;
   border: 1px solid #e6e6e6;
-  min-height: $osEventMinHeight;
 
   .os-event-cover {
     z-index: 0;

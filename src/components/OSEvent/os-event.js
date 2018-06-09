@@ -71,7 +71,7 @@ class OSEvent extends Component {
           )
         }
       }).then(data => {
-        if (data.success) {
+        if (data.success && data.extras.event) {
           let osEvent = new OSEventModel(data.extras.event)
           let dateString = osEvent.getDateString()
           let cfpDateString = osEvent.getCfpDateString()
@@ -160,7 +160,7 @@ class OSEvent extends Component {
                 xl={8}
                 className='os-event-cover'
                 style={osEvent.hasCover() ? {
-                  background: `url(${osEvent.getCoverImage()}) no-repeat center center fixed`,
+                  background: `url(${osEvent.getCoverImage()}) no-repeat center center`,
                   backgroundSize: 'cover',
                   backgroundColor: osEvent.getCoverBackgroundColor()
                 } : {
@@ -201,20 +201,13 @@ class OSEvent extends Component {
             </Row>
           ]})
         } else {
-          this.setState({component: [
-            <Row key='os-event' className='os-event' />
-          ]})
-
-          showNotification(
-            data.extras.status,
-            (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
-          )
+          window.location.assign('/404')
         }
       }).catch((error) => {
         this.setState({component: [
           <Row key='os-event' className='os-event' />
         ]})
-
+        console.error(error.toString())
         showNotification(
           this.state.appStrings.error.NETWORK_ERROR,
           error.toString()
@@ -224,7 +217,11 @@ class OSEvent extends Component {
 
   render () {
     return (
-      <Layout className='layout' style={{ background: '#ffffff', margin: '20px 20px' }}>
+      <Layout className='layout' style={{
+          background: '#ffffff',
+          margin: '20px 20px',
+          minHeight: '400px'
+        }}>
         <DocumentMeta {...this.state.metaData} />
         {this.state.component}
       </Layout>

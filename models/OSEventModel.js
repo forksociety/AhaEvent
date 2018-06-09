@@ -14,13 +14,12 @@ class OSEventModel {
       coverBackgroundColor: '#EEEEEE'
     }
 
-    this.eJsonKeys = config.appStrings.eventJsonKeys
     this.eventData = e
+    this.eJsonKeys = config.eventJsonKeys
+
     this.eventeMetaData = {
-      imageDirectoryPath: '/img/events/',
       eventUrl: config.slugs.frontend.event + '/' + this.eventData[this.eJsonKeys.EID.k],
-      completeUrl: config.appUrl + config.slugs.frontend.event + this.eventData[this.eJsonKeys.EID.k],
-      googleMapsUrl: config.osEventDefaults.googleMapsUrl + this.eventData[this.eJsonKeys.LOCATION.k]
+      completeUrl: config.appUrl + config.slugs.frontend.event + this.eventData[this.eJsonKeys.EID.k]
     }
   }
 
@@ -106,6 +105,8 @@ class OSEventModel {
 
   getCfpStartDate() {
     return this.eventData[this.eJsonKeys.TIMESTAMP.k][this.eJsonKeys.TIMESTAMP_CFP_START.k]
+      ? this.eventData[this.eJsonKeys.TIMESTAMP.k][this.eJsonKeys.TIMESTAMP_CFP_START.k]
+      : 0
   }
 
   getCfpEndDate() {
@@ -113,14 +114,12 @@ class OSEventModel {
   }
 
   getLogo() {
-    return this.eventeMetaData.imageDirectoryPath
-      + this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.LOGO.k]
+    return this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.LOGO.k]
   }
 
   getCoverImage() {
     return (this.hasCover())
-      ? this.eventeMetaData.imageDirectoryPath
-        + this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.COVER_IMAGE.k]
+      ? this.eventData[this.eJsonKeys.RESOURCES.k][this.eJsonKeys.COVER_IMAGE.k]
       : ''
   }
 
@@ -159,7 +158,7 @@ class OSEventModel {
   }
 
   getCfpDateString() {
-    if (this.getCfpStartDate() !== 0) {
+    if (this.getCfpStartDate()) {
       let startDate = moment(this.getCfpStartDate())
       let endDate = moment(this.getCfpEndDate())
       if(startDate.year() !== endDate.year()) {
@@ -176,10 +175,6 @@ class OSEventModel {
 
   getEventUrl() {
     return this.eventeMetaData.eventUrl
-  }
-
-  getGoogleMapUrl() {
-    return this.eventeMetaData.googleMapsUrl
   }
 
   hasCover() {

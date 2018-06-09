@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import config from 'react-global-configuration'
 import InfiniteScroll from 'react-infinite-scroller'
 import { Radio, Checkbox, Icon, Row, message } from 'antd'
+import momentTz from 'moment-timezone'
 
-import AppStrings from '../../config/app-strings'
 import CustomGrid from '../CustomGrid/custom-grid'
 import { generateResponse, showNotification } from '../../models/Utils'
 
@@ -22,7 +22,8 @@ class OSEvents extends Component {
     this.state = {
       api: config.get('api'),
       appStrings: config.get('appStrings'),
-      events: [],
+      apiRequestQuery: config.get('apiRequest'),
+      events: {},
       page: 0,
       sortBy: '',
       filterComponents: [],
@@ -43,21 +44,28 @@ class OSEvents extends Component {
   }
 
   generateApiUrlWithQuery () {
+    let userTimezone = momentTz.tz.guess()
+
     let filterStr = Object.keys(this.state.filterState)
       .filter((key) => this.state.filterState[key])
       .map((key) => { return key })
 
     let queries = []
     if (this.state.page > 0) {
-      queries.push(AppStrings.queryParameters.page + '=' + this.state.page)
+      queries.push(this.state.apiRequestQuery.params.page + '=' + this.state.page)
     }
 
     if (this.state.sortBy.length > 0) {
-      queries.push(AppStrings.queryParameters.sortBy + '=' + this.state.sortBy)
+      queries.push(this.state.apiRequestQuery.params.sortBy + '=' + this.state.sortBy)
     }
+
     if (filterStr.length > 0) {
-      queries.push(AppStrings.queryParameters.filters + '=' + filterStr)
+      queries.push(this.state.apiRequestQuery.params.filters + '=' + filterStr)
     }
+
+    /*if (userTimezone) {
+      queries.push(this.state.apiRequestQuery.params.timezone + '=' + userTimezone)
+    }*/
 
     let url = this.state.api.eventsUrl
     if (queries.length) {
@@ -67,7 +75,7 @@ class OSEvents extends Component {
   }
 
   getMinHeight () {
-    let n = Math.ceil(this.state.events.length / 4)
+    let n = Math.ceil(this.state.events.size / 4)
     n = (n === 0) ? 1 : n
     return (64 + 316 * n)
   }
@@ -102,7 +110,7 @@ class OSEvents extends Component {
       )
     }
     let sortBy = <Radio.Group
-      defaultValue={AppStrings.sortBy.DATE_ASC}
+      defaultValue={this.state.apiRequestQuery.sortBy.DATE_ASC}
       onChange={this.handleSortByChange}
       style={{
         margin: '0px 10px 0px 0px'
@@ -129,10 +137,10 @@ class OSEvents extends Component {
           if (data.extras.numberOfEvents > 0) {
             let e = data.extras.events.map((i) => i)
             if (data.extras.numberOfEvents === 0) {
-              e = [{success: false}]
+              e = new Set([{success: false}])
             }
             this.setState({page: this.state.page + 1})
-            this.setState({events: [...this.state.events, ...e]})
+            this.setState({events: new Set([...this.state.events, ...e])})
             this.setState({componentMinHeight: this.getMinHeight()})
             this.setState({emptySearchComponent: <span />})
           } else if (this.state.events.length === 0 && !data.extras.hasMore) {
@@ -143,7 +151,6 @@ class OSEvents extends Component {
           }
           this.setState({hasMore: data.extras.hasMore})
         } else {
-          console.log('something')
           showNotification(
             data.extras.message,
             (data.extras.message ? data.extras.message : this.state.appStrings.error.SOMETHING_WRONG)
@@ -209,7 +216,7 @@ class OSEvents extends Component {
           loader={loadingComponent}
         >
           {this.state.emptySearchComponent}
-          <CustomGrid {...{ items: this.state.events }} />
+          <CustomGrid items={Array.from(this.state.events)} />
         </InfiniteScroll>
       </div>
     )
