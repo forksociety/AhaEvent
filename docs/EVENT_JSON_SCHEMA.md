@@ -61,4 +61,4 @@ Currently EVENT_ID is just URL_SLUG.
 
 | Key                   | Mandatory | Description | Example |
 |-----------------------|-----------|-------------|---------|
-| URL_SLUG              | Yes       | URL slug for the event. It should meet the following conditions: i) All characters must be small ii) It should include event name, city and year only. iii) Space can be replaced by a dash ( '-' ) only. | open-source-summit-tokyo-2018 |
+| URL_SLUG              | Yes       | URL slug for the event. It should meet the following conditions: i) All characters must be small ii) It should include event name and year only. iii) Space can be replaced by a dash ( '-' ) only. | open-source-summit-2018 |

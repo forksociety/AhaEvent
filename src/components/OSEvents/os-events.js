@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import config from 'react-global-configuration'
 import InfiniteScroll from 'react-infinite-scroller'
 import { Radio, Checkbox, Icon, Row, message } from 'antd'
-import momentTz from 'moment-timezone'
 
 import CustomGrid from '../CustomGrid/custom-grid'
 import { generateResponse, showNotification } from '../../models/Utils'
@@ -44,8 +43,6 @@ class OSEvents extends Component {
   }
 
   generateApiUrlWithQuery () {
-    let userTimezone = momentTz.tz.guess()
-
     let filterStr = Object.keys(this.state.filterState)
       .filter((key) => this.state.filterState[key])
       .map((key) => { return key })
@@ -62,10 +59,6 @@ class OSEvents extends Component {
     if (filterStr.length > 0) {
       queries.push(this.state.apiRequestQuery.params.filters + '=' + filterStr)
     }
-
-    /*if (userTimezone) {
-      queries.push(this.state.apiRequestQuery.params.timezone + '=' + userTimezone)
-    }*/
 
     let url = this.state.api.eventsUrl
     if (queries.length) {

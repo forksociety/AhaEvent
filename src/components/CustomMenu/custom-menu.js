@@ -10,21 +10,21 @@ class CustomMenu extends Component {
       aboutHash: '#about'
     }
 
-    if(window.location.hash === this.state.aboutHash) {
+    if (window.location.hash === this.state.aboutHash) {
       this.state.modalVisibility = true
     }
     this.showModal = this.showModal.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
   }
 
-  componentDidMount() {
-    window.addEventListener("hashchange", () => {
-      if(window.location.hash === this.state.aboutHash) {
+  componentDidMount () {
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === this.state.aboutHash) {
         this.setState({
           modalVisibility: true
         })
       }
-    }, false);
+    }, false)
   }
 
   showModal (e) {
@@ -135,8 +135,9 @@ class CustomMenu extends Component {
           footer={null}
           width={640}
         >
-          {config.get('appDescriptionLong').split("\n").map((i, k) => {
-            return (<div key={k} style={{ marginBottom: '10px' }}>{i}</div>)}
+          {config.get('appDescriptionLong').split('\n').map((i, k) => {
+            return (<div key={k} style={{ marginBottom: '10px' }}>{i}</div>)
+          }
           )}
         </Modal>
       </div>

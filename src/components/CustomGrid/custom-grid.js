@@ -20,7 +20,7 @@ class CustomGrid extends Component {
       let osEvent = new OSEventModel(this.props.items[key])
 
       let title = osEvent.getName()
-      let subTitle = <a href={ api.googleMapsUrl + osEvent.getLocation() } target='_blank'>
+      let subTitle = <a href={api.googleMapsUrl + osEvent.getLocation()} target='_blank'>
         <Icon type='environment-o' />
         {osEvent.getLocation()}
       </a>

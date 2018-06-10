@@ -1,33 +1,32 @@
-const moment = require('moment')
-const airtable = require('airtable')
+const Airtable = require('airtable')
 
 const configFile = require('../config/config')
 
 class AirtableModel {
-  constructor() {
+  constructor () {
     this.config = configFile
 
     const filterKeys = this.config.apiRequest.filters
-    this.airtableBase = new airtable({apiKey: this.config.airtable.apiKey})
+    this.airtableBase = new Airtable({apiKey: this.config.airtable.apiKey})
       .base(this.config.airtable.base)
 
     this.airtableSchema = {
-      name: "Name",
-      organization: "Organization",
-      location: "Location",
-      description: "Description",
-      keywords: "Keywords",
-      eventStartDate: "Event Start Date",
-      eventEndDate: "Event End Date",
-      cfpStartDate: "Call For Proposals Start Date",
-      cfpEndDate: "Call For Proposals End Date",
-      logo: "Logo",
-      coverImage: "Cover Image",
-      coverBackgroundColor: "Cover Background Color",
-      website: "Website",
-      registerLink: "Registration Link",
-      cfpLink: "Call For Proposals Link",
-      twitter: "Twitter Handle",
+      name: 'Name',
+      organization: 'Organization',
+      location: 'Location',
+      description: 'Description',
+      keywords: 'Keywords',
+      eventStartDate: 'Event Start Date',
+      eventEndDate: 'Event End Date',
+      cfpStartDate: 'Call For Proposals Start Date',
+      cfpEndDate: 'Call For Proposals End Date',
+      logo: 'Logo',
+      coverImage: 'Cover Image',
+      coverBackgroundColor: 'Cover Background Color',
+      website: 'Website',
+      registerLink: 'Registration Link',
+      cfpLink: 'Call For Proposals Link',
+      twitter: 'Twitter Handle'
     }
 
     this.airtableFilterQueries = {}
@@ -49,16 +48,16 @@ class AirtableModel {
     this.data = []
   }
 
-  parseRecords(records, callback) {
+  parseRecords (records, callback) {
     let self = this
     let eJsonKeys = this.config.eventJsonKeys
 
     records.forEach((record) => {
       let logo = record.get(this.airtableSchema.logo)
-      logo = logo ? logo[0].url : ""
+      logo = logo ? logo[0].url : ''
 
       let coverImage = record.get(this.airtableSchema.coverImage)
-      coverImage = coverImage ? coverImage[0].url : ""
+      coverImage = coverImage ? coverImage[0].url : ''
 
       let e = {}
       e[eJsonKeys.EID.k] = record.get(this.airtableSchema.name).toLowerCase().split(' ').join('-')
@@ -87,12 +86,12 @@ class AirtableModel {
       e[eJsonKeys.SOCIAL.k][eJsonKeys.SOCIAL_TWITTER.k] = record.get(this.airtableSchema.twitter)
 
       self.eventTagsFound = self.eventTagsFound.concat(record.get(this.airtableSchema.keywords))
-      self.data.push(e);
-    });
+      self.data.push(e)
+    })
     callback()
   }
 
-  fetchDataFromAirtable(callback, finish) {
+  fetchDataFromAirtable (callback, finish) {
     let self = this
     this.airtableBase(this.config.airtable.tables.flossEvents)
       .select(this.selectData)
@@ -101,26 +100,27 @@ class AirtableModel {
       }, (err) => {
         if (err) {
           console.log('Error while fetching data from airtable', err)
-          finish()
-        } else { finish() }
-    });
+          finish(err)
+        } else {
+          finish(err)
+        }
+      })
   }
 
-  fetchEvents(
+  fetchEvents (
     queryParams = {
       filtersSet: {},
       tagsSet: {},
-      sortByValue: "",
+      sortByValue: '',
       startIndex: 0,
       endIndex: this.config.eventsPerPage - 1
     },
     callback
   ) {
-
     let filters = []
     const filterKeys = this.config.apiRequest.filters
     const sortByKeys = this.config.apiRequest.sortBy
-    switch(queryParams.sortByValue) {
+    switch (queryParams.sortByValue) {
       case sortByKeys.DATE_DES:
         this.selectData.sort = [{
           field: this.airtableSchema.eventStartDate,
@@ -161,23 +161,27 @@ class AirtableModel {
       ? `AND(${filters.toString()})`
       : this.selectData.filterByFormula
 
-    this.fetchDataFromAirtable(this.fetchDataFromAirtable, () => {
-      let eventsData = this.data.slice(queryParams.startIndex, queryParams.endIndex+1)
-      let tags = Array.from(new Set(this.eventTagsFound))
-      callback({
-        tags: tags,
-        data: eventsData
-      })
+    this.fetchDataFromAirtable(this.fetchDataFromAirtable, (err) => {
+      if (err) {
+        callback(err, {})
+        return
+      } else {
+        let eventsData = this.data.slice(queryParams.startIndex, queryParams.endIndex + 1)
+        let tags = Array.from(new Set(this.eventTagsFound))
+        callback(err, { tags: tags, data: eventsData })
+        return
+      }
     })
   }
 
-  fetchEvent(eId,callback) {
-    eId = eId.split('-').join(" ")
+  fetchEvent (eId, callback) {
+    eId = eId.split('-').join(' ')
     this.selectData.sort = []
     this.selectData.filterByFormula = `LOWER(Name) = LOWER("${eId}")`
 
-    this.fetchDataFromAirtable(this.fetchDataFromAirtable, () => {
-      callback(this.data)
+    this.fetchDataFromAirtable(this.fetchDataFromAirtable, (err) => {
+      callback(err, this.data)
+      return
     })
   }
 }

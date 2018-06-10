@@ -19,9 +19,7 @@ const Base = {
     slugs: {
       api: {
         event: '/event',
-        events: '/events',
-        stats: '/stats',
-        incompleteEvents: '/events-with-incomplete-data'
+        events: '/events'
       },
       frontend: {
         home: '/',

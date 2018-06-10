@@ -16,7 +16,11 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
   // console.error = (...p) => { }
 
   console.log('Environment', process.env.NODE_ENV)
-  ReactGA.initialize([{ trackingId: gaTrackingId, debug: true, gaOptions: { cookieDomain: 'auto' }}])
+  ReactGA.initialize([{
+    trackingId: gaTrackingId,
+    debug: true,
+    gaOptions: { cookieDomain: 'auto' }
+  }])
   ReactGA.pageview(window.location.pathname + window.location.search)
 } else {
   console.log('Environment', process.env.NODE_ENV)

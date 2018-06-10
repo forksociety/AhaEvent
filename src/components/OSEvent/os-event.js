@@ -218,10 +218,10 @@ class OSEvent extends Component {
   render () {
     return (
       <Layout className='layout' style={{
-          background: '#ffffff',
-          margin: '20px 20px',
-          minHeight: '400px'
-        }}>
+        background: '#ffffff',
+        margin: '20px 20px',
+        minHeight: '80%'
+      }}>
         <DocumentMeta {...this.state.metaData} />
         {this.state.component}
       </Layout>

@@ -17,13 +17,13 @@ class CustomFooter extends Component {
           <a href='/#about'>
             About
           </a>|
-            <a href='/submitevent' target='_blank'>
+          <a href='/submitevent' target='_blank'>
               Submit a FLOSS Event
-            </a>|
+          </a>|
           <a href='/report' target='_blank'>
             Report an Issue
           </a>|
-          <a href={`mailto:${ config.get('appAuthorEmail') }`} target='_blank'>
+          <a href={`mailto:${config.get('appAuthorEmail')}`} target='_blank'>
             Contact Us
           </a>|
           <a href='/credits' target='_blank'>

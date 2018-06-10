@@ -5,7 +5,6 @@ const moment = require('moment')
 const app = express()
 const config = require('./config/config')
 
-const OSEventModel = require('./models/OSEventModel')
 const AirtableModel = require('./models/AirtableModel')
 
 app.disable('x-powered-by')
@@ -40,12 +39,12 @@ app.use((req, res, next) => {
 })
 
 app.get('/sd', (req, res) => {
-  console.log("airtable", config.env)
+  console.log('airtable', config.env)
   res.send('dsgsdfsd')
 })
 
 app.get(config.slugs.api.events, (req, res) => {
-  if (cache.has(req.url)  && cache.get(req.url).ttl.isAfter(moment())) {
+  if (cache.has(req.url) && cache.get(req.url).ttl.isAfter(moment())) {
     res.json(cache.get(req.url).response)
   } else {
     cache.delete(req.url)
@@ -55,8 +54,6 @@ app.get(config.slugs.api.events, (req, res) => {
     let filtersKey = config.apiRequest.params.filters
     let sortByKey = config.apiRequest.params.sortBy
     let tagsKey = config.apiRequest.params.tags
-    let filters = config.apiRequest.filters
-    let sortBy = config.apiRequest.sortBy
 
     let page = 0
     if (pageKey in req.requestQuery.merged) {
@@ -81,8 +78,6 @@ app.get(config.slugs.api.events, (req, res) => {
 
     let startIndex = config.eventsPerPage * page
     let endIndex = startIndex + (config.eventsPerPage - 1)
-    let counter = -1
-    //let hasMore = (eventsData.length - 1 > endIndex)
 
     airtable.fetchEvents({
       filtersSet,
@@ -90,50 +85,35 @@ app.get(config.slugs.api.events, (req, res) => {
       tagsSet,
       startIndex,
       endIndex
-    }, (response) => {
+    }, (err, response) => {
       let resp = {
         success: true,
-        extras: {
+        extras: {}
+      }
+      if (err) {
+        resp.success = false
+        resp.extras = {
+          message: 'Something went wrong'
+        }
+      } else {
+        resp.extras = {
           tagsFound: response.tags,
-          hasMore: (response.data.length -1 > endIndex),
+          hasMore: (response.data.length - 1 > endIndex),
           numberOfEvents: response.data.length,
           events: response.data
         }
+        cache.set(req.url, {
+          ttl: moment().add(config.cacheTtl, 'seconds'),
+          response: resp
+        })
       }
-      cache.set(req.url, {
-        ttl: moment().add(config.cacheTtl, 'seconds'),
-        response: resp
-      })
       res.json(resp)
     })
   }
 })
 
-app.get(config.slugs.api.stats + config.slugs.api.incompleteEvents, (req, res) => {
-  let responseData = {
-    success: true,
-    extras: {
-      events: []
-    }
-  }
-  let incompleteEvents = {}
-  for (let e in eventsData) {
-    if (!config.sampleEventKeys.includes(e)) {
-      let osEvent = new OSEventModel(eventsData[e])
-      let events = osEvent.whatsMissing(eventsData[config.sampleEventKeys[0]])
-      incompleteEvents[e] = {
-        name: osEvent.getName(),
-        url: osEvent.getEventUrl(),
-        missingProperties: events
-      }
-    }
-  }
-  responseData.extras.events = incompleteEvents
-  res.json(responseData)
-})
-
 app.get(config.slugs.api.event + '/:eId', (req, res) => {
-  if (cache.has(req.url)  && cache.get(req.url).ttl.isAfter(moment())) {
+  if (cache.has(req.url) && cache.get(req.url).ttl.isAfter(moment())) {
     res.json(cache.get(req.url).response)
   } else {
     cache.delete(req.url)
@@ -144,12 +124,19 @@ app.get(config.slugs.api.event + '/:eId', (req, res) => {
       success: true,
       extras: {}
     }
-    airtable.fetchEvent(eId, (response) => {
-      responseData.extras.event = response[0]
-      cache.set(req.url, {
-        ttl: moment().add(config.cacheTtl, 'seconds'),
-        response: responseData
-      })
+    airtable.fetchEvent(eId, (err, response) => {
+      if (err) {
+        responseData.success = false
+        responseData.extras = {
+          message: 'Something went wrong'
+        }
+      } else {
+        responseData.extras.event = response[0]
+        cache.set(req.url, {
+          ttl: moment().add(config.cacheTtl, 'seconds'),
+          response: responseData
+        })
+      }
       res.json(responseData)
     })
   }

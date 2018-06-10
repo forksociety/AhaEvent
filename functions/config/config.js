@@ -16,7 +16,7 @@ if (env.NODE_ENV === 'development') {
 const config = Object.assign({
   appStrings: AppStrings,
   allowedOrigins: allowedOrigins,
-  cacheTtl: 24 * 60 * 60,//'1 day',
+  cacheTtl: 24 * 60 * 60, // '1 day',
   eventsPerPage: 15,
   airtable: {
     apiKey: env.AIRTABLE.API_KEY,

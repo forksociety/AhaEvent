@@ -7,8 +7,6 @@ const del = require('del')
 const autoprefixer = require('gulp-autoprefixer')
 const merge = require('merge-stream')
 const realFavicon = require('gulp-real-favicon')
-const mergeJson = require('gulp-merge-json')
-const jsonminify = require('gulp-jsonminify')
 const fs = require('fs')
 
 const paths = {
