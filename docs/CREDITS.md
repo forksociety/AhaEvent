@@ -2,7 +2,8 @@
 
 ### Maintainers
 
-- [Prabhanshu Attri](https://prabhanshu.com/github)
+- [Prabhanshu Attri](https://prabhanshu.com/gitlab)
+- [Fatima Rafiqui](https://gitlab.com/fatimarafiqui)
 
 ### Resources
 - [Ant Design](https://ant.design)

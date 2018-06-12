@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Layout, Row, Col, Icon } from 'antd'
+import config from 'react-global-configuration'
 
 import CustomCard from '../CustomCard/custom-card'
 import OSEventModel from '../../models/OSEventModel'
@@ -13,13 +14,13 @@ class CustomGrid extends Component {
   }
 
   render () {
+    let api = config.get('api')
     let intents = []
-
-    for (var key in this.props.items) {
+    for (let key in this.props.items) {
       let osEvent = new OSEventModel(this.props.items[key])
 
       let title = osEvent.getName()
-      let subTitle = <a href={osEvent.getGoogleMapUrl()} target='_blank'>
+      let subTitle = <a href={api.googleMapsUrl + osEvent.getLocation()} target='_blank'>
         <Icon type='environment-o' />
         {osEvent.getLocation()}
       </a>
@@ -55,7 +56,7 @@ class CustomGrid extends Component {
       )
     }
     return (
-      <Content style={{ padding: '0 50px' }}>
+      <Content style={{ padding: '0 50px', marginBottom: '20px' }}>
         <Row gutter={16} justify='center'>
           {intents}
         </Row>

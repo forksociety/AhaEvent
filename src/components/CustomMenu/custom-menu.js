@@ -6,10 +6,25 @@ class CustomMenu extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      modalVisibility: false
+      modalVisibility: false,
+      aboutHash: '#about'
+    }
+
+    if (window.location.hash === this.state.aboutHash) {
+      this.state.modalVisibility = true
     }
     this.showModal = this.showModal.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+  }
+
+  componentDidMount () {
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === this.state.aboutHash) {
+        this.setState({
+          modalVisibility: true
+        })
+      }
+    }, false)
   }
 
   showModal (e) {
@@ -19,6 +34,7 @@ class CustomMenu extends Component {
   }
 
   handleCancel (e) {
+    window.location.hash = ''
     this.setState({
       modalVisibility: false
     })
@@ -117,8 +133,12 @@ class CustomMenu extends Component {
           onCancel={this.handleCancel}
           onOk={this.handleCancel}
           footer={null}
+          width={640}
         >
-          <p style={{ fontSize: '16px' }}>A FLOSS conference discovery platform</p>
+          {config.get('appDescriptionLong').split('\n').map((i, k) => {
+            return (<div key={k} style={{ marginBottom: '10px' }}>{i}</div>)
+          }
+          )}
         </Modal>
       </div>
     )

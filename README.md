@@ -3,7 +3,7 @@ A FLOSS conference discovery platform.
 
 - [Website Link](https://ahaevent.org)
 - [Latest stable development build](https://dev.ahaevent.org)
-- [Current Status/ Kanban](https://github.com/forksociety/AhaEvent/projects/1)
+- [Project Board](https://gitlab.com/forksociety/AhaEvent/boards?=)
 
 ### Documentation
 

@@ -1,13 +1,13 @@
 {
     "name": "AhaEvent",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Showcasing FLOSS events, one at a time",
     "private": true,
     "scripts": {
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
-        "build-all": "gulp && npm run build",
-        "firebase-serve": "gulp && npm run build && firebase serve",
+        "build-all": "gulp build && npm run build",
+        "firebase-serve": "npm run build-all && firebase serve",
         "now-start": "serve --single ./build",
         "test": "echo tested",
         "eject": "react-scripts eject"
@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/forksociety/AhaEvent"
+        "url": "https://gitlab.com/forksociety/AhaEvent"
     },
     "keywords": [
         "ahaevent",
@@ -35,6 +35,7 @@
         "husky": "^0.14.3",
         "lint-staged": "^7.0.4",
         "moment": "^2.21.0",
+        "moment-timezone": "^0.5.17",
         "prettier": "^1.11.1",
         "react": "^16.2.0",
         "react-app-rewired": "^1.5.0",
