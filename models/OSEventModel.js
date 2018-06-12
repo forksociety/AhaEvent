@@ -14,12 +14,12 @@ class OSEventModel {
       coverBackgroundColor: '#EEEEEE'
     }
 
-    this.eJsonKeys = config.appStrings.eventJsonKeys
     this.eventData = e
+    this.eJsonKeys = config.eventJsonKeys
+
     this.eventeMetaData = {
       eventUrl: config.slugs.frontend.event + '/' + this.eventData[this.eJsonKeys.EID.k],
-      completeUrl: config.appUrl + config.slugs.frontend.event + this.eventData[this.eJsonKeys.EID.k],
-      googleMapsUrl: config.osEventDefaults.googleMapsUrl + this.eventData[this.eJsonKeys.LOCATION.k]
+      completeUrl: config.appUrl + config.slugs.frontend.event + this.eventData[this.eJsonKeys.EID.k]
     }
   }
 
@@ -105,6 +105,8 @@ class OSEventModel {
 
   getCfpStartDate() {
     return this.eventData[this.eJsonKeys.TIMESTAMP.k][this.eJsonKeys.TIMESTAMP_CFP_START.k]
+      ? this.eventData[this.eJsonKeys.TIMESTAMP.k][this.eJsonKeys.TIMESTAMP_CFP_START.k]
+      : 0
   }
 
   getCfpEndDate() {
@@ -149,13 +151,19 @@ class OSEventModel {
   getDateString() {
     let startDate = moment(this.getStartDate())
     let endDate = moment(this.getEndDate())
+    if(startDate.year() !== endDate.year()) {
+        return (startDate.format('Do MMM YYYY') + ' - ' + endDate.format('Do MMM YYYY'))
+    }
     return (startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY'))
   }
 
   getCfpDateString() {
-    if (this.getCfpStartDate() !== 0) {
+    if (this.getCfpStartDate()) {
       let startDate = moment(this.getCfpStartDate())
       let endDate = moment(this.getCfpEndDate())
+      if(startDate.year() !== endDate.year()) {
+          return (startDate.format('Do MMM YYYY') + ' - ' + endDate.format('Do MMM YYYY'))
+      }
       return (startDate.format('Do MMM') + ' - ' + endDate.format('Do MMM YYYY'))
     }
     return 'Not Available'
@@ -167,10 +175,6 @@ class OSEventModel {
 
   getEventUrl() {
     return this.eventeMetaData.eventUrl
-  }
-
-  getGoogleMapUrl() {
-    return this.eventeMetaData.googleMapsUrl
   }
 
   hasCover() {

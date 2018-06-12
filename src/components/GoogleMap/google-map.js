@@ -4,15 +4,15 @@ import config from 'react-global-configuration'
 class GoogleMap extends Component {
   constructor (props) {
     super(props)
-    let secretKeys = config.get('secretKeys')
+    let secretKey = config.get('GOOGLE_MAPS_KEY')
     let api = config.get('api')
     let query = this.props.location.split(' ').join('+')
 
     this.state = {
       width: (this.props.width) ? this.props.width : '100%',
       height: (this.props.height) ? this.props.height : '150px',
-      googleMapsUrl: api.googleMapsBaseUrl +
-        '&key=' + secretKeys.googleMapsKey +
+      googleMapsUrl: api.googleMapsEmbedUrl +
+        '&key=' + secretKey +
         '&q=' + query
     }
   }

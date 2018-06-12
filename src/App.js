@@ -8,6 +8,24 @@ import HomePage from './pages/Home/home'
 import EventPage from './pages/Event/event'
 import './stylesheets/dist/style.min.css'
 
+let gaTrackingId = 'UA-84775604-4'
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
+  // disable console log
+  // console.log = (...p) => { }
+  // console.warn = (...p) => { }
+  // console.error = (...p) => { }
+
+  console.log('Environment', process.env.NODE_ENV)
+  ReactGA.initialize([{
+    trackingId: gaTrackingId,
+    debug: true,
+    gaOptions: { cookieDomain: 'auto' }
+  }])
+  ReactGA.pageview(window.location.pathname + window.location.search)
+} else {
+  console.log('Environment', process.env.NODE_ENV)
+}
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -16,21 +34,6 @@ class App extends Component {
 
   render () {
     let slugs = config.get('slugs')
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-      // disable console log
-      console.log = (...p) => { }
-      // console.warn = (...p) => { }
-      // console.error = (...p) => { }
-      let gaTrackingId = config.get('gaTrackingId')
-
-      console.log('Environment', process.env.NODE_ENV)
-      ReactGA.initialize(gaTrackingId, {
-        debug: true,
-        gaOptions: { cookieDomain: 'auto' }
-      })
-    } else {
-      console.log('Environment', process.env.NODE_ENV)
-    }
 
     // generate routes for rediect urls from config
     let redirectUrlsArray = []

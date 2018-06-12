@@ -14,13 +14,16 @@ class CustomFooter extends Component {
     return (
       <Footer style={{ background: '#e0e0e0' }}>
         <div className='footer-left'>
+          <a href='/#about'>
+            About
+          </a>|
           <a href='/submitevent' target='_blank'>
-            Submit a FLOSS Event
+              Submit a FLOSS Event
           </a>|
           <a href='/report' target='_blank'>
             Report an Issue
           </a>|
-          <a href={`mailto:${ config.get('appAuthorEmail') }`} target='_blank'>
+          <a href={`mailto:${config.get('appAuthorEmail')}`} target='_blank'>
             Contact Us
           </a>|
           <a href='/credits' target='_blank'>
@@ -30,7 +33,10 @@ class CustomFooter extends Component {
         <div className='footer-right'>
           <a href={config.get('appAuthorSite')} target='_blank'>
             { config.get('appAuthor') }
-          </a> | {config.get('license')}
+          </a> |
+          <a href='/license' target='_blank'>
+            {config.get('license')}
+          </a>
         </div>
       </Footer>
     )

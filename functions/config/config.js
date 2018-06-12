@@ -1,15 +1,14 @@
 const Base = require('./base-config')
 const AppStrings = require('./app-strings')
 
-const allowedOrigins = [
-  'https://www.ahaevent.org',
-  'https://dev.ahaevent.org',
-  'https://staging.ahaevent.org',
-  'https://ahaeventorg.firebaseapp.com',
-  'https://dev-ahaeventorg.firebaseapp.com'
+const env = Base.config.env
+
+let allowedOrigins = [
+  env.DOMAIN,
+  env.FIREBASE.URL
 ]
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+if (env.NODE_ENV === 'development') {
   allowedOrigins.push('http://localhost:3000')
   allowedOrigins.push('http://localhost:5000')
 }
@@ -17,10 +16,18 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 const config = Object.assign({
   appStrings: AppStrings,
   allowedOrigins: allowedOrigins,
-  sampleEventKeys: [
-    'sample-event-location-YYYY'
-  ],
-  numberOfEvents: 15
+  cacheTtl: 24 * 60 * 60, // '1 day',
+  eventsPerPage: 15,
+  airtable: {
+    apiKey: env.AIRTABLE.API_KEY,
+    base: env.AIRTABLE.BASE_ID,
+    tables: {
+      flossEvents: 'FLOSSEvents'
+    },
+    views: {
+      allEvents: 'ApprovedEvents'
+    }
+  }
 }, Base.config)
 
 module.exports = config

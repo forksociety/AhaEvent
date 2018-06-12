@@ -7,8 +7,6 @@ const del = require('del')
 const autoprefixer = require('gulp-autoprefixer')
 const merge = require('merge-stream')
 const realFavicon = require('gulp-real-favicon')
-const mergeJson = require('gulp-merge-json')
-const jsonminify = require('gulp-jsonminify')
 const fs = require('fs')
 
 const paths = {
@@ -18,16 +16,12 @@ const paths = {
     dest: './src/stylesheets/dist/'
   },
   favicon: {
-    src: './src/img/favicon.png',
+    image: './src/img/favicon.png',
+    index: './src/index.html',
+    file: './src/faviconData.json',
     dest: './public/'
-  },
-  jsonFiles: {
-    src: './functions/events/*.json',
-    dist: './functions/'
   }
 }
-
-var FAVICON_DATA_FILE = './src/faviconData.json'
 
 gulp.task('style', function (cb) {
   let scssStream = gulp.src([paths.styles.src_scss])
@@ -49,7 +43,7 @@ gulp.task('style', function (cb) {
 
 gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
-    masterPicture: paths.favicon.src,
+    masterPicture: paths.favicon.image,
     dest: paths.favicon.dest,
     iconsPath: '%PUBLIC_URL%',
     design: {
@@ -106,27 +100,20 @@ gulp.task('generate-favicon', function (done) {
       htmlCodeFile: false,
       usePathAsIs: false
     },
-    markupFile: FAVICON_DATA_FILE
+    markupFile: paths.favicon.file
   }, function () {
     done()
   })
 })
 
-// Inject the favicon markups in your HTML pages. You should run
-// this task whenever you modify a page. You can keep this task
-// as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', function () {
-  return gulp.src([ './src/index.html' ])
-    .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-    .pipe(gulp.dest('./public/'))
+  return gulp.src([ paths.favicon.index ])
+    .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(paths.favicon.file)).favicon.html_code))
+    .pipe(gulp.dest(paths.favicon.dest))
 })
 
-// Check for updates on RealFaviconGenerator (think: Apple has just
-// released a new Touch icon along with the latest version of iOS).
-// Run this task from time to time. Ideally, make it part of your
-// continuous integration system.
 gulp.task('check-for-favicon-update', function (done) {
-  var currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version
+  var currentVersion = JSON.parse(fs.readFileSync(paths.favicon.file)).version
   realFavicon.checkForUpdates(currentVersion, function (err) {
     if (err) {
       throw err
@@ -134,27 +121,19 @@ gulp.task('check-for-favicon-update', function (done) {
   })
 })
 
-gulp.task('merge-json', function () {
-  gulp.src(paths.jsonFiles.src)
-    .pipe(mergeJson({fileName: 'events.json'}))
-    .pipe(jsonminify())
-    .pipe(gulp.dest(paths.jsonFiles.dist))
-})
-
 gulp.task('copy-commons', function () {
-  gulp.src('./base-config.js')
+  gulp.src('./app-configs/base-config.js')
     .pipe(gulp.dest('./src/config/'))
     .pipe(gulp.dest('./functions/config/'))
 
-  gulp.src('./src/img/')
-    .pipe(gulp.dest('./public/'))
-  gulp.src('./src/img/*')
-    .pipe(gulp.dest('./public/img'))
+  gulp.src('./app-configs/env.json')
+    .pipe(gulp.dest('./src/config/'))
+    .pipe(gulp.dest('./functions/config/'))
 
-  gulp.src('./models/')
-    .pipe(gulp.dest('./src/'))
-    .pipe(gulp.dest('./functions/'))
-  gulp.src('./models/*')
+  gulp.src('./src/img/**/*')
+    .pipe(gulp.dest('./public/'))
+
+  gulp.src('./models/**/*')
     .pipe(gulp.dest('./src/models'))
     .pipe(gulp.dest('./functions/models'))
 })
@@ -169,7 +148,6 @@ gulp.task('watch', function () {
 
 gulp.task('build', [
   'clean',
-  'merge-json',
   'copy-commons',
   'style',
   'generate-favicon',
@@ -177,9 +155,7 @@ gulp.task('build', [
 ])
 
 gulp.task('default', [
-  'merge-json',
   'copy-commons',
   'style',
-  'generate-favicon',
   'inject-favicon-markups'
 ])
