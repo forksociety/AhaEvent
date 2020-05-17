@@ -1,0 +1,7 @@
+@mixin fontLogo() {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.logo {
+  @include fontLogo();
+}
