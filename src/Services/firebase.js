@@ -10,6 +10,7 @@ const config = {
     projectId: process.env.REACT_APP_PROJECT_ID,
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    collectionKey: process.env.REACT_APP_COLLECTION_KEY,
 };
 console.log(config)
 
@@ -25,13 +26,13 @@ export const createEventsList = () =>{
     const events = require('./events');
     console.log(events);
     for (let event in events) {
-        db.collection(process.env.REACT_APP_COLLECTION_KEY).add(events[event])
+        db.collection(config.collectionKey).add(events[event])
             .then(docRef => {
                 console.log("Document written with ID: ", docRef.id);
                 // console.log("Document name:", docRef.get());
                 const eventURL = events[event].Name.replace(/ /g, "-").toLowerCase()+ '-' + docRef.id;
                 console.log(eventURL);
-                db.collection(process.env.REACT_APP_COLLECTION_KEY).doc(docRef.id).update({URL: eventURL})
+                db.collection(config.collectionKey).doc(docRef.id).update({URL: eventURL})
                     .catch(error => console.error("Error updating document: ", error));
             })
             .catch(error => console.error("Error adding document: ", error))
