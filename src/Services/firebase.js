@@ -1,3 +1,4 @@
+
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -17,6 +18,24 @@ const db = firebase.firestore();
 
 export const authenticateAnonymously = () => {
     return firebase.auth().signInAnonymously();
+};
+
+// Populates the database using events.json
+export const createEventsList = () =>{
+    const events = require('./events');
+    console.log(events);
+    for (let event in events) {
+        db.collection(process.env.REACT_APP_COLLECTION_KEY).add(events[event])
+            .then(docRef => {
+                console.log("Document written with ID: ", docRef.id);
+                // console.log("Document name:", docRef.get());
+                const eventURL = events[event].Name.replace(/ /g, "-").toLowerCase()+ '-' + docRef.id;
+                console.log(eventURL);
+                db.collection(process.env.REACT_APP_COLLECTION_KEY).doc(docRef.id).update({URL: eventURL})
+                    .catch(error => console.error("Error updating document: ", error));
+            })
+            .catch(error => console.error("Error adding document: ", error))
+    }
 };
 
 export const createGroceryList = (userName, userId) => {

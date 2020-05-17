@@ -6,7 +6,10 @@ import './Home.css';
 
 class Home extends Component {
     componentDidMount() {
-        FirestoreService.createGroceryList('Name', 'id');
+        // FirestoreService.createGroceryList('Name', 'id');
+        // Use the following to populate the database
+        // FirestoreService.createEventsList();
+
     }
     render() {
         return (
