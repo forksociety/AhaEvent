@@ -39,6 +39,40 @@ export const createEventsList = () =>{
     }
 };
 
+export const getEventById = (id) => {
+    db.collection(config.collectionKey).doc(id).get()
+        .then(doc => {
+            console.log(doc.id, '=>', doc.data());
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+};
+
+export const getOrderedEventsList = (criterion, direction, limit=10) => {
+    if(direction === 'desc') {
+        db.collection(config.collectionKey).orderBy(criterion, direction).limit(limit).get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    console.log(doc.id, '=>', doc.data());
+                })
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+    }
+    else {
+        db.collection(config.collectionKey).orderBy(criterion).limit(limit).get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    console.log(doc.id, '=>', doc.data());
+                })})
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+    }
+};
+
 export const createGroceryList = (userName, userId) => {
     return db.collection('groceryLists1')
         .add({
