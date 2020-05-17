@@ -15,23 +15,23 @@ import Home from 'Pages/Home/Home';
 GlobalConfig.set(Config);
 
 const getRedirectUrls = () => {
-  const redirectUrls = GlobalConfig.get('redirectUrls')
+  const redirectUrls = GlobalConfig.get('redirectUrls');
 
-  const redirectUrlsArray = []
-  for (let k in redirectUrls) {
+  const redirectUrlsArray = [];
+  for (const k in redirectUrls) {
     redirectUrlsArray.push(
       <Route
         key={k}
-        exact path={'/' + k}
+        exact
+        path={`/${k}`}
         render={() => {
-          window.location.assign(redirectUrls[k])
-          return;
+          window.location.assign(redirectUrls[k]);
         }}
-      />
-    )
+      />,
+    );
   }
   return redirectUrlsArray;
-}
+};
 
 const App = () => (
   <Router>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 
+import Menu from 'Components/Menu';
 import style from './Header.module.scss';
 
-import Menu from 'Components/Menu';
 
 class Header extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Header extends Component {
   render() {
     return (
       <div className={style['awesome-header']}>
-        <Menu showLogo={true} />
+        <Menu showLogo />
       </div>
     );
   }
