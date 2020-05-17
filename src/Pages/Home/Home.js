@@ -9,8 +9,11 @@ class Home extends Component {
         // FirestoreService.createGroceryList('Name', 'id');
         // Use the following to populate the database
         // FirestoreService.createEventsList();
-        // FirestoreService.getOrderedEventsList('Event Start Date', 'desc');
-        // FirestoreService.getEventById('M6HazrVzoRNzH7RDBjYn');
+        // FirestoreService.getOrderedEventsList('Event Start Date', 'asc')
+        //     .then(docs => docs.map(doc => console.log(doc)));
+        // console.log(docs);
+        // FirestoreService.getEventById('M6HazrVzoRNzH7RDBjYn')
+        //     .then(docs => console.log(docs));
 
     }
     render() {

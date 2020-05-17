@@ -10,9 +10,8 @@ const config = {
     projectId: process.env.REACT_APP_PROJECT_ID,
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    collectionKey: process.env.REACT_APP_COLLECTION_KEY,
 };
-console.log(config)
+console.log(config);
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
@@ -23,116 +22,40 @@ export const authenticateAnonymously = () => {
 
 // Populates the database using events.json
 export const createEventsList = () =>{
-    const events = require('./events');
-    console.log(events);
-    for (let event in events) {
-        db.collection(config.collectionKey).add(events[event])
-            .then(docRef => {
-                console.log("Document written with ID: ", docRef.id);
-                // console.log("Document name:", docRef.get());
-                const eventURL = events[event].Name.replace(/ /g, "-").toLowerCase()+ '-' + docRef.id;
-                console.log(eventURL);
-                db.collection(config.collectionKey).doc(docRef.id).update({URL: eventURL})
-                    .catch(error => console.error("Error updating document: ", error));
-            })
-            .catch(error => console.error("Error adding document: ", error))
-    }
+    return new Promise((resolve, reject) => {
+        const events = require('./events');
+        for (let event in events) {
+            db.collection(process.env.REACT_APP_COLLECTION_KEY).add(events[event])
+                .then(docRef => {
+                    const eventURL = events[event].Name.replace(/ /g, "-").toLowerCase()+ '-' + docRef.id;
+                    db.collection(process.env.REACT_APP_COLLECTION_KEY).doc(docRef.id).update({URL: eventURL})
+                        .catch(err => resolve(false));
+                })
+                .catch(err => resolve(false));
+        }
+        resolve(true);
+    });
 };
 
 export const getEventById = (id) => {
-    db.collection(config.collectionKey).doc(id).get()
-        .then(doc => {
-            console.log(doc.id, '=>', doc.data());
-        })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        });
+    return new Promise((resolve, reject) => {
+        db.collection(process.env.REACT_APP_COLLECTION_KEY).doc(id).get()
+            .then(doc => {
+                resolve(doc.data());
+            })
+            .catch(err => resolve(null));
+    })
 };
 
 export const getOrderedEventsList = (criterion, direction, limit=10) => {
-    if(direction === 'desc') {
-        db.collection(config.collectionKey).orderBy(criterion, direction).limit(limit).get()
+    return new Promise((resolve, reject) => {
+        db.collection(process.env.REACT_APP_COLLECTION_KEY)
+            .orderBy(criterion, direction)
+            .limit(limit)
+            .get()
             .then(snapshot => {
-                snapshot.forEach(doc => {
-                    console.log(doc.id, '=>', doc.data());
-                })
+                resolve(snapshot.docs.map(doc => doc.data()))
             })
-            .catch(err => {
-                console.log('Error getting documents', err);
-            });
-    }
-    else {
-        db.collection(config.collectionKey).orderBy(criterion).limit(limit).get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                    console.log(doc.id, '=>', doc.data());
-                })})
-            .catch(err => {
-                console.log('Error getting documents', err);
-            });
-    }
+            .catch(err => resolve(null));
+    })
 };
-
-export const createGroceryList = (userName, userId) => {
-    return db.collection('groceryLists1')
-        .add({
-            created: firebase.firestore.FieldValue.serverTimestamp(),
-            createdBy: userId,
-            users: [{
-                userId: userId,
-                name: userName
-            }]
-        });
-};
-
-export const getGroceryList = groceryListId => {
-    return db.collection('groceryLists')
-        .doc(groceryListId)
-        .get();
-};
-
-export const getGroceryListItems = groceryListId => {
-    return db.collection('groceryLists')
-        .doc(groceryListId)
-        .collection('items')
-        .get();
-}
-
-export const streamGroceryListItems = (groceryListId, observer) => {
-    return db.collection('groceryLists')
-        .doc(groceryListId)
-        .collection('items')
-        .orderBy('created')
-        .onSnapshot(observer);
-};
-
-export const addUserToGroceryList = (userName, groceryListId, userId) => {
-    return db.collection('groceryLists')
-        .doc(groceryListId)
-        .update({
-            users: firebase.firestore.FieldValue.arrayUnion({
-                userId: userId,
-                name: userName
-            })
-        });
-};
-
-export const addGroceryListItem = (item, groceryListId, userId) => {
-    return getGroceryListItems(groceryListId)
-        .then(querySnapshot => querySnapshot.docs)
-        .then(groceryListItems => groceryListItems.find(groceryListItem => groceryListItem.data().name.toLowerCase() === item.toLowerCase()))
-        .then(matchingItem => {
-            if (!matchingItem) {
-                return db.collection('groceryLists')
-                    .doc(groceryListId)
-                    .collection('items')
-                    .add({
-                        name: item,
-                        created: firebase.firestore.FieldValue.serverTimestamp(),
-                        createdBy: userId
-                    });
-            }
-            throw new Error('duplicate-item-error');
-        });
-};
-
