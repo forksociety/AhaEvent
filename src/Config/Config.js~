@@ -1,0 +1,53 @@
+import AppStrings from './AppStrings';
+
+const config = {
+  appStrings: AppStrings,
+  menu: [
+    {
+      text: 'License',
+      icon: 'copyright',
+      link: '/license',
+    },
+    {
+      text: 'About AhaEvent',
+      icon: 'info-circle-o',
+      link: '#',
+    },
+    {
+      text: 'Credits',
+      icon: 'team',
+      link: '/credits',
+    },
+    {
+      text: 'Slack',
+      icon: 'slack',
+      link: '/slackinvite',
+    },
+    {
+      text: 'Gitlab',
+      icon: 'gitlab',
+      link: '/gitlab',
+    },
+    {
+      text: 'Home',
+      icon: 'home',
+      link: '/',
+    },
+  ],
+  redirectUrls: {
+    event: '/',
+    twitter: 'https://twitter.com/ahaevent',
+    facebook: 'https://www.facebook.com/ahaevent',
+    github: 'https://github.com/forksociety/ahaevent',
+    gitlab: 'https://gitlab.com/forksociety/ahaevent',
+    license: 'https://gitlab.com/forksociety/AhaEvent/blob/master/LICENSE',
+    credits: 'https://gitlab.com/forksociety/AhaEvent/blob/master/docs/CREDITS.md',
+    slack: 'https://slack.forksociety.com',
+    slackinvite: 'https://slack-invite.forksociety.com',
+    submitevent: 'https://airtable.com/shrNqsWADOUnnO7Yz',
+    report: 'https://gitlab.com/forksociety/AhaEvent/issues',
+  },
+  gaTrackingId: 'UA-84775604-4',
+};
+
+export default config;

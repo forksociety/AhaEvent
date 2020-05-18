@@ -1,0 +1,46 @@
+@import 'styles/variables.scss';
+
+@mixin fontDefault() {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+* {
+  @include fontDefault();
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: auto;
+  font-size: $fontSizeBase;
+  width: 100%;
+  background: #f0f2f5;
+}
+
+body > * {
+  height: auto;
+  min-height: inherit;
+}
+
+#root {
+  h1 {
+    font-size: 300%;
+  }
+
+  h2 {
+    font-size: 240%;
+  }
+
+  h3 {
+    font-size: 180%;
+  }
+
+  h4 {
+    font-size: 150%;
+  }
+}
