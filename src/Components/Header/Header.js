@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import config from 'react-global-configuration';
 
 import Nav from 'Components/Nav';

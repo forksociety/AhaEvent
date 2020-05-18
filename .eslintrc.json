@@ -22,6 +22,14 @@
         "react"
     ],
     "rules": {
+        "comma-dangle": 1,
+        "object-property-newline": 1,
+        "object-curly-newline": ["error", {
+           "ObjectExpression": "always",
+           "ObjectPattern": { "multiline": true },
+           "ImportDeclaration": "always",
+           "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+        }],
         "react/jsx-filename-extension": 0,
         "react/jsx-props-no-spreading": 0
     },

@@ -4,24 +4,21 @@ import {
   Route,
 } from 'react-router-dom';
 
-import * as Routes from './routes';
+import Routes from './routes';
 
 export const getRedirectUrls = () => {
   const redirectUrls = config.get('redirectUrls');
 
-  const redirectUrlsArray = [];
-  for (const k of Object.keys(redirectUrls)) {
-    redirectUrlsArray.push(
-      <Route
-        key={k}
-        exact
-        path={`/${k}`}
-        render={() => {
-          window.location.assign(redirectUrls[k]);
-        }}
-      />,
-    );
-  }
+  const redirectUrlsArray = Object.keys(redirectUrls).map((k) => (
+    <Route
+      key={k}
+      exact
+      path={`/${k}`}
+      render={() => {
+        window.location.assign(redirectUrls[k]);
+      }}
+    />
+  ));
   return redirectUrlsArray;
 };
 

@@ -1,6 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, {
+  PureComponent,
+} from 'react';
 import cx from 'classnames';
 import config from 'react-global-configuration';
+import {
+  string,
+} from 'prop-types';
+
 
 import style from './Logo.module.scss';
 
@@ -14,5 +20,13 @@ class Logo extends PureComponent {
     );
   }
 }
+Logo.propTypes = {
+  className: string,
+};
+
+Logo.defaultProps = {
+  className: '',
+};
+
 
 export default Logo;

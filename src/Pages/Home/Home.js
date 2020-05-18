@@ -52,7 +52,7 @@ class Home extends Component {
       );
     }
     return (
-      <span>No Event Found</span>
+      <span className={styles.fallback}>No Event Found</span>
     );
   }
 

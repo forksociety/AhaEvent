@@ -1,5 +1,9 @@
-import React, { PureComponent } from 'react';
-import { Layout } from 'antd';
+import React, {
+  PureComponent,
+} from 'react';
+import {
+  Layout,
+} from 'antd';
 import config from 'react-global-configuration';
 
 import styles from './Footer.module.scss';
@@ -43,7 +47,9 @@ class Footer extends PureComponent {
       },
     ];
 
-    return { leftItems, rightItems };
+    return {
+      leftItems, rightItems,
+    };
   }
 
   render() {

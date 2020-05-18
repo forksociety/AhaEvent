@@ -1,17 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, {
+  PureComponent,
+} from 'react';
 import Icon from 'Components/Icon';
 
 import styles from './Card.module.scss';
 
 class CustomCard extends PureComponent {
-  handleClick(e, newTab = false) {
-    if (newTab) {
-      window.open(this.props.websiteLink, '_blank');
-    } else {
-      window.location = this.props.link;
-    }
-  }
-
   getCoverStyle(cover, color) {
     return cover.length > 0
       ? ({
@@ -23,10 +17,16 @@ class CustomCard extends PureComponent {
       });
   }
 
+  handleClick(e, newTab = false) {
+    if (newTab) {
+      window.open(this.props.websiteLink, '_blank');
+    } else {
+      window.location = this.props.link;
+    }
+  }
+
   render() {
-    const {
-      cover, logo, link, title, subTitle, description,
-    } = this.props;
+    const { cover, logo, link, title, subTitle, description } = this.props;
 
     if (!title) {
       return null;
@@ -48,7 +48,12 @@ class CustomCard extends PureComponent {
           </div>
           <img alt={`${title} logo`} src={logo} />
         </div>
-        <div className={styles['card-content']} style={{ padding: '20px' }}>
+        <div
+          className={styles['card-content']}
+          style={{
+            padding: '20px',
+          }}
+        >
           <a href={link} className={styles.title}>{title}</a>
           <div className={styles['sub-title']}>{subTitle}</div>
           <div>{description}</div>

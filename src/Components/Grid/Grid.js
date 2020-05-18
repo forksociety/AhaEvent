@@ -1,4 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, {
+  PureComponent,
+} from 'react';
 import {
   Col,
 } from 'antd';

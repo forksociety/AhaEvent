@@ -1,6 +1,16 @@
-import React, { PureComponent } from 'react';
+import React, {
+  PureComponent,
+} from 'react';
 import {
-  HomeOutlined, GithubOutlined, SlackOutlined, CopyrightCircleOutlined, LoadingOutlined, LinkOutlined, DownOutlined, SortAscendingOutlined, SortDescendingOutlined,
+  HomeOutlined,
+  GithubOutlined,
+  SlackOutlined,
+  CopyrightCircleOutlined,
+  LoadingOutlined,
+  LinkOutlined,
+  DownOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
 } from '@ant-design/icons';
 import cx from 'classnames';
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Checkbox } from 'antd';
+import {
+  Checkbox,
+} from 'antd';
 
 const CustomCheckbox = ({ onChange, text, ...rest }) => (
   <Checkbox onChange={onChange} {...rest}>

@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
-import { Input } from 'antd';
+import React, {
+  Component,
+} from 'react';
+import {
+  Input,
+} from 'antd';
 import config from 'react-global-configuration';
 
 import Checkbox from '../Checkbox';
@@ -25,13 +29,13 @@ class SearchBox extends Component {
 
   handleDropdownUpdate(value) {
     const { onSearch } = this.props;
-    onSearch({ sortBy: value });
+    onSearch({
+      sortBy: value,
+    });
   }
 
   render() {
-    const {
-      onSearch, placeholder, enterButton, showSearchTools, searchInfo,
-    } = this.props;
+    const { onSearch, placeholder, enterButton, showSearchTools, searchInfo } = this.props;
     const filters = config.get('filters');
     const { sortBy } = searchInfo;
 
@@ -40,7 +44,9 @@ class SearchBox extends Component {
         <Search
           className={styles.search}
           placeholder={placeholder || 'Search'}
-          onSearch={(query) => onSearch({ query })}
+          onSearch={(query) => onSearch({
+            query,
+          })}
           enterButton={enterButton}
         />
         {showSearchTools

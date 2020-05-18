@@ -1,3 +1,7 @@
 import { prop } from 'ramda';
 
-export const getPathName = (location) => prop('pathname', location);
+const getPathName = (location) => prop('pathname', location);
+
+export default {
+  getPathName,
+};

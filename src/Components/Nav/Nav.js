@@ -1,7 +1,14 @@
-import React, { Component } from 'react';
-import { Menu } from 'antd';
+import React, {
+  Component,
+} from 'react';
+import {
+  Menu,
+} from 'antd';
 import config from 'react-global-configuration';
 import cx from 'classnames';
+import {
+  bool,
+} from 'prop-types';
 
 import Logo from 'Components/Logo';
 import Icon from 'Components/Icon';
@@ -10,17 +17,17 @@ import style from './Nav.module.scss';
 
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  isRedirectLink(link) {
+  static isRedirectLink(link) {
     const redirectUrls = config.get('redirectUrls');
     return (
       link.indexOf('http://') !== -1 || link.indexOf('https://') !== -1 || link.substring(1) in redirectUrls
     );
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
   }
 
   getLink(data) {
@@ -84,5 +91,13 @@ class Nav extends Component {
     );
   }
 }
+
+Nav.propTypes = {
+  showLogo: bool,
+};
+
+Nav.defaultProps = {
+  showLogo: true,
+};
 
 export default Nav;
