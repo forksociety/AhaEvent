@@ -1,5 +1,19 @@
 import AppStrings from './AppStrings';
 
+const filters = {
+  cfp: 'Call For Proposals Open',
+  spe: 'Show Past Events',
+  ree: 'Recently Ended Events',
+};
+
+const sortBy = {
+  DATE_ASC: 'Date ASC',
+  DATE_DESC: 'Date DESC',
+  CFP_ASC: 'Call for Proposal ASC',
+  CFP_DESC: 'Call for Proposal DESC',
+};
+
+
 const config = {
   appStrings: AppStrings,
   appName: 'Aha! Event',
@@ -44,6 +58,8 @@ const config = {
     report: 'https://gitlab.com/forksociety/AhaEvent/issues',
   },
   gaTrackingId: 'UA-84775604-4',
+  filters,
+  sortBy,
 };
 
 export default config;

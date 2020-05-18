@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  HomeOutlined, GithubOutlined, SlackOutlined, CopyrightCircleOutlined, LoadingOutlined, LinkOutlined,
+  HomeOutlined, GithubOutlined, SlackOutlined, CopyrightCircleOutlined, LoadingOutlined, LinkOutlined, DownOutlined, SortAscendingOutlined, SortDescendingOutlined,
 } from '@ant-design/icons';
 import cx from 'classnames';
 
@@ -29,6 +29,12 @@ class Icon extends PureComponent {
         return this.applyProps(LoadingOutlined);
       case 'link':
         return this.applyProps(LinkOutlined);
+      case 'down-arrow':
+        return this.applyProps(DownOutlined);
+      case 'sort-asc':
+        return this.applyProps(SortAscendingOutlined);
+      case 'sort-desc':
+        return this.applyProps(SortDescendingOutlined);
       default:
         return null;
     }

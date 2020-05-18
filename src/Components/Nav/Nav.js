@@ -34,10 +34,6 @@ class Nav extends Component {
     );
   }
 
-  onSearch(value) {
-    console.log(value);
-  }
-
   getNavItems() {
     const { showLogo } = this.props;
     const menuData = config.get('menu');

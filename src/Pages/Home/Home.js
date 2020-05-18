@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import Content from 'Components/Content';
 import Grid from 'Components/Grid';
-import Row from 'Components/Row';
 import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import styles from './Home.module.scss';
@@ -17,6 +15,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    // ToDo: remove testing data
     const self = this;
     setTimeout(() => {
       self.setState({
@@ -43,25 +42,26 @@ class Home extends Component {
     });
   }
 
+  getPageContent() {
+    const { events } = this.state;
+    if (events.length > 0) {
+      return (
+        <Grid
+          items={events.map((event) => <Card {...event} />)}
+        />
+      );
+    }
+    return (
+      <span>No Event Found</span>
+    );
+  }
+
   render() {
-    const { isLoading, events } = this.state;
-    console.log(this.state);
+    const { isLoading } = this.state;
     return (
       <main>
         {isLoading && <Loader />}
-        {!isLoading
-        && (
-          <>
-            <Content>
-              <Row className={styles['filter-sort']}>
-                row
-              </Row>
-            </Content>
-            <Grid
-              items={events.map((event) => <Card {...event} />)}
-            />
-          </>
-        )}
+        {!isLoading && (this.getPageContent())}
       </main>
     );
   }

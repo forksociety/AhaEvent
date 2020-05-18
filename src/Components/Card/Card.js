@@ -33,10 +33,7 @@ class CustomCard extends PureComponent {
     }
 
     const { image: coverImage, bgColor } = cover;
-
     const overlay = coverImage.length > 0 ? (<div className="overlay" />) : null;
-    console.log(coverImage);
-
 
     return (
       <div className={styles.card}>

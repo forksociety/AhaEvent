@@ -27,7 +27,7 @@ scss = '{}.module.scss'.format(name)
 
 file = open(get_path(path, fileName), 'w')
 file.write('import React from \'react\';\n\n')
-file.write('import styles from \'{}\''.format(scss))
+file.write('import styles from \'./{}\';\n\n'.format(scss))
 file.write('const {} = () => (null);\n\n'.format(name))
 file.write('export default {};\n'.format(name))
 file.close()
