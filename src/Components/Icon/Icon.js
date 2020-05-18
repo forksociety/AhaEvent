@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  HomeOutlined, GithubOutlined, SlackOutlined, CopyrightCircleOutlined,
+  HomeOutlined, GithubOutlined, SlackOutlined, CopyrightCircleOutlined, LoadingOutlined, LinkOutlined,
 } from '@ant-design/icons';
 import cx from 'classnames';
 
@@ -25,6 +25,10 @@ class Icon extends PureComponent {
         return this.applyProps(SlackOutlined);
       case 'copyright':
         return this.applyProps(CopyrightCircleOutlined);
+      case 'loader':
+        return this.applyProps(LoadingOutlined);
+      case 'link':
+        return this.applyProps(LinkOutlined);
       default:
         return null;
     }

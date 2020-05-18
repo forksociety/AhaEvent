@@ -1,7 +1,5 @@
-@mixin fontLogo() {
-  font-family: 'Comfortaa', sans-serif;
-}
+@import 'styles/variables.scss';
 
 .logo {
-  @include fontLogo();
+  @include fontComfortaa();
 }

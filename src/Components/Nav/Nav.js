@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Menu, Modal } from 'antd';
+import { Menu } from 'antd';
 import config from 'react-global-configuration';
 import cx from 'classnames';
 
 import Logo from 'Components/Logo';
 import Icon from 'Components/Icon';
 
-import style from './Menu.module.scss';
+import style from './Nav.module.scss';
 
-class CustomMenu extends Component {
+
+class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,24 +25,28 @@ class CustomMenu extends Component {
 
   getLink(data) {
     const { link, text, icon } = data;
+    const target = this.isRedirectLink(link) ? '_blank' : null;
 
     return (
-      <a href={link} title={text} target={this.isRedirectLink(link)}>
+      <a href={link} title={text} target={target}>
         <Icon type={icon} className={style.icon} />
       </a>
     );
   }
 
-  getMenuItems() {
+  onSearch(value) {
+    console.log(value);
+  }
+
+  getNavItems() {
     const { showLogo } = this.props;
     const menuData = config.get('menu');
-    const leftItems = [];
-    const rightItems = [];
+    const items = [];
 
     menuData.forEach((e) => {
       const link = this.getLink(e);
 
-      rightItems.push(
+      items.push(
         <Menu.Item
           key={e.icon}
           className={cx(style.item, style.right)}
@@ -52,7 +57,7 @@ class CustomMenu extends Component {
     });
 
     if (showLogo) {
-      leftItems.push(
+      items.push(
         <Menu.Item
           key="logo"
           className={cx(style.item, style.left)}
@@ -64,14 +69,14 @@ class CustomMenu extends Component {
       );
     }
 
-    return [...leftItems, ...rightItems];
+    return items;
   }
 
   render() {
-    const menuItems = this.getMenuItems();
+    const menuItems = this.getNavItems();
 
     return (
-      <div className={style.menu}>
+      <nav className={style.menu}>
         <Menu
           className={style['aha-menu']}
           selectedKeys={['home']}
@@ -79,9 +84,9 @@ class CustomMenu extends Component {
         >
           {menuItems}
         </Menu>
-      </div>
+      </nav>
     );
   }
 }
 
-export default CustomMenu;
+export default Nav;

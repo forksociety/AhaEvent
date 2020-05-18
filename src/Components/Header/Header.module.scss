@@ -17,17 +17,29 @@
   background-size: 400% 400%;
   animation: Gradient 15s ease infinite;
   color: #fff;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
 
-  .logo {
-    padding: 10px;
-    font-size: 600%;
-    text-align: center;
-  }
+  .banner {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em 1.5em;
 
-  .tagline {
-    padding: 10px;
-    font-size: 230%;
-    text-align: center;
+    .logo {
+      font-size: 6em;
+      line-height: 1em;
+    }
+
+    .tagline {
+      font-size: 1.8em;
+      text-align: center;
+      @include fontJosefinSlab();
+    }
+
+    .search {
+      width: 50%;
+    }
   }
 }
 

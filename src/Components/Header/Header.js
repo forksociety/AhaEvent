@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import config from 'react-global-configuration';
 
-import Menu from 'Components/Menu';
-import style from './Header.module.scss';
+import Nav from 'Components/Nav';
+import Logo from 'Components/Logo';
+import Form from 'Components/Form';
 
+import styles from './Header.module.scss';
+
+const { SearchBox } = Form;
 
 class Header extends Component {
   constructor(props) {
@@ -12,11 +16,38 @@ class Header extends Component {
     };
   }
 
-  render() {
+  componentDidMount() {
+  }
+
+  getSearchBox() {
     return (
-      <div className={style['awesome-header']}>
-        <Menu showLogo />
+      <div className={styles.search}>
+        <SearchBox
+          onSearch={(value) => this.onSearch(value)}
+        />
       </div>
+    )
+  }
+
+  getBanner() {
+    return (
+      <span className={styles.banner}>
+        <Logo className={styles.logo} />
+        <span className={styles.tagline}>
+          {config.get('tagline')}
+        </span>
+        {this.getSearchBox()}
+      </span>
+    );
+  }
+
+  render() {
+    const { showBanner } = this.props;
+    return (
+      <header className={styles['awesome-header']}>
+        <Nav showLogo={!showBanner} />
+        {showBanner && this.getBanner()}
+      </header>
     );
   }
 }

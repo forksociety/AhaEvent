@@ -1,0 +1,13 @@
+.search {
+  width: 100%;
+  margin: 1em 0;
+  border-radius: 0.8em;
+
+  &:focus {
+    outline:0;
+  }
+
+  :global(.ant-menu-item) :global(.anticon) {
+    margin-right: 0;
+  }
+}

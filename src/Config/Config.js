@@ -2,7 +2,12 @@ import AppStrings from './AppStrings';
 
 const config = {
   appStrings: AppStrings,
-  appName: 'AhaEvent',
+  appName: 'Aha! Event',
+  appAuthor: 'forksociety',
+  appAuthorSite: 'https://forksociety.com',
+  appAuthorEmail: 'os@forksociety.com',
+  license: 'AGPL3.0',
+  tagline: 'Showcasing FLOSS events, one at a time',
   menu: [
     {
       text: 'License',

@@ -1,52 +1,36 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, Switch,
+  BrowserRouter as Router, Route, Switch, useLocation,
 } from 'react-router-dom';
-import GlobalConfig from 'react-global-configuration';
-
+import loadConfig from 'react-global-configuration';
 import 'antd/dist/antd.less';
-import './App.scss';
-import './App.module.scss';
 
 import Config from 'Config';
 import Header from 'Components/Header';
+import Footer from 'Components/Footer';
 import Home from 'Pages/Home/Home';
+import { showBanner, getRedirectUrls } from 'Utils';
 
-GlobalConfig.set(Config);
+import './App.scss';
+import './App.module.scss';
 
-const getRedirectUrls = () => {
-  const redirectUrls = GlobalConfig.get('redirectUrls');
+loadConfig.set(Config);
 
-  const redirectUrlsArray = [];
-  for (const k in redirectUrls) {
-    redirectUrlsArray.push(
+const Routes = () => (
+  <>
+    <Header showBanner={showBanner(useLocation())} />
+    <Switch>
       <Route
-        key={k}
         exact
-        path={`/${k}`}
-        render={() => {
-          window.location.assign(redirectUrls[k]);
-        }}
-      />,
-    );
-  }
-  return redirectUrlsArray;
-};
-
-const App = () => (
-  <Router>
-    <>
-      <Header />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={(props) => <Home {...props} />}
-        />
-        {getRedirectUrls()}
-      </Switch>
-    </>
-  </Router>
+        path="/"
+        render={(props) => <Home {...props} />}
+      />
+      {getRedirectUrls()}
+    </Switch>
+    <Footer />
+  </>
 );
+
+const App = () => (<Router><Routes /></Router>);
 
 export default App;
