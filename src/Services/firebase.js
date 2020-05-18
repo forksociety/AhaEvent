@@ -16,8 +16,6 @@ const config = {
 firebase.initializeApp(config);
 const db = firebase.firestore();
 
-export const authenticateAnonymously = () => firebase.auth().signInAnonymously();
-
 export const createEventsList = () => new Promise((resolve) => {
   for (let index = 0; index < events.length; index += 1) {
     const event = events[index];
@@ -46,17 +44,21 @@ const eventDateComparator = (a, b) => (Date.parse(a['Event End Date']) < Date.pa
 
 const cfpDateComparator = (a, b) => (Date.parse(a['Call For Proposals End Date']) < Date.parse(b['Call For Proposals End Date']) ? -1 : 1);
 
+const whereQueryConstructor = (query, filter) => {
+  const currDate = new Date();
+  if (filter === 'RecentlyEndedEvents') {
+    currDate.setMonth(currDate.getMonth() - 1);
+  }
+  return query.where('Event End Date', '>=', currDate.toISOString());
+};
+
 export const getOrderedEventsList = (orderBy) => new Promise((resolve) => {
   let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
   if (!orderBy.filters.includes('ShowPastEvents')) {
-    const currDate = new Date();
-    query = query.where('Event End Date', '>=', currDate.toISOString());
+    query = whereQueryConstructor(query, 'ShowPastEvents');
   }
   if (orderBy.filters.includes('RecentlyEndedEvents')) {
-    const currDate = new Date();
-    query = query.where('Event End Date', '<', currDate.toISOString());
-    currDate.setMonth(currDate.getMonth() - 1);
-    query = query.where('Event End Date', '>', currDate.toISOString());
+    query = whereQueryConstructor(query, 'RecentlyEndedEvents');
   }
   query.get()
     .then((snapshot) => {
