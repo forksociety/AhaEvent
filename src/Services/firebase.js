@@ -2,6 +2,7 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import * as R from "ramda";
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -47,7 +48,15 @@ export const getEventById = (id) => {
     })
 };
 
-export const getOrderedEventsList = (orderBy, limit=10) => {
+const eventDateComparator = (a, b) => {
+    return Date.parse(a['Event End Date']) <  Date.parse(b['Event End Date']) ? -1 : 1
+};
+
+const cfpDateComparator = (a, b) => {
+    return Date.parse(a['Call For Proposals End Date']) <  Date.parse(b['Call For Proposals End Date']) ? -1 : 1
+};
+
+export const getOrderedEventsList = orderBy => {
     // let orderBy = {
     //     sortBy: 'Event End Date',
     //     sortDirection: 'asc',
@@ -59,31 +68,29 @@ export const getOrderedEventsList = (orderBy, limit=10) => {
     // };
     return new Promise((resolve, reject) => {
         let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
-        if (orderBy === null){
-            query = query.orderBy('Event Start Date', 'asc')
+        if(!orderBy.filters.includes('ShowPastEvents')){
+            let curr_date = new Date();
+            query = query.where('Event End Date', '>=', curr_date.toISOString());
         }
-        else {
-            query = query.orderBy(orderBy.sortBy, orderBy.sortDirection)
-        }
-        orderBy.filters.map(filter => {
-            if(filter === 'ShowPastEvents'){
-                let curr_date = new Date();
-                query = query.where('Event End Date', '<', curr_date.toISOString());
-            }
-            else if (filter === 'RecentlyEndedEvents'){
-                let curr_date = new Date();
-                query = query.where('Event End Date', '<', curr_date.toISOString());
-                curr_date.setMonth(curr_date.getMonth() - 1);
-                query = query.where('Event End Date', '>', curr_date.toISOString());
-            }
-            else if (filter === 'CallForProposalsOpen'){
-                let curr_date = new Date();
-                query = query.where('Call For Proposals End Date', '>', curr_date.toISOString());
-            }
-        });
+        if(orderBy.filters.includes('RecentlyEndedEvents')){
+            let curr_date = new Date();
+            query = query.where('Event End Date', '<', curr_date.toISOString());
+            curr_date.setMonth(curr_date.getMonth() - 1);
+            query = query.where('Event End Date', '>', curr_date.toISOString());
+        };
         query.get()
         .then(snapshot => {
-            resolve(snapshot.docs.map(doc => doc.data()))
+            let docs = snapshot.docs.map(doc => doc.data());
+            if (orderBy.filters.includes('CallForProposalsOpen')){
+                let curr_date = new Date();
+                docs = docs.filter(doc => Date.parse(doc['Call For Proposals End Date']) > curr_date);
+            }
+            if(orderBy.sortBy === 'Call For Proposals End Date')
+                docs = R.sort(cfpDateComparator, docs);
+            else
+                docs = R.sort(eventDateComparator, docs);
+            if(orderBy.sortDirection === 'desc') docs = R.reverse(docs);
+            resolve(docs);
         })
         .catch(err => resolve(null));
     })

@@ -11,15 +11,15 @@ class Home extends Component {
         // FirestoreService.createEventsList();
 
         // let orderBy = {
-        //     sortBy: 'Event End Date',
-        //     sortDirection: 'asc',
+        //     sortBy: 'Event End Date'/'Call For Proposals End Date',
+        //     sortDirection: 'asc'/'desc',
         //     filters: [
         //         'ShowPastEvents',
         //         'RecentlyEndedEvents',
         //         'CallForProposalsOpen',
         //     ],
         // };
-        // FirestoreService.getOrderedEventsList(orderBy, 10)
+        // FirestoreService.getOrderedEventsList(orderBy)
         //     .then(docs => console.log(docs))
 
         // console.log(docs);
