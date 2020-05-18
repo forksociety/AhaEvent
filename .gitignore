@@ -24,7 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
-.swp
+*.swp
 .firebase/
 
 .fuse_hidden*

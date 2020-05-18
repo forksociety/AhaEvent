@@ -1,0 +1,21 @@
+.dropdown:global(.ant-select) {
+  color: white;
+  z-index: 5;
+
+  &:focus {
+    outline: none;
+  }
+
+  .dropdown-icon {
+    color: white;
+  }
+
+  .item {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  :global(.ant-select-selector) {
+    background-color: unset;
+  }
+}

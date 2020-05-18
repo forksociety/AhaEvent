@@ -13,6 +13,8 @@
     "craco-less": "^1.16.0",
     "firebase": "^7.14.4",
     "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-global-configuration": "^1.4.0",

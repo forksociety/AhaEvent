@@ -1,0 +1,32 @@
+.menu {
+  .aha-menu {
+    padding-left: 1em;
+    border-bottom: 0;
+    background: rgba(255, 255, 255, 0);
+
+    .item, a, a:visited, a:active {
+      color: white;
+    }
+
+    .item {
+      border-bottom: 0;
+      padding: 0 10px 0px 0;
+    }
+
+    .item.left {
+      float: left;
+    }
+
+    .item.right {
+      float: right;
+    }
+
+    .logo {
+      font-size: 1.5em;
+    }
+
+    .icon {
+      font-size: 1.1rem;
+    }
+  }
+}

@@ -3,3 +3,16 @@ $fontSizeBase: 14px;
 $smallestDevice: 320px;
 $smallDevice: 492px;
 $tabletDevice: 990px;
+
+@mixin fontDefault() {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+@mixin fontComfortaa() {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+@mixin fontJosefinSlab() {
+  font-family: 'Josefin Slab', sans-serif;
+}
+
