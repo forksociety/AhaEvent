@@ -1,5 +1,3 @@
-import AppStrings from './AppStrings';
-
 const filters = {
   cfp: 'Call For Proposals Open',
   spe: 'Show Past Events',
@@ -15,7 +13,6 @@ const sortBy = {
 
 
 const config = {
-  appStrings: AppStrings,
   appName: 'Aha! Event',
   appAuthor: 'forksociety',
   appAuthorSite: 'https://forksociety.com',
@@ -55,7 +52,7 @@ const config = {
     slack: 'https://slack.forksociety.com',
     slackinvite: 'https://slack-invite.forksociety.com',
     submitevent: 'https://airtable.com/shrNqsWADOUnnO7Yz',
-    report: 'https://gitlab.com/forksociety/AhaEvent/issues',
+    report: 'https://github.com/forksociety/AhaEvent/issues',
   },
   gaTrackingId: 'UA-84775604-4',
   filters,

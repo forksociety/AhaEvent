@@ -8,11 +8,19 @@ import 'antd/dist/antd.less';
 import Config from 'Config';
 import Header from 'Components/Header';
 import Footer from 'Components/Footer';
-import Home from 'Pages/Home/Home';
-import { showBanner, getRedirectUrls } from 'Utils';
+
+import Pages from 'Pages';
+import {
+  showBanner, getRedirectUrls,
+} from 'Utils';
 
 import './App.scss';
-import './App.module.scss';
+
+const {
+  Home,
+  NotFound,
+  SubmitEvent,
+} = Pages;
 
 loadConfig.set(Config);
 
@@ -25,7 +33,13 @@ const Routes = () => (
         path="/"
         render={(props) => <Home {...props} />}
       />
+      <Route
+        exact
+        path="/submit-event"
+        render={(props) => <SubmitEvent {...props} />}
+      />
       {getRedirectUrls()}
+      <Route component={NotFound} />
     </Switch>
     <Footer />
   </>

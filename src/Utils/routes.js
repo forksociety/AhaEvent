@@ -1,4 +1,6 @@
-import { prop } from 'ramda';
+import {
+  prop,
+} from 'ramda';
 
 const getPathName = (location) => prop('pathname', location);
 

@@ -28,6 +28,24 @@ export const showBanner = (location) => {
   return !!pathsForBanner.includes(path);
 };
 
+export const generateRandomString = () => (Math.random().toString(36).substring(2));
+
+export const generateDownloadableFile = (filename, content, type) => {
+  const element = document.createElement("a");
+  const file = new Blob([content], {type});
+  element.href = URL.createObjectURL(file);
+  element.download = filename;
+  // Required for FireFox
+  document.body.appendChild(element);
+  element.click();
+}
+
+export const generateDownloadableJsonFile = (filename, content) => {
+  generateDownloadableFile(filename, JSON.stringify(content, null, 2), 'application/json');
+}
+
+export const readableStringToKey = (s) => s.replace(' ', '_').toLowerCase();
+
 export default {
   Routes,
 };

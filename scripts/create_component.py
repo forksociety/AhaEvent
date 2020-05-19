@@ -12,11 +12,13 @@ if(len(sys.argv) <= 1):
 
 name = sys.argv[1]
 
-parent_dir = './src/Components/'
+component_type = 'Component' if len(sys.argv) <= 2 else sys.argv[2]
+
+parent_dir = './src/{}s/'.format(component_type)
 path = get_path(parent_dir, name)
 
 if os.path.exists(path):
-    print('Component exist')
+    print('{} exist'.format(component_type))
     exit(0)
 
 os.makedirs(path)
@@ -41,5 +43,3 @@ file.close()
 file = open(get_path(path, scss), 'w')
 file.write('')
 file.close()
-
-

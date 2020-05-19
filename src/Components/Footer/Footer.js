@@ -19,8 +19,7 @@ class Footer extends PureComponent {
       },
       {
         text: 'Submit a FLOSS Event',
-        link: '/submitevent',
-        target: '_blank',
+        link: '/submit-event',
       },
       {
         text: 'Report an Issue',
@@ -55,7 +54,7 @@ class Footer extends PureComponent {
   render() {
     const { leftItems, rightItems } = this.getItems();
     const renderItem = ({ text, link, target }) => (
-      <a key={link} href={link} target={target}>
+      <a key={link} href={link} target={target} className={styles.item}>
         {text }
       </a>
     );

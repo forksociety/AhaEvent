@@ -17,13 +17,6 @@ import style from './Nav.module.scss';
 
 
 class Nav extends Component {
-  static isRedirectLink(link) {
-    const redirectUrls = config.get('redirectUrls');
-    return (
-      link.indexOf('http://') !== -1 || link.indexOf('https://') !== -1 || link.substring(1) in redirectUrls
-    );
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -73,6 +66,15 @@ class Nav extends Component {
     }
 
     return items;
+  }
+
+  isRedirectLink(link) {
+    const redirectUrls = config.get('redirectUrls');
+    return (
+      link.indexOf('http://') !== -1
+      || link.indexOf('https://') !== -1
+      || link.substring(1) in redirectUrls
+    );
   }
 
   render() {

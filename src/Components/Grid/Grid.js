@@ -12,15 +12,19 @@ import styles from './Grid.module.scss';
 
 class Grid extends PureComponent {
   getIntents() {
-    const { items } = this.props;
+    const { items, colInfo } = this.props;
+
+    const colProps = colInfo || {
+      span: 8,
+      xs: 24,
+      sm: 12,
+      md: 12,
+      lg: 8,
+      xl: 6,
+    };
     return items.map((item, i) => (
       <Col
-        span={8}
-        xs={24}
-        sm={24}
-        md={8}
-        lg={8}
-        xl={6}
+        {...colProps}
         key={`grid-ele-${i}`}
         className={styles.col}
       >

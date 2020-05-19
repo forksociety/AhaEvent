@@ -28,23 +28,26 @@ body > * {
   min-height: 100vh;
 
   main {
-    padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 5em 7em;
   }
 
   h1 {
-    font-size: 300%;
+    font-size: 3em;
   }
 
   h2 {
-    font-size: 240%;
+    font-size: 2.4em;
   }
 
   h3 {
-    font-size: 180%;
+    font-size: 1.8em;
   }
 
   h4 {
-    font-size: 150%;
+    font-size: 1.5em;
   }
 
   .overlay {
