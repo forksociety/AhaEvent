@@ -103,3 +103,17 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
+## Adding Events
+- Fork the repository.
+- Clone your fork locally.
+- Go to the website and enter the details of the event.
+- Click the download button to get the event's json file.
+- Put this json file into the events folder.
+- run
+  ```shell
+  git add events/<your-downloaded-file>.json
+  git commit -m "<Relevant-commit-message>"
+  git push origin <your-branch>
+  ```
+ - Create a pull request to `forksociety/AhaEvent`'s `master` branch from your branch.
+ - Resolve issues as they are raised in your pull request.
