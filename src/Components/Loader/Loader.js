@@ -3,6 +3,7 @@ import {
   Spin,
 } from 'antd';
 
+import getAppString from 'Config/AppStrings';
 import Icon from 'Components/Icon';
 
 import styles from './Loader.module.scss';
@@ -12,7 +13,7 @@ const Loader = () => {
   return (
     <span className={styles.loader}>
       <Spin className={styles.icon} indicator={icon} />
-      <span>Loading...</span>
+      <span>{getAppString('loadingText')}</span>
     </span>
   );
 };

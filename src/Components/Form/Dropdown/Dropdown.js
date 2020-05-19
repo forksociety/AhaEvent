@@ -5,6 +5,9 @@ import {
 import cx from 'classnames';
 
 import Icon from 'Components/Icon';
+import {
+  generateRandomString,
+} from 'Utils';
 
 import styles from './Dropdown.module.scss';
 
@@ -12,7 +15,7 @@ const { Option } = Select;
 
 const CustomDropdown = ({ items, selected, onChange, className, ...rest }) => {
   const selectedItem = (<span className={styles.item}>{selected}</span>);
-  const popupContainerId = 'dropdown-popup';
+  const popupContainerId = `${styles.date}_${generateRandomString()}`;
 
   return (
     <>

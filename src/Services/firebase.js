@@ -1,7 +1,9 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { sort, reverse } from 'ramda';
+import {
+  sort, reverse,
+} from 'ramda';
 import events from './events.json';
 
 const config = {
@@ -24,7 +26,9 @@ export const createEventsList = () => new Promise((resolve) => {
         const eventURL = `${events[event].Name.replace(/ /g, '-').toLowerCase()}-${docRef.id}`;
         db.collection(process.env.REACT_APP_COLLECTION_KEY)
           .doc(docRef.id)
-          .update({ URL: eventURL })
+          .update({
+            URL: eventURL,
+          })
           .catch(() => resolve(false));
       })
       .catch(() => resolve(false));

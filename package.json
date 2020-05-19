@@ -16,6 +16,7 @@
     "prop-types": "^15.7.2",
     "ramda": "^0.27.0",
     "react": "^16.13.1",
+    "react-color": "^2.18.1",
     "react-dom": "^16.13.1",
     "react-global-configuration": "^1.4.0",
     "react-router-dom": "^5.2.0",
@@ -25,7 +26,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "deploy": "npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
