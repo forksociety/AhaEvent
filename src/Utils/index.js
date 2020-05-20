@@ -36,6 +36,28 @@ export const convertDateToIso = (d) => {
     return moment(d).utc().format(dateFormat);
 }
 
+export const converDateToReadable = (d, showYear = true, showTime = false, showTimezone = false) => {
+  let format = 'MMMM Do';
+  if(showYear) {
+    format += ' YYYY';
+  }
+
+  if(showTime) {
+    format += ', h:mm:ss a';
+  }
+  return moment(d).format(format)
+}
+
+export const converDateRangeToReadable = (start, end) => {
+  // if years match
+  let startStr = converDateToReadable(start)
+  let endStr = converDateToReadable(end)
+  if(moment(start).format('YYYY') === moment(end).format('YYYY')) {
+    startStr = converDateToReadable(start, false)
+  }
+  return `${startStr} - ${endStr}`
+}
+
 export const generateSchema = (content) => {
   const { cfpDate, date, hasCfp, ...rest } = content;
 
@@ -81,7 +103,16 @@ export const generateDownloadableJsonFile = (filename, content) => {
   generateDownloadableFile(filename, JSON.stringify(data, null, 2), 'application/json');
 };
 
-export const readableStringToKey = (s) => s.replace(' ', '_').toLowerCase();
+export const readableStringToKey = (s, separator = '_') => s.replace(' ', separator).toLowerCase();
+
+export const generateEventUrl = (id, name) => {
+  return (`/event/${readableStringToKey(name, '-')}-${id}`)
+}
+
+export const getIdFromUrlSlug = (slug, separator = '_') => {
+  const tmp = slug.split(separator)
+  return tmp.length > 0 ? tmp[tmp.length - 1] : null;
+}
 
 export default {
   Routes,
