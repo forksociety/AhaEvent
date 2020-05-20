@@ -1,0 +1,23 @@
+{
+    "name": "Embedded Linux Conference & OpenIoT Summit Europe 2018",
+    "organization": "The Linux Foundation",
+    "location": "Edinburgh International Conference Centre Edinburgh, UK",
+    "description": "Embedded Linux Conference is the premier vendor-neutral technical conference for companies and developers using Linux in embedded products. Now in its 13th year, the conference gathers user-space developers, product vendors, kernel, and systems developers to collaborate.\n\nOpenIoT Summit is a technical conference for the developers and architects working on industrial IoT. It provides the technical knowledge needed to deliver smart connected products and solutions that take advantage of the rapid evolution of IoT technologies. It is the only IoT event focused on the development of open IoT solutions",
+    "keywords": [
+        "Linux Foundation",
+        "Linux",
+        "Embedded and IoT",
+        "Europe"
+    ],
+    "startDate": "2018-10-22T00:00:00+00:00",
+    "endDate": "2018-10-24T00:00:00+00:00",
+    "cfpStartDate": "2017-11-20T00:00:00+00:00",
+    "cfpEndDate": "2018-06-24T00:00:00+00:00",
+    "logo": "elc_openiot.png (https://dl.airtable.com/q2GPPpcxSwqMjMEYDgt1_elc_openiot.png)",
+    "cover": "edinburgh2.jpg (https://dl.airtable.com/1FZYBu1LTPe2fDNGTYPJ_edinburgh2.jpg)",
+    "coverBgColor": null,
+    "link": "https://events.linuxfoundation.org/events/elc-openiot-europe-2018/",
+    "streamLink": "https://events.linuxfoundation.org/events/elc-openiot-europe-2018/attend/register/",
+    "twitterHandle": "linuxfoundation",
+    "submitterTwitterHandle": "PrabhanshuAttri"
+}

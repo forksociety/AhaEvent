@@ -1,0 +1,23 @@
+{
+    "name": "PyCon UK 2018",
+    "organization": "Python Software Foundation",
+    "location": "Cardiff City Hall, Cardiff, UK",
+    "description": null,
+    "keywords": [
+        "Python",
+        "PyCon",
+        "Python Software Foundation",
+        "Europe"
+    ],
+    "startDate": "2018-09-15T00:00:00+00:00",
+    "endDate": "2018-09-19T00:00:00+00:00",
+    "cfpStartDate": "2018-04-19T00:00:00+00:00",
+    "cfpEndDate": "2018-06-15T00:00:00+00:00",
+    "logo": "crown.svg (https://dl.airtable.com/jBWe3DxOSEeIgiIWkXEv_crown.svg)",
+    "cover": null,
+    "coverBgColor": "#fdcb30",
+    "link": "https://2018.pyconuk.org",
+    "streamLink": "https://2018.pyconuk.org/tickets/",
+    "twitterHandle": "pyconuk",
+    "submitterTwitterHandle": "PrabhanshuAttri"
+}

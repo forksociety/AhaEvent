@@ -1,0 +1,24 @@
+{
+    "name": "NodeConf EU 2018",
+    "organization": "NodeJS Foundation",
+    "location": "Lyrath Estate, Kilkenny, Ireland",
+    "description": null,
+    "keywords": [
+        "NodeJS",
+        "Javascript",
+        "Europe",
+        "NodeConf",
+        "NodeJS Foundation"
+    ],
+    "startDate": "2018-11-04T00:00:00+00:00",
+    "endDate": "2018-11-07T00:00:00+00:00",
+    "cfpStartDate": "2018-02-28T00:00:00+00:00",
+    "cfpEndDate": "2018-06-10T00:00:00+00:00",
+    "logo": "nodeconf-eu-kilkenny-2018-logo.png (https://dl.airtable.com/we0wtesvTsaeknsZvJCI_nodeconf-eu-kilkenny-2018-logo.png)",
+    "cover": null,
+    "coverBgColor": "#000000",
+    "link": "https://www.nodeconf.eu",
+    "streamLink": "https://ti.to/nearform/NodeConf-EU-2018/with/41cush4kkzu",
+    "twitterHandle": "nodeconfeu",
+    "submitterTwitterHandle": "PrabhanshuAttri"
+}

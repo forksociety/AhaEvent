@@ -9,7 +9,6 @@ jobs:
       script:
         - echo "Ordinary push"
         - python ./scripts/travis_env_test.py
-
     - if: type = push AND branch = master
       install:
         - pip install -r requirements.txt
