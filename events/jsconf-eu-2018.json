@@ -1,0 +1,24 @@
+{
+    "name": "JSConf EU 2018",
+    "organization": "JSConf",
+    "location": "Arena Berlin, Eichenstra\u00dfe 4, 12435 Berlin, Germany",
+    "description": "JSConf EU is a professional, not-for-profit, labour-of-love conference for the JavaScript community. It\u2019s a two day affair, with many related side events in the days surrounding it. JSConf EU is an invitation for the community to come together and for new people to get to know and join the community.",
+    "keywords": [
+        "Javascript",
+        "NodeJS",
+        "ReactJS",
+        "JSConf",
+        "Europe"
+    ],
+    "startDate": "2018-06-02T00:00:00+00:00",
+    "endDate": "2018-06-03T00:00:00+00:00",
+    "cfpStartDate": "2017-11-30T00:00:00+00:00",
+    "cfpEndDate": "2018-01-01T00:00:00+00:00",
+    "logo": "jsconf-eu-berlin-2018-logo.svg (https://dl.airtable.com/WN5ISSjrT4aVpvKqdezg_jsconf-eu-berlin-2018-logo.svg)",
+    "cover": null,
+    "coverBgColor": "#EEEEEE",
+    "link": "https://2018.jsconf.eu",
+    "streamLink": "https://2018.jsconf.eu/news/sold-out/",
+    "twitterHandle": "jsconfeu",
+    "submitterTwitterHandle": "PrabhanshuAttri"
+}

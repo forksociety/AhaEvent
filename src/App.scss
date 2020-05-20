@@ -1,0 +1,61 @@
+@import 'styles/variables.scss';
+
+* {
+  @include fontDefault();
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: auto;
+  font-size: $fontSizeBase;
+  width: 100%;
+  background: #f0f2f5;
+}
+
+body > * {
+  height: auto;
+  min-height: inherit;
+}
+
+#root {
+  position: relative;
+  min-height: 100vh;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 5em 7em;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2.4em;
+  }
+
+  h3 {
+    font-size: 1.8em;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  }
+
+  .overlay {
+    z-index: 10;
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    background: rgba(0,0,0,0.3);
+    left: 0; top: 0; right: 0; bottom: 0;
+  }
+}

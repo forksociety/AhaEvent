@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "ahaeventorg",
-    "staging": "dev-ahaeventorg"
+    "default": "dev-ahaevent"
   }
 }

@@ -1,0 +1,42 @@
+$search-border-radius: 0.8em;
+
+.search {
+  width: 100%;
+  margin: 1em 0;
+  z-index: 1111;
+
+  &:focus {
+    outline: none;
+  }
+
+  input {
+    border-top-left-radius: $search-border-radius;
+    border-bottom-left-radius: $search-border-radius;
+  }
+
+  button, :global(.ant-input-group-addon) {
+    border-top-right-radius: $search-border-radius;
+    border-bottom-right-radius: $search-border-radius;
+  }
+
+  :global(.ant-menu-item) :global(.anticon) {
+    margin-right: 0;
+  }
+}
+
+.filter-sort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .sort {
+    margin-right: 0.6em;
+  }
+
+  .filter {
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+}
