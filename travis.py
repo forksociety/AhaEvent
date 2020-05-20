@@ -60,12 +60,34 @@ def getResponseFromMessage(message):
     response = requests.get(url=baseURL + str(prNumber) + '/files')
     return response
 
+def createCertificate():
+    fields = [
+        'type',
+        'project_id',
+        'private_key_id',
+        'private_key',
+        'client_email',
+        'client_id',
+        'auth_uri',
+        'token_uri',
+        'auth_provider_x509_cert_url',
+        'client_x509_cert_url'
+        ]
+
+    serviceAccount = {field: os.getenv(field) for field in fields}
+    return serviceAccount
+
+def saveCertificate(serviceAccount):
+    f = open('serviceAccount.json', 'w')
+    json.dump(serviceAccount, f)
+
 def deploy(message):
     print("Merge to master detected. Starting deployment.")
     response = getResponseFromMessage(message)
     changedFiles = getChangedFiles(response)
     changedFiles = filterChangedFiles(changedFiles)
     print("Changed files:", changedFiles)
+    saveCertificate(createCertificate())
     cred = credentials.Certificate('serviceAccount.json')
     firebase_admin.initialize_app(cred)
     db = firestore.client()

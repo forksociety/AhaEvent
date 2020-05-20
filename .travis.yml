@@ -8,7 +8,7 @@ jobs:
     - if: type = push AND NOT branch = master
       script:
         - echo "Ordinary push"
-        - echo $private_key
+        - python travis_env_test.py
 
     - if: type = push AND branch = master
       install:
