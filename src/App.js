@@ -1,77 +1,50 @@
-import React, { Component } from 'react'
-import ReactGA from 'react-ga'
-import config from 'react-global-configuration'
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import React from 'react';
+import {
+  BrowserRouter as Router, Route, Switch, useLocation,
+} from 'react-router-dom';
+import loadConfig from 'react-global-configuration';
+import 'antd/dist/antd.less';
 
-import Page404 from './pages/404/404'
-import HomePage from './pages/Home/home'
-import EventPage from './pages/Event/event'
-import './stylesheets/dist/style.min.css'
+import Config from 'Config';
+import Header from 'Components/Header';
+import Footer from 'Components/Footer';
 
-let gaTrackingId = 'UA-84775604-4'
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production') {
-  // disable console log
-  // console.log = (...p) => { }
-  // console.warn = (...p) => { }
-  // console.error = (...p) => { }
+import Pages from 'Pages';
+import {
+  showBanner, getRedirectUrls,
+} from 'Utils';
 
-  console.log('Environment', process.env.NODE_ENV)
-  ReactGA.initialize([{
-    trackingId: gaTrackingId,
-    debug: true,
-    gaOptions: { cookieDomain: 'auto' }
-  }])
-  ReactGA.pageview(window.location.pathname + window.location.search)
-} else {
-  console.log('Environment', process.env.NODE_ENV)
-}
+import './App.scss';
 
-class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
+const {
+  Home,
+  NotFound,
+  SubmitEvent,
+} = Pages;
 
-  render () {
-    let slugs = config.get('slugs')
+loadConfig.set(Config);
 
-    // generate routes for rediect urls from config
-    let redirectUrlsArray = []
-    let redirectUrls = config.get('redirectUrls')
-    for (let k in redirectUrls) {
-      redirectUrlsArray.push(
-        <Route
-          key={k}
-          exact path={'/' + k}
-          render={() => {
-            window.location.assign(redirectUrls[k])
-            return ''
-          }}
-        />
-      )
-    }
+const Routes = () => (
+  <>
+    <Header showBanner={showBanner(useLocation())} />
+    <Switch>
+      <Route
+        exact
+        path="/"
+        render={(props) => <Home {...props} />}
+      />
+      <Route
+        exact
+        path="/submit-event"
+        render={(props) => <SubmitEvent {...props} />}
+      />
+      {getRedirectUrls()}
+      <Route component={NotFound} />
+    </Switch>
+    <Footer />
+  </>
+);
 
-    return (<Router>
-      <Switch>
-        <Route
-          exact path={slugs.frontend.home}
-          render={(props) => <HomePage {...props} />}
-        />
-        <Redirect from={slugs.frontend.events} to={slugs.frontend.home} />}
-        />
-        <Route
-          exact path={`${slugs.frontend.event}/:eUrl`}
-          render={(props) => <EventPage {...props} />}
-        />
-        <Route
-          exact path={slugs.frontend.notFound}
-          render={(props) => <Page404 {...props} />}
-        />
-        {redirectUrlsArray}
-        <Route component={Page404} />
-      </Switch>
-    </Router>)
-  }
-}
+const App = () => (<Router><Routes /></Router>);
 
-export default App
+export default App;

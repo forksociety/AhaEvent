@@ -1,0 +1,56 @@
+@import 'styles/variables.scss';
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+.awesome-header {
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  color: #fff;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+
+  .banner {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em 1.5em;
+
+    .logo {
+      font-size: 6em;
+      line-height: 1em;
+    }
+
+    .tagline {
+      font-size: 1.8em;
+      text-align: center;
+      @include fontJosefinSlab();
+    }
+
+    .search {
+      width: 60%;
+    }
+  }
+}
+
+@media only screen and (max-width: $smallDevice) {
+  .awesome-header {
+    .logo {
+      font-size: 380%;
+    }
+
+    .tagline {
+      font-size: 135%;
+    }
+  }
+}
