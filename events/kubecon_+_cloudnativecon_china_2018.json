@@ -13,11 +13,10 @@
     "endDate": "2018-11-15T00:00:00+00:00",
     "cfpStartDate": "2018-05-21T00:00:00+00:00",
     "cfpEndDate": "2018-07-06T00:00:00+00:00",
-    "logo": "logo_kc_cnc_cn18w.png (https://dl.airtable.com/N31ydQOuS0CmUOb7lkdF_logo_kc_cnc_cn18w.png)",
+    "logo": "https://dl.airtable.com/N31ydQOuS0CmUOb7lkdF_logo_kc_cnc_cn18w.png",
     "cover": "shanghai-1.jpg (https://dl.airtable.com/JiZTXVyxTz252jiYwuix_shanghai-1.jpg)",
     "coverBgColor": null,
     "link": "https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2018/",
-    "streamLink": "https://www.bagevent.com/event/kubecon-cloudnativecon-china-2018-e",
     "twitterHandle": "linuxfoundation",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

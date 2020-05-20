@@ -14,11 +14,10 @@
     "endDate": "2018-08-24T00:00:00+00:00",
     "cfpStartDate": "2018-01-23T00:00:00+00:00",
     "cfpEndDate": "2018-03-06T00:00:00+00:00",
-    "logo": "jupytercon-new-york-2018-logo.svg (https://dl.airtable.com/LCgR6t0kS8qwNfafhQWn_jupytercon-new-york-2018-logo.svg)",
+    "logo": "https://dl.airtable.com/LCgR6t0kS8qwNfafhQWn_jupytercon-new-york-2018-logo.svg",
     "cover": null,
     "coverBgColor": "#424242",
     "link": "https://conferences.oreilly.com/jupyter/jup-ny",
-    "streamLink": "https://conferences.oreilly.com/jupyter/jup-ny/public/register",
     "twitterHandle": "JupyterCon",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

@@ -13,11 +13,10 @@
     "endDate": "2018-06-29T00:00:00+00:00",
     "cfpStartDate": "2018-05-07T00:00:00+00:00",
     "cfpEndDate": "2018-05-20T00:00:00+00:00",
-    "logo": "europython-edinburgh-2018-logo.png (https://dl.airtable.com/1SrFkfMGSD2DUbLzVU3k_europython-edinburgh-2018-logo.png)",
+    "logo": "https://dl.airtable.com/1SrFkfMGSD2DUbLzVU3k_europython-edinburgh-2018-logo.png",
     "cover": null,
     "coverBgColor": null,
     "link": "http://ep2018.europython.eu/en/",
-    "streamLink": "http://ep2018.europython.eu/en/registration/buy-tickets/",
     "twitterHandle": "europython",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

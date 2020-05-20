@@ -14,11 +14,10 @@
     "endDate": "2018-06-03T00:00:00+00:00",
     "cfpStartDate": "2017-11-30T00:00:00+00:00",
     "cfpEndDate": "2018-01-01T00:00:00+00:00",
-    "logo": "jsconf-eu-berlin-2018-logo.svg (https://dl.airtable.com/WN5ISSjrT4aVpvKqdezg_jsconf-eu-berlin-2018-logo.svg)",
+    "logo": "https://dl.airtable.com/WN5ISSjrT4aVpvKqdezg_jsconf-eu-berlin-2018-logo.svg",
     "cover": null,
     "coverBgColor": "#EEEEEE",
     "link": "https://2018.jsconf.eu",
-    "streamLink": "https://2018.jsconf.eu/news/sold-out/",
     "twitterHandle": "jsconfeu",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

@@ -14,11 +14,10 @@
     "endDate": "2018-08-23T00:00:00+00:00",
     "cfpStartDate": "2018-03-28T00:00:00+00:00",
     "cfpEndDate": "2018-05-01T00:00:00+00:00",
-    "logo": "jsconf-us-carlsbad-2018-logo.png (https://dl.airtable.com/ZQEgLD5ERrmxtjOlmyvt_jsconf-us-carlsbad-2018-logo.png)",
+    "logo": "https://dl.airtable.com/ZQEgLD5ERrmxtjOlmyvt_jsconf-us-carlsbad-2018-logo.png",
     "cover": "jsconf-us-carlsbad-2018-cover.jpg (https://dl.airtable.com/IAfryfnsQziRtuPLEvMR_jsconf-us-carlsbad-2018-cover.jpg)",
     "coverBgColor": null,
     "link": "https://2018.jsconf.us/",
-    "streamLink": "https://2018.jsconf.us/tickets/",
     "twitterHandle": "jsconfus",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

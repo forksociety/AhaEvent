@@ -14,11 +14,10 @@
     "endDate": "2018-10-12T00:00:00+00:00",
     "cfpStartDate": "2018-02-01T00:00:00+00:00",
     "cfpEndDate": "2018-04-20T00:00:00+00:00",
-    "logo": "js-interactive-vancouver-2018-logo.png (https://dl.airtable.com/0iGYzzkKQ3SUk17JUNE1_js-interactive-vancouver-2018-logo.png)",
+    "logo": "https://dl.airtable.com/0iGYzzkKQ3SUk17JUNE1_js-interactive-vancouver-2018-logo.png",
     "cover": "js-interactive-vancouver-2018-cover.jpg (https://dl.airtable.com/yH8cXX9RJuIdauRnoG2x_js-interactive-vancouver-2018-cover.jpg)",
     "coverBgColor": null,
     "link": "https://events.linuxfoundation.org/events/js-interactive-2018/",
-    "streamLink": "https://www.regonline.com/registration/Checkin.aspx?EventID=2152653",
     "twitterHandle": "linuxfoundation",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

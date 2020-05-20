@@ -13,11 +13,10 @@
     "endDate": "2018-10-28T00:00:00+00:00",
     "cfpStartDate": "2018-05-03T00:00:00+00:00",
     "cfpEndDate": "2018-06-03T00:00:00+00:00",
-    "logo": "pycon-germany-karlsruhe-2018-logo.png (https://dl.airtable.com/dvUL63lMRUC3raOmoMHN_pycon-germany-karlsruhe-2018-logo.png)",
+    "logo": "https://dl.airtable.com/dvUL63lMRUC3raOmoMHN_pycon-germany-karlsruhe-2018-logo.png",
     "cover": null,
     "coverBgColor": null,
     "link": "https://de.pycon.org/",
-    "streamLink": "https://de.pycon.org/tickets/",
     "twitterHandle": "PyConDE",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

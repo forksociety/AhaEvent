@@ -13,11 +13,10 @@
     "endDate": "2018-08-12T00:00:00+00:00",
     "cfpStartDate": "2018-05-20T00:00:00+00:00",
     "cfpEndDate": "2018-06-20T00:00:00+00:00",
-    "logo": "pydata-delhi-conference-delhi-2018-logo.png (https://dl.airtable.com/BXgEKbPaTXqNB6TYFBsF_pydata-delhi-conference-delhi-2018-logo.png)",
+    "logo": "https://dl.airtable.com/BXgEKbPaTXqNB6TYFBsF_pydata-delhi-conference-delhi-2018-logo.png",
     "cover": null,
     "coverBgColor": null,
     "link": "https://pydata.org/delhi2018/",
-    "streamLink": "https://in.explara.com/e/pydata-delhi-2018",
     "twitterHandle": "pydatadelhi",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

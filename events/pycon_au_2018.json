@@ -12,11 +12,10 @@
     "endDate": "2018-08-26T00:00:00+00:00",
     "cfpStartDate": "2018-04-23T00:00:00+00:00",
     "cfpEndDate": "2018-05-28T00:00:00+00:00",
-    "logo": "pycon-australia-sydney-2018-logo.png (https://dl.airtable.com/O13T2YbSziMp8SAXkpyC_pycon-australia-sydney-2018-logo.png)",
+    "logo": "https://dl.airtable.com/O13T2YbSziMp8SAXkpyC_pycon-australia-sydney-2018-logo.png",
     "cover": "pycon-australia-sydney-2018-cover.jpg (https://dl.airtable.com/96AuoOVoTfyVJLUBAPzP_pycon-australia-sydney-2018-cover.jpg)",
     "coverBgColor": null,
     "link": "https://2018.pycon-au.org/",
-    "streamLink": "https://2018.pycon-au.org/attend/",
     "twitterHandle": "pyconau",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

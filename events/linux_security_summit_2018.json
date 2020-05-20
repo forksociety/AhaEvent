@@ -13,11 +13,10 @@
     "endDate": "2018-08-28T00:00:00+00:00",
     "cfpStartDate": "2018-04-09T00:00:00+00:00",
     "cfpEndDate": "2018-06-03T00:00:00+00:00",
-    "logo": "linux-security-summit-vancouver-2018-logo.png (https://dl.airtable.com/2uLxzD1URUiF7ZY7o3iy_linux-security-summit-vancouver-2018-logo.png)",
+    "logo": "https://dl.airtable.com/2uLxzD1URUiF7ZY7o3iy_linux-security-summit-vancouver-2018-logo.png",
     "cover": "linux-security-summit-vancouver-2018-cover.jpg (https://dl.airtable.com/lBktLh7pTXmglnTz25OE_linux-security-summit-vancouver-2018-cover.jpg)",
     "coverBgColor": null,
     "link": "https://events.linuxfoundation.org/events/linux-security-summit-north-america-2018/",
-    "streamLink": "https://events.linuxfoundation.org/events/linux-security-summit-north-america-2018/attend/register/",
     "twitterHandle": "linuxfoundation",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }

@@ -12,11 +12,10 @@
     "endDate": "2018-08-12T00:00:00+00:00",
     "cfpStartDate": "2018-04-27T00:00:00+00:00",
     "cfpEndDate": "2018-05-25T00:00:00+00:00",
-    "logo": "gnome-asia-taipei-2018-logo.svg (https://dl.airtable.com/61PXoLaARkeB3QezXeGA_gnome-asia-taipei-2018-logo.svg)",
+    "logo": "https://dl.airtable.com/61PXoLaARkeB3QezXeGA_gnome-asia-taipei-2018-logo.svg",
     "cover": null,
     "coverBgColor": "#4a86cf",
     "link": "http://2018.gnome.asia/",
-    "streamLink": "https://2018.gnome.asia/registration",
     "twitterHandle": "gnome",
     "submitterTwitterHandle": "PrabhanshuAttri"
 }
