@@ -4,6 +4,7 @@ import React, {
 import {
   Layout,
 } from 'antd';
+import { Link } from 'react-router-dom'
 import config from 'react-global-configuration';
 
 import styles from './Footer.module.scss';
@@ -54,9 +55,9 @@ class Footer extends PureComponent {
   render() {
     const { leftItems, rightItems } = this.getItems();
     const renderItem = ({ text, link, target }) => (
-      <a key={link} href={link} target={target} className={styles.item}>
-        {text }
-      </a>
+      <Link key={link} to={link} className={styles.item} target={target}>
+        {text}
+      </Link>
     );
 
     const renderItems = (items) => {
