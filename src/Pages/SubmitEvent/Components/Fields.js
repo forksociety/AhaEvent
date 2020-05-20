@@ -28,6 +28,8 @@ const validations = {
 
 export const isValidValue = (v) => (validations.notEmpty(v) || validations.isBool(v))
 
+const defaultDate = () => moment().startOf('day');
+
 const Fields = {
   name: {
     text: 'Name',
@@ -87,7 +89,7 @@ const Fields = {
   },
   date: {
     text: 'Event Date and Time',
-    value: [moment(), moment()],
+    value: [defaultDate(), defaultDate()],
     component: formElements.range,
     type: 'date',
     required: true,
@@ -102,7 +104,7 @@ const Fields = {
   },
   cfpDate: {
     text: 'Call For Proposal Dates',
-    value: [moment(), moment()],
+    value: [defaultDate(), defaultDate()],
     component: formElements.range,
     type: 'date',
     validate: validations.date,

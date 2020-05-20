@@ -59,11 +59,13 @@ export const converDateRangeToReadable = (start, end) => {
 }
 
 export const generateSchema = (content) => {
-  const { cfpDate, date, hasCfp, ...rest } = content;
+  const { cfpDate, date, hasCfp, keywords, ...rest } = content;
 
   let payload = {
     ...rest
   }
+
+  const keywordsArr = keywords.split(',').map((i) => i.trim())
   let [startDate, endDate] = date;
   startDate = convertDateToIso(startDate);
   endDate = convertDateToIso(endDate);
@@ -83,6 +85,7 @@ export const generateSchema = (content) => {
     ...payload,
     startDate,
     endDate,
+    keywords: keywordsArr,
   });
 };
 
@@ -103,10 +106,10 @@ export const generateDownloadableJsonFile = (filename, content) => {
   generateDownloadableFile(filename, JSON.stringify(data, null, 2), 'application/json');
 };
 
-export const readableStringToKey = (s, separator = '_') => s.replace(' ', separator).toLowerCase();
+export const readableStringToKey = (s, regex = / /g, separator = '_') => s.replace(regex, separator).toLowerCase();
 
 export const generateEventUrl = (id, name) => {
-  return (`/event/${readableStringToKey(name, '-')}-${id}`)
+  return (`/event/${readableStringToKey(name, / /g, '-')}-${id}`)
 }
 
 export const getIdFromUrlSlug = (slug, separator = '_') => {
