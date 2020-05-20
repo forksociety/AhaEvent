@@ -1,7 +1,6 @@
 import React, {
   Component,
 } from 'react';
-import moment from 'moment';
 import {
   reduce,
 } from 'ramda';
@@ -11,7 +10,6 @@ import {
 
 import Content from 'Components/Content';
 import Form from 'Components/Form';
-import C from 'Config/Constants';
 import {
   getSubmitEventHelpText,
 } from 'Config/AppStrings';
@@ -19,127 +17,10 @@ import {
   generateDownloadableJsonFile, readableStringToKey,
 } from 'Utils';
 
+import FormFields, {isValidValue} from './Components/Fields';
 import styles from './SubmitEvent.module.scss';
 
-const { INPUT_TYPES, DATE_TYPES } = C;
-
-const { FormContainer, Input, DatePicker, ColorPicker } = Form;
-
-
-const formElements = {
-  input: (props) => (<Input {...props} />),
-  text: (props) => (<Input {...props} type={INPUT_TYPES.TEXTAREA} />),
-  range: (props) => (<DatePicker {...props} type={DATE_TYPES.RANGE_TIME} />),
-  color: (props) => (<ColorPicker {...props} />),
-};
-
-const validations = {
-  input: (v) => (/^[a-z 0-9]+$/i.test(v)),
-  date: (v) => {
-    const [start, end] = v;
-    return (start.isValid() && end.isValid());
-  },
-  color: (v) => (/^#[0-9A-F]{6}$/i.test(v)),
-  notEmpty: (v) => (/^.{1,}$/i.test(v))
-};
-
-const elements = {
-  name: {
-    text: 'Name',
-    component: formElements.input,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  description: {
-    text: 'Description',
-    component: formElements.text,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  keywords: {
-    text: 'Keywords',
-    component: formElements.input,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  location: {
-    text: 'Location Address',
-    component: formElements.text,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  logo: {
-    text: 'Event Logo Link',
-    component: formElements.input,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  organization: {
-    text: 'Organization',
-    component: formElements.input,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  link: {
-    text: 'Event URL',
-    component: formElements.input,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  date: {
-    text: 'Event Date and Time',
-    component: formElements.range,
-    type: 'date',
-    required: true,
-    validate: validations.date,
-  },
-  cfpDate: {
-    text: 'Call For Proposal Dates',
-    component: formElements.range,
-    type: 'date',
-    required: true,
-    validate: validations.date,
-  },
-  cover: {
-    text: 'Event Cover Link',
-    component: formElements.input,
-    type: 'input',
-    validate: validations.notEmpty,
-  },
-  coverBgColor: {
-    text: 'Cover Color',
-    component: formElements.color,
-    type: 'color',
-    required: true,
-    validate: validations.color,
-  },
-  twitterHandle: {
-    text: 'Event Twitter Handle',
-    component: formElements.input,
-    type: 'input',
-    required: true,
-    validate: validations.notEmpty,
-  },
-  streamLink: {
-    text: 'Streaming Link',
-    component: formElements.input,
-    type: 'input',
-    validate: validations.notEmpty,
-  },
-  submitterTwitterHandle: {
-    text: 'Your Twitter Handle',
-    component: formElements.input,
-    type: 'input',
-    validate: validations.notEmpty,
-  },
-};
+const { FormContainer } = Form;
 
 class SubmitEvent extends Component {
   constructor(props) {
@@ -150,17 +31,7 @@ class SubmitEvent extends Component {
   }
 
   componentDidMount() {
-    const formDataInit = reduce(
-      (acc, i) => {
-        const val = ['cfpDate', 'date'].includes(i) ? [moment(), moment()] : '';
-        return ({
-          ...acc, [i]: val,
-        });
-      },
-      {
-      },
-      Object.keys(elements),
-    );
+    const formDataInit = reduce((acc, key) => ({...acc, [key]: FormFields[key].value,}),{},Object.keys(FormFields));
     this.setState({
       formData: formDataInit,
     });
@@ -169,12 +40,12 @@ class SubmitEvent extends Component {
   getColConfig() {
     return ({
       labelCol: {
-        xs: {
-          span: 24,
-        },
-        sm: {
-          span: 6,
-        },
+        xs: 24,
+        sm: 24,
+        md: 8,
+        lg: 8,
+
+
       },
       wrapperCol: 24,
     });
@@ -182,6 +53,7 @@ class SubmitEvent extends Component {
 
   handleInputChange(para, key, type) {
     const { formData } = this.state;
+    const { target } = para;
     let fieldVal = '';
     switch (type) {
       case 'date':
@@ -191,9 +63,14 @@ class SubmitEvent extends Component {
         const { hex } = para;
         fieldVal = hex;
         break;
+      case 'checkbox':
+        if (target) {
+          const { checked } = target;
+          fieldVal = checked;
+        }
+        break;
       case 'input':
       default:
-        const { target } = para;
         if (target) {
           const { value } = target;
           fieldVal = value;
@@ -201,9 +78,8 @@ class SubmitEvent extends Component {
         break;
     }
 
-    const validate = elements[key].validate;
-
-    elements[key].error = !validate(fieldVal);
+    const validate = FormFields[key].validate;
+    FormFields[key].error = validate ? !validate(fieldVal) : false;
 
     this.setState({
       formData: {
@@ -213,42 +89,44 @@ class SubmitEvent extends Component {
     });
   }
 
-  getFormElements() {
+  getFormFormFields() {
     const { formData } = this.state;
     if (formData) {
-      return Object.keys(elements).map((key) => {
-        const { text, component: Component, error, type, required } = elements[key];
+      return Object.keys(FormFields).map((key) => {
+        const { text, component: Component, error, type, required, showIf } = FormFields[key];
         const helpText = getSubmitEventHelpText(key);
         const value = formData[key];
+        const show = showIf ? formData[showIf] : true;
 
-        const compProps = {
-        };
-        if (type === 'color') {
-          compProps[type] = value;
-        } else {
-          compProps.value = value;
+        if(show) {
+          const compProps = {};
+          if (type === 'color') {
+            compProps[type] = value;
+          } else {
+            compProps.value = value;
+          }
+          return (
+            <FormContainer.Item
+              key={key}
+              label={text}
+              className={styles.field}
+              validateStatus={error ? 'error' : null}
+              help={error ? helpText : null}
+              rules={[{
+                required, message: helpText,
+              }]}
+            >
+              <Component
+                {...compProps}
+                placeholder={helpText}
+                onChange={(e) => this.handleInputChange(e, key, type)}
+              />
+            </FormContainer.Item>
+          );
         }
-        return (
-          <FormContainer.Item
-            key={key}
-            label={text}
-            className={styles.field}
-            validateStatus={error ? 'error' : null}
-            help={error ? helpText : null}
-            rules={[{
-              required, message: helpText,
-            }]}
-          >
-            <Component
-              {...compProps}
-              placeholder={helpText}
-              onChange={(e) => this.handleInputChange(e, key, type)}
-            />
-          </FormContainer.Item>
-        );
+        return null;
       });
     }
-
     return null;
   }
 
@@ -257,14 +135,14 @@ class SubmitEvent extends Component {
 
     const isComplete = reduce((acc, key) => {
       const { formData } = this.state;
-      const noErrorFound = 'error' in elements[key] ? elements[key].error : true;
+      const noErrorFound = 'error' in FormFields[key] ? !FormFields[key].error : true;
 
-      const requiredField = (elements[key].required ? (!!formData[key]) : true);
+      const requiredField = (FormFields[key].required ? (isValidValue(formData[key])) : true);
       if (!requiredField) {
-        elements[key].error = true;
+        FormFields[key].error = true;
       }
       return (acc && noErrorFound && requiredField);
-    }, true, Object.keys(elements));
+    }, true, Object.keys(FormFields));
 
     if (isComplete) {
       const { name } = formData;
@@ -290,7 +168,7 @@ class SubmitEvent extends Component {
           className={styles.form}
           {...formItemLayout}
         >
-          {this.getFormElements()}
+          {this.getFormFormFields()}
           <Button
             onClick={() => this.downloadFile()}
             type="primary"

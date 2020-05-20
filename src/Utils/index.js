@@ -31,26 +31,36 @@ export const showBanner = (location) => {
 
 export const generateRandomString = () => (Math.random().toString(36).substring(2));
 
-export const generateSchema = (content) => {
-  const { cfpDate, date, ...rest } = content;
-  let [cfpStartDate, cfpEndDate] = cfpDate;
-  let [startDate, endDate] = date;
-
-  const convertDateToIso = (d) => {
+export const convertDateToIso = (d) => {
     const dateFormat = 'YYYY-MM-DDThh:mm:ss+00:00';
     return moment(d).utc().format(dateFormat);
-  };
+}
 
+export const generateSchema = (content) => {
+  const { cfpDate, date, hasCfp, ...rest } = content;
+
+  let payload = {
+    ...rest
+  }
+  let [startDate, endDate] = date;
   startDate = convertDateToIso(startDate);
   endDate = convertDateToIso(endDate);
-  cfpStartDate = convertDateToIso(cfpStartDate);
-  cfpEndDate = convertDateToIso(cfpEndDate);
+
+  if(hasCfp) {
+    let [cfpStartDate, cfpEndDate] = cfpDate;
+    cfpStartDate = convertDateToIso(cfpStartDate);
+    cfpEndDate = convertDateToIso(cfpEndDate);
+    payload = {
+      ...payload,
+      cfpStartDate,
+      cfpEndDate
+    }
+  }
+
   return ({
-    ...rest,
+    ...payload,
     startDate,
     endDate,
-    cfpStartDate,
-    cfpEndDate,
   });
 };
 

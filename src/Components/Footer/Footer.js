@@ -4,8 +4,9 @@ import React, {
 import {
   Layout,
 } from 'antd';
-import { Link } from 'react-router-dom'
 import config from 'react-global-configuration';
+
+import Link from 'Components/Link';
 
 import styles from './Footer.module.scss';
 
@@ -13,13 +14,10 @@ const { Footer: AntFooter } = Layout;
 
 class Footer extends PureComponent {
   getItems() {
+    const appAuthorEmail = config.get('appAuthorEmail')
     const leftItems = [
       {
-        text: 'About',
-        link: '#about',
-      },
-      {
-        text: 'Submit a FLOSS Event',
+        text: 'Submit an Event',
         link: '/submit-event',
       },
       {
@@ -29,7 +27,7 @@ class Footer extends PureComponent {
       },
       {
         text: 'Contact Us',
-        link: '/mail',
+        link: `mailto:${appAuthorEmail}`,
         target: '_blank',
       },
     ];
@@ -54,11 +52,13 @@ class Footer extends PureComponent {
 
   render() {
     const { leftItems, rightItems } = this.getItems();
-    const renderItem = ({ text, link, target }) => (
+    const renderItem = ({ text, link, target }) => {
+      return (
       <Link key={link} to={link} className={styles.item} target={target}>
         {text}
       </Link>
-    );
+      );
+    }
 
     const renderItems = (items) => {
       const len = items.length;

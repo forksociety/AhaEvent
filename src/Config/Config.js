@@ -26,6 +26,11 @@ const config = {
       link: '/license',
     },
     {
+      text: 'Submit An Event',
+      icon: 'send',
+      link: '/submit-event',
+    },
+    {
       text: 'Slack',
       icon: 'slack',
       link: '/slackinvite',

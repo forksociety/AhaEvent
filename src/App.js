@@ -19,6 +19,7 @@ import './App.scss';
 const {
   Home,
   NotFound,
+  Event,
   SubmitEvent,
 } = Pages;
 
@@ -32,6 +33,10 @@ const Routes = () => (
         exact
         path="/"
         render={(props) => <Home {...props} />}
+      />
+      <Route
+        path="/event/:id"
+        render={(props) => <Event {...props} />}
       />
       <Route
         exact

@@ -11,6 +11,7 @@ import {
   DownOutlined,
   SortAscendingOutlined,
   SortDescendingOutlined,
+  SendOutlined,
 } from '@ant-design/icons';
 import cx from 'classnames';
 
@@ -45,6 +46,8 @@ class Icon extends PureComponent {
         return this.applyProps(SortAscendingOutlined);
       case 'sort-desc':
         return this.applyProps(SortDescendingOutlined);
+      case 'send':
+        return this.applyProps(SendOutlined);
       default:
         return null;
     }
