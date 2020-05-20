@@ -40,6 +40,7 @@ const validations = {
     return (start.isValid() && end.isValid());
   },
   color: (v) => (/^#[0-9A-F]{6}$/i.test(v)),
+  notEmpty: (v) => (/^.{1,}$/i.test(v))
 };
 
 const elements = {
@@ -48,81 +49,95 @@ const elements = {
     component: formElements.input,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   description: {
     text: 'Description',
     component: formElements.text,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   keywords: {
     text: 'Keywords',
     component: formElements.input,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   location: {
     text: 'Location Address',
     component: formElements.text,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   logo: {
     text: 'Event Logo Link',
     component: formElements.input,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   organization: {
     text: 'Organization',
     component: formElements.input,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   link: {
     text: 'Event URL',
     component: formElements.input,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   date: {
     text: 'Event Date and Time',
     component: formElements.range,
     type: 'date',
     required: true,
+    validate: validations.date,
   },
   cfpDate: {
     text: 'Call For Proposal Dates',
     component: formElements.range,
     type: 'date',
     required: true,
+    validate: validations.date,
   },
   cover: {
     text: 'Event Cover Link',
     component: formElements.input,
     type: 'input',
+    validate: validations.notEmpty,
   },
   coverBgColor: {
     text: 'Cover Color',
     component: formElements.color,
     type: 'color',
     required: true,
+    validate: validations.color,
   },
   twitterHandle: {
     text: 'Event Twitter Handle',
     component: formElements.input,
     type: 'input',
     required: true,
+    validate: validations.notEmpty,
   },
   streamLink: {
     text: 'Streaming Link',
     component: formElements.input,
     type: 'input',
+    validate: validations.notEmpty,
   },
   submitterTwitterHandle: {
     text: 'Your Twitter Handle',
     component: formElements.input,
     type: 'input',
+    validate: validations.notEmpty,
   },
 };
 
@@ -186,7 +201,9 @@ class SubmitEvent extends Component {
         break;
     }
 
-    elements[key].error = !validations[type](fieldVal);
+    const validate = elements[key].validate;
+
+    elements[key].error = !validate(fieldVal);
 
     this.setState({
       formData: {
