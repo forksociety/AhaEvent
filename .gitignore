@@ -28,3 +28,5 @@ yarn-error.log*
 .firebase/
 
 .fuse_hidden*
+
+serviceAccount.json
