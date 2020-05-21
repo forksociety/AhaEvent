@@ -34,5 +34,5 @@ jobs:
         # SERVICE_ACCOUNT_CLIENT_X509_CERT_URL: ${{ secrets.SERVICE_ACCOUNT_CLIENT_X509_CERT_URL }}
         SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
       run: |
-      echo HELLO $GITHUB_REPOSITORY
-      python3 ./scripts/travis/deploy.py
+        echo HELLO $GITHUB_REPOSITORY
+        python3 ./scripts/travis/deploy.py
