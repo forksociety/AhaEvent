@@ -17,7 +17,9 @@ import {
   generateDownloadableJsonFile, readableStringToKey,
 } from 'Utils';
 
-import FormFields, {isValidValue} from './Components/Fields';
+import FormFields, {
+  isValidValue,
+} from './Components/Fields';
 import styles from './SubmitEvent.module.scss';
 
 const { FormContainer } = Form;
@@ -31,7 +33,10 @@ class SubmitEvent extends Component {
   }
 
   componentDidMount() {
-    const formDataInit = reduce((acc, key) => ({...acc, [key]: FormFields[key].value,}),{},Object.keys(FormFields));
+    const formDataInit = reduce((acc, key) => ({
+      ...acc, [key]: FormFields[key].value,
+    }), {
+    }, Object.keys(FormFields));
     this.setState({
       formData: formDataInit,
     });
@@ -78,7 +83,7 @@ class SubmitEvent extends Component {
         break;
     }
 
-    const validate = FormFields[key].validate;
+    const { validate } = FormFields[key];
     FormFields[key].error = validate ? !validate(fieldVal) : false;
 
     this.setState({
@@ -98,8 +103,9 @@ class SubmitEvent extends Component {
         const value = formData[key];
         const show = showIf ? formData[showIf] : true;
 
-        if(show) {
-          const compProps = {};
+        if (show) {
+          const compProps = {
+          };
           if (type === 'color') {
             compProps[type] = value;
           } else {

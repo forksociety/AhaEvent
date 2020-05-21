@@ -28,6 +28,7 @@ body > * {
   min-height: 100vh;
 
   main {
+    min-height: 30vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,5 +58,22 @@ body > * {
     position: absolute;
     background: rgba(0,0,0,0.3);
     left: 0; top: 0; right: 0; bottom: 0;
+  }
+
+  .tac {
+    text-align: center;
+  }
+}
+
+
+@media only screen and (max-width: $smallDevice) {
+  body {
+    font-size: 0.8em;
+  }
+
+  #root {
+    main {
+      padding: 1em 1em 7em;
+    }
   }
 }

@@ -9,13 +9,15 @@ import Icon from 'Components/Icon';
 import {
   getSampleEvents, getOrderedEventsList,
 } from 'Services/firebase';
-import {
-  generateEventUrl, converDateRangeToReadable,
+import Utils, {
+  generateEventUrl,
+  convertDateRangeToReadable,
 } from 'Utils';
 import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
+const {getSearchParams} = Utils;
 
 class Home extends Component {
   constructor(props) {
@@ -27,16 +29,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // ToDo: remove testing data
-    const self = this;
-    setTimeout(() => {
-      self.setState({
-        isLoading: false,
-      });
-    }, 1000);
+    const {location: { search }} = this.props
+    const searchParams = getSearchParams(search);
 
-    getOrderedEventsList(config.sortBy.key, [config.filters.spe.key])
+    const self = this;
+    getOrderedEventsList()
       .then((eventList) => {
+        console.log('#############', eventList)
         self.setState({
           events: eventList,
           isLoading: false,
@@ -76,13 +75,14 @@ class Home extends Component {
         );
         const description = (
           <>
-            <div>{converDateRangeToReadable(startDate, endDate)}</div>
+            <div>{convertDateRangeToReadable(startDate, endDate)}</div>
             <div>
               CFP:
-              {converDateRangeToReadable(cfpStartDate, cfpEndDate)}
+              {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
             </div>
           </>
         );
+        console.log('title', e)
         const url = generateEventUrl(id, title);
 
         return {

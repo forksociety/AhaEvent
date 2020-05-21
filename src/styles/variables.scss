@@ -4,6 +4,8 @@ $smallestDevice: 320px;
 $smallDevice: 492px;
 $tabletDevice: 990px;
 
+$primaryColor: #57068c;
+
 @mixin fontDefault() {
   font-family: 'Ubuntu', sans-serif;
 }

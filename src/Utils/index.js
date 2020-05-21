@@ -7,6 +7,23 @@ import {
 
 import Routes from './routes';
 
+export const getCoverStyle = (cover, color) => {
+  const defaultColor = '#dadada';
+  return cover && cover.length > 0
+    ? ({
+      background: `url(${cover})`,
+      backgroundSize: 'cover',
+      backgroundColor: color || defaultColor,
+      backgroundPosition: 'center',
+    }) : ({
+      backgroundColor: color || defaultColor,
+    });
+};
+
+export const getOverlay = (cover) => (cover && cover.length > 0 ? (<div className="overlay" />) : null);
+
+export const isOnlineEvent = (location) => (location.toLowerCase() === 'online');
+
 export const getRedirectUrls = () => {
   const redirectUrls = config.get('redirectUrls');
 
@@ -23,6 +40,8 @@ export const getRedirectUrls = () => {
   return redirectUrlsArray;
 };
 
+export const getTwitterLink = (handle) => (`https://twitter.com/${handle}`);
+
 export const showBanner = (location) => {
   const pathsForBanner = ['/'];
   const path = Routes.getPathName(location);
@@ -32,53 +51,53 @@ export const showBanner = (location) => {
 export const generateRandomString = () => (Math.random().toString(36).substring(2));
 
 export const convertDateToIso = (d) => {
-    const dateFormat = 'YYYY-MM-DDThh:mm:ss+00:00';
-    return moment(d).utc().format(dateFormat);
-}
+  const dateFormat = 'YYYY-MM-DDThh:mm:ss+00:00';
+  return moment(d).utc().format(dateFormat);
+};
 
-export const converDateToReadable = (d, showYear = true, showTime = false, showTimezone = false) => {
+export const convertDateToReadable = (d, showYear = true, showTime = false, showTimezone = false) => {
   let format = 'MMMM Do';
-  if(showYear) {
+  if (showYear) {
     format += ' YYYY';
   }
 
-  if(showTime) {
+  if (showTime) {
     format += ', h:mm:ss a';
   }
-  return moment(d).format(format)
-}
+  return moment(d).format(format);
+};
 
-export const converDateRangeToReadable = (start, end) => {
+export const convertDateRangeToReadable = (start, end) => {
   // if years match
-  let startStr = converDateToReadable(start)
-  let endStr = converDateToReadable(end)
-  if(moment(start).format('YYYY') === moment(end).format('YYYY')) {
-    startStr = converDateToReadable(start, false)
+  let startStr = convertDateToReadable(start);
+  const endStr = convertDateToReadable(end);
+  if (moment(start).format('YYYY') === moment(end).format('YYYY')) {
+    startStr = convertDateToReadable(start, false);
   }
-  return `${startStr} - ${endStr}`
-}
+  return `${startStr} - ${endStr}`;
+};
 
 export const generateSchema = (content) => {
   const { cfpDate, date, hasCfp, keywords, ...rest } = content;
 
   let payload = {
-    ...rest
-  }
+    ...rest,
+  };
 
-  const keywordsArr = keywords.split(',').map((i) => i.trim())
+  const keywordsArr = keywords.split(',').map((i) => i.trim());
   let [startDate, endDate] = date;
   startDate = convertDateToIso(startDate);
   endDate = convertDateToIso(endDate);
 
-  if(hasCfp) {
+  if (hasCfp) {
     let [cfpStartDate, cfpEndDate] = cfpDate;
     cfpStartDate = convertDateToIso(cfpStartDate);
     cfpEndDate = convertDateToIso(cfpEndDate);
     payload = {
       ...payload,
       cfpStartDate,
-      cfpEndDate
-    }
+      cfpEndDate,
+    };
   }
 
   return ({
@@ -108,15 +127,13 @@ export const generateDownloadableJsonFile = (filename, content) => {
 
 export const readableStringToKey = (s, regex = / /g, separator = '_') => s.replace(regex, separator).toLowerCase();
 
-export const generateEventUrl = (id, name) => {
-  return (`/event/${readableStringToKey(name, / /g, '-')}-${id}`)
-}
+export const generateEventUrl = (id, name) => (`/event/${readableStringToKey(name, / /g, '-')}-${id}`);
 
 export const getIdFromUrlSlug = (slug, separator = '_') => {
-  const tmp = slug.split(separator)
+  const tmp = slug.split(separator);
   return tmp.length > 0 ? tmp[tmp.length - 1] : null;
-}
+};
 
 export default {
-  Routes,
+  ...Routes,
 };

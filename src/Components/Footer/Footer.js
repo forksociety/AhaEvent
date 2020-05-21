@@ -14,7 +14,7 @@ const { Footer: AntFooter } = Layout;
 
 class Footer extends PureComponent {
   getItems() {
-    const appAuthorEmail = config.get('appAuthorEmail')
+    const appAuthorEmail = config.get('appAuthorEmail');
     const leftItems = [
       {
         text: 'Submit an Event',
@@ -52,13 +52,11 @@ class Footer extends PureComponent {
 
   render() {
     const { leftItems, rightItems } = this.getItems();
-    const renderItem = ({ text, link, target }) => {
-      return (
+    const renderItem = ({ text, link, target }) => (
       <Link key={link} to={link} className={styles.item} target={target}>
         {text}
       </Link>
-      );
-    }
+    );
 
     const renderItems = (items) => {
       const len = items.length;

@@ -12,7 +12,7 @@ const formElements = {
   text: (props) => (<Input {...props} type={INPUT_TYPES.TEXTAREA} />),
   range: (props) => (<DatePicker {...props} type={DATE_TYPES.RANGE_TIME} />),
   color: (props) => (<ColorPicker {...props} />),
-  checkbox: (props) => (<Checkbox {...props} />)
+  checkbox: (props) => (<Checkbox {...props} />),
 };
 
 const validations = {
@@ -26,7 +26,7 @@ const validations = {
   isBool: (v) => (v === false || v === true),
 };
 
-export const isValidValue = (v) => (validations.notEmpty(v) || validations.isBool(v))
+export const isValidValue = (v) => (validations.notEmpty(v) || validations.isBool(v));
 
 const defaultDate = () => moment().startOf('day');
 
@@ -147,4 +147,4 @@ const Fields = {
   },
 };
 
-export default Fields
+export default Fields;

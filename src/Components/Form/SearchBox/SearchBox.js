@@ -4,6 +4,7 @@ import React, {
 import {
   Input,
 } from 'antd';
+import { reduce } from 'ramda';
 import config from 'react-global-configuration';
 
 import Checkbox from '../Checkbox';
@@ -34,19 +35,32 @@ class SearchBox extends Component {
     });
   }
 
+  getSortByItems() {
+    const allSortBy = config.get('sortBy');
+    return reduce((acc, key) => ({...acc, [key]: allSortBy[key].text }), {}, Object.keys(allSortBy));
+  }
+
+  onChange(e) {
+    const {onSearch} = this.props;
+    if(e) {
+      const { target} = e;
+      onSearch({query: target.value})
+    }
+  }
+
   render() {
     const { onSearch, placeholder, enterButton, showSearchTools, searchInfo } = this.props;
-    const filters = config.get('filters');
-    const { sortBy } = searchInfo;
+    const allSortByItems = this.getSortByItems();
+    const allFilters = config.get('filters');
+    const { sortBy, filters, query } = searchInfo;
 
     return (
       <>
         <Search
           className={styles.search}
           placeholder={placeholder || 'Search'}
-          onSearch={(query) => onSearch({
-            query,
-          })}
+          onSearch={(query) => onSearch({query}, true)}
+          value={query}
           enterButton={enterButton}
         />
         {showSearchTools
@@ -54,17 +68,18 @@ class SearchBox extends Component {
         <div className={styles['filter-sort']}>
           <Dropdown
             className={styles.sort}
-            items={config.get('sortBy')}
+            items={allSortByItems}
             selected={sortBy}
             onChange={(e) => this.handleDropdownUpdate(e)}
           />
-          {Object.keys(filters).map((key, i) => {
-            const text = filters[key];
+          {Object.keys(allFilters).map((key, i) => {
+            const text = allFilters[key].text;
             return (
               <Checkbox
                 className={styles.filter}
                 key={key}
                 text={text}
+                checked={filters.includes(key)}
                 onChange={(e) => this.handleCheckboxUpdate(e, key)}
               />
             );

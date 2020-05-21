@@ -3,54 +3,77 @@ import React, {
 } from 'react';
 import config from 'react-global-configuration';
 
+import history from 'Config/History';
 import Nav from 'Components/Nav';
 import Logo from 'Components/Logo';
 import Form from 'Components/Form';
+import Utils from 'Utils';
 
 import styles from './Header.module.scss';
 
+const { getSearchParams, getSearchUrl } = Utils;
 const { SearchBox } = Form;
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    const sortBy = config.get('sortBy');
+    const defaults = config.get('defaults');
+    const { sortBy } = defaults;
     this.state = {
       searchInfo: {
         query: '',
-        sortBy: sortBy.DATE_ASC,
+        sortBy,
         filters: [],
       },
     };
   }
 
   componentDidMount() {
+    this.loadSearchParams();
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+  }
+
+  loadSearchParams() {
+    const {location: { search }} = this.props
+    const searchInfo = getSearchParams(search);
+
+    this.setState({
+      searchInfo
+    })
+
   }
 
   onSearch(searchQuery) {
     const { searchInfo: { query: prevQ, sortBy: prevS, filters: prevF } } = this.state;
     const { query, sortBy, filter } = searchQuery;
+
+    let newFilters = [];
     if (filter) {
       const { key, value } = filter;
-      if (value) {
-        prevF.push(key);
-      } else {
-        const i = prevF.indexOf(key);
-        if (i > -1) {
-          prevF.splice(i, 1);
-        }
+      newFilters = [...prevF]
+      if(!newFilters.includes(key)) {
+        newFilters.push(key)
+      }
+
+      if (!value) {
+        newFilters = newFilters.filter((item) => (item !== key))
       }
     }
-
     const searchInfo = {
       query: query || prevQ,
       sortBy: sortBy || prevS,
-      filters: prevF,
+      filters: newFilters,
     };
 
     this.setState({
-      searchInfo,
-    });
+      searchInfo
+    })
+
+    // ToDO: History.push won't work without redux. Implement redux
+    //history.push(getSearchUrl(searchInfo))
+    window.location.href = getSearchUrl(searchInfo)
   }
 
   getSearchBox() {
