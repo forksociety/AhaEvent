@@ -2,12 +2,11 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import {
-  sort, reverse,
+  sort,
 } from 'ramda';
-import config from 'react-global-configuration';
+import config from 'Config/Config';
 
-const filters = config.get('filters');
-const sortBy = config.get('sortBy');
+const { filters, sortBy } = config;
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -48,45 +47,19 @@ export const getEventById = (id) => new Promise((resolve) => {
     .catch(() => resolve(null));
 });
 
-const createDateComparator = (orderBy) => {
-  let field = null;
-  let direction = null;
-  switch (orderBy) {
-    case sortBy.CFP_ASC:
-      field = 'cfpEndDate';
-      direction = 1;
-      break;
-
-    case sortBy.CFP_DESC:
-      field = 'cfpEndDate';
-      direction = -1;
-      break;
-
-    case sortBy.DATE_ASC:
-      field = 'startDate';
-      direction = 1;
-      break;
-
-    case sortBy.DATE_DESC:
-      field = 'startDate';
-      direction = -1;
-      break;
-
-    default:
-      field = 'startDate';
-      direction = 1;
-      break;
-  }
-  const comparator = (a, b) => {
-    return Date.parse(a[field]) < Date.parse(b[field]) ? -1 * direction : 1 * direction;
-  };
+const createDateComparator = (key) => {
+  const selectedKey = key && key in sortBy ? key : sortBy['date-asc'].key;
+  const { [selectedKey]: { field, order: direction } } = sortBy;
+  const comparator = (a, b) => (
+    Date.parse(a[field]) < Date.parse(b[field]) ? -1 * direction : 1 * direction
+  );
 
   return comparator;
 };
 
 const whereQueryConstructor = (query, filter) => {
   const currDate = new Date();
-  if (filter === filters.ree) {
+  if (filter === filters.ree.key) {
     currDate.setMonth(currDate.getMonth() - 1);
   }
   return query.where('endDate', '>=', currDate.toISOString());
@@ -94,44 +67,44 @@ const whereQueryConstructor = (query, filter) => {
 
 export const getOrderedEventsList = (orderBy, queryFilters) => new Promise((resolve) => {
   let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
-  if (!queryFilters.includes(config.spe)) {
-    query = whereQueryConstructor(query, filters.spe);
+  if (!queryFilters.includes(filters.spe.key)) {
+    query = whereQueryConstructor(query, filters.spe.key);
   }
-  if (queryFilters.includes(filters.ree)) {
-    query = whereQueryConstructor(query, filters.ree);
+  if (queryFilters.includes(filters.ree.key)) {
+    query = whereQueryConstructor(query, filters.ree.key);
   }
   query.get()
     .then((snapshot) => {
       let docs = snapshot.docs.map((doc) => doc.data());
-      if (queryFilters.includes(filters.cfp)) {
+      if (queryFilters.includes(filters.cfp.key)) {
         const currDate = new Date();
         docs = docs.filter((doc) => Date.parse(doc.cfpEndDate) > currDate);
       }
       docs = sort(createDateComparator(orderBy), docs);
       resolve(docs);
     })
-    .catch(() => resolve(null));
+    .catch(() => resolve([]));
 });
 
 export const getSampleEvents = () => {
   const obj = {
     id: 'vET234bn432N',
-    name: "Event Name",
+    name: 'Event Name',
     description: 'Lorem ipsum dgd fdh sd sdgfd sd sdghyfjuy jyujn ntyt ngh',
-    keywords: "PyCon, python",
-    location: "Online",
+    keywords: 'PyCon, python',
+    location: 'Online',
     logo: 'https://events.linuxfoundation.org/wp-content/uploads/LF-Event-Logo-_OSS-NA-V-White-01.svg',
-    organization: "Linux Foundation",
+    organization: 'Linux Foundation',
     link: 'https://events.linuxfoundation.org/wp-content/uploads/37879144301_f970c87da2_o.jpg',
     cover: 'https://events.linuxfoundation.org/wp-content/uploads/37879144301_f970c87da2_o.jpg',
-    coverBgColor: "#904a4a",
-    twitterHandle: "linuxfoundation",
-    streamLink: "",
-    startDate: "2020-05-05T09:06:42+00:00",
-    endDate: "2020-05-20T09:06:42+00:00",
-    cfpStartDate: "2020-05-20T09:06:42+00:00",
-    cfpEndDate: "2020-05-20T09:06:42+00:00"
-  }
+    coverBgColor: '#904a4a',
+    twitterHandle: 'linuxfoundation',
+    streamLink: '',
+    startDate: '2020-05-05T09:06:42+00:00',
+    endDate: '2020-05-20T09:06:42+00:00',
+    cfpStartDate: '2020-05-20T09:06:42+00:00',
+    cfpEndDate: '2020-05-20T09:06:42+00:00',
+  };
 
   return [obj, obj, obj, obj, obj, obj, obj, obj, obj, obj];
-}
+};
