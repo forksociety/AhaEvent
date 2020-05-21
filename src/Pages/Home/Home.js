@@ -7,7 +7,7 @@ import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import { getSampleEvents } from 'Services/firebase';
-import { generateEventUrl, converDateRangeToReadable } from 'Utils';
+import { generateEventUrl, convertDateRangeToReadable } from 'Utils';
 
 import styles from './Home.module.scss';
 
@@ -64,8 +64,8 @@ class Home extends Component {
         <span>{location}</span>
       </>);
         const description = (<>
-        <div>{converDateRangeToReadable(startDate, endDate)}</div>
-        <div>CFP: {converDateRangeToReadable(cfpStartDate, cfpEndDate)}</div>
+        <div>{convertDateRangeToReadable(startDate, endDate)}</div>
+        <div>CFP: {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}</div>
       </>);
         const url = generateEventUrl(id, title);
 

@@ -83,8 +83,35 @@ export const getOrderedEventsList = (orderBy) => new Promise((resolve) => {
 });
 
 export const getSampleEvents = () => {
-  const obj = {
+  const obj1 = {
     id: 'vET234bn432N',
+    name: "Google Cloud Next 2020",
+    description: "Google Cloud Next 2020 is a global conference that brings together thousands of the brightest and most innovative thinkers in the world. Whether you are a CEO, a developer, or just someone passionate about learning solutions and ideas for the next generation of the cloud, Next 2020 provides thousands of demonstrations, boot camps, keynotes, conversations, and breakouts to choose from.",
+    location: "Online",
+    logo: "https://cloud.withgoogle.com/next/sf/assets/img/ab3245a.svg",
+    organization: "Google",
+    link: "https://cloud.withgoogle.com/next/sf/",
+    cover: "",
+    coverBgColor: "#ffffff",
+    twitterHandle: "googlecloud",
+    streamLink: "https://cloud.withgoogle.com/next/sf/sessions",
+    submitterTwitterHandle: "PrabhanshuAttri",
+    startDate: "2020-07-14T04:00:00+00:00",
+    endDate: "2020-09-09T03:59:59+00:00",
+    keywords: [
+          "Google",
+          "GCP",
+          "Google Cloud",
+          "Cloud Computing",
+          "Machine Learning",
+          "Artificial Intelligence",
+          "API",
+          "Analytics",
+          "Serverless"
+        ]
+  }
+
+  const obj2 = {
     name: "Event Name",
     description: 'Lorem ipsum dgd fdh sd sdgfd sd sdghyfjuy jyujn ntyt ngh',
     keywords: "PyCon, python",
@@ -102,5 +129,5 @@ export const getSampleEvents = () => {
     cfpEndDate: "2020-05-20T09:06:42+00:00"
   }
 
-  return [obj, obj, obj, obj, obj, obj, obj, obj, obj, obj];
+  return [obj1, obj2, obj1, obj2, obj1, obj2, obj1, obj2, obj1, obj2];
 }

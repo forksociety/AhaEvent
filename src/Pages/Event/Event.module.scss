@@ -1,0 +1,68 @@
+@import 'styles/variables.scss';
+
+.event {
+  display: flex;
+  flex-direction: row;
+  min-height: 81vh;
+  background-color: white;
+
+  .cover, .details {
+    flex: 1;
+  }
+
+  .cover {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .tags {
+      z-index: 999;
+      position: absolute;
+      top: 1em;
+      left: 1em;
+    }
+
+    img {
+      z-index: 999;
+      max-width: 80%;
+    }
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1em;
+
+    .online {
+      font-size: 0.6em;
+      margin-left: 0.3em;
+      font-weight: 600;
+      color: #649d66;
+    }
+
+    .actions {
+      font-size: 2em;
+      color: $primaryColor;
+      display: flex;
+      justify-content: center;
+      margin: 0.5em 1em;
+
+      .icons {
+        margin-right: 0.3em;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $tabletDevice) {
+  .event {
+    flex-direction: column;
+
+    .cover {
+      max-height: 22em;
+    }
+  }
+}

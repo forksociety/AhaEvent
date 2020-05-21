@@ -12,48 +12,57 @@ import {
   SortAscendingOutlined,
   SortDescendingOutlined,
   SendOutlined,
-  CompassOutlined
+  CompassOutlined,
+  CaretUpOutlined,
+  IeOutlined,
+  YoutubeOutlined,
+  YoutubeFilled,
+  VideoCameraOutlined,
+  TwitterOutlined,
 } from '@ant-design/icons';
 import cx from 'classnames';
 
-import css from './Icon.module.css';
+import styles from './Icon.module.css';
 
 class Icon extends PureComponent {
   applyProps(Component) {
-    const { className } = this.props;
+    const { className, type, ...rest } = this.props;
     return (
-      <Component className={cx(className, css.icon)} />
+      <Component className={cx(className, styles.icon, styles[type])} {...rest} />
     );
   }
 
-  render() {
-    const { type } = this.props;
-    switch (type) {
-      case 'home':
-        return this.applyProps(HomeOutlined);
-      case 'github':
-        return this.applyProps(GithubOutlined);
-      case 'slack':
-        return this.applyProps(SlackOutlined);
-      case 'copyright':
-        return this.applyProps(CopyrightCircleOutlined);
-      case 'loader':
-        return this.applyProps(LoadingOutlined);
-      case 'link':
-        return this.applyProps(LinkOutlined);
-      case 'down-arrow':
-        return this.applyProps(DownOutlined);
-      case 'sort-asc':
-        return this.applyProps(SortAscendingOutlined);
-      case 'sort-desc':
-        return this.applyProps(SortDescendingOutlined);
-      case 'send':
-        return this.applyProps(SendOutlined);
-      case 'location':
-        return this.applyProps(CompassOutlined);
-      default:
-        return null;
+  getIconComponent(key) {
+    const mapping = {
+      'home': HomeOutlined,
+      'github': GithubOutlined,
+      'slack': SlackOutlined,
+      'copyright': CopyrightCircleOutlined,
+      'loader': LoadingOutlined,
+      'link': LinkOutlined,
+      'down-arrow': DownOutlined,
+      'up-caret': CaretUpOutlined,
+      'sort-asc': SortAscendingOutlined,
+      'sort-desc': SortDescendingOutlined,
+      'send': SendOutlined,
+      'location': CompassOutlined,
+      'internet': IeOutlined,
+      'youtube': YoutubeOutlined,
+      'youtube_filled': YoutubeFilled,
+      'video': VideoCameraOutlined,
+      'twitter': TwitterOutlined,
     }
+    console.log('##', key, mapping)
+    if(key in mapping) {
+      return this.applyProps(mapping[key])
+    }
+    return null;
+  }
+
+  render() {
+    const { type, filled } = this.props;
+    const key = filled ? `${type}_filled` : type;
+    return this.getIconComponent(key)
   }
 }
 
