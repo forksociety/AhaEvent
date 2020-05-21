@@ -16,15 +16,18 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    flex-grow: 1;
+    cover: 1em;
 
     .tags {
+      text-transform: capitalize;
       z-index: 999;
       position: absolute;
       top: 1em;
       left: 1em;
     }
 
-    img {
+    .logo {
       z-index: 999;
       max-width: 80%;
     }
@@ -33,25 +36,33 @@
   .details {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 1em;
+    flex-grow: 2;
 
-    .online {
-      font-size: 0.6em;
-      margin-left: 0.3em;
-      font-weight: 600;
-      color: #649d66;
-    }
-
-    .actions {
-      font-size: 2em;
-      color: $primaryColor;
+    .content {
       display: flex;
-      justify-content: center;
-      margin: 0.5em 1em;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: space-evenly;
 
-      .icons {
-        margin-right: 0.3em;
+      .online {
+        font-size: 0.6em;
+        margin-left: 0.3em;
+        font-weight: 600;
+        color: #649d66;
+      }
+
+      .actions {
+        font-size: 2em;
+        color: $primaryColor;
+        display: flex;
+        justify-content: center;
+        margin: 0.5em 1em;
+
+        .icons {
+          margin-right: 0.3em;
+        }
       }
     }
   }
@@ -63,6 +74,20 @@
 
     .cover {
       max-height: 22em;
+    }
+  }
+}
+
+@media only screen and (max-width: $tabletDevice) {
+  .event {
+    .cover {
+      .tags {
+        display: none;
+      }
+
+      .logo {
+        max-width: 60%;
+      }
     }
   }
 }

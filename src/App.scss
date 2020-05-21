@@ -63,3 +63,16 @@ body > * {
     text-align: center;
   }
 }
+
+
+@media only screen and (max-width: $smallDevice) {
+  body {
+    font-size: 0.8em;
+  }
+
+  #root {
+    main {
+      padding: 1em 1em 7em;
+    }
+  }
+}

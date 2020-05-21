@@ -11,6 +11,11 @@ const sortBy = {
   CFP_DESC: 'Call for Proposal DESC',
 };
 
+const api = {
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=',
+  googleMapsEmbedUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
+}
+
 
 const config = {
   appName: 'Aha! Event',
@@ -62,6 +67,7 @@ const config = {
   gaTrackingId: 'UA-84775604-4',
   filters,
   sortBy,
+  api,
 };
 
 export default config;

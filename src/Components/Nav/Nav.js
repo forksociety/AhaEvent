@@ -14,7 +14,7 @@ import {
 import Logo from 'Components/Logo';
 import Icon from 'Components/Icon';
 
-import style from './Nav.module.scss';
+import styles from './Nav.module.scss';
 
 
 class Nav extends Component {
@@ -30,7 +30,7 @@ class Nav extends Component {
 
     return (
       <Link to={link} title={text} target={target}>
-        <Icon type={icon} className={style.icon} />
+        <Icon type={icon} className={styles.icon} />
       </Link>
     );
   }
@@ -39,14 +39,21 @@ class Nav extends Component {
     const { showLogo } = this.props;
     const menuData = config.get('menu');
     const items = [];
+    const showOnMobile = ['home', 'send', 'github'];
 
-    menuData.forEach((e) => {
-      const link = this.getLink(e);
+    menuData.forEach((item) => {
+      const link = this.getLink(item);
+      const { icon } = item
+
 
       items.push(
         <Menu.Item
-          key={e.icon}
-          className={cx(style.item, style.right)}
+          key={icon}
+          className={cx(
+            styles.item,
+            styles.right,
+            { [styles['hide-on-mobile']]: !showOnMobile.includes(icon) }
+          )}
         >
           {link}
         </Menu.Item>,
@@ -57,10 +64,10 @@ class Nav extends Component {
       items.push(
         <Menu.Item
           key="logo"
-          className={cx(style.item, style.left)}
+          className={cx(styles.item, styles.left)}
         >
           <Link to="/">
-            <Logo className={style.logo} />
+            <Logo className={styles.logo} />
           </Link>
         </Menu.Item>,
       );
@@ -82,9 +89,9 @@ class Nav extends Component {
     const menuItems = this.getNavItems();
 
     return (
-      <nav className={style.menu}>
+      <nav className={styles.menu}>
         <Menu
-          className={style['aha-menu']}
+          className={styles['aha-menu']}
           selectedKeys={['home']}
           mode="horizontal"
         >

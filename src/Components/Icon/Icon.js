@@ -52,7 +52,6 @@ class Icon extends PureComponent {
       'video': VideoCameraOutlined,
       'twitter': TwitterOutlined,
     }
-    console.log('##', key, mapping)
     if(key in mapping) {
       return this.applyProps(mapping[key])
     }

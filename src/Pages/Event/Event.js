@@ -4,7 +4,8 @@ import Icon from 'Components/Icon';
 import Tag from 'Components/Tag';
 import Loader from 'Components/Loader';
 import Content from 'Components/Content';
-import { getSampleEvents } from 'Services/firebase';
+import GoogleMap from 'Components/GoogleMap';
+import { getEvent } from 'Services/firebase';
 import {
   getCoverStyle,
   getOverlay,
@@ -37,22 +38,40 @@ class Event extends Component {
       });
     }, 1000);
 
-    const events = getSampleEvents();
+    const event = getEvent(eventId);
 
-    this.setState({
-      eventId,
-      event: events[0],
-    });
+    if(eventId && event) {
+      this.setState({
+        eventId,
+        event,
+      });
+    } else {
+      this.redirectToHome();
+    }
+  }
+
+  redirectToHome() {
+    const { history } = this.props;
+    history.push('/')
   }
 
   handleButtonClick(url, newTab = '_blank') {
     window.open(url, newTab)
   }
 
+  getKeywords(keywords) {
+    const keywordCount = 3;
+    let keywordArr = keywords;
+    if(typeof keywords === 'string') {
+      keywordArr = keywords.split(',')
+    }
+    return keywordArr.slice(0, keywordCount)
+  }
+
   getPageContent() {
-    const { history } = this.props;
     const { eventId, event } = this.state;
-    if(eventId) {
+
+    if(eventId && event) {
       const {
         name,
         description,
@@ -70,7 +89,7 @@ class Event extends Component {
         cfpStartDate,
         cfpEndDate,
       } = event;
-      const keywords = allKeywords.slice(0, 3)
+      const keywords = this.getKeywords(allKeywords)
 
       return (
         <Content className={styles.event}>
@@ -80,24 +99,25 @@ class Event extends Component {
           >
             {getOverlay(cover)}
             <span className={styles.tags}>
-              {keywords.map((keyword) => (<Tag text={keyword} />))}
+              {keywords.map((keyword, i) => (<Tag key={`${keyword}-${i}`} text={keyword} />))}
             </span>
-            <img alt={` logo`} src={logo} />
+            <img className={styles.logo} alt={`${name} logo`} src={logo} />
           </span>
           <span className={styles.details}>
-            <span>
-              <h2 className='tac'>{name}</h2>
-              <h4 className='tac'>
-                {convertDateRangeToReadable(startDate, endDate)}
-                {isOnlineEvent(location) ? <sup className={styles.online}>Online</sup> : null}
-              </h4>
-              <h4 className='tac'>{organization}</h4>
-            </span>
-            <div className='tac'>{description}</div>
-            <div className='tac'>
-              {`Call for Proposals: ${cfpStartDate && cfpEndDate
+            <span className={styles.content}>
+              <span>
+                <h2 className='tac'>{name}</h2>
+                <h4 className='tac'>
+                  {convertDateRangeToReadable(startDate, endDate)}
+                  {isOnlineEvent(location) ? <sup className={styles.online}>Online</sup> : null}
+                </h4>
+                <h4 className='tac'>{organization}</h4>
+              </span>
+              <div className='tac'>{description}</div>
+              <div className='tac'>
+                {`Call for Proposals: ${cfpStartDate && cfpEndDate
                   ? convertDateRangeToReadable(cfpStartDate, cfpEndDate)
-                  : 'Not Available'
+                    : 'Not Available'
               }`}
             </div>
             <span className={styles.actions}>
@@ -121,11 +141,13 @@ class Event extends Component {
               />}
             </span>
           </span>
-        </Content>
+          {!isOnlineEvent(location) && <GoogleMap location={location} height='200px' />}
+        </span>
+      </Content>
       )
     }
 
-    history.push('/')
+    this.redirectToHome();
   }
 
   render() {

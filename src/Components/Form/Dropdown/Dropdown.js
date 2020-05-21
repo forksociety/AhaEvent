@@ -15,7 +15,7 @@ const { Option } = Select;
 
 const CustomDropdown = ({ items, selected, onChange, className, ...rest }) => {
   const selectedItem = (<span className={styles.item}>{selected}</span>);
-  const popupContainerId = `${styles.date}_${generateRandomString()}`;
+  const popupContainerId = `${styles.dropdown}_${generateRandomString()}`;
 
   return (
     <>
