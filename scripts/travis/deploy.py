@@ -61,20 +61,19 @@ def getResponseFromMessage(message):
     return response
 
 def createCertificate():
-    fields = [
-        'type',
-        'project_id',
-        'private_key_id',
-        'private_key',
-        'client_email',
-        'client_id',
-        'auth_uri',
-        'token_uri',
-        'auth_provider_x509_cert_url',
-        'client_x509_cert_url'
-        ]
-
-    serviceAccount = {field: os.getenv(field) for field in fields}
+    fields = {
+        'type': 'serviceAccountType',
+        'project_id': 'serviceAccountId',
+        'private_key_id': 'serviceAccountPrivateKeyId',
+        'private_key': 'serviceAccountPrivateKey',
+        'client_email': 'serviceAccountClientEmail',
+        'client_id': 'serviceAccountClientId',
+        'auth_uri': 'serviceAccountAuthUri',
+        'token_uri': 'serviceAccountTokenUri',
+        'auth_provider_x509_cert_url': 'serviceAccountAuthProviderX509CertUrl',
+        'client_x509_cert_url': 'clientX509CertUrl'
+    }
+    serviceAccount = {field: os.getenv(fields[field]) for field in fields.keys()}
     return serviceAccount
 
 def saveCertificate(serviceAccount):
@@ -110,4 +109,5 @@ def travis():
         deploy(message)
 
 if __name__ == '__main__':
+    print(os.getenv('serviceAccount'))
     travis()
