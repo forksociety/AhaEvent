@@ -16,3 +16,5 @@ jobs:
       run: |
         pip install -r ./scripts/travis/requirements.txt
         python ./scripts/travis/deploy.py
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
