@@ -30,4 +30,4 @@ jobs:
     - name: Run a multi-line script
       run: |
         pip3 install ./scripts/travis/requirements.txt
-        python3 ./scripts/travis/travis.py
+        python3 ./scripts/travis/deploy.py
