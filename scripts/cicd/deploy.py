@@ -38,7 +38,10 @@ def checkExists(db, event):
 
 def createEvent(db, event):
     try:
-        db.collection('events').document().set(event)
+        eventRef = db.collection('events').document()
+        eventId = eventRef.id
+        event['id'] = eventId
+        eventRef.set(event)
         print("Created event:", event['name'])
     except:
         print("Could not make entry to the database.")
@@ -89,12 +92,32 @@ def deploy(message):
             deleteEvent(existingDocs)
             createEvent(db, event)
 
-def travis():
-    repo = Repo('./')
-    assert not repo.bare
-    message = repo.git.log('-1', '--pretty=%B')
-    if re.search("^Merge pull request #*", message):
-        deploy(message)
+def travis(repopulate=False):
+    if repopulate:
+        print('Repopulating Database.')
+        cred = credentials.Certificate('serviceAccount.json')
+        firebase_admin.initialize_app(cred)
+        db = firestore.client()
+        files = os.listdir('events')
+        for file in files:
+            f = open(os.path.join('events', file) , 'r')
+            event = json.loads(f.read())
+            existingDocs = checkExists(db, event)
+            if not existingDocs:
+                createEvent(db, event)
+            else:
+                print("Found existing event. Overwriting.")
+                deleteEvent(existingDocs)
+                createEvent(db, event)
+    else:
+        repo = Repo('./')
+        assert not repo.bare
+        message = repo.git.log('-1', '--pretty=%B')
+        if re.search("^Merge pull request #*", message):
+            deploy(message)
 
 if __name__ == '__main__':
-    travis()
+    if os.getenv('SEED_DATABASE'):
+        travis(repopulate=True)
+    else:
+        travis()
