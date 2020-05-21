@@ -9,11 +9,14 @@ import Icon from 'Components/Icon';
 import {
   getSampleEvents,
 } from 'Services/firebase';
-import {
-  generateEventUrl, convertDateRangeToReadable,
+import Utils, {
+  generateEventUrl,
+  convertDateRangeToReadable,
 } from 'Utils';
 
 import styles from './Home.module.scss';
+
+const {getSearchParams} = Utils;
 
 class Home extends Component {
   constructor(props) {
@@ -25,6 +28,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    const {location: { search }} = this.props
+    const searchParams = getSearchParams(search);
+
     // ToDo: remove testing data
     const self = this;
     setTimeout(() => {

@@ -135,5 +135,5 @@ export const getIdFromUrlSlug = (slug, separator = '_') => {
 };
 
 export default {
-  Routes,
+  ...Routes,
 };

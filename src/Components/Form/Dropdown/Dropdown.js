@@ -14,7 +14,9 @@ import styles from './Dropdown.module.scss';
 const { Option } = Select;
 
 const CustomDropdown = ({ items, selected, onChange, className, ...rest }) => {
-  const selectedItem = (<span className={styles.item}>{selected}</span>);
+  const selectedItem = (<span className={styles.item}>
+    {items[selected]}
+  </span>);
   const popupContainerId = `${styles.dropdown}_${generateRandomString()}`;
 
   return (
@@ -23,6 +25,7 @@ const CustomDropdown = ({ items, selected, onChange, className, ...rest }) => {
       <Select
         className={cx(styles.dropdown, className)}
         defaultValue={selectedItem}
+        value={selectedItem}
         onChange={onChange}
         suffixIcon={
           <Icon type="down-arrow" className={styles['dropdown-icon']} />
