@@ -7,12 +7,13 @@ import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import {
-  getSampleEvents,
+  getSampleEvents, getOrderedEventsList,
 } from 'Services/firebase';
 import Utils, {
   generateEventUrl,
   convertDateRangeToReadable,
 } from 'Utils';
+import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
@@ -39,11 +40,13 @@ class Home extends Component {
       });
     }, 1000);
 
-    const events = getSampleEvents();
-
-    this.setState({
-      events,
-    });
+    getOrderedEventsList(config.sortBy.key, [config.filters.spe.key])
+      .then((eventList) => {
+        self.setState({
+          events: eventList,
+          isLoading: false,
+        });
+      });
   }
 
   handleCardClick(e, url) {
