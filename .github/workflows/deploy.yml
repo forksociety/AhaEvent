@@ -31,6 +31,6 @@ jobs:
       run: |
         pwd
         ls
-        ls scripts
+        ls scripts/travis
         pip3 install scripts/travis/requirements.txt
         python3 scripts/travis/deploy.py
