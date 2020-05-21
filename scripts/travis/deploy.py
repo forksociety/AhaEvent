@@ -56,22 +56,22 @@ def deleteEvent(existingDocs):
 
 def getResponseFromMessage(message):
     prNumber = int(message.split(' ')[3].strip('#'))
-    baseURL = 'https://api.github.com/repos/'+ os.getenv('TRAVIS_REPO_SLUG') +'/pulls/'
+    baseURL = 'https://api.github.com/repos/'+ os.getenv('GITHUB_REPO') +'/pulls/'
     response = requests.get(url=baseURL + str(prNumber) + '/files')
     return response
 
 def createCertificate():
     fields = {
-        'type': 'serviceAccountType',
-        'project_id': 'serviceAccountId',
-        'private_key_id': 'serviceAccountPrivateKeyId',
-        'private_key': 'serviceAccountPrivateKey',
-        'client_email': 'serviceAccountClientEmail',
-        'client_id': 'serviceAccountClientId',
-        'auth_uri': 'serviceAccountAuthUri',
-        'token_uri': 'serviceAccountTokenUri',
-        'auth_provider_x509_cert_url': 'serviceAccountAuthProviderX509CertUrl',
-        'client_x509_cert_url': 'clientX509CertUrl'
+        'type': 'SERVICE_ACCOUNT_TYPE',
+        'project_id': 'SERVICE_ACCOUNT_ID',
+        'private_key_id': 'SERVICE_ACCOUNT_PRIVATE_KEY_ID',
+        'private_key': 'SERVICE_ACCOUNT_PRIVATE_KEY',
+        'client_email': 'SERVICE_ACCOUNT_CLIENT_EMAIL',
+        'client_id': 'SERVICE_ACCOUNT_CLIENT_ID',
+        'auth_uri': 'SERVICE_ACCOUNT_AUTH_URI',
+        'token_uri': 'SERVICE_ACCOUNT_TOKEN_URI',
+        'auth_provider_x509_cert_url': 'SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL',
+        'client_x509_cert_url': 'SERVICE_ACCOUNT_CLIENT_X509_CERT_URL'
     }
     serviceAccount = {field: os.getenv(fields[field]) for field in fields.keys()}
     return serviceAccount
@@ -109,6 +109,6 @@ def travis():
         deploy(message)
 
 if __name__ == '__main__':
-    print(os.getenv('serviceAccount'))
+    print(os.getenv('SERVICE_ACCOUNT'))
     print('serviceAccount', createCertificate())
     travis()
