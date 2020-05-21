@@ -59,31 +59,34 @@ const createDateComparator = (key) => {
 
 const whereQueryConstructor = (query, filter) => {
   const currDate = new Date();
-  if (filter === filters.ree.key) {
+  currDate.setYear(currDate.getYear() - 3);
+  if (filter && filter === filters.ree.key) {
     currDate.setMonth(currDate.getMonth() - 1);
   }
   return query.where('endDate', '>=', currDate.toISOString());
 };
 
-export const getOrderedEventsList = (orderBy, queryFilters) => new Promise((resolve) => {
+export const getOrderedEventsList = (orderBy, queryFilters=null) => new Promise((resolve) => {
   let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
-  if (!queryFilters.includes(filters.spe.key)) {
-    query = whereQueryConstructor(query, filters.spe.key);
+  if (!queryFilters || !queryFilters.includes(filters.spe.key)) {
+    query = whereQueryConstructor(query);
   }
-  if (queryFilters.includes(filters.ree.key)) {
+  if (queryFilters && queryFilters.includes(filters.ree.key)) {
     query = whereQueryConstructor(query, filters.ree.key);
   }
   query.get()
     .then((snapshot) => {
       let docs = snapshot.docs.map((doc) => doc.data());
-      if (queryFilters.includes(filters.cfp.key)) {
+      if (queryFilters && queryFilters.includes(filters.cfp.key)) {
         const currDate = new Date();
         docs = docs.filter((doc) => Date.parse(doc.cfpEndDate) > currDate);
       }
       docs = sort(createDateComparator(orderBy), docs);
       resolve(docs);
     })
-    .catch(() => resolve([]));
+    .catch((e) => {
+      resolve([])
+    });
 });
 
 export const getEvent = (id) => {

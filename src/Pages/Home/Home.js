@@ -32,16 +32,10 @@ class Home extends Component {
     const {location: { search }} = this.props
     const searchParams = getSearchParams(search);
 
-    // ToDo: remove testing data
     const self = this;
-    setTimeout(() => {
-      self.setState({
-        isLoading: false,
-      });
-    }, 1000);
-
-    getOrderedEventsList(config.sortBy.key, [config.filters.spe.key])
+    getOrderedEventsList()
       .then((eventList) => {
+        console.log('#############', eventList)
         self.setState({
           events: eventList,
           isLoading: false,
@@ -88,6 +82,7 @@ class Home extends Component {
             </div>
           </>
         );
+        console.log('title', e)
         const url = generateEventUrl(id, title);
 
         return {
