@@ -2,7 +2,9 @@ import React, {
   PureComponent,
 } from 'react';
 
-import {getCoverStyle, getOverlay} from 'Utils';
+import {
+  getCoverStyle, getOverlay,
+} from 'Utils';
 
 import styles from './Card.module.scss';
 

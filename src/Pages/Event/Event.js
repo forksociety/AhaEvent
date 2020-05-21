@@ -1,17 +1,21 @@
-import React, {Component} from 'react';
+import React, {
+  Component,
+} from 'react';
 
 import Icon from 'Components/Icon';
 import Tag from 'Components/Tag';
 import Loader from 'Components/Loader';
 import Content from 'Components/Content';
 import GoogleMap from 'Components/GoogleMap';
-import { getEvent } from 'Services/firebase';
+import {
+  getEvent,
+} from 'Services/firebase';
 import {
   getCoverStyle,
   getOverlay,
   convertDateRangeToReadable,
   isOnlineEvent,
-  getTwitterLink
+  getTwitterLink,
 } from 'Utils';
 
 import styles from './Event.module.scss';
@@ -27,7 +31,7 @@ class Event extends Component {
   }
 
   componentDidMount() {
-    const { match: {params: { id }}} = this.props;
+    const { match: { params: { id } } } = this.props;
     const eventId = id.split('-').pop();
 
     // ToDo: remove testing data
@@ -40,7 +44,7 @@ class Event extends Component {
 
     const event = getEvent(eventId);
 
-    if(eventId && event) {
+    if (eventId && event) {
       this.setState({
         eventId,
         event,
@@ -52,26 +56,26 @@ class Event extends Component {
 
   redirectToHome() {
     const { history } = this.props;
-    history.push('/')
+    history.push('/');
   }
 
   handleButtonClick(url, newTab = '_blank') {
-    window.open(url, newTab)
+    window.open(url, newTab);
   }
 
   getKeywords(keywords) {
     const keywordCount = 3;
     let keywordArr = keywords;
-    if(typeof keywords === 'string') {
-      keywordArr = keywords.split(',')
+    if (typeof keywords === 'string') {
+      keywordArr = keywords.split(',');
     }
-    return keywordArr.slice(0, keywordCount)
+    return keywordArr.slice(0, keywordCount);
   }
 
   getPageContent() {
     const { eventId, event } = this.state;
 
-    if(eventId && event) {
+    if (eventId && event) {
       const {
         name,
         description,
@@ -89,7 +93,7 @@ class Event extends Component {
         cfpStartDate,
         cfpEndDate,
       } = event;
-      const keywords = this.getKeywords(allKeywords)
+      const keywords = this.getKeywords(allKeywords);
 
       return (
         <Content className={styles.event}>
@@ -106,45 +110,51 @@ class Event extends Component {
           <span className={styles.details}>
             <span className={styles.content}>
               <span>
-                <h2 className='tac'>{name}</h2>
-                <h4 className='tac'>
+                <h2 className="tac">{name}</h2>
+                <h4 className="tac">
                   {convertDateRangeToReadable(startDate, endDate)}
                   {isOnlineEvent(location) ? <sup className={styles.online}>Online</sup> : null}
                 </h4>
-                <h4 className='tac'>{organization}</h4>
+                <h4 className="tac">{organization}</h4>
               </span>
-              <div className='tac'>{description}</div>
-              <div className='tac'>
+              <div className="tac">{description}</div>
+              <div className="tac">
                 {`Call for Proposals: ${cfpStartDate && cfpEndDate
                   ? convertDateRangeToReadable(cfpStartDate, cfpEndDate)
-                    : 'Not Available'
-              }`}
-            </div>
-            <span className={styles.actions}>
-              {link && <Icon
-                type="internet"
-                title={'Website'}
-                className={styles.icons}
-                onClick={() => this.handleButtonClick(link)}
-              />}
-              {streamLink && <Icon
-                title={'Watch Online'}
-                type="video"
-                className={styles.icons}
-                onClick={() => this.handleButtonClick(streamLink)}
-              />}
-              {twitterHandle && <Icon
-                title={'Twitter'}
-                type="twitter"
-                className={styles.icons}
-                onClick={() => this.handleButtonClick(getTwitterLink(twitterHandle))}
-              />}
+                  : 'Not Available'
+                }`}
+              </div>
+              <span className={styles.actions}>
+                {link && (
+                <Icon
+                  type="internet"
+                  title="Website"
+                  className={styles.icons}
+                  onClick={() => this.handleButtonClick(link)}
+                />
+                )}
+                {streamLink && (
+                <Icon
+                  title="Watch Online"
+                  type="video"
+                  className={styles.icons}
+                  onClick={() => this.handleButtonClick(streamLink)}
+                />
+                )}
+                {twitterHandle && (
+                <Icon
+                  title="Twitter"
+                  type="twitter"
+                  className={styles.icons}
+                  onClick={() => this.handleButtonClick(getTwitterLink(twitterHandle))}
+                />
+                )}
+              </span>
             </span>
+            {!isOnlineEvent(location) && <GoogleMap location={location} height="200px" />}
           </span>
-          {!isOnlineEvent(location) && <GoogleMap location={location} height='200px' />}
-        </span>
-      </Content>
-      )
+        </Content>
+      );
     }
 
     this.redirectToHome();
@@ -157,7 +167,7 @@ class Event extends Component {
         {isLoading && <Loader />}
         {!isLoading && (this.getPageContent())}
       </main>
-    )
+    );
   }
 }
 

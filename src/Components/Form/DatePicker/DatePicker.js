@@ -19,7 +19,7 @@ const CustomInput = (props) => {
 
   const classes = cx(styles.date, className);
   const popupContainerId = `${styles.date}_${generateRandomString()}`;
-  const dateFormat  = 'MMMM Do YYYY, h:mm:ss a';
+  const dateFormat = 'MMMM Do YYYY, h:mm:ss a';
 
   let component = '';
 

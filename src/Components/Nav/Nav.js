@@ -4,7 +4,9 @@ import React, {
 import {
   Menu,
 } from 'antd';
-import { Link } from 'react-router-dom'
+import {
+  Link,
+} from 'react-router-dom';
 import config from 'react-global-configuration';
 import cx from 'classnames';
 import {
@@ -43,7 +45,7 @@ class Nav extends Component {
 
     menuData.forEach((item) => {
       const link = this.getLink(item);
-      const { icon } = item
+      const { icon } = item;
 
 
       items.push(
@@ -52,7 +54,9 @@ class Nav extends Component {
           className={cx(
             styles.item,
             styles.right,
-            { [styles['hide-on-mobile']]: !showOnMobile.includes(icon) }
+            {
+              [styles['hide-on-mobile']]: !showOnMobile.includes(icon),
+            },
           )}
         >
           {link}

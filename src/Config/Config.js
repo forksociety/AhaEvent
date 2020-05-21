@@ -13,8 +13,8 @@ const sortBy = {
 
 const api = {
   googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=',
-  googleMapsEmbedUrl: 'https://www.google.com/maps/embed/v1/place?language=en'
-}
+  googleMapsEmbedUrl: 'https://www.google.com/maps/embed/v1/place?language=en',
+};
 
 
 const config = {

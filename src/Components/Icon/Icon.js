@@ -34,26 +34,26 @@ class Icon extends PureComponent {
 
   getIconComponent(key) {
     const mapping = {
-      'home': HomeOutlined,
-      'github': GithubOutlined,
-      'slack': SlackOutlined,
-      'copyright': CopyrightCircleOutlined,
-      'loader': LoadingOutlined,
-      'link': LinkOutlined,
+      home: HomeOutlined,
+      github: GithubOutlined,
+      slack: SlackOutlined,
+      copyright: CopyrightCircleOutlined,
+      loader: LoadingOutlined,
+      link: LinkOutlined,
       'down-arrow': DownOutlined,
       'up-caret': CaretUpOutlined,
       'sort-asc': SortAscendingOutlined,
       'sort-desc': SortDescendingOutlined,
-      'send': SendOutlined,
-      'location': CompassOutlined,
-      'internet': IeOutlined,
-      'youtube': YoutubeOutlined,
-      'youtube_filled': YoutubeFilled,
-      'video': VideoCameraOutlined,
-      'twitter': TwitterOutlined,
-    }
-    if(key in mapping) {
-      return this.applyProps(mapping[key])
+      send: SendOutlined,
+      location: CompassOutlined,
+      internet: IeOutlined,
+      youtube: YoutubeOutlined,
+      youtube_filled: YoutubeFilled,
+      video: VideoCameraOutlined,
+      twitter: TwitterOutlined,
+    };
+    if (key in mapping) {
+      return this.applyProps(mapping[key]);
     }
     return null;
   }
@@ -61,7 +61,7 @@ class Icon extends PureComponent {
   render() {
     const { type, filled } = this.props;
     const key = filled ? `${type}_filled` : type;
-    return this.getIconComponent(key)
+    return this.getIconComponent(key);
   }
 }
 

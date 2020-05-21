@@ -18,7 +18,7 @@ export const getCoverStyle = (cover, color) => {
     }) : ({
       backgroundColor: color || defaultColor,
     });
-}
+};
 
 export const getOverlay = (cover) => (cover && cover.length > 0 ? (<div className="overlay" />) : null);
 
@@ -40,7 +40,7 @@ export const getRedirectUrls = () => {
   return redirectUrlsArray;
 };
 
-export const getTwitterLink = (handle) => (`https://twitter.com/${handle}`)
+export const getTwitterLink = (handle) => (`https://twitter.com/${handle}`);
 
 export const showBanner = (location) => {
   const pathsForBanner = ['/'];
@@ -53,51 +53,51 @@ export const generateRandomString = () => (Math.random().toString(36).substring(
 export const convertDateToIso = (d) => {
   const dateFormat = 'YYYY-MM-DDThh:mm:ss+00:00';
   return moment(d).utc().format(dateFormat);
-}
+};
 
 export const convertDateToReadable = (d, showYear = true, showTime = false, showTimezone = false) => {
   let format = 'MMMM Do';
-  if(showYear) {
+  if (showYear) {
     format += ' YYYY';
   }
 
-  if(showTime) {
+  if (showTime) {
     format += ', h:mm:ss a';
   }
-  return moment(d).format(format)
-}
+  return moment(d).format(format);
+};
 
 export const convertDateRangeToReadable = (start, end) => {
   // if years match
-  let startStr = convertDateToReadable(start)
-  let endStr = convertDateToReadable(end)
-  if(moment(start).format('YYYY') === moment(end).format('YYYY')) {
-    startStr = convertDateToReadable(start, false)
+  let startStr = convertDateToReadable(start);
+  const endStr = convertDateToReadable(end);
+  if (moment(start).format('YYYY') === moment(end).format('YYYY')) {
+    startStr = convertDateToReadable(start, false);
   }
-  return `${startStr} - ${endStr}`
-}
+  return `${startStr} - ${endStr}`;
+};
 
 export const generateSchema = (content) => {
   const { cfpDate, date, hasCfp, keywords, ...rest } = content;
 
   let payload = {
-    ...rest
-  }
+    ...rest,
+  };
 
-  const keywordsArr = keywords.split(',').map((i) => i.trim())
+  const keywordsArr = keywords.split(',').map((i) => i.trim());
   let [startDate, endDate] = date;
   startDate = convertDateToIso(startDate);
   endDate = convertDateToIso(endDate);
 
-  if(hasCfp) {
+  if (hasCfp) {
     let [cfpStartDate, cfpEndDate] = cfpDate;
     cfpStartDate = convertDateToIso(cfpStartDate);
     cfpEndDate = convertDateToIso(cfpEndDate);
     payload = {
       ...payload,
       cfpStartDate,
-      cfpEndDate
-    }
+      cfpEndDate,
+    };
   }
 
   return ({
@@ -127,14 +127,12 @@ export const generateDownloadableJsonFile = (filename, content) => {
 
 export const readableStringToKey = (s, regex = / /g, separator = '_') => s.replace(regex, separator).toLowerCase();
 
-export const generateEventUrl = (id, name) => {
-  return (`/event/${readableStringToKey(name, / /g, '-')}-${id}`)
-}
+export const generateEventUrl = (id, name) => (`/event/${readableStringToKey(name, / /g, '-')}-${id}`);
 
 export const getIdFromUrlSlug = (slug, separator = '_') => {
-  const tmp = slug.split(separator)
+  const tmp = slug.split(separator);
   return tmp.length > 0 ? tmp[tmp.length - 1] : null;
-}
+};
 
 export default {
   Routes,
