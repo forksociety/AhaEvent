@@ -35,7 +35,6 @@ class Home extends Component {
     const self = this;
     getOrderedEventsList()
       .then((eventList) => {
-        console.log('#############', eventList)
         self.setState({
           events: eventList,
           isLoading: false,
@@ -83,7 +82,6 @@ class Home extends Component {
             </div>}
           </>
         );
-        console.log('title', e)
         const url = generateEventUrl(id, title);
 
         return {
