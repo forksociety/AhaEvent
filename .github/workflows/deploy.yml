@@ -1,24 +1,24 @@
-name: CI
+name: Deploy
 on:
   push:
     branches: [ master ]
 
 jobs:
-  build:
+  POPULATE_DB:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Python
+    - name: Setup Python Env
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-        
-    - name: Install python requirements
-      run: pip3 install -r scripts/travis/requirements.txt
 
-    - name: Populate Database
+    - name: Install python requirements
+      run: pip3 install -r scripts/cicd/requirements.txt
+
+    - name: Populate Firestore
       shell: bash
       env:
         SERVICE_ACCOUNT: ${{ secrets.serviceAccount }}
       run: |
-        python3 ./scripts/travis/deploy.py
+        python3 ./scripts/cicd/deploy.py
