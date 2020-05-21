@@ -110,4 +110,5 @@ def travis():
 
 if __name__ == '__main__':
     print(os.getenv('serviceAccount'))
+    print('serviceAccount', createCertificate())
     travis()
