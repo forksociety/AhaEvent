@@ -92,7 +92,7 @@ export const getEvent = (id) => {
       organization: 'Google',
       link: 'https://cloud.withgoogle.com/next/sf/',
       cover: '',
-      coverBgColor: '#ffffff',
+      coverBgColor: '#dadada',
       twitterHandle: 'googlecloud',
       streamLink: 'https://cloud.withgoogle.com/next/sf/sessions',
       submitterTwitterHandle: 'PrabhanshuAttri',

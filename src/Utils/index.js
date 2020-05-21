@@ -8,7 +8,7 @@ import {
 import Routes from './routes';
 
 export const getCoverStyle = (cover, color) => {
-  const defaultColor = 'white';
+  const defaultColor = '#dadada';
   return cover && cover.length > 0
     ? ({
       background: `url(${cover})`,
