@@ -32,5 +32,5 @@ jobs:
         pwd
         ls
         ls scripts
-        pip3 install ./scripts/travis/requirements.txt
-        python3 ./scripts/travis/deploy.py
+        pip3 install scripts/travis/requirements.txt
+        python3 scripts/travis/deploy.py
