@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .menu {
   .aha-menu {
     padding-left: 1em;
@@ -30,7 +32,15 @@
     }
 
     .hide-on-mobile {
+    }
+  }
+}
+
+@media only screen and (max-width: $smallDevice) {
+  .menu {
+    .hide-on-mobile {
       display: none;
     }
   }
+
 }

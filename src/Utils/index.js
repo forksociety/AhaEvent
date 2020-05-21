@@ -55,7 +55,12 @@ export const convertDateToIso = (d) => {
   return moment(d).utc().format(dateFormat);
 };
 
-export const convertDateToReadable = (d, showYear = true, showTime = false, showTimezone = false) => {
+export const convertDateToReadable = (
+  d,
+  showYear = true,
+  showTime = false,
+  showTimezone = false,
+) => {
   let format = 'MMMM Do';
   if (showYear) {
     format += ' YYYY';
@@ -63,6 +68,10 @@ export const convertDateToReadable = (d, showYear = true, showTime = false, show
 
   if (showTime) {
     format += ', h:mm:ss a';
+  }
+
+  if (showTimezone) {
+    format += '+00:00';
   }
   return moment(d).format(format);
 };

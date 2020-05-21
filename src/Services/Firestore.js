@@ -1,23 +1,14 @@
-import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import {
   sort,
 } from 'ramda';
+
 import config from 'Config/Config';
+import firebase from './Firebase';
 
 const { filters, sortBy } = config;
 
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-};
-
-firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 export const createEventsList = () => new Promise((resolve) => {
@@ -66,7 +57,7 @@ const whereQueryConstructor = (query, filter) => {
   return query.where('endDate', '>=', currDate.toISOString());
 };
 
-export const getOrderedEventsList = (orderBy, queryFilters=null) => new Promise((resolve) => {
+export const getOrderedEventsList = (orderBy, queryFilters = null) => new Promise((resolve) => {
   let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
   if (!queryFilters || !queryFilters.includes(filters.spe.key)) {
     query = whereQueryConstructor(query);
@@ -85,7 +76,7 @@ export const getOrderedEventsList = (orderBy, queryFilters=null) => new Promise(
       resolve(docs);
     })
     .catch((e) => {
-      resolve([])
+      resolve([]);
     });
 });
 

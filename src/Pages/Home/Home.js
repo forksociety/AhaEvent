@@ -8,7 +8,7 @@ import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import {
   getSampleEvents, getOrderedEventsList,
-} from 'Services/firebase';
+} from 'Services/Firestore';
 import Utils, {
   generateEventUrl,
   convertDateRangeToReadable,
@@ -17,7 +17,7 @@ import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
-const {getSearchParams} = Utils;
+const { getSearchParams } = Utils;
 
 class Home extends Component {
   constructor(props) {
@@ -29,13 +29,12 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const {location: { search }} = this.props
+    const { location: { search } } = this.props;
     const searchParams = getSearchParams(search);
 
     const self = this;
     getOrderedEventsList()
       .then((eventList) => {
-        console.log('#############', eventList)
         self.setState({
           events: eventList,
           isLoading: false,
@@ -77,13 +76,14 @@ class Home extends Component {
         const description = (
           <>
             <div>{convertDateRangeToReadable(startDate, endDate)}</div>
-            {hasCfp && <div>
+            {hasCfp && (
+            <div>
               CFP:
               {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
-            </div>}
+            </div>
+            )}
           </>
         );
-        console.log('title', e)
         const url = generateEventUrl(id, title);
 
         return {

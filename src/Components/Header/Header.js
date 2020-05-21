@@ -32,17 +32,16 @@ class Header extends Component {
     this.loadSearchParams();
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
   }
 
   loadSearchParams() {
-    const {location: { search }} = this.props
+    const { location: { search } } = this.props;
     const searchInfo = getSearchParams(search);
 
     this.setState({
-      searchInfo
-    })
-
+      searchInfo,
+    });
   }
 
   onSearch(searchQuery) {
@@ -52,13 +51,13 @@ class Header extends Component {
     let newFilters = [];
     if (filter) {
       const { key, value } = filter;
-      newFilters = [...prevF]
-      if(!newFilters.includes(key)) {
-        newFilters.push(key)
+      newFilters = [...prevF];
+      if (!newFilters.includes(key)) {
+        newFilters.push(key);
       }
 
       if (!value) {
-        newFilters = newFilters.filter((item) => (item !== key))
+        newFilters = newFilters.filter((item) => (item !== key));
       }
     }
     const searchInfo = {
@@ -68,12 +67,12 @@ class Header extends Component {
     };
 
     this.setState({
-      searchInfo
-    })
+      searchInfo,
+    });
 
     // ToDO: History.push won't work without redux. Implement redux
-    //history.push(getSearchUrl(searchInfo))
-    window.location.href = getSearchUrl(searchInfo)
+    // history.push(getSearchUrl(searchInfo))
+    window.location.href = getSearchUrl(searchInfo);
   }
 
   getSearchBox() {

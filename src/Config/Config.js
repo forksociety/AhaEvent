@@ -1,18 +1,28 @@
-import {reduce} from 'ramda';
+import {
+  reduce,
+} from 'ramda';
 
-const generateCustomObjects = (obj, level = 1) => {
-  return reduce((acc, key) => {
-    if(level === 1) {
+const generateCustomObjects = (obj, level = 1) => reduce((acc, key) => {
+  if (level === 1) {
     const text = obj[key];
-      return ({ ...acc, [key]: {key, text}})
-    } else if(level === 2) {
-      return ({ ...acc, [key]: {...obj[key], key}})
-    }
-  },
-    {},
-    Object.keys(obj)
-  )
-}
+    return ({
+      ...acc,
+      [key]: {
+        key, text,
+      },
+    });
+  } if (level === 2) {
+    return ({
+      ...acc,
+      [key]: {
+        ...obj[key], key,
+      },
+    });
+  }
+},
+{
+},
+Object.keys(obj));
 
 const filters = {
   cfp: 'Call For Proposals Open',
@@ -52,7 +62,7 @@ const searchFields = {
   sort: 'sort',
   filters: 'filters',
   query: 'q',
-}
+};
 
 
 const config = {
