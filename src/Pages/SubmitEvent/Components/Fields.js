@@ -118,7 +118,7 @@ const Fields = {
     validate: validations.notEmpty,
   },
   coverBgColor: {
-    text: 'Cover Color',
+    text: 'Cover Background Color',
     value: '',
     component: formElements.color,
     type: 'color',
