@@ -73,13 +73,14 @@ class Home extends Component {
             <span>{location}</span>
           </>
         );
+        const hasCfp = cfpStartDate && cfpEndDate;
         const description = (
           <>
             <div>{convertDateRangeToReadable(startDate, endDate)}</div>
-            <div>
+            {hasCfp && <div>
               CFP:
               {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
-            </div>
+            </div>}
           </>
         );
         console.log('title', e)
