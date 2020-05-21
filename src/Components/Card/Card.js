@@ -1,6 +1,7 @@
 import React, {
   PureComponent,
 } from 'react';
+import cx from 'classnames';
 
 import {
   getCoverStyle, getOverlay,
@@ -40,9 +41,9 @@ class CustomCard extends PureComponent {
             padding: '20px',
           }}
         >
-          <span className={styles.title}>{title}</span>
-          <div className={styles['sub-title']}>{subTitle}</div>
-          <div>{description}</div>
+          <span className={cx(styles.title, styles['hide-overflow'])}>{title}</span>
+          <div className={cx(styles['sub-title'], styles['hide-overflow'])}>{subTitle}</div>
+          <div className={styles['hide-overflow']}>{description}</div>
         </div>
       </div>
     );
