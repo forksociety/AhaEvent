@@ -4,6 +4,7 @@ import React, {
 import {
   Menu,
 } from 'antd';
+import { Link } from 'react-router-dom'
 import config from 'react-global-configuration';
 import cx from 'classnames';
 import {
@@ -28,9 +29,9 @@ class Nav extends Component {
     const target = this.isRedirectLink(link) ? '_blank' : null;
 
     return (
-      <a href={link} title={text} target={target}>
+      <Link to={link} title={text} target={target}>
         <Icon type={icon} className={style.icon} />
-      </a>
+      </Link>
     );
   }
 
@@ -58,9 +59,9 @@ class Nav extends Component {
           key="logo"
           className={cx(style.item, style.left)}
         >
-          <a href="/">
+          <Link to="/">
             <Logo className={style.logo} />
-          </a>
+          </Link>
         </Menu.Item>,
       );
     }

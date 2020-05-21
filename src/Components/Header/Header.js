@@ -50,8 +50,6 @@ class Header extends Component {
 
     this.setState({
       searchInfo,
-    }, () => {
-      console.log('###', this.state);
     });
   }
 
