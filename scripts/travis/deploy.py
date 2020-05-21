@@ -63,7 +63,7 @@ def getResponseFromMessage(message):
 def createCertificate():
     fields = {
         'type': 'SERVICE_ACCOUNT_TYPE',
-        'project_id': 'SERVICE_ACCOUNT_ID',
+        'project_id': 'SERVICE_ACCOUNT_PROJECT_ID',
         'private_key_id': 'SERVICE_ACCOUNT_PRIVATE_KEY_ID',
         'private_key': 'SERVICE_ACCOUNT_PRIVATE_KEY',
         'client_email': 'SERVICE_ACCOUNT_CLIENT_EMAIL',
