@@ -4,7 +4,9 @@ import React, {
 import {
   Input,
 } from 'antd';
-import { reduce } from 'ramda';
+import {
+  reduce,
+} from 'ramda';
 import config from 'react-global-configuration';
 
 import Checkbox from '../Checkbox';
@@ -37,14 +39,19 @@ class SearchBox extends Component {
 
   getSortByItems() {
     const allSortBy = config.get('sortBy');
-    return reduce((acc, key) => ({...acc, [key]: allSortBy[key].text }), {}, Object.keys(allSortBy));
+    return reduce((acc, key) => ({
+      ...acc, [key]: allSortBy[key].text,
+    }), {
+    }, Object.keys(allSortBy));
   }
 
   onChange(e) {
-    const {onSearch} = this.props;
-    if(e) {
-      const { target} = e;
-      onSearch({query: target.value})
+    const { onSearch } = this.props;
+    if (e) {
+      const { target } = e;
+      onSearch({
+        query: target.value,
+      });
     }
   }
 
@@ -59,7 +66,9 @@ class SearchBox extends Component {
         <Search
           className={styles.search}
           placeholder={placeholder || 'Search'}
-          onSearch={(query) => onSearch({query}, true)}
+          onSearch={(query) => onSearch({
+            query,
+          }, true)}
           value={query}
           enterButton={enterButton}
         />
@@ -73,7 +82,7 @@ class SearchBox extends Component {
             onChange={(e) => this.handleDropdownUpdate(e)}
           />
           {Object.keys(allFilters).map((key, i) => {
-            const text = allFilters[key].text;
+            const { text } = allFilters[key];
             return (
               <Checkbox
                 className={styles.filter}

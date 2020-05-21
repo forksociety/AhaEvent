@@ -14,9 +14,11 @@ import styles from './Dropdown.module.scss';
 const { Option } = Select;
 
 const CustomDropdown = ({ items, selected, onChange, className, ...rest }) => {
-  const selectedItem = (<span className={styles.item}>
-    {items[selected]}
-  </span>);
+  const selectedItem = (
+    <span className={styles.item}>
+      {items[selected]}
+    </span>
+  );
   const popupContainerId = `${styles.dropdown}_${generateRandomString()}`;
 
   return (

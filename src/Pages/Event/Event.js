@@ -9,7 +9,7 @@ import Content from 'Components/Content';
 import GoogleMap from 'Components/GoogleMap';
 import {
   getEvent,
-} from 'Services/firebase';
+} from 'Services/Firestore';
 import {
   getCoverStyle,
   getOverlay,

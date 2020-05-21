@@ -29,7 +29,7 @@ loadConfig.set(Config);
 
 const Routes = () => (
   <>
-    <Header showBanner={showBanner(useLocation())} location={useLocation()}/>
+    <Header showBanner={showBanner(useLocation())} location={useLocation()} />
     <BackTop />
     <Switch>
       <Route
