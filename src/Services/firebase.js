@@ -4,7 +4,6 @@ import 'firebase/auth';
 import {
   sort, reverse,
 } from 'ramda';
-import events from './events.json';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -19,6 +18,7 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 
 export const createEventsList = () => new Promise((resolve) => {
+  const events = [];
   for (let index = 0; index < events.length; index += 1) {
     const event = events[index];
     db.collection(process.env.REACT_APP_COLLECTION_KEY).add(events[event])
@@ -81,3 +81,26 @@ export const getOrderedEventsList = (orderBy) => new Promise((resolve) => {
     })
     .catch(() => resolve(null));
 });
+
+export const getSampleEvents = () => {
+  const obj = {
+    id: 'vET234bn432N',
+    name: "Event Name",
+    description: 'Lorem ipsum dgd fdh sd sdgfd sd sdghyfjuy jyujn ntyt ngh',
+    keywords: "PyCon, python",
+    location: "Online",
+    logo: 'https://events.linuxfoundation.org/wp-content/uploads/LF-Event-Logo-_OSS-NA-V-White-01.svg',
+    organization: "Linux Foundation",
+    link: 'https://events.linuxfoundation.org/wp-content/uploads/37879144301_f970c87da2_o.jpg',
+    cover: 'https://events.linuxfoundation.org/wp-content/uploads/37879144301_f970c87da2_o.jpg',
+    coverBgColor: "#904a4a",
+    twitterHandle: "linuxfoundation",
+    streamLink: "",
+    startDate: "2020-05-05T09:06:42+00:00",
+    endDate: "2020-05-20T09:06:42+00:00",
+    cfpStartDate: "2020-05-20T09:06:42+00:00",
+    cfpEndDate: "2020-05-20T09:06:42+00:00"
+  }
+
+  return [obj, obj, obj, obj, obj, obj, obj, obj, obj, obj];
+}
