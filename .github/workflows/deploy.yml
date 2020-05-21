@@ -8,13 +8,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Populate Database
-      run: |
-        pip install -r ./scripts/travis/requirements.txt
-        python ./scripts/travis/deploy.py
     - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
+      run: python3 -c "import sys; print(sys.version)"
+
+    - name: Install packages
+      run: |
+        python3 -m pip install setuptools wheel
+        python3 -m pip install -r ./scripts/travis/requirements.txt
+
+    - name: Populate Database
+      run: python3 ./scripts/travis/deploy.py
