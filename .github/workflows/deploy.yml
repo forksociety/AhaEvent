@@ -12,8 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Run a multi-line script
+    - name: Populate Database
       run: |
-        ls,
-        pip install -r ./scripts/travis/requirements.txt,
-        python ./scripts/travis/deploy.py.
+        pip install -r ./scripts/travis/requirements.txt
+        python ./scripts/travis/deploy.py
