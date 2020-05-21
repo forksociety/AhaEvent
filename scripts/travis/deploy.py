@@ -56,7 +56,7 @@ def deleteEvent(existingDocs):
 
 def getResponseFromMessage(message):
     prNumber = int(message.split(' ')[3].strip('#'))
-    baseURL = 'https://api.github.com/repos/'+ os.getenv('GITHUB_REPO') +'/pulls/'
+    baseURL = 'https://api.github.com/repos/'+ os.getenv('GITHUB_REPOSITORY') +'/pulls/'
     response = requests.get(url=baseURL + str(prNumber) + '/files')
     return response
 
