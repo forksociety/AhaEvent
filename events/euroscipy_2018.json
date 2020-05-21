@@ -1,0 +1,22 @@
+{
+    "name": "EuroSciPy 2018",
+    "organization": "Python Software Foundation",
+    "location": "Trento, Italy",
+    "description": "The EuroSciPy meeting is a cross-disciplinary gathering focused on the use and development of the Python language in scientific research. This event strives to bring together both users and developers of scientific tools, as well as academic research and state of the art industry.",
+    "keywords": [
+        "Python",
+        "Data",
+        "Python Software Foundation",
+        "Europe"
+    ],
+    "startDate": "2018-08-28T00:00:00+00:00",
+    "endDate": "2018-09-01T00:00:00+00:00",
+    "cfpStartDate": "2018-04-26T00:00:00+00:00",
+    "cfpEndDate": "2018-05-31T00:00:00+00:00",
+    "logo": "https://dl.airtable.com/IvBKEadMSSOXk7x4Tba1_euroscipy-trento-2018-logo.png",
+    "cover": null,
+    "coverBgColor": null,
+    "link": "https://www.euroscipy.org/2018/",
+    "twitterHandle": "EuroSciPy",
+    "submitterTwitterHandle": "PrabhanshuAttri"
+}
