@@ -2,34 +2,29 @@ import React, {
   PureComponent,
 } from 'react';
 
+import {
+  getCoverStyle, getOverlay,
+} from 'Utils';
+
 import styles from './Card.module.scss';
 
 class CustomCard extends PureComponent {
-  getCoverStyle(cover, color) {
-    return cover && cover.length > 0
-      ? ({
-        background: `url(${cover})`,
-        backgroundSize: 'cover',
-        backgroundColor: color,
-      }) : ({
-        backgroundColor: color,
-      });
-  }
-
   render() {
     const { cover, coverBgColor, logo, title, subTitle, description, onClick } = this.props;
-    const overlay = cover && cover.length > 0 ? (<div className="overlay" />) : null;
+    const overlay = getOverlay(cover);
 
     if (!title) {
       return null;
     }
 
     return (
-      <div className={styles.card}>
+      <div
+        className={styles.card}
+        onClick={onClick}
+      >
         <div
-          onClick={onClick}
           className={styles.cover}
-          style={this.getCoverStyle(cover, coverBgColor)}
+          style={getCoverStyle(cover, coverBgColor)}
         >
           {overlay}
           <div className={styles.icons}>

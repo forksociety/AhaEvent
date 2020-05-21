@@ -6,10 +6,18 @@ import Grid from 'Components/Grid';
 import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
-import { getSampleEvents } from 'Services/firebase';
-import { generateEventUrl, converDateRangeToReadable } from 'Utils';
+import {
+  getSampleEvents, getOrderedEventsList,
+} from 'Services/firebase';
+import Utils, {
+  generateEventUrl,
+  convertDateRangeToReadable,
+} from 'Utils';
+import config from 'Config/Config';
 
 import styles from './Home.module.scss';
+
+const {getSearchParams} = Utils;
 
 class Home extends Component {
   constructor(props) {
@@ -21,32 +29,32 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // ToDo: remove testing data
+    const {location: { search }} = this.props
+    const searchParams = getSearchParams(search);
+
     const self = this;
-    setTimeout(() => {
-      self.setState({
-        isLoading: false,
+    getOrderedEventsList()
+      .then((eventList) => {
+        console.log('#############', eventList)
+        self.setState({
+          events: eventList,
+          isLoading: false,
+        });
       });
-    }, 1000);
-
-    const events = getSampleEvents();
-
-    this.setState({
-      events,
-    });
   }
 
   handleCardClick(e, url) {
     e.preventDefault();
-    const {history} = this.props;
-    history.push(url)
+    const { history } = this.props;
+    history.push(url);
   }
 
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
       const eventsData = events.map((e, i) => {
-        const { id,
+        const {
+          id,
           name: title,
           logo,
           link,
@@ -56,17 +64,25 @@ class Home extends Component {
           startDate,
           endDate,
           cfpStartDate,
-          cfpEndDate
+          cfpEndDate,
         } = e;
 
-        const subTitle = (<>
-        <Icon type='location' className={styles.icon} />
-        <span>{location}</span>
-      </>);
-        const description = (<>
-        <div>{converDateRangeToReadable(startDate, endDate)}</div>
-        <div>CFP: {converDateRangeToReadable(cfpStartDate, cfpEndDate)}</div>
-      </>);
+        const subTitle = (
+          <>
+            <Icon type="location" className={styles.icon} />
+            <span>{location}</span>
+          </>
+        );
+        const description = (
+          <>
+            <div>{convertDateRangeToReadable(startDate, endDate)}</div>
+            <div>
+              CFP:
+              {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
+            </div>
+          </>
+        );
+        console.log('title', e)
         const url = generateEventUrl(id, title);
 
         return {
@@ -79,9 +95,9 @@ class Home extends Component {
           url,
           cover,
           coverBgColor,
-          onClick: (e) => this.handleCardClick(e, url)
-        }
-      })
+          onClick: (e) => this.handleCardClick(e, url),
+        };
+      });
       return (
         <Grid
           items={eventsData.map((event) => (<Card {...event} />))}

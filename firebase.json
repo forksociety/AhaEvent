@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "ahaeventorg",
     "public": "build",
     "ignore": [
       "firebase.json",

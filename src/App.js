@@ -6,7 +6,9 @@ import loadConfig from 'react-global-configuration';
 import 'antd/dist/antd.less';
 
 import Config from 'Config';
+import History from 'Config/History';
 import Header from 'Components/Header';
+import BackTop from 'Components/BackTop';
 import Footer from 'Components/Footer';
 
 import Pages from 'Pages';
@@ -27,7 +29,8 @@ loadConfig.set(Config);
 
 const Routes = () => (
   <>
-    <Header showBanner={showBanner(useLocation())} />
+    <Header showBanner={showBanner(useLocation())} location={useLocation()}/>
+    <BackTop />
     <Switch>
       <Route
         exact
@@ -50,6 +53,6 @@ const Routes = () => (
   </>
 );
 
-const App = () => (<Router><Routes /></Router>);
+const App = () => (<Router history={History}><Routes /></Router>);
 
 export default App;

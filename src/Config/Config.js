@@ -1,3 +1,19 @@
+import {reduce} from 'ramda';
+
+const generateCustomObjects = (obj, level = 1) => {
+  return reduce((acc, key) => {
+    if(level === 1) {
+    const text = obj[key];
+      return ({ ...acc, [key]: {key, text}})
+    } else if(level === 2) {
+      return ({ ...acc, [key]: {...obj[key], key}})
+    }
+  },
+    {},
+    Object.keys(obj)
+  )
+}
+
 const filters = {
   cfp: 'Call For Proposals Open',
   spe: 'Show Past Events',
@@ -5,11 +21,38 @@ const filters = {
 };
 
 const sortBy = {
-  DATE_ASC: 'Date ASC',
-  DATE_DESC: 'Date DESC',
-  CFP_ASC: 'Call for Proposal ASC',
-  CFP_DESC: 'Call for Proposal DESC',
+  'date-asc': {
+  	field: 'startDate',
+  	order: 1,
+  	text: 'Date ASC',
+  },
+  'date-desc': {
+  	field: 'startDate',
+  	order: -1,
+  	text: 'Date DESC',
+  },
+  'cfp-asc': {
+  	field: 'cfpEndDate',
+  	order: 1,
+  	text: 'Call for Proposal ASC',
+  },
+  'cfp-desc': {
+  	field: 'cfpEndDate',
+  	order: -1,
+  	text: 'Call for Proposal DESC',
+  },
 };
+
+const api = {
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=',
+  googleMapsEmbedUrl: 'https://www.google.com/maps/embed/v1/place?language=en',
+};
+
+const searchFields = {
+  sort: 'sort',
+  filters: 'filters',
+  query: 'q',
+}
 
 
 const config = {
@@ -60,8 +103,14 @@ const config = {
     report: 'https://github.com/forksociety/AhaEvent/issues',
   },
   gaTrackingId: 'UA-84775604-4',
-  filters,
-  sortBy,
+  filters: generateCustomObjects(filters),
+  sortBy: generateCustomObjects(sortBy, 2),
+  defaults: {
+    sort: 'date-asc',
+    filters: [],
+  },
+  searchFields,
+  api,
 };
 
 export default config;

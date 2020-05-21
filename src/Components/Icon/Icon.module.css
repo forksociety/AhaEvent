@@ -1,3 +1,15 @@
 :global(.ant-menu-item) :global(.anticon).icon {
   color: white;
 }
+
+.icon.internet {
+  color: #38a0db;
+}
+
+.icon.youtube {
+  color: #FF0000
+}
+
+.icon.twitter {
+  color: #1da1f2
+}
