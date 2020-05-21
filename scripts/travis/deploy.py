@@ -56,25 +56,12 @@ def deleteEvent(existingDocs):
 
 def getResponseFromMessage(message):
     prNumber = int(message.split(' ')[3].strip('#'))
-    baseURL = 'https://api.github.com/repos/'+ os.getenv('TRAVIS_REPO_SLUG') +'/pulls/'
+    baseURL = 'https://api.github.com/repos/'+ os.getenv('GITHUB_REPOSITORY') +'/pulls/'
     response = requests.get(url=baseURL + str(prNumber) + '/files')
     return response
 
 def createCertificate():
-    fields = [
-        'type',
-        'project_id',
-        'private_key_id',
-        'private_key',
-        'client_email',
-        'client_id',
-        'auth_uri',
-        'token_uri',
-        'auth_provider_x509_cert_url',
-        'client_x509_cert_url'
-        ]
-
-    serviceAccount = {field: os.getenv(field) for field in fields}
+    serviceAccount = json.loads(os.getenv('SERVICE_ACCOUNT'))
     return serviceAccount
 
 def saveCertificate(serviceAccount):

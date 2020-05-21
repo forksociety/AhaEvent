@@ -1,23 +1,24 @@
 name: CI
 on:
   push:
-    branches: [ master, develop ]
-  pull_request:
-    branches: [ master, develop ]
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v2
     - name: Setup Python
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-
+        
     - name: Install python requirements
       run: pip3 install -r scripts/travis/requirements.txt
 
     - name: Populate Database
-      run: python3 ./scripts/travis/deploy.py
+      shell: bash
+      env:
+        SERVICE_ACCOUNT: ${{ secrets.serviceAccount }}
+      run: |
+        python3 ./scripts/travis/deploy.py
