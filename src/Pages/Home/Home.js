@@ -35,9 +35,8 @@ class Home extends Component {
   componentDidMount() {
     const { location: { search } } = this.props;
     const searchParams = getSearchParams(search);
-
     const self = this;
-    getOrderedEventsList()
+    getOrderedEventsList(searchParams)
       .then((eventList) => {
         self.setState({
           events: eventList,
