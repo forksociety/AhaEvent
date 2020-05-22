@@ -4,10 +4,11 @@ import {
   sort,
 } from 'ramda';
 
-import config from 'Config/Config';
+import config from 'Config';
 import firebase from './Firebase';
 
-const { filters, sortBy } = config;
+const filters = config.get('filters');
+const sortBy = config.get('sortBy');
 
 const db = firebase.firestore();
 

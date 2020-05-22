@@ -1,10 +1,10 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import config from 'react-global-configuration';
 import {
   Route,
 } from 'react-router-dom';
 
+import config from 'Config';
 import Routes from './routes';
 
 export const getCoverStyle = (cover, color) => {

@@ -7,7 +7,8 @@ import {
 import {
   reduce,
 } from 'ramda';
-import config from 'react-global-configuration';
+
+import config from 'Config';
 
 import Checkbox from '../Checkbox';
 import Dropdown from '../Dropdown';
