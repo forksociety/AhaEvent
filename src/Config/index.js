@@ -2,13 +2,15 @@ import ConfigObj from './Config';
 
 const Config = () => {
   const get = (key) => {
-    if(key in ConfigObj) {
+    if (key in ConfigObj) {
       return ConfigObj[key];
     }
     return null;
-  }
+  };
 
-  return {get}
-}
+  return {
+    get,
+  };
+};
 
 export default Config();
