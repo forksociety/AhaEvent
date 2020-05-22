@@ -43,7 +43,6 @@ const createDateComparator = (key) => {
 
 const whereQueryConstructor = (query, filter) => {
   const currDate = new Date();
-  currDate.setYear(currDate.getYear() - 3);
   if (filter && filter === filters.ree.key) {
     currDate.setMonth(currDate.getMonth() - 1);
   }
