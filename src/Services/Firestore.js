@@ -66,7 +66,7 @@ export const getOrderedEventsList = (searchParams) => new Promise((resolve) => {
   const queryFilters = searchParams.filters;
   const searchString = searchParams.query;
   let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
-  if (!queryFilters || !queryFilters.includes(filters.spe.key)) {
+  if (queryFilters && !queryFilters.includes(filters.spe.key)) {
     query = whereQueryConstructor(query);
   }
   if (queryFilters && queryFilters.includes(filters.ree.key)) {
