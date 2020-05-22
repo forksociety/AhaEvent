@@ -43,16 +43,30 @@ const createDateComparator = (key) => {
 
 const whereQueryConstructor = (query, filter) => {
   const currDate = new Date();
-  currDate.setYear(currDate.getYear() - 3);
   if (filter && filter === filters.ree.key) {
     currDate.setMonth(currDate.getMonth() - 1);
   }
   return query.where('endDate', '>=', currDate.toISOString());
 };
 
-export const getOrderedEventsList = (orderBy, queryFilters = null) => new Promise((resolve) => {
+const filterBySearchString = (docs, searchString) => {
+  if (searchString) {
+    if (searchString.includes('tag:')) {
+      const tag = searchString.replace(/tag:/g, '');
+      return docs.filter((doc) => doc.keywords.map(
+        (keyword) => keyword.toLowerCase(),
+      ).includes(tag.toLowerCase()));
+    }
+    return docs.filter((doc) => (doc.name.toLowerCase().includes(searchString.toLowerCase())));
+  } return docs;
+};
+
+export const getOrderedEventsList = (searchParams) => new Promise((resolve) => {
+  const orderBy = searchParams.sortBy;
+  const queryFilters = searchParams.filters;
+  const searchString = searchParams.query;
   let query = db.collection(process.env.REACT_APP_COLLECTION_KEY);
-  if (!queryFilters || !queryFilters.includes(filters.spe.key)) {
+  if (queryFilters && !queryFilters.includes(filters.spe.key)) {
     query = whereQueryConstructor(query);
   }
   if (queryFilters && queryFilters.includes(filters.ree.key)) {
@@ -66,6 +80,7 @@ export const getOrderedEventsList = (orderBy, queryFilters = null) => new Promis
         docs = docs.filter((doc) => Date.parse(doc.cfpEndDate) > currDate);
       }
       docs = sort(createDateComparator(orderBy), docs);
+      docs = filterBySearchString(docs, searchString);
       resolve(docs);
     })
     .catch((e) => {
