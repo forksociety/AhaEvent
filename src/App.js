@@ -2,7 +2,6 @@ import React from 'react';
 import {
   BrowserRouter as Router, Route, Switch, useLocation,
 } from 'react-router-dom';
-import loadConfig from 'react-global-configuration';
 import 'antd/dist/antd.less';
 
 import Config from 'Config';
@@ -25,7 +24,6 @@ const {
   SubmitEvent,
 } = Pages;
 
-loadConfig.set(Config);
 
 const Routes = () => (
   <>

@@ -1,7 +1,8 @@
 import React, {
   Component,
 } from 'react';
-import config from 'react-global-configuration';
+
+import config from 'Config';
 
 import styles from './GoogleMap.module.scss';
 

@@ -7,12 +7,12 @@ import {
 import {
   Link,
 } from 'react-router-dom';
-import config from 'react-global-configuration';
 import cx from 'classnames';
 import {
   bool,
 } from 'prop-types';
 
+import config from 'Config';
 import Logo from 'Components/Logo';
 import Icon from 'Components/Icon';
 

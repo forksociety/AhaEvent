@@ -1,8 +1,8 @@
 import React, {
   Component,
 } from 'react';
-import config from 'react-global-configuration';
 
+import config from 'Config';
 import history from 'Config/History';
 import Nav from 'Components/Nav';
 import Logo from 'Components/Logo';

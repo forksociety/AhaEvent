@@ -1,7 +1,8 @@
 import {
   prop,
 } from 'ramda';
-import config from 'react-global-configuration';
+
+import config from 'Config';
 
 const getPathName = (location) => prop('pathname', location);
 

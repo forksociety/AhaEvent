@@ -2,11 +2,11 @@ import React, {
   PureComponent,
 } from 'react';
 import cx from 'classnames';
-import config from 'react-global-configuration';
 import {
   string,
 } from 'prop-types';
 
+import config from 'Config';
 
 import style from './Logo.module.scss';
 
