@@ -35,7 +35,6 @@ class Event extends Component {
     const eventId = id.split('-').pop();
     getEvent(eventId)
       .then((event) => {
-        console.log('Event', event);
         if (event && event.id) {
           this.setState({
             eventId: event.id,
@@ -43,7 +42,7 @@ class Event extends Component {
             isLoading: false,
           });
         } else {
-          // this.redirectToHome();
+          this.redirectToHome();
         }
       });
   }
@@ -150,8 +149,6 @@ class Event extends Component {
         </Content>
       );
     }
-
-    // this.redirectToHome();
   }
 
   render() {
