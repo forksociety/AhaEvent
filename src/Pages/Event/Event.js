@@ -33,25 +33,18 @@ class Event extends Component {
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const eventId = id.split('-').pop();
-
-    // ToDo: remove testing data
-    const self = this;
-    setTimeout(() => {
-      self.setState({
-        isLoading: false,
+    getEvent(eventId)
+      .then((event) => {
+        if (event && event.id) {
+          this.setState({
+            eventId: event.id,
+            event,
+            isLoading: false,
+          });
+        } else {
+          this.redirectToHome();
+        }
       });
-    }, 1000);
-
-    const event = getEvent(eventId);
-
-    if (eventId && event) {
-      this.setState({
-        eventId,
-        event,
-      });
-    } else {
-      this.redirectToHome();
-    }
   }
 
   redirectToHome() {
@@ -156,8 +149,6 @@ class Event extends Component {
         </Content>
       );
     }
-
-    this.redirectToHome();
   }
 
   render() {
