@@ -1,0 +1,24 @@
+{
+  "name": "DrupalCon Global 2020",
+  "description": "DrupalCon is an international educational event that brings together people who use, develop, design and support the Drupal platform. The recurring event features dozens of curated sessions and panels from some of the most influential people and contributors within the Drupal community and beyond, as well as countless opportunities for networking, contributing to Drupal itself, informal conversations, introductions and more. DrupalCon is the premiere conference to hone your Drupal skills, connect with the community, and learn about the future of web technologies happening on the Drupal platform. DrupalCon is an experience filled with trainings, sessions, keynotes, and a full day dedicated to contributing in person. We also offer trainings and industry summits; multiple days of sessions, where everyone is invited to talk, learn and explore all things Drupal; and a dedicated contribution day. And that's just during the daytime! DrupalCon's community and sponsor-driven morning and evening events are scheduled throughout the week. ",
+  "location": "Online",
+  "logo": "https://events.drupal.org/sites/all/themes/da_events/global2020/logo.svg",
+  "organization": "Drupal",
+  "link": "https://events.drupal.org/global2020",
+  "cover": "https://events.drupal.org/sites/default/files/Virtual%20Conference%20Hero%20Image-Triangles.png",
+  "coverBgColor": "#000000",
+  "twitterHandle": "@DrupalConNA",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-07-14T04:00:00+00:00",
+  "endDate": "2020-07-17T04:00:00+00:00",
+  "keywords": [
+    "Drupal",
+    "Driesnote",
+    "Keynote Presentations",
+    "Community Connection",
+    "Professional Development",
+    "Expanded Global Audience",
+    "Content Library"
+  ]
+}
