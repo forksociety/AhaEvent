@@ -1,0 +1,23 @@
+{
+  "name": "Cisco Live 2020",
+  "description": "Cisco Live equips you with the knowledge and skills to play an essential role in delivering the innovations of tomorrow – and the opportunity to join with your colleagues in exploring the ideas that are reshaping the ways we work, play, and live. Offering an unparalleled combination of education and training on the latest technologies and trends; testing and certification on Cisco products; and the opportunity for attendees to extend their professional networks by forging new connections with like-minded colleagues.",
+  "location": "Online",
+  "logo": "https://www.ciscolive.com/c/dam/r/ciscolive/headlibs/img/us/logo-white-blue-us-2020.png",
+  "organization": "Cisco",
+  "link": "https://www.ciscolive.com/us.html",
+  "cover": "https://www.ciscolive.com/c/dam/r/ciscolive/headlibs/img/us/logo-white-blue-us-2020.png",
+  "coverBgColor": "#000000",
+  "twitterHandle": "#CiscoLive",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-06-02T04:00:00+00:00",
+  "endDate": "2020-06-03T04:00:00+00:00",
+  "keywords": [
+    "Cisco",
+    "Data Center",
+    "Cloud",
+    "Internet of Things",
+    "Small Business",
+    "Industries"
+  ]
+}
