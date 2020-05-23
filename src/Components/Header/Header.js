@@ -80,6 +80,7 @@ class Header extends Component {
     return (
       <div className={styles.search}>
         <SearchBox
+          hideSearchBar
           searchInfo={searchInfo}
           onSearch={(q) => this.onSearch(q)}
         />

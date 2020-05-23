@@ -83,7 +83,7 @@ export const getOrderedEventsList = (searchParams) => new Promise((resolve) => {
       docs = filterBySearchString(docs, searchString);
       resolve(docs);
     })
-    .catch((e) => {
+    .catch(() => {
       resolve([]);
     });
 });
@@ -101,7 +101,7 @@ export const getEvent = (id) => new Promise((resolve) => {
 export const getSampleEvents = () => {
   const out = [];
   const ids = ['vET234bn432N', 'v23C3vsf45ghTYG'];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i += 1) {
     out.push(getEvent(ids[(Math.floor(Math.random() * Math.floor(ids.length)))]));
   }
 

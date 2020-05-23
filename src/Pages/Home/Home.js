@@ -54,7 +54,7 @@ class Home extends Component {
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
-      const eventsData = events.map((e, i) => {
+      const eventsData = events.map((event) => {
         const {
           id,
           name: title,
@@ -67,7 +67,7 @@ class Home extends Component {
           endDate,
           cfpStartDate,
           cfpEndDate,
-        } = e;
+        } = event;
 
         const subTitle = (
           <>
