@@ -1,0 +1,27 @@
+{
+  "name": "Oracle Code One 2020",
+  "description": "Oracle Code One is the ultimate developer event where we will cover the technologies and programming languages developers have come to love over the years. Expect talks on Go, Rust, Python, JavaScript, and R and SQL along with more of the latest Java technical content.",
+  "location": "Las Vegas, Nevada, USA",
+  "logo": "https://www.oracle.com/a/evt/img/u20-oco19-logo.png",
+  "organization": "Oracle",
+  "link": "https://www.oracle.com/code-one/",
+  "cover": "https://www.oracle.com/a/evt/img/ch14-oco19-hero-hp.jpg",
+  "coverBgColor": "#000000",
+  "twitterHandle": "@OracleCodeOne",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "cfpStartDate": "2020-05-23T04:00:00+00:00",
+  "cfpEndDate": "2020-09-20T04:00:00+00:00",
+  "startDate": "2020-09-21T04:00:00+00:00",
+  "endDate": "2020-09-24T04:00:00+00:00",
+  "keywords": [
+    "Oracle",
+    "Go",
+    "Rust",
+    "Python",
+    "JavaScript",
+    "R",
+    "SQL",
+    "Java"
+  ]
+}
