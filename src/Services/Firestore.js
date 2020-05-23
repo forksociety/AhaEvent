@@ -5,12 +5,12 @@ import {
 } from 'ramda';
 
 import config from 'Config';
-import firebase from './Firebase';
+import Firebase from './Firebase';
 
 const filters = config.get('filters');
 const sortBy = config.get('sortBy');
 
-const db = firebase.firestore();
+const db = Firebase.firestore();
 
 export const createEventsList = () => new Promise((resolve) => {
   const events = [];
@@ -83,7 +83,8 @@ export const getOrderedEventsList = (searchParams) => new Promise((resolve) => {
       docs = filterBySearchString(docs, searchString);
       resolve(docs);
     })
-    .catch(() => {
+    .catch((e) => {
+
       resolve([]);
     });
 });

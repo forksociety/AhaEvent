@@ -8,13 +8,12 @@ import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import {
-  getSampleEvents, getOrderedEventsList,
+  getOrderedEventsList,
 } from 'Services/Firestore';
 import Utils, {
   generateEventUrl,
   convertDateRangeToReadable,
 } from 'Utils';
-import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
