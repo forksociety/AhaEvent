@@ -1,0 +1,27 @@
+{
+  "name": "Enterprise Connect 2020",
+  "description": "Enterprise communications and collaboration decision-makers and business leaders face daunting new challenges: Emerging technologies like the Cloud, Team Collaboration and Speech Technologies promise to disrupt the environment, while end users and customers continue to demand new tools and media. One event provides you with the in-depth, objective, vendor-neutral expertise you need: Enterprise Connect. Whether you need to upgrade or replace a legacy system, or you’re looking to more fully deploy and integrate next-gen communications, everything at Enterprise Connect focuses on one overriding goal: To help you maximize your investments in communications and collaboration systems, services, apps and networks.",
+  "location": "Moscone Center, San Francisco, CA",
+  "logo": "https://www.enterpriseconnect.com/sites/all/themes/custom/ubm_ec2020_orlando/logo.png",
+  "organization": "Informa",
+  "link": "https://www.enterpriseconnect.com/sanfrancisco",
+  "cover": "https://www.enterpriseconnect.com/sites/default/files/420816_EC20-Orlando-Page-Hero_v2.png",
+  "coverBgColor": "#000000",
+  "twitterHandle": "@enterprisecon",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-08-03T04:00:00+00:00",
+  "endDate": "2020-08-06T04:00:00+00:00",
+  "keywords": [
+    "Unified Communications",
+    "Contact Center & Customer Experience",
+    "Team Collaboration",
+    "Strategic Leadership",
+    "Cloud Communications",
+    "Video Collaboration & A/V",
+    "Management & Security",
+    "Practical AI",
+    "Embedded Communications & APIs",
+    "Communications & Collaboration 2023"
+  ]
+}

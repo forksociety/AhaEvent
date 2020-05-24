@@ -1,0 +1,21 @@
+{
+  "name": "EmTech Asia 2020",
+  "description": "EmTech Asia is co-organised by MIT Technology Review, the world’s oldest and most respected technology publication since 1899, and Koelnmesse, one of the world's largest trade fair companies since 1924. Since its inception in 1999, EmTech has become the world’s most influential conference on emerging technologies that matter, growing into a global community which runs in the USA, Europe, South America, China and Singapore. EmTech is where technology, business and culture converge. At EmTech Asia, you will meet the innovators, the scientists, the investors and the tech executives at the heart of the next technology revolution. Throughout two exhilarating days of networking and learning, you will get inspired from 30 speakers and amazed by the ingenuity of the 20 innovators under 35 and 800 participants who are leaders in their field. At EmTech Asia we believe that innovation happens at the intersection of different disciplines. We bring together the brightest minds in artificial intelligence, materials science, biomedicine, immersive media, space (and much more) from around the world to share breakthrough research and discoveries. We connect the best from academia and industry to collaborate. And we create a platform for scientists with the capability to change the world to meet investors to commercialise ideas and tech executives to distribute it globally. If you are passionate about turning ideas into innovative solutions and addressing major global issues, join us for two days of intelligent conversation at EmTech Asia, on 4 – 5 August 2020.",
+  "location": "Marina Bay Sands Expo and Convention Centre, Singapore",
+  "logo": "https://emtechasia.com/templates/emtech/images/logo.png",
+  "organization": "MIT Technology Review",
+  "link": "https://emtechasia.com/",
+  "cover": "",
+  "coverBgColor": "#000000",
+  "twitterHandle": "@EmTechAsia",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-08-04T04:00:00+00:00",
+  "endDate": "2020-08-05T04:00:00+00:00",
+  "keywords": [
+    "MIT",
+    "Digital Life",
+    "Future of Health",
+    "Tech for Humanity"
+  ]
+}

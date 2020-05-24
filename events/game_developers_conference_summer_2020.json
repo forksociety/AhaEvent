@@ -1,0 +1,26 @@
+{
+  "name": "Game Developers Conference Summer 2020",
+  "description": "The GDC Summer conference program will feature multi-disciplinary educational and inspirational talks alongside high-quality technical content. The event will also host a new series of career development sessions covering topics such as: how to pitch your game, effective communication strategies, how to land an investor/publisher, and business development strategies.",
+  "location": "Online",
+  "logo": "https://www.gdconf.com/sites/default/files/GDC_logo_blue_168x60_1_0.png",
+  "organization": "Informa",
+  "link": "https://gdconf.com/",
+  "cover": "https://www.gdconf.com/sites/default/files/GDC2020_new_hero_0.png",
+  "coverBgColor": "#000000",
+  "twitterHandle": "@Official_GDC",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-08-04T04:00:00+00:00",
+  "endDate": "2020-08-06T04:00:00+00:00",
+  "keywords": [
+    "Design",
+    "Programming",
+    "Business & Marketing",
+    "Production & Team Management",
+    "Visual Arts",
+    "Audio",
+    "Career & Studio Development",
+    "Advocacy",
+    "Sponsored Content"
+  ]
+}
