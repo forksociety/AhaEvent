@@ -1,0 +1,25 @@
+{
+  "name": "HPE Discover 2020",
+  "description": "HPE helps you address the challenges of today while transforming for tomorrow. The world has changed, bringing with it new challenges and shifting priorities. HPE is here to help and is bringing HPE Discover 2020 to you in an ongoing virtual experience. We kick off on June 23 with a live keynote by CEO Antonio Neri, along with a host of live and on-demand sessions, demos and training designed to help you and your organization now and into the future.",
+  "location": "Online",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/4/46/Hewlett_Packard_Enterprise_logo.svg",
+  "organization": "Hewlett Packard Enterprise",
+  "link": "https://www.hpe.com/us/en/discover.html",
+  "cover": "",
+  "coverBgColor": "#ffffff",
+  "twitterHandle": "@HPE",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-05-25T04:00:00+00:00",
+  "endDate": "2020-05-25T04:00:00+00:00",
+  "keywords": [
+    "Business Continuity",
+    "Hybrid Cloud",
+    "Financial Flexibility",
+    "Data and Applications",
+    "Agile Workforce",
+    "Data Transformation",
+    "Accelerate Research",
+    "Intelligent Edge"
+  ]
+}
