@@ -1,0 +1,18 @@
+{
+  "name": "Oracle Open World 2020",
+  "description": "Oracle OpenWorld is an annual Oracle convention for business decision-makers, IT management, and line-of-business end users. It is held in September in San Francisco, California; New Delhi, India; São Paulo, Brazil; and Shanghai, China. The world's largest conference for Oracle customers and technologists, Oracle OpenWorld San Francisco attracted some 60,000 visitors in 2014 and an additional 7 million were expected to follow the event online.",
+  "location": "Las Vegas, Nevada, USA",
+  "logo": "https://www.oracle.com/a/evt/img/u20-oow19-logo-112x112-dk.png",
+  "organization": "Oracle",
+  "link": "https://www.oracle.com/openworld/",
+  "cover": "https://www.oracle.com/asset/web/i/ch01-defaultbg.jpg",
+  "coverBgColor": "#ffffff",
+  "twitterHandle": "@oracleopenworld",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-09-21T04:00:00+00:00",
+  "endDate": "2020-09-24T04:00:00+00:00",
+  "keywords": [
+    "Oracle"
+  ]
+}
