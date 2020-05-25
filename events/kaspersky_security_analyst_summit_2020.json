@@ -1,0 +1,19 @@
+{
+  "name": "Kaspersky Security Analyst Summit 2020",
+  "description": "The Kaspersky Security Analyst Summit (SAS) is an annual event that attracts high-caliber anti-malware researchers, global law enforcement agencies and CERTs and senior executives from financial services, technology, healthcare, academia and government agencies.",
+  "location": "Passeig del Taulat, 262-264, 08019 Barcelona, Spain",
+  "logo": "https://thesascon.com/images/icons/logo--theme--fire-orange.svg",
+  "organization": "Kaspersky",
+  "link": "https://thesascon.com/",
+  "cover": "https://thesascon.com/images/index/main-bg-desktop.jpg",
+  "coverBgColor": "#000000",
+  "twitterHandle": "@TheSAScon",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-11-18T05:00:00+00:00",
+  "endDate": "2020-11-21T05:00:00+00:00",
+  "keywords": [
+    "Mobile Malware",
+    "Internet of Things"
+  ]
+}
