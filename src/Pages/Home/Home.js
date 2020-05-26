@@ -8,13 +8,12 @@ import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import {
-  getSampleEvents, getOrderedEventsList,
+  getOrderedEventsList,
 } from 'Services/Firestore';
 import Utils, {
   generateEventUrl,
   convertDateRangeToReadable,
 } from 'Utils';
-import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
@@ -54,7 +53,7 @@ class Home extends Component {
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
-      const eventsData = events.map((e, i) => {
+      const eventsData = events.map((event) => {
         const {
           id,
           name: title,
@@ -67,7 +66,7 @@ class Home extends Component {
           endDate,
           cfpStartDate,
           cfpEndDate,
-        } = e;
+        } = event;
 
         const subTitle = (
           <>
