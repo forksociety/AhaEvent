@@ -1,0 +1,23 @@
+{
+  "name": "PyCon 2020",
+  "description": "The PyCon 2020 conference, which will take place in Pittsburgh, is the largest annual gathering for the community using and developing the open-source Python programming language. It is produced and underwritten by the Python Software Foundation, the 501(c)(3) nonprofit organization dedicated to advancing and promoting Python. Through PyCon, the PSF advances its mission of growing the international community of Python programmers.",
+  "location": "Online",
+  "logo": "https://us.pycon.org/2020/static/images/2020-header-cropped-1.dbcc7719c368.png",
+  "organization": "Python Software Foundation",
+  "link": "https://us.pycon.org/2020/",
+  "cover": "",
+  "coverBgColor": "#ffffff",
+  "twitterHandle": "pycon",
+  "streamLink": "https://us.pycon.org/2020/online/",
+  "submitterTwitterHandle": "",
+  "startDate": "2020-04-15T04:00:00+00:00",
+  "endDate": "2020-05-14T03:00:00+00:00",
+  "keywords": [
+    "PyCon",
+    "Python",
+    "Pycon 2020",
+    "Pycon USA",
+    "PSF",
+    "Python Software Foundation"
+  ]
+}
