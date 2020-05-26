@@ -2,11 +2,10 @@ import React from 'react';
 import {
   BrowserRouter as Router, Route, Switch, useLocation,
 } from 'react-router-dom';
-import loadConfig from 'react-global-configuration';
+import * as Sentry from '@sentry/browser';
 import 'antd/dist/antd.less';
 
-import Config from 'Config';
-import History from 'Config/History';
+import history from 'Config/History';
 import Header from 'Components/Header';
 import BackTop from 'Components/BackTop';
 import Footer from 'Components/Footer';
@@ -18,6 +17,8 @@ import {
 
 import './App.scss';
 
+Sentry.init({dsn: process.env.REACT_APP_SENTRY});
+
 const {
   Home,
   NotFound,
@@ -25,7 +26,6 @@ const {
   SubmitEvent,
 } = Pages;
 
-loadConfig.set(Config);
 
 const Routes = () => (
   <>
@@ -53,6 +53,6 @@ const Routes = () => (
   </>
 );
 
-const App = () => (<Router history={History}><Routes /></Router>);
+const App = () => (<Router history={history}><Routes /></Router>);
 
 export default App;

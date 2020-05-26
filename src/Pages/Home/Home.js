@@ -2,18 +2,18 @@ import React, {
   Component,
 } from 'react';
 
+import DocumentMeta from 'Components/DocumentMeta';
 import Grid from 'Components/Grid';
 import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import {
-  getSampleEvents, getOrderedEventsList,
+  getOrderedEventsList,
 } from 'Services/Firestore';
 import Utils, {
   generateEventUrl,
   convertDateRangeToReadable,
 } from 'Utils';
-import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
@@ -23,6 +23,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      meta: {
+        title: 'Home',
+      },
       events: [],
       isLoading: true,
     };
@@ -31,9 +34,8 @@ class Home extends Component {
   componentDidMount() {
     const { location: { search } } = this.props;
     const searchParams = getSearchParams(search);
-
     const self = this;
-    getOrderedEventsList()
+    getOrderedEventsList(searchParams)
       .then((eventList) => {
         self.setState({
           events: eventList,
@@ -51,7 +53,7 @@ class Home extends Component {
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
-      const eventsData = events.map((e, i) => {
+      const eventsData = events.map((event) => {
         const {
           id,
           name: title,
@@ -64,7 +66,7 @@ class Home extends Component {
           endDate,
           cfpStartDate,
           cfpEndDate,
-        } = e;
+        } = event;
 
         const subTitle = (
           <>
@@ -111,9 +113,10 @@ class Home extends Component {
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, meta } = this.state;
     return (
       <main>
+        <DocumentMeta {...meta} />
         {isLoading && <Loader />}
         {!isLoading && (this.getPageContent())}
       </main>

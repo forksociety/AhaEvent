@@ -4,8 +4,8 @@ import React, {
 import {
   Layout,
 } from 'antd';
-import config from 'react-global-configuration';
 
+import config from 'Config';
 import Link from 'Components/Link';
 
 import styles from './Footer.module.scss';

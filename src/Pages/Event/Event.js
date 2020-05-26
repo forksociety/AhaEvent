@@ -2,6 +2,7 @@ import React, {
   Component,
 } from 'react';
 
+import DocumentMeta from 'Components/DocumentMeta';
 import Icon from 'Components/Icon';
 import Tag from 'Components/Tag';
 import Loader from 'Components/Loader';
@@ -33,25 +34,18 @@ class Event extends Component {
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const eventId = id.split('-').pop();
-
-    // ToDo: remove testing data
-    const self = this;
-    setTimeout(() => {
-      self.setState({
-        isLoading: false,
+    getEvent(eventId)
+      .then((event) => {
+        if (event && event.id) {
+          this.setState({
+            eventId: event.id,
+            event,
+            isLoading: false,
+          });
+        } else {
+          this.redirectToHome();
+        }
       });
-    }, 1000);
-
-    const event = getEvent(eventId);
-
-    if (eventId && event) {
-      this.setState({
-        eventId,
-        event,
-      });
-    } else {
-      this.redirectToHome();
-    }
   }
 
   redirectToHome() {
@@ -95,7 +89,8 @@ class Event extends Component {
       } = event;
       const keywords = this.getKeywords(allKeywords);
 
-      return (
+      return (<>
+        <DocumentMeta title={name} description={description} keywords={keywords} ogImage={cover} />
         <Content className={styles.event}>
           <span
             style={getCoverStyle(cover, coverBgColor)}
@@ -154,10 +149,8 @@ class Event extends Component {
             {!isOnlineEvent(location) && <GoogleMap location={location} height="200px" />}
           </span>
         </Content>
-      );
+      </>);
     }
-
-    this.redirectToHome();
   }
 
   render() {

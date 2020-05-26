@@ -7,7 +7,8 @@ import {
 import {
   reduce,
 } from 'ramda';
-import config from 'react-global-configuration';
+
+import config from 'Config';
 
 import Checkbox from '../Checkbox';
 import Dropdown from '../Dropdown';
@@ -56,13 +57,14 @@ class SearchBox extends Component {
   }
 
   render() {
-    const { onSearch, placeholder, enterButton, showSearchTools, searchInfo } = this.props;
+    const { onSearch, placeholder, enterButton, showSearchTools, hideSearchBar, searchInfo } = this.props;
     const allSortByItems = this.getSortByItems();
     const allFilters = config.get('filters');
     const { sortBy, filters, query } = searchInfo;
 
     return (
       <>
+        {!hideSearchBar && (
         <Search
           className={styles.search}
           placeholder={placeholder || 'Search'}
@@ -72,6 +74,7 @@ class SearchBox extends Component {
           value={query}
           enterButton={enterButton}
         />
+        )}
         {showSearchTools
         && (
         <div className={styles['filter-sort']}>
@@ -103,6 +106,7 @@ class SearchBox extends Component {
 SearchBox.defaultProps = {
   enterButton: true,
   showSearchTools: true,
+  hideSearchBar: false,
 };
 
 export default SearchBox;
