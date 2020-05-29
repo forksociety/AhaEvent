@@ -5,7 +5,10 @@ import {
 } from 'react-router-dom';
 
 import config from 'Config';
+import Icon from 'Components/Icon';
 import Routes from './routes';
+import styles from '../Pages/Home/Home.module.scss';
+
 
 export const getCoverStyle = (cover, color) => {
   const defaultColor = '#dadada';
@@ -141,6 +144,67 @@ export const generateEventUrl = (id, name) => (`/event/${readableStringToKey(nam
 export const getIdFromUrlSlug = (slug, separator = '_') => {
   const tmp = slug.split(separator);
   return tmp.length > 0 ? tmp[tmp.length - 1] : null;
+};
+
+export const createCard = (e) => {
+  if (!e) return null;
+  const {
+    name: title,
+    logo,
+    link,
+    cover,
+    coverBgColor,
+    location,
+    startDate,
+    endDate,
+    cfpStartDate,
+    cfpEndDate,
+  } = e;
+
+  const subTitle = location ? (
+    <>
+      <Icon type="location" className={styles.icon} />
+      <span>{location}</span>
+    </>
+  ) : null;
+  const hasCfp = cfpStartDate && cfpEndDate;
+  const description = (
+    <>
+      <div>{convertDateRangeToReadable(startDate, endDate)}</div>
+      {hasCfp && (
+        <div>
+          CFP:
+          {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
+        </div>
+      )}
+    </>
+  );
+
+  return {
+    title,
+    subTitle,
+    description,
+    logo,
+    link,
+    cover,
+    coverBgColor,
+  };
+};
+
+export const createCardFromEvent = (e) => {
+  const card = createCard(e);
+  const {
+    id,
+    name: title,
+  } = e;
+  const url = generateEventUrl(id, title);
+
+  return {
+    ...card,
+    id,
+    url,
+    onClick: (e) => this.handleCardClick(e, url),
+  };
 };
 
 export default {

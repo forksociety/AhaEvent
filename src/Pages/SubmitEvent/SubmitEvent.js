@@ -15,12 +15,17 @@ import {
 } from 'Config/AppStrings';
 import {
   generateDownloadableJsonFile, readableStringToKey,
+  generateEventUrl,
+  convertDateRangeToReadable,
+  createCard,
 } from 'Utils';
 
+import Card from 'Components/Card';
 import FormFields, {
   isValidValue,
 } from './Components/Fields';
 import styles from './SubmitEvent.module.scss';
+
 
 const { FormContainer } = Form;
 
@@ -159,9 +164,21 @@ class SubmitEvent extends Component {
     }
   }
 
+  getFormDataForCard() {
+    const { formData } = this.state;
+    if (formData) {
+      const { logo } = formData;
+      return ({
+        ...formData,
+        logo: logo || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png',
+      });
+    }
+    return formData;
+  }
+
   render() {
     const formItemLayout = this.getColConfig();
-
+    const cardData = createCard(this.getFormDataForCard());
     return (
       <main>
         <Content>
@@ -175,6 +192,10 @@ class SubmitEvent extends Component {
           {...formItemLayout}
         >
           {this.getFormFormFields()}
+          <span className={styles.card}>
+            <Card {...cardData} />
+          </span>
+
           <Button
             onClick={() => this.downloadFile()}
             type="primary"

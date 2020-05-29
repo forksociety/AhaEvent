@@ -119,7 +119,7 @@ const Fields = {
   },
   coverBgColor: {
     text: 'Cover Background Color',
-    value: '',
+    value: '#fff',
     component: formElements.color,
     type: 'color',
     required: true,
