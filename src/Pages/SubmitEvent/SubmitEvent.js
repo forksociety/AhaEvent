@@ -15,8 +15,6 @@ import {
 } from 'Config/AppStrings';
 import {
   generateDownloadableJsonFile, readableStringToKey,
-  generateEventUrl,
-  convertDateRangeToReadable,
   createCard,
 } from 'Utils';
 
