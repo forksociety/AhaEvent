@@ -26,6 +26,8 @@ import FormFields, {
 } from './Components/Fields';
 import styles from './SubmitEvent.module.scss';
 
+const noImageAvailable = '/assets/images/no_image_available.png';
+
 
 const { FormContainer } = Form;
 
@@ -170,7 +172,7 @@ class SubmitEvent extends Component {
       const { logo } = formData;
       return ({
         ...formData,
-        logo: logo || 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png',
+        logo: logo || noImageAvailable,
       });
     }
     return formData;
