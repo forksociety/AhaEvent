@@ -8,14 +8,13 @@ import Card from 'Components/Card';
 import Loader from 'Components/Loader';
 import Icon from 'Components/Icon';
 import {
-  getSampleEvents, getOrderedEventsList,
+  getOrderedEventsList,
 } from 'Services/Firestore';
 import Utils, {
   generateEventUrl,
   convertDateRangeToReadable,
   createCardFromEvent,
 } from 'Utils';
-import config from 'Config/Config';
 
 import styles from './Home.module.scss';
 
@@ -55,7 +54,7 @@ class Home extends Component {
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
-      const eventsData = events.map((e, i) => createCardFromEvent(e));
+      const eventsData = events.map((event) => createCardFromEvent(event));
       return (
         <Grid
           items={eventsData.map((event) => (<Card {...event} />))}

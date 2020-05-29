@@ -146,8 +146,8 @@ export const getIdFromUrlSlug = (slug, separator = '_') => {
   return tmp.length > 0 ? tmp[tmp.length - 1] : null;
 };
 
-export const createCard = (e) => {
-  if (!e) return null;
+export const createCard = (data) => {
+  if (!data) return null;
   const {
     name: title,
     logo,
@@ -159,7 +159,7 @@ export const createCard = (e) => {
     endDate,
     cfpStartDate,
     cfpEndDate,
-  } = e;
+  } = data;
 
   const subTitle = location ? (
     <>
@@ -191,12 +191,12 @@ export const createCard = (e) => {
   };
 };
 
-export const createCardFromEvent = (e) => {
-  const card = createCard(e);
+export const createCardFromEvent = (event) => {
+  const card = createCard(event);
   const {
     id,
     name: title,
-  } = e;
+  } = event;
   const url = generateEventUrl(id, title);
 
   return {
