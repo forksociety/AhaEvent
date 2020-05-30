@@ -1,0 +1,21 @@
+{
+  "name": "Linux Security Summit North America 2020",
+  "description": "The Linux Security Summit (LSS) is a technical forum for collaboration between Linux developers, researchers, and end-users. Its primary aim is to foster community efforts in analyzing and solving Linux security challenges.",
+  "location": "Online",
+  "logo": "https://events.linuxfoundation.org/wp-content/uploads/LSS_Logo_NorthAmerica_White-01.svg",
+  "organization": "The Linux Foundation",
+  "link": "https://events.linuxfoundation.org/linux-security-summit-north-america/",
+  "cover": "https://events.linuxfoundation.org/wp-content/uploads/43819636540_8384e69f49_k.jpg",
+  "coverBgColor": "#ff7432",
+  "twitterHandle": "LinuxSecSummit",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-07-01T04:00:00+00:00",
+  "endDate": "2020-07-02T04:00:00+00:00",
+  "keywords": [
+    "Linux",
+    "Security",
+    "Linux Foundation",
+    "North America"
+  ]
+}

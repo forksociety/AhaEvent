@@ -1,0 +1,21 @@
+{
+  "name": "Open Source Summit North America 2020",
+  "description": "Open Source Summit connects the open source ecosystem under one roof. It’s a unique environment for cross-collaboration between developers, sysadmins, devops, architects and others who are driving technology forward.",
+  "location": "Online",
+  "logo": "https://events.linuxfoundation.org/wp-content/uploads/LF-Event-Logo-_OSS-NA-V-White-01-1.svg",
+  "organization": "The Linux Foundation",
+  "link": "https://events.linuxfoundation.org/open-source-summit-north-america/",
+  "cover": "https://events.linuxfoundation.org/wp-content/uploads/37879144301_f970c87da2_o.jpg",
+  "coverBgColor": "#7a4396",
+  "twitterHandle": "linuxfoundation",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-06-29T04:00:00+00:00",
+  "endDate": "2020-07-02T04:00:00+00:00",
+  "keywords": [
+        "Linux",
+        "Linux Foundation",
+        "Open Source",
+        "North America"
+    ]
+}
