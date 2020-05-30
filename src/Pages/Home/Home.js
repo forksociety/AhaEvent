@@ -11,9 +11,7 @@ import {
   getOrderedEventsList,
 } from 'Services/Firestore';
 import Utils, {
-  generateEventUrl,
-  convertDateRangeToReadable,
-  createCardFromEvent,
+  generateCardData,
 } from 'Utils';
 
 import styles from './Home.module.scss';
@@ -54,7 +52,7 @@ class Home extends Component {
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
-      const eventsData = events.map((event) => createCardFromEvent(event));
+      const eventsData = events.map((event) => generateCardData(event));
       return (
         <Grid
           items={eventsData.map((event) => (<Card {...event} />))}

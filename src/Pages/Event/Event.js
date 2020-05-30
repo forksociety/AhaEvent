@@ -89,67 +89,69 @@ class Event extends Component {
       } = event;
       const keywords = this.getKeywords(allKeywords);
 
-      return (<>
-        <DocumentMeta title={name} description={description} keywords={keywords} ogImage={cover} />
-        <Content className={styles.event}>
-          <span
-            style={getCoverStyle(cover, coverBgColor)}
-            className={styles.cover}
-          >
-            {getOverlay(cover)}
-            <span className={styles.tags}>
-              {keywords.map((keyword, i) => (<Tag key={`${keyword}-${i}`} text={keyword} />))}
-            </span>
-            <img className={styles.logo} alt={`${name} logo`} src={logo} />
-          </span>
-          <span className={styles.details}>
-            <span className={styles.content}>
-              <span>
-                <h2 className="tac">{name}</h2>
-                <h4 className="tac">
-                  {convertDateRangeToReadable(startDate, endDate)}
-                  {isOnlineEvent(location) ? <sup className={styles.online}>Online</sup> : null}
-                </h4>
-                <h4 className="tac">{organization}</h4>
+      return (
+        <>
+          <DocumentMeta title={name} description={description} keywords={keywords} ogImage={cover} />
+          <Content className={styles.event}>
+            <span
+              style={getCoverStyle(cover, coverBgColor)}
+              className={styles.cover}
+            >
+              {getOverlay(cover)}
+              <span className={styles.tags}>
+                {keywords.map((keyword, i) => (<Tag key={`${keyword}-${i}`} text={keyword} />))}
               </span>
-              <div className="tac">{description}</div>
-              <div className="tac">
-                {`Call for Proposals: ${cfpStartDate && cfpEndDate
-                  ? convertDateRangeToReadable(cfpStartDate, cfpEndDate)
-                  : 'Not Available'
-                }`}
-              </div>
-              <span className={styles.actions}>
-                {link && (
-                <Icon
-                  type="internet"
-                  title="Website"
-                  className={styles.icons}
-                  onClick={() => this.handleButtonClick(link)}
-                />
-                )}
-                {streamLink && (
-                <Icon
-                  title="Watch Online"
-                  type="video"
-                  className={styles.icons}
-                  onClick={() => this.handleButtonClick(streamLink)}
-                />
-                )}
-                {twitterHandle && (
-                <Icon
-                  title="Twitter"
-                  type="twitter"
-                  className={styles.icons}
-                  onClick={() => this.handleButtonClick(getTwitterLink(twitterHandle))}
-                />
-                )}
-              </span>
+              <img className={styles.logo} alt={`${name} logo`} src={logo} />
             </span>
-            {!isOnlineEvent(location) && <GoogleMap location={location} height="200px" />}
-          </span>
-        </Content>
-      </>);
+            <span className={styles.details}>
+              <span className={styles.content}>
+                <span>
+                  <h2 className="tac">{name}</h2>
+                  <h4 className="tac">
+                    {convertDateRangeToReadable(startDate, endDate)}
+                    {isOnlineEvent(location) ? <sup className={styles.online}>Online</sup> : null}
+                  </h4>
+                  <h4 className="tac">{organization}</h4>
+                </span>
+                <div className="tac">{description}</div>
+                <div className="tac">
+                  {`Call for Proposals: ${cfpStartDate && cfpEndDate
+                    ? convertDateRangeToReadable(cfpStartDate, cfpEndDate)
+                    : 'Not Available'
+                  }`}
+                </div>
+                <span className={styles.actions}>
+                  {link && (
+                  <Icon
+                    type="internet"
+                    title="Website"
+                    className={styles.icons}
+                    onClick={() => this.handleButtonClick(link)}
+                  />
+                  )}
+                  {streamLink && (
+                  <Icon
+                    title="Watch Online"
+                    type="video"
+                    className={styles.icons}
+                    onClick={() => this.handleButtonClick(streamLink)}
+                  />
+                  )}
+                  {twitterHandle && (
+                  <Icon
+                    title="Twitter"
+                    type="twitter"
+                    className={styles.icons}
+                    onClick={() => this.handleButtonClick(getTwitterLink(twitterHandle))}
+                  />
+                  )}
+                </span>
+              </span>
+              {!isOnlineEvent(location) && <GoogleMap location={location} height="200px" />}
+            </span>
+          </Content>
+        </>
+      );
     }
   }
 

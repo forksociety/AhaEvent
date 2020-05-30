@@ -146,7 +146,7 @@ export const getIdFromUrlSlug = (slug, separator = '_') => {
   return tmp.length > 0 ? tmp[tmp.length - 1] : null;
 };
 
-export const createCard = (data) => {
+export const generateBasicCardData = (data) => {
   if (!data) return null;
   const {
     name: title,
@@ -191,8 +191,8 @@ export const createCard = (data) => {
   };
 };
 
-export const createCardFromEvent = (event) => {
-  const card = createCard(event);
+export const generateCardData = (event) => {
+  const card = generateBasicCardData(event);
   const {
     id,
     name: title,

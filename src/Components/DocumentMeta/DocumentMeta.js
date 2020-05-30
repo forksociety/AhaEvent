@@ -41,7 +41,7 @@ DocumentMeta.defaultProps = {
   keywords: [],
   url: window ? window.location.href : null,
   pageType: 'article',
-  ogImage: config.get('defaults')['ogImage'],
+  ogImage: config.get('defaults').ogImage,
 };
 
 export default DocumentMeta;

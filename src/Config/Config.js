@@ -122,6 +122,7 @@ const config = {
     sort: 'date-asc',
     filters: [],
     ogImage: '/assets/images/og_image.png',
+    noImageAvailable: '/assets/images/no_image_available.png',
   },
   searchFields,
   api,

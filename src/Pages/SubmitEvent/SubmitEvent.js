@@ -15,17 +15,15 @@ import {
 } from 'Config/AppStrings';
 import {
   generateDownloadableJsonFile, readableStringToKey,
-  createCard,
+  generateBasicCardData,
 } from 'Utils';
 
 import Card from 'Components/Card';
+import config from 'Config';
 import FormFields, {
   isValidValue,
 } from './Components/Fields';
 import styles from './SubmitEvent.module.scss';
-
-const noImageAvailable = '/assets/images/no_image_available.png';
-
 
 const { FormContainer } = Form;
 
@@ -170,7 +168,7 @@ class SubmitEvent extends Component {
       const { logo } = formData;
       return ({
         ...formData,
-        logo: logo || noImageAvailable,
+        logo: logo || config.get('defaults').noImageAvailable,
       });
     }
     return formData;
@@ -178,7 +176,7 @@ class SubmitEvent extends Component {
 
   render() {
     const formItemLayout = this.getColConfig();
-    const cardData = createCard(this.getFormDataForCard());
+    const cardData = generateBasicCardData(this.getFormDataForCard());
     return (
       <main>
         <Content>
