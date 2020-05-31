@@ -15,8 +15,11 @@ import {
 } from 'Config/AppStrings';
 import {
   generateDownloadableJsonFile, readableStringToKey,
+  generateBasicCardData,
 } from 'Utils';
 
+import Card from 'Components/Card';
+import config from 'Config';
 import FormFields, {
   isValidValue,
 } from './Components/Fields';
@@ -159,9 +162,21 @@ class SubmitEvent extends Component {
     }
   }
 
+  getFormDataForCard() {
+    const { formData } = this.state;
+    if (formData) {
+      const { logo } = formData;
+      return ({
+        ...formData,
+        logo: logo || config.get('defaults').noImageAvailable,
+      });
+    }
+    return formData;
+  }
+
   render() {
     const formItemLayout = this.getColConfig();
-
+    const cardData = generateBasicCardData(this.getFormDataForCard());
     return (
       <main>
         <Content>
@@ -175,6 +190,10 @@ class SubmitEvent extends Component {
           {...formItemLayout}
         >
           {this.getFormFormFields()}
+          <span className={styles.card}>
+            <Card {...cardData} />
+          </span>
+
           <Button
             onClick={() => this.downloadFile()}
             type="primary"

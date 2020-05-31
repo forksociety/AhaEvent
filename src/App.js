@@ -17,7 +17,9 @@ import {
 
 import './App.scss';
 
-Sentry.init({dsn: process.env.REACT_APP_SENTRY});
+Sentry.init({
+  dsn: process.env.REACT_APP_SENTRY,
+});
 
 const {
   Home,
