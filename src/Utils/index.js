@@ -5,7 +5,10 @@ import {
 } from 'react-router-dom';
 
 import config from 'Config';
+import Icon from 'Components/Icon';
 import Routes from './routes';
+import styles from '../Pages/Home/Home.module.scss';
+
 
 export const getCoverStyle = (cover, color) => {
   const defaultColor = '#dadada';
@@ -141,6 +144,66 @@ export const generateEventUrl = (id, name) => (`/event/${readableStringToKey(nam
 export const getIdFromUrlSlug = (slug, separator = '_') => {
   const tmp = slug.split(separator);
   return tmp.length > 0 ? tmp[tmp.length - 1] : null;
+};
+
+export const generateBasicCardData = (data) => {
+  if (!data) return null;
+  const {
+    name: title,
+    logo,
+    link,
+    cover,
+    coverBgColor,
+    location,
+    startDate,
+    endDate,
+    cfpStartDate,
+    cfpEndDate,
+  } = data;
+
+  const subTitle = location ? (
+    <>
+      <Icon type="location" className={styles.icon} />
+      <span>{location}</span>
+    </>
+  ) : null;
+  const hasCfp = cfpStartDate && cfpEndDate;
+  const description = (
+    <>
+      <div>{convertDateRangeToReadable(startDate, endDate)}</div>
+      {hasCfp && (
+        <div>
+          CFP:
+          {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
+        </div>
+      )}
+    </>
+  );
+
+  return {
+    title,
+    subTitle,
+    description,
+    logo,
+    link,
+    cover,
+    coverBgColor,
+  };
+};
+
+export const generateCardData = (event) => {
+  const card = generateBasicCardData(event);
+  const {
+    id,
+    name: title,
+  } = event;
+  const url = generateEventUrl(id, title);
+
+  return {
+    ...card,
+    id,
+    url,
+  };
 };
 
 export default {

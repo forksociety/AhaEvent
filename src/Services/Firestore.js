@@ -84,7 +84,6 @@ export const getOrderedEventsList = (searchParams) => new Promise((resolve) => {
       resolve(docs);
     })
     .catch((e) => {
-
       resolve([]);
     });
 });

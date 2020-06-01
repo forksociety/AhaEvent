@@ -11,8 +11,7 @@ import {
   getOrderedEventsList,
 } from 'Services/Firestore';
 import Utils, {
-  generateEventUrl,
-  convertDateRangeToReadable,
+  generateCardData,
 } from 'Utils';
 
 import styles from './Home.module.scss';
@@ -54,52 +53,12 @@ class Home extends Component {
     const { events } = this.state;
     if (events.length > 0) {
       const eventsData = events.map((event) => {
-        const {
-          id,
-          name: title,
-          logo,
-          link,
-          cover,
-          coverBgColor,
-          location,
-          startDate,
-          endDate,
-          cfpStartDate,
-          cfpEndDate,
-        } = event;
-
-        const subTitle = (
-          <>
-            <Icon type="location" className={styles.icon} />
-            <span>{location}</span>
-          </>
-        );
-        const hasCfp = cfpStartDate && cfpEndDate;
-        const description = (
-          <>
-            <div>{convertDateRangeToReadable(startDate, endDate)}</div>
-            {hasCfp && (
-            <div>
-              CFP:
-              {convertDateRangeToReadable(cfpStartDate, cfpEndDate)}
-            </div>
-            )}
-          </>
-        );
-        const url = generateEventUrl(id, title);
-
-        return {
-          id,
-          title,
-          subTitle,
-          description,
-          logo,
-          link,
-          url,
-          cover,
-          coverBgColor,
+        const eData = generateCardData(event);
+        const {url} = eData;
+        return ({
+          ...eData,
           onClick: (e) => this.handleCardClick(e, url),
-        };
+        });
       });
       return (
         <Grid

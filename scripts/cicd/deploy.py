@@ -17,7 +17,7 @@ def getChangedFiles(response):
             changedFileList.append(item['filename'])
         return changedFileList
     except:
-        return False
+        return []
 
 def filterChangedFiles(changedFiles):
     filteredFiles = []
