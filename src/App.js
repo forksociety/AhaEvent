@@ -2,10 +2,10 @@ import React from 'react';
 import {
   BrowserRouter as Router, Route, Switch, useLocation,
 } from 'react-router-dom';
-import * as Sentry from '@sentry/browser';
 import 'antd/dist/antd.less';
 
 import history from 'Config/History';
+import Analytics from 'Components/Analytics';
 import Header from 'Components/Header';
 import BackTop from 'Components/BackTop';
 import Footer from 'Components/Footer';
@@ -17,9 +17,7 @@ import {
 
 import './App.scss';
 
-Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY,
-});
+Analytics();
 
 const {
   Home,
