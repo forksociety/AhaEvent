@@ -52,7 +52,14 @@ class Home extends Component {
   getPageContent() {
     const { events } = this.state;
     if (events.length > 0) {
-      const eventsData = events.map((event) => generateCardData(event));
+      const eventsData = events.map((event) => {
+        const eData = generateCardData(event);
+        const {url} = eData;
+        return ({
+          ...eData,
+          onClick: (e) => this.handleCardClick(e, url),
+        });
+      });
       return (
         <Grid
           items={eventsData.map((event) => (<Card {...event} />))}

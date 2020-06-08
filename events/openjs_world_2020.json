@@ -1,0 +1,21 @@
+{
+  "name": "OpenJS World 2020",
+  "description": "OpenJS Foundation’s annual event brings together the JavaScript and web ecosystem including Node.js, Electron, AMP and more. In 2020, we’re going virtual to learn and engage with leaders deploying innovative applications at massive scale.",
+  "location": "Online",
+  "logo": "https://events.linuxfoundation.org/wp-content/uploads/OpenJS_2020_PlaceholderLogo_White.svg",
+  "organization": "The Linux Foundation",
+  "link": "https://events.linuxfoundation.org/openjs-world/",
+  "cover": "https://events.linuxfoundation.org/wp-content/uploads/OpenJS_2020_PromoGraphics_Hero.png",
+  "coverBgColor": "#43957d",
+  "twitterHandle": "openjsf",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-06-23T04:00:00+00:00",
+  "endDate": "2020-06-24T04:00:00+00:00",
+  "keywords": [
+        "Linux",
+        "Linux Foundation",
+        "Open Source",
+        "JavaScript"
+    ]
+}

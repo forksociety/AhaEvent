@@ -203,7 +203,6 @@ export const generateCardData = (event) => {
     ...card,
     id,
     url,
-    onClick: (e) => this.handleCardClick(e, url),
   };
 };
 
