@@ -1,0 +1,21 @@
+{
+  "name": "KubeCon + CloudNativeCon Europe 2020",
+  "description": "CNCF’s flagship conference gathers adopters & technologists from leading OS and cloud native communities (Kubernetes, Prometheus, Envoy, CoreDNS and more) for education and advancement of cloud native computing.",
+  "location": "Online",
+  "logo": "https://events.linuxfoundation.org/wp-content/uploads/2020/04/kubecon-eu-virtual-logo-01.svg",
+  "organization": "The Linux Foundation",
+  "link": "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/",
+  "cover": "",
+  "coverBgColor": "#5c1b82",
+  "twitterHandle": "KubeCon_",
+  "streamLink": "",
+  "submitterTwitterHandle": "kitewarrior4",
+  "startDate": "2020-08-17T04:00:00+00:00",
+  "endDate": "2020-08-20T04:00:00+00:00",
+  "keywords": [
+    "Linux",
+    "Linux Foundation",
+    "Cloud",
+    "Europe"
+  ]
+}
