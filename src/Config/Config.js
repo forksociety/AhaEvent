@@ -120,7 +120,7 @@ const config = {
   sortBy: generateCustomObjects(sortBy, 2),
   defaults: {
     sort: 'date-asc',
-    filters: [],
+    filters: ['spe'],
     ogImage: '/assets/images/og_image.png',
     noImageAvailable: '/assets/images/no_image_available.png',
   },
